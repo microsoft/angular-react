@@ -5,8 +5,8 @@
     "module": "es2015",
     "baseUrl": ".",
     "paths": {
-      "@angular-react": [
-        "@angular-react"
+      "@angular-react/*": [
+        "@angular-react/*"
       ]
     }
   },

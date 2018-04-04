@@ -1,11 +1,11 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
-  "name": "@angular-react",
+  "name": "@angular-react/core",
   "version": "1.0.0",
   "ngPackage": {
     "lib": {
       "entryFile": "index.ts"
     },
-    "dest": "../../@angular-react"
+    "dest": "../../@angular-react/core"
   }
 }

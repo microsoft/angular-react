@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NxModule } from '@nrwl/nx';
 import { ReactComponentsModule } from './react-components/react-components.module';
 
-import { AngularReactBrowserModule, registerElement } from '@angular-react';
+import { AngularReactBrowserModule, registerElement } from '@angular-react/core';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog } from 'office-ui-fabric-react/lib/Dialog';
 import { DialogFooter } from 'office-ui-fabric-react/lib/components/Dialog';
