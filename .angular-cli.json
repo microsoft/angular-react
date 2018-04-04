@@ -1,0 +1,41 @@
+{
+  "$schema": "./node_modules/@nrwl/schematics/src/schema.json",
+  "project": {
+    "name": "angular-react",
+    "npmScope": "angular-react",
+    "latestMigration": "20180328-add-nx-lint"
+  },
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "./tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "apps": [
+    {
+      "name": "$workspaceRoot",
+      "root": ".",
+      "appRoot": ""
+    }
+  ],
+  "defaults": {
+    "schematics": {
+      "collection": "@nrwl/schematics"
+    },
+    "styleExt": "css",
+    "component": {}
+  },
+  "warnings": {
+    "typescriptMismatch": false
+  }
+}
