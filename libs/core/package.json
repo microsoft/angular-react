@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "ngPackage": {
     "lib": {
       "entryFile": "index.ts",
@@ -28,5 +28,16 @@
     "angular",
     "react",
     "components"
-  ]
+  ],
+  "private": false,
+  "devDependencies": {
+    "@types/react": "^16.3.4",
+    "@types/react-dom": "^16.0.4",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1"
+  },
+  "peerDependencies": {
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1"
+  }
 }

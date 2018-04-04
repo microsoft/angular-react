@@ -23,9 +23,9 @@
     "update:check": "./node_modules/.bin/nx update check",
     "update:skip": "./node_modules/.bin/nx update skip",
     "postinstall": "./node_modules/.bin/nx postinstall",
-    "publish:core": "npm run build:core && npm publish ./@angular-react/core.tgz"
+    "publish:core": "npm run build:core && npm adduser && npm publish ./@angular-react/core.tgz --access=public"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "5.2.7",
     "@angular/common": "5.2.7",
