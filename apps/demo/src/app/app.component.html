@@ -1,17 +1,24 @@
+<h1>Angular React Demo</h1>
 
-<div style="text-align:center">
-  <h1>
-    Welcome to an Angular CLI app built with Nrwl Nx!
-  </h1>
-  <img width="300" src="assets/nx-logo.png">
-</div>
+<!-- <button (click)="toggle()">Toggle</button>
 
-<h2>Nx</h2>
+<ul>
+  <li>
+    <fabric-button label="Toggle Disabled" (onClick)="toggle()"></fabric-button>
+  </li>
+  <li>
+    <fabric-button [disabled]="disabled" (onClick)="click()" label="Primary Button{{ disabled ? ' (0)' : ' (2)' }}"></fabric-button>
+  </li>
+  <li>
+    <fabric-button [primary]="false" (onClick)="click()" label="Secondary Button"></fabric-button>
+  </li>
+</ul> -->
 
-An open source toolkit for enterprise Angular applications.
-
-Nx is designed to help you create and build enterprise grade Angular applications. It provides an opinionated approach to application project structure and patterns.
-
-<h2>Quick Start & Documentation</h2>
-
-<a href="https://nrwl.io/nx">Watch a 5-minute video on how to get started with Nx.</a>
+<fabric-button label="Toggle Dialog" (onClick)="toggleDialog()"></fabric-button>
+<fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()"></fabric-dialog>
+<!-- <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()">
+  <fabric-dialog-footer key="3">
+    <fabric-button (onClick)="click()" text='Save'></fabric-button>
+    <fabric-button (onClick)="click()" text='Cancel'></fabric-button>
+  </fabric-dialog-footer>
+</fabric-dialog> -->

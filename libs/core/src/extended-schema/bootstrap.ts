@@ -1,22 +1,19 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { Type } from '@angular/core';
+import { Type, CompilerOptions } from '@angular/core';
 import { ElementSchemaRegistry } from '@angular/compiler';
-import { FabricElementSchemaRegistry } from './schema';
 
-export function bootstrapAngularReactWithSchea(
+import { ExtendedElementSchemaRegistry } from './schema';
+
+
+export function bootstrapAngularReactWithSchema(
   module: Type<{}>,
   customPlatformProviders?: Array<any>,
   customBootstrapProviders?: Array<any>
 ) {
   return platformBrowserDynamic(customPlatformProviders || []).bootstrapModule(
-    module,
-    {
+    module, {
       providers: [
-        {
-          provide: ElementSchemaRegistry,
-          useClass: FabricElementSchemaRegistry
-        }
+        { provide: ElementSchemaRegistry, useClass: ExtendedElementSchemaRegistry }
       ].concat(customBootstrapProviders || [])
-    }
-  );
+    } as CompilerOptions);
 }

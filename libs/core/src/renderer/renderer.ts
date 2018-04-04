@@ -116,6 +116,8 @@ class ReactNode {
       console.log('hi: ', this);
       console.log('ReactNode > render props: ', this.props);
 
+      // It is expected that the element will be recreated and rerendered with each attribute change.
+      // See: https://reactjs.org/docs/rendering-elements.html
       const x = this.renderRecursive(this);
       console.log('hello: ', x);
       ReactDOM.render(x as any, this._parent);

@@ -1,10 +1,5 @@
-import { BaseComponent } from '@uifabric/utilities/lib';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Dialog } from 'office-ui-fabric-react/lib/Dialog';
-import { DialogFooter } from 'office-ui-fabric-react/lib/components/Dialog';
-
 export interface ReactComponentClass {
-  new (): BaseComponent;
+  new (): React.Component;
 }
 export type ComponentResolver = () => any; // ReactComponentClass;
 
@@ -50,8 +45,3 @@ export function getComponentClass(
     throw new TypeError(`Could not load component for: ${elementName}.${e}`);
   }
 }
-
-// Register default React Fabric components
-registerElement('DefaultButton', () => DefaultButton);
-registerElement('Dialog', () => Dialog);
-registerElement('DialogFooter', () => DialogFooter);

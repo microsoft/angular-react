@@ -5,6 +5,7 @@ import { ElementSchemaRegistry } from '@angular/compiler';
 
 import { AngularReactRendererFactory } from './renderer/renderer';
 
+
 @NgModule({
   imports: [BrowserModule],
   exports: [BrowserModule],
