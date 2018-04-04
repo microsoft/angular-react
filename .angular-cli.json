@@ -57,6 +57,13 @@
       "tags": []
     },
     {
+      "name": "angular-react",
+      "root": "libs/angular-react/src",
+      "test": "../../../test.js",
+      "appRoot": "",
+      "tags": []
+    },
+    {
       "name": "$workspaceRoot",
       "root": ".",
       "appRoot": ""

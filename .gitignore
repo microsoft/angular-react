@@ -40,3 +40,12 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# yarn
+yarn-error.log
+
+# dist artifacts
+@angular-react/
+
+# ng-packagr (temporary files)
+.ng_pkg_build/
