@@ -1,11 +1,32 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "ngPackage": {
     "lib": {
-      "entryFile": "index.ts"
+      "entryFile": "index.ts",
+      "umdModuleIds": {
+        "react": "React",
+        "react-dom": "ReactDOM"
+      },
+      "comments": "none"
     },
     "dest": "../../@angular-react/core"
-  }
+  },
+  "description": "Use React components inside Angular",
+  "author": "Ben Feely <http://benfeely.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benfeely/angular-react/issues"
+  },
+  "homepage": "https://github.com/benfeely/angular-react#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benfeely/angular-react.git"
+  },
+  "keywords": [
+    "angular",
+    "react",
+    "components"
+  ]
 }

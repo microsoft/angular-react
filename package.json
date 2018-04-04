@@ -22,7 +22,8 @@
     "update": "./node_modules/.bin/nx update",
     "update:check": "./node_modules/.bin/nx update check",
     "update:skip": "./node_modules/.bin/nx update skip",
-    "postinstall": "./node_modules/.bin/nx postinstall"
+    "postinstall": "./node_modules/.bin/nx postinstall",
+    "publish:core": "npm run build:core && npm publish ./@angular-react/core.tgz"
   },
   "private": true,
   "dependencies": {
