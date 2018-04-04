@@ -16,8 +16,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@angular-react/*": [
-        "libs/*"
+      "@angular-react": [
+        "libs/core"
       ]
     }
   },

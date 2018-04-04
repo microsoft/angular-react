@@ -45,7 +45,7 @@ Thumbs.db
 yarn-error.log
 
 # dist artifacts
-@angular-react/
+@angular-react*
 
 # ng-packagr (temporary files)
 .ng_pkg_build/

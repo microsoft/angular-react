@@ -20,7 +20,7 @@ import { DialogType, DialogFooter } from 'office-ui-fabric-react/lib/components/
   template: `
     <Dialog
       [hidden]="hidden"
-      (onDismiss)="onDismiss()"
+      (onDismiss)="onDismiss($event)"
       [dialogContentProps]="dialogContentProps"
       [modalProps]="modalProps"
     >

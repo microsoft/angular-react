@@ -16,7 +16,7 @@ import { IButtonProps, DefaultButton } from 'office-ui-fabric-react/lib/Button';
       [primary]="primary"
       [disabled]="disabled"
       [text]="text"
-      (onClick)="onClick()"></DefaultButton>
+      (onClick)="onClick($event)"></DefaultButton>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
