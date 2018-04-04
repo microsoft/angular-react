@@ -90,6 +90,20 @@
       "tags": []
     },
     {
+      "name": "fabric",
+      "root": "libs/fabric/src",
+      "test": "../../../test.js",
+      "appRoot": "",
+      "tags": []
+    },
+    {
+      "name": "material",
+      "root": "libs/material/src",
+      "test": "../../../test.js",
+      "appRoot": "",
+      "tags": []
+    },
+    {
       "name": "$workspaceRoot",
       "root": ".",
       "appRoot": ""

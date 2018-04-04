@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NxModule } from '@nrwl/nx';
-import { ReactComponentsModule } from './react-components/react-components.module';
 
-import { AngularReactBrowserModule, registerElement } from '@angular-react/core';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Dialog } from 'office-ui-fabric-react/lib/Dialog';
-import { DialogFooter } from 'office-ui-fabric-react/lib/components/Dialog';
+import { AngularReactBrowserModule } from '@angular-react/core';
+import { AngularReactFabricModule } from '@angular-react/fabric';
 import { AppComponent } from './app.component';
 
 
@@ -14,16 +11,9 @@ import { AppComponent } from './app.component';
   imports: [
     AngularReactBrowserModule,
     NxModule.forRoot(),
-    ReactComponentsModule,
+    AngularReactFabricModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor() {
-    // Add any React elements to the registry (used by the renderer).
-    registerElement('DefaultButton', () => DefaultButton);
-    registerElement('Dialog', () => Dialog);
-    registerElement('DialogFooter', () => DialogFooter);
-  }
-}
+export class AppModule { }

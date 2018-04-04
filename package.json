@@ -10,6 +10,8 @@
     "build:demo:prod": "ng build --app demo --prod",
     "build:demo:prod:package": "ng build --app demo-from-packages --prod",
     "build:core": "ng-packagr -p libs/core/package.json",
+    "build:fabric": "ng-packagr -p libs/fabric/package.json",
+    "build:material": "ng-packagr -p libs/material/package.json",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
     "e2e": "ng e2e",
@@ -23,7 +25,9 @@
     "update:check": "./node_modules/.bin/nx update check",
     "update:skip": "./node_modules/.bin/nx update skip",
     "postinstall": "./node_modules/.bin/nx postinstall",
-    "publish:core": "npm run build:core && npm adduser && npm publish ./@angular-react/core.tgz --access=public"
+    "publish:core": "npm run build:core && npm adduser && npm publish ./@angular-react/core.tgz --access=public",
+    "publish:fabric": "npm run build:fabric && npm adduser && npm publish ./@angular-react/fabric.tgz --access=public",
+    "publish:material": "npm run build:material && npm adduser && npm publish ./@angular-react/material.tgz --access=public"
   },
   "private": false,
   "dependencies": {
