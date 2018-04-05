@@ -109,6 +109,10 @@ export class VirtualNode {
     }
   }
 
+  toString(): string {
+    return '[' + (this.type === undefined ? 'undefined' : typeof this.type === 'string' ? this.type : this.type.constructor.name) + ' VirtualNode]';
+  }
+
   private renderRecursive(node: VirtualNode): React.ReactElement<{}> {
     // const children = node.children ? node.children.map(child => this.renderRecursive(child)) : [];
     let children = [];

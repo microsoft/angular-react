@@ -47,6 +47,8 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   }
 
   createRenderer(element: any, type: RendererType2 | null): Renderer2 {
+    // return super.createRenderer(element, type);
+
     if (!element || !type) {
       return super.createRenderer(element, type);
     }
@@ -99,17 +101,17 @@ class AngularReactRenderer implements Renderer2 {
   }
 
   createElement(name: string, namespace?: string): VirtualNode {
-    console.error('Renderer > createElement > name: ', name, 'namespace: ', namespace);
+    console.error('Renderer > createElement > name:', name, namespace ? 'namespace:' : '', namespace);
     return new VirtualNode(this.rootRenderer, () => this.domRenderer.createElement(name, namespace)).asElement(name);
   }
 
   createComment(value: string): VirtualNode {
-    console.error('Renderer > createComment > value: ', value);
+    console.error('Renderer > createComment > value:', value);
     return new VirtualNode(this.rootRenderer, () => this.domRenderer.createComment(value)).asComment(value);
   }
 
   createText(value: string): VirtualNode {
-    console.error('Renderer > createText > value: ', value);
+    console.error('Renderer > createText > value:', value);
     return new VirtualNode(this.rootRenderer, () => this.domRenderer.createText(value)).asText(value);
   }
 
@@ -122,7 +124,7 @@ class AngularReactRenderer implements Renderer2 {
     // If the child is NOT being appended to an HTMLElement or VirtualNode that has been rendered as an
     // HTMLElement, then just push it to the children collection of the VirtualNode.
     if (!this.htmlElement(parent)) {
-      console.warn('Renderer > appendChild > asReact > parentNode: ', parent, 'newChild: ', newChild);
+      console.warn('Renderer > appendChild > asReact > parentNode:', parent.toString(), 'newChild:', newChild.toString());
       (parent as VirtualNode).children.push(newChild);
       return;
     }
@@ -130,20 +132,20 @@ class AngularReactRenderer implements Renderer2 {
     // If the child IS being appended to an HTMLElement and it is a ReactElement, then set the parent
     // of the ReactElement for insertion later when it is fully defined and rendered.
     if (newChild.isReactNode) {
-      console.warn('Renderer > appendChild > asReact > parentElement: ', parent, 'newChild: ', newChild);
+      console.warn('Renderer > appendChild > asReact > parentElement:', parent.toString(), 'newChild:', newChild.toString());
       newChild.parent = this.htmlElement(parent);
       return;
     }
 
     // If the child IS being appended to an HTMLElement, get the element as either the parent or
     // as the 'domElement' property of the parent (if the parent is a VirtualNode) and append.
-    console.warn('Renderer > appendChild > asDOM > parentElement: ', parent, 'newChild: ', newChild);
+    console.warn('Renderer > appendChild > asDOM > parentElement:', parent.toString(), 'newChild:', newChild.toString());
     this.htmlElement(parent).appendChild(newChild.renderDom());
   }
 
   insertBefore(parent: any, newChild: any, refChild: any): void {
     // NEEDS WORK
-    console.log('Renderer > insertBefore > parent: ', parent, 'child: ', newChild);
+    console.log('Renderer > insertBefore > parent:', parent, 'child:', newChild);
 
     if (parent) {
       parent.insertBefore(newChild, refChild);
@@ -152,7 +154,7 @@ class AngularReactRenderer implements Renderer2 {
 
   removeChild(parent: any, oldChild: any): void {
     // NEEDS WORK
-    console.log('Renderer > removeChild > parent: ', parent, 'child: ', oldChild);
+    console.log('Renderer > removeChild > parent:', parent, 'child:', oldChild);
 
     if (parent) {
       parent.removeChild(oldChild);
@@ -161,7 +163,7 @@ class AngularReactRenderer implements Renderer2 {
 
   selectRootElement(selectorOrNode: string | any): any {
     // NEEDS WORK
-    console.log('Renderer > selectRootElement > selectorOrNode: ', selectorOrNode);
+    console.log('Renderer > selectRootElement > selectorOrNode:', selectorOrNode);
 
     const el: any =
       typeof selectorOrNode === 'string'
@@ -169,7 +171,7 @@ class AngularReactRenderer implements Renderer2 {
         : selectorOrNode;
     if (!el) {
       throw new Error(
-        `The selector "${selectorOrNode}" did not match any elements`
+        `The selector "${selectorOrNode}" did not match any elements.`
       );
     }
     el.textContent = '';
@@ -178,20 +180,20 @@ class AngularReactRenderer implements Renderer2 {
 
   parentNode(node: any): any {
     // NEEDS WORK
-    console.log('Renderer > parentNode > node: ', node);
+    console.log('Renderer > parentNode > node:', node);
 
     return node.parentNode;
   }
 
   nextSibling(node: any): any {
     // NEEDS WORK
-    console.log('Renderer > nextSibling > node: ', node);
+    console.log('Renderer > nextSibling > node:', node);
 
     return node.nextSibling;
   }
 
   setAttribute(node: VirtualNode, name: string, value: string, namespace?: string ): void {
-    console.log('Renderer > setAttribute > element: ', node, 'name: ', name, 'value: ', value, 'namespace: ', namespace);
+    console.log('Renderer > setAttribute > element:', node.toString(), 'name:', name, 'value:', value, namespace ? 'namespace:' : '', namespace);
 
     if (node.domElement) {
       this.domRenderer.setAttribute(node.domElement, name, value, namespace);
@@ -201,9 +203,9 @@ class AngularReactRenderer implements Renderer2 {
     node.setProperty(name, value);
   }
 
-  removeAttribute(el: VirtualNode, name: string, namespace?: string): void {
+  removeAttribute(node: VirtualNode, name: string, namespace?: string): void {
     // NEEDS WORK
-    console.log('Renderer > removeAttribute > element: ', el, 'name: ', name, 'namespace: ', namespace);
+    console.log('Renderer > removeAttribute > element:', node.toString(), 'name:', name, namespace ? 'namespace:' : '', namespace);
 
     // if (namespace) {
     //   const namespaceUri = ɵNAMESPACE_URIS[namespace];
@@ -215,26 +217,26 @@ class AngularReactRenderer implements Renderer2 {
     // } else {
     //   el.removeAttribute(name);
     // }
-    el.removeProperty(name);
+    node.removeProperty(name);
   }
 
   addClass(el: any, name: string): void {
     // NEEDS WORK
-    console.log('Renderer > addClass > element: ', el, 'name: ', name);
+    console.log('Renderer > addClass > element:', el, 'name:', name);
 
     el.classList.add(name);
   }
 
   removeClass(el: any, name: string): void {
     // NEEDS WORK
-    console.log('Renderer > removeClass > element: ', el, 'name: ', name);
+    console.log('Renderer > removeClass > element:', el, 'name:', name);
 
     el.classList.remove(name);
   }
 
   setStyle(el: any, style: string, value: any, flags: RendererStyleFlags2): void {
     // NEEDS WORK
-    console.log('Renderer > setStyle > element: ', el, 'style: ', style, 'value: ', value, 'flags: ', flags);
+    console.log('Renderer > setStyle > element: ', el, 'style:', style, 'value:', value, 'flags:', flags);
 
     if (flags & RendererStyleFlags2.DashCase) {
       el.style.setProperty(
@@ -249,7 +251,7 @@ class AngularReactRenderer implements Renderer2 {
 
   removeStyle(el: any, style: string, flags: RendererStyleFlags2): void {
     // NEEDS WORK
-    console.log( 'Renderer > removeStyle > element: ', el, 'style: ', style, 'flags: ', flags);
+    console.log( 'Renderer > removeStyle > element:', el, 'style:', style, 'flags:', flags);
 
     if (flags & RendererStyleFlags2.DashCase) {
       el.style.removeProperty(style);
@@ -261,7 +263,7 @@ class AngularReactRenderer implements Renderer2 {
   }
 
   setProperty(node: VirtualNode, name: string, value: any): void {
-    console.log('Renderer > setProperty > element: ', node, 'name: ', name, 'value: ', value);
+    console.log('Renderer > setProperty > element:', node.toString(), 'name:', name, 'value:', value);
 
     if (node.domElement) {
       this.domRenderer.setProperty(node.domElement, name, value);
@@ -272,7 +274,7 @@ class AngularReactRenderer implements Renderer2 {
   }
 
   setValue(node: VirtualNode, value: string): void {
-    console.log('Renderer > setValue > node: ', node, 'value: ', value);
+    console.log('Renderer > setValue > node:', node.toString(), 'value:', value);
 
     if (node.domElement) {
       this.domRenderer.setValue(node.domElement, value);
@@ -283,7 +285,7 @@ class AngularReactRenderer implements Renderer2 {
   }
 
   listen(target: 'window' | 'document' | 'body' | VirtualNode, event: string, callback: (event: any) => boolean): () => void {
-    console.log('Renderer > listen > target: ', target, 'event: ', event);
+    console.log('Renderer > listen > target:', target.toString(), 'event:', event);
 
     if (!this.isVirtualNode(target) || target.domElement) {
       return this.domRenderer.listen((target as VirtualNode).domElement || target, event, callback);
@@ -311,7 +313,7 @@ class AngularReactRenderer implements Renderer2 {
 }
 
 function decoratePreventDefault(eventHandler: Function): Function {
-  console.log('Renderer > decoratePreventDefault > eventHandler: ', eventHandler);
+  console.log('Renderer > decoratePreventDefault > eventHandler:', eventHandler);
 
   return (event: any) => {
     const allowDefaultBehavior = eventHandler(event);
@@ -325,7 +327,7 @@ function decoratePreventDefault(eventHandler: Function): Function {
 
 const AT_CHARCODE = '@'.charCodeAt(0);
 function checkNoSyntheticProp(name: string, nameKind: string) {
-  console.log('checkNoSyntheticProp > name: ', name, 'nameKind: ', nameKind);
+  console.log('checkNoSyntheticProp > name:', name, 'nameKind:', nameKind);
 
   if (name.charCodeAt(0) === AT_CHARCODE) {
     throw new Error(
