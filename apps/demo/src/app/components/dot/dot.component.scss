@@ -1,0 +1,14 @@
+:host div {
+  display: block;
+  position: absolute;
+  text-align: center;
+  background-color: #ddd;
+  color: #222;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+:host div.hover {
+  background-color: #0078D4;
+  color: #fff;
+}

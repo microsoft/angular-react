@@ -1,24 +1,7 @@
-<h1>Angular React Demo</h1>
+<a routerLink="landing">Landing</a>
+<a routerLink="perf/angular">Angular Perf</a>
+<a routerLink="perf/mixed">Material Perf</a>
+<a routerLink="components/fabric">Fabric Components</a>
+<a routerLink="components/material">Material Components</a>
 
-<!-- <button (click)="toggle()">Toggle</button>
-
-<ul>
-  <li>
-    <fabric-button label="Toggle Disabled" (onClick)="toggle()"></fabric-button>
-  </li>
-  <li>
-    <fabric-button [disabled]="disabled" (onClick)="click()" label="Primary Button{{ disabled ? ' (0)' : ' (2)' }}"></fabric-button>
-  </li>
-  <li>
-    <fabric-button [primary]="false" (onClick)="click()" label="Secondary Button"></fabric-button>
-  </li>
-</ul> -->
-
-<fabric-button label="Toggle Dialog" (onClick)="toggleDialog()"></fabric-button>
-<fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()"></fabric-dialog>
-<!-- <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()">
-  <fabric-dialog-footer key="3">
-    <fabric-button (onClick)="click()" text='Save'></fabric-button>
-    <fabric-button (onClick)="click()" text='Cancel'></fabric-button>
-  </fabric-dialog-footer>
-</fabric-dialog> -->
+<router-outlet></router-outlet>

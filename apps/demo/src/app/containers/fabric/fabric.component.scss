@@ -1,0 +1,22 @@
+:host {
+
+  fabric-button {
+    margin-right: 20px;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      margin-bottom: 10px;
+
+      span.button-height {
+        line-height: 30px;
+      }
+    }
+  }
+}
+:host {
+  display: block;
+
+}

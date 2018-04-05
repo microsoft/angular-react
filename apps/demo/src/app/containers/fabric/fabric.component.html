@@ -1,0 +1,25 @@
+<h1>Microsoft Fabric Components</h1>
+
+<ul>
+  <li>
+    <fabric-button label="Toggle Disabled" (onClick)="toggle()"></fabric-button>
+    <fabric-button [disabled]="disabled" (onClick)="click()" label="Primary Button{{ disabled ? ' (0)' : ' (2)' }}"></fabric-button>
+  </li>
+  <li>
+    <fabric-button [primary]="false" (onClick)="click()" label="Secondary Button"></fabric-button>
+    <span class="button-height">{{ sampleContent }}</span>
+  </li>
+  <li>
+    <fabric-button label="Toggle Dialog" (onClick)="toggleDialog()"></fabric-button>
+    <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()"></fabric-dialog>
+  </li>
+</ul>
+
+
+
+<!-- <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()">
+  <fabric-dialog-footer key="3">
+    <fabric-button (onClick)="click()" text='Save'></fabric-button>
+    <fabric-button (onClick)="click()" text='Cancel'></fabric-button>
+  </fabric-dialog-footer>
+</fabric-dialog> -->

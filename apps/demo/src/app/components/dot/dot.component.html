@@ -1,0 +1,12 @@
+<div
+  [style.width]="size"
+  [style.line-height]="size"
+  [style.height]="size"
+  [style.left]="x"
+  [style.top]="y"
+  [class.hover]="hover"
+  (mouseenter)="onMouseEnter($event)"
+  (mouseleave)="onMouseLeave($event)"
+>
+  {{ text }}
+</div>

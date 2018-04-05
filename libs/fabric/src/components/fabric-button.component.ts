@@ -18,7 +18,11 @@ import { IButtonProps, DefaultButton } from 'office-ui-fabric-react/lib/Button';
       [text]="text"
       (onClick)="onClick($event)"></DefaultButton>
   `,
-  styles: ['react-renderer'],
+  styleUrls: ['./fabric-button.component.css'],
+  styles: [
+    'react-renderer',
+    ':host { display: inline-block; background: red; }'
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabricButtonComponent {
