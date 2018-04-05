@@ -16,28 +16,34 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { ReactComponentClass, getComponentClass } from './registry';
-import { ReactNode } from './react-node';
+import { VirtualNode } from './virtual-node';
 
 
 @Injectable()
 export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
-  private _rendererByCompId = new Map<string, Renderer2>();
-  private _defaultRenderer: Renderer2;
+  private reactRendererByCompId = new Map<string, Renderer2>();
+  private defaultReactRenderer: AngularReactRenderer;
 
-  public reactNodes: Array<ReactNode> = [];
+  // Collection of ReactNodes that can be evaluated and flushed at the
+  // end of Render.  This is necessary as the flow of element creation
+  // and update goes from "create" > "insert" > "update" property/attribute.
+  // React elements cannot be "inserted" and later have their props
+  // updated, so the "insert", or React.Render, can be done once the
+  // element has been fully defined.
+  public reactNodes: Array<VirtualNode> = [];
 
-  private _needsRendering = true;
-  public setNeedsRendering() {
-    this._needsRendering = true;
+  private isRenderPending = true;
+  // This flag can only be set to true from outside.  It can only be reset
+  // to false from inside.  This value is reset on "end" when the pending
+  // renders are flushed.
+  public setRenderPending() {
+    this.isRenderPending = true;
   }
 
-  constructor(
-    private _eventManager: EventManager,
-    private _sharedStylesHost: ɵDomSharedStylesHost
-  ) {
-    super(_eventManager, _sharedStylesHost);
+  constructor(eventManager: EventManager, sharedStylesHost: ɵDomSharedStylesHost) {
+    super(eventManager, sharedStylesHost);
 
-    this._defaultRenderer = new AngularReactRenderer(this._eventManager, this);
+    this.defaultReactRenderer = new AngularReactRenderer(eventManager, this);
   }
 
   createRenderer(element: any, type: RendererType2 | null): Renderer2 {
@@ -46,118 +52,98 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
     }
 
     // Determine whether this component is a react wrapper and provide the unique renderer.
-    if (type && type.styles.length && type.styles[0] === 'react-renderer') {
-      console.log('Factory > createRenderer: ', type, 'element: ', element);
+    let renderer = this.reactRendererByCompId.get(type.id);
+    // Attempt to get a React Renderer for this element.
+    if (!renderer) {
+      // Get the DOM Renderer for this element.
+      const domRenderer = super.createRenderer(element, type);
 
-      let renderer = this._rendererByCompId.get(type.id);
-      if (!renderer) {
-        console.log('Using new instance of AngularReactRenderer...');
-        renderer = this._defaultRenderer;
-        this._rendererByCompId.set(type.id, renderer);
-      }
-
-      return renderer;
+      // Get the React Renderer for this element. It will take in the DOM
+      // Renderer and optionally use it when the DOM Element is not a React
+      // Element and is not a child of a React Element.
+      renderer = this.defaultReactRenderer.setDomRenderer(domRenderer);
+      this.reactRendererByCompId.set(type.id, renderer);
     }
 
-    console.log(
-      'Factory > createRenderer_DEFAULT: ',
-      type,
-      'element: ',
-      element
-    );
-    return super.createRenderer(element, type);
+    return renderer;
   }
 
-  begin() {
-    // console.log('Factory > begin');
-  }
+  begin() { }
 
   end() {
-    console.log('Factory > end');
-
-    if (this._needsRendering) {
-      console.log('Factory > end > rendering reactNodes: ', this.reactNodes);
-      this.reactNodes.map(node => node.render());
-      this._needsRendering = false;
+    // Flush any pending React element render updates.  This cannot be done
+    // earlier (as is done for DOM elements) because React element props
+    // are ReadOnly.
+    if (this.isRenderPending) {
+      this.reactNodes.map(node => node.renderReact());
+      this.isRenderPending = false;
     }
   }
 }
 
 class AngularReactRenderer implements Renderer2 {
   data: { [key: string]: any } = Object.create(null);
+  domRenderer: Renderer2;
+  destroyNode: null;
 
   constructor(
     private eventManager: EventManager,
     private rootRenderer: AngularReactRendererFactory
   ) {}
 
-  destroyNode: null;
+  destroy(): void {}
 
-  destroy(): void {
-    console.log('Renderer > destroy');
+  setDomRenderer(domRenderer: Renderer2): AngularReactRenderer {
+    this.domRenderer = domRenderer;
+    return this;
   }
 
-  createElement(name: string, namespace?: string): ReactNode {
-    console.log(
-      'Renderer > createElement > name: ',
-      name,
-      'namespace: ',
-      namespace
-    );
-
-    // return new ElementNode(name, this._rootRenderer.wrapper, this._rootRenderer);
-
-    // tslint:disable-next-line:no-eval
-    return new ReactNode(name, this.rootRenderer);
+  createElement(name: string, namespace?: string): VirtualNode {
+    console.error('Renderer > createElement > name: ', name, 'namespace: ', namespace);
+    return new VirtualNode(this.rootRenderer, () => this.domRenderer.createElement(name, namespace)).asElement(name);
   }
 
-  createComment(value: string): any {
-    console.log('Renderer > createComment > value: ', value);
-
-    // return document.createComment(value);
-    return null;
+  createComment(value: string): VirtualNode {
+    console.error('Renderer > createComment > value: ', value);
+    return new VirtualNode(this.rootRenderer, () => this.domRenderer.createComment(value)).asComment(value);
   }
 
-  createText(value: string): string {
-    // console.log('Renderer > createText > value: ', value);
-    // debugger;
-
-    // return React.createElement(name);
-    // return new ReactElementDefinition(DefaultButton);
-
-    // Only return and write a node if the string is not empty.
-    if (!value.trim()) {
-      return null;
-    }
-
-    console.log('Renderer > createText > value: ', value);
-    return value; // document.createTextNode(value);
+  createText(value: string): VirtualNode {
+    console.error('Renderer > createText > value: ', value);
+    return new VirtualNode(this.rootRenderer, () => this.domRenderer.createText(value)).asText(value);
   }
 
-  appendChild(parent: any, newChild: ReactNode): void {
+  appendChild(parent: HTMLElement | VirtualNode, newChild: VirtualNode): void {
     // Only append a child if there is a child.
     if (!newChild) {
       return;
     }
 
-    // Determine if the child is being appended to another react element or to the containing DOM element.
-    if (parent && parent.type) {
-      parent.children.push(newChild);
-      console.log('Renderer > appendChild-to-children: ', newChild);
-    } else {
-      newChild.parent = parent;
-      this.rootRenderer.reactNodes.push(newChild);
-      console.log('Renderer > appendChild: ', newChild);
+    // If the child is NOT being appended to an HTMLElement or VirtualNode that has been rendered as an
+    // HTMLElement, then just push it to the children collection of the VirtualNode.
+    if (!this.htmlElement(parent)) {
+      console.warn('Renderer > appendChild > asReact > parentNode: ', parent, 'newChild: ', newChild);
+      (parent as VirtualNode).children.push(newChild);
+      return;
     }
+
+    // If the child IS being appended to an HTMLElement and it is a ReactElement, then set the parent
+    // of the ReactElement for insertion later when it is fully defined and rendered.
+    if (newChild.isReactNode) {
+      console.warn('Renderer > appendChild > asReact > parentElement: ', parent, 'newChild: ', newChild);
+      newChild.parent = this.htmlElement(parent);
+      return;
+    }
+
+    // If the child IS being appended to an HTMLElement, get the element as either the parent or
+    // as the 'domElement' property of the parent (if the parent is a VirtualNode) and append.
+    console.warn('Renderer > appendChild > asDOM > parentElement: ', parent, 'newChild: ', newChild);
+    this.htmlElement(parent).appendChild(newChild.renderDom());
   }
 
   insertBefore(parent: any, newChild: any, refChild: any): void {
-    console.log(
-      'Renderer > insertBefore > parent: ',
-      parent,
-      'child: ',
-      newChild
-    );
+    // NEEDS WORK
+    console.log('Renderer > insertBefore > parent: ', parent, 'child: ', newChild);
 
     if (parent) {
       parent.insertBefore(newChild, refChild);
@@ -165,12 +151,8 @@ class AngularReactRenderer implements Renderer2 {
   }
 
   removeChild(parent: any, oldChild: any): void {
-    console.log(
-      'Renderer > removeChild > parent: ',
-      parent,
-      'child: ',
-      oldChild
-    );
+    // NEEDS WORK
+    console.log('Renderer > removeChild > parent: ', parent, 'child: ', oldChild);
 
     if (parent) {
       parent.removeChild(oldChild);
@@ -178,10 +160,8 @@ class AngularReactRenderer implements Renderer2 {
   }
 
   selectRootElement(selectorOrNode: string | any): any {
-    console.log(
-      'Renderer > selectRootElement > selectorOrNode: ',
-      selectorOrNode
-    );
+    // NEEDS WORK
+    console.log('Renderer > selectRootElement > selectorOrNode: ', selectorOrNode);
 
     const el: any =
       typeof selectorOrNode === 'string'
@@ -197,99 +177,64 @@ class AngularReactRenderer implements Renderer2 {
   }
 
   parentNode(node: any): any {
+    // NEEDS WORK
     console.log('Renderer > parentNode > node: ', node);
 
     return node.parentNode;
   }
 
   nextSibling(node: any): any {
+    // NEEDS WORK
     console.log('Renderer > nextSibling > node: ', node);
 
     return node.nextSibling;
   }
 
-  setAttribute(
-    el: ReactNode,
-    name: string,
-    value: string,
-    namespace?: string
-  ): void {
-    console.log(
-      'Renderer > setAttribute > element: ',
-      el,
-      'name: ',
-      name,
-      'value: ',
-      value,
-      'namespace: ',
-      namespace
-    );
+  setAttribute(node: VirtualNode, name: string, value: string, namespace?: string ): void {
+    console.log('Renderer > setAttribute > element: ', node, 'name: ', name, 'value: ', value, 'namespace: ', namespace);
 
-    // if (namespace) {
-    //   name = `${namespace}:${name}`;
-    //   const namespaceUri = ɵNAMESPACE_URIS[namespace];
-    //   if (namespaceUri) {
-    //     el.setAttributeNS(namespaceUri, name, value);
-    //   } else {
-    //     el.setAttribute(name, value);
-    //   }
-    // } else {
-    //   el.setAttribute(name, value);
-    // }
+    if (node.domElement) {
+      this.domRenderer.setAttribute(node.domElement, name, value, namespace);
+      return;
+    }
 
-    el.setProperty(name, value);
+    node.setProperty(name, value);
   }
 
-  removeAttribute(el: any, name: string, namespace?: string): void {
-    console.log(
-      'Renderer > removeAttribute > element: ',
-      el,
-      'name: ',
-      name,
-      'namespace: ',
-      namespace
-    );
+  removeAttribute(el: VirtualNode, name: string, namespace?: string): void {
+    // NEEDS WORK
+    console.log('Renderer > removeAttribute > element: ', el, 'name: ', name, 'namespace: ', namespace);
 
-    if (namespace) {
-      const namespaceUri = ɵNAMESPACE_URIS[namespace];
-      if (namespaceUri) {
-        el.removeAttributeNS(namespaceUri, name);
-      } else {
-        el.removeAttribute(`${namespace}:${name}`);
-      }
-    } else {
-      el.removeAttribute(name);
-    }
+    // if (namespace) {
+    //   const namespaceUri = ɵNAMESPACE_URIS[namespace];
+    //   if (namespaceUri) {
+    //     el.removeAttributeNS(namespaceUri, name);
+    //   } else {
+    //     el.removeAttribute(`${namespace}:${name}`);
+    //   }
+    // } else {
+    //   el.removeAttribute(name);
+    // }
+    el.removeProperty(name);
   }
 
   addClass(el: any, name: string): void {
+    // NEEDS WORK
     console.log('Renderer > addClass > element: ', el, 'name: ', name);
 
     el.classList.add(name);
   }
 
   removeClass(el: any, name: string): void {
+    // NEEDS WORK
     console.log('Renderer > removeClass > element: ', el, 'name: ', name);
 
     el.classList.remove(name);
   }
 
-  setStyle(
-    el: any,
-    style: string,
-    value: any,
-    flags: RendererStyleFlags2
-  ): void {
-    console.log(
-      'Renderer > setStyle > element: ',
-      el,
-      'style: ',
-      style,
-      'value: ',
-      value,
-      'flags: ',
-      flags
-    );
+  setStyle(el: any, style: string, value: any, flags: RendererStyleFlags2): void {
+    // NEEDS WORK
+    console.log('Renderer > setStyle > element: ', el, 'style: ', style, 'value: ', value, 'flags: ', flags);
 
     if (flags & RendererStyleFlags2.DashCase) {
       el.style.setProperty(
@@ -303,14 +248,8 @@ class AngularReactRenderer implements Renderer2 {
   }
 
   removeStyle(el: any, style: string, flags: RendererStyleFlags2): void {
-    console.log(
-      'Renderer > removeStyle > element: ',
-      el,
-      'style: ',
-      style,
-      'flags: ',
-      flags
-    );
+    // NEEDS WORK
+    console.log( 'Renderer > removeStyle > element: ', el, 'style: ', style, 'flags: ', flags);
 
     if (flags & RendererStyleFlags2.DashCase) {
       el.style.removeProperty(style);
@@ -321,54 +260,58 @@ class AngularReactRenderer implements Renderer2 {
     }
   }
 
-  setProperty(el: ReactNode, name: string, value: any): void {
-    console.log(
-      'Renderer > setProperty > element: ',
-      el,
-      'name: ',
-      name,
-      'value: ',
-      value
-    );
+  setProperty(node: VirtualNode, name: string, value: any): void {
+    console.log('Renderer > setProperty > element: ', node, 'name: ', name, 'value: ', value);
 
-    // checkNoSyntheticProp(name, 'property');
-    // el[name] = value;
-    el.setProperty(name, value);
+    if (node.domElement) {
+      this.domRenderer.setProperty(node.domElement, name, value);
+      return;
+    }
+
+    node.setProperty(name, value);
   }
 
-  setValue(node: any, value: string): void {
+  setValue(node: VirtualNode, value: string): void {
     console.log('Renderer > setValue > node: ', node, 'value: ', value);
 
-    node.nodeValue = value;
+    if (node.domElement) {
+      this.domRenderer.setValue(node.domElement, value);
+      return;
+    }
+
+    node.setProperty('value', value);
   }
 
-  listen(
-    target: ReactNode,
-    event: string,
-    callback: (event: any) => boolean
-  ): () => void {
+  listen(target: 'window' | 'document' | 'body' | VirtualNode, event: string, callback: (event: any) => boolean): () => void {
     console.log('Renderer > listen > target: ', target, 'event: ', event);
 
-    // // checkNoSyntheticProp(event, 'listener');
-    // if (typeof target === 'string') {
-    //   return <() => void>this.eventManager.addGlobalEventListener(
-    //       target, event, decoratePreventDefault(callback));
-    // }
+    if (!this.isVirtualNode(target) || target.domElement) {
+      return this.domRenderer.listen((target as VirtualNode).domElement || target, event, callback);
+    }
+
+    target.setProperty(event, callback);
+
+    // NEEDS WORK: Implement prevent default callback behavior.
     // return <() => void>this.eventManager.addEventListener(
     //            target, event, decoratePreventDefault(callback)) as() => void;
 
-    target.setProperty(event, callback);
 
     // tslint:disable-next-line:no-unused-expression
     return () => null;
   }
+
+  private isVirtualNode(node: any): node is VirtualNode {
+    return (<VirtualNode>node).rootRenderer !== undefined;
+  }
+
+  private htmlElement(node: VirtualNode | HTMLElement): HTMLElement {
+    return (!this.isVirtualNode(node)  || !!node.domElement) ? ((node as VirtualNode).domElement || node as HTMLElement) : null;
+  }
+
 }
 
 function decoratePreventDefault(eventHandler: Function): Function {
-  console.log(
-    'Renderer > decoratePreventDefault > eventHandler: ',
-    eventHandler
-  );
+  console.log('Renderer > decoratePreventDefault > eventHandler: ', eventHandler);
 
   return (event: any) => {
     const allowDefaultBehavior = eventHandler(event);

@@ -266,8 +266,8 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.3.4":
-  version "16.3.4"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.4.tgz#9bbb301cd38270ae200bed329a342bd2f140c3ea"
+  version "16.3.5"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.5.tgz#bd3b21285602ea7cadb4b9e0d9711d96fd5692cc"
   dependencies:
     csstype "^2.0.0"
 
@@ -1770,8 +1770,8 @@ cssesc@^0.1.0:
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-0.1.0.tgz#c814903e45623371a0477b40109aaafbeeaddbb4"
 
 csstype@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.0.0.tgz#7d199dd8dca409077e81569eca0c71a74c4f4158"
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.1.0.tgz#4a84bba2717d06549f391ac4eb7651aa1b7d0976"
 
 cuint@^0.2.2:
   version "0.2.2"
@@ -5754,15 +5754,15 @@ read-pkg@^3.0.0:
     path-type "^3.0.0"
 
 "readable-stream@1 || 2", readable-stream@2, readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.4, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.2.9, readable-stream@^2.3.0, readable-stream@^2.3.3:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.5.tgz#b4f85003a938cbb6ecbce2a124fb1012bd1a838d"
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   dependencies:
     core-util-is "~1.0.0"
     inherits "~2.0.3"
     isarray "~1.0.0"
     process-nextick-args "~2.0.0"
     safe-buffer "~5.1.1"
-    string_decoder "~1.0.3"
+    string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
 readable-stream@1.0:
@@ -6823,7 +6823,7 @@ string.prototype.padend@^3.0.0:
     es-abstract "^1.4.3"
     function-bind "^1.0.2"
 
-string_decoder@^1.0.0:
+string_decoder@^1.0.0, string_decoder@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.1.1.tgz#9cf1611ba62685d7030ae9e4ba34149c3af03fc8"
   dependencies:
@@ -6833,7 +6833,7 @@ string_decoder@~0.10.x:
   version "0.10.31"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
 
-string_decoder@~1.0.0, string_decoder@~1.0.3:
+string_decoder@~1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.3.tgz#0fc67d7c141825de94282dd536bec6b9bce860ab"
   dependencies:
@@ -7132,8 +7132,8 @@ tsconfig@^7.0.0:
     strip-json-comments "^2.0.0"
 
 tsickle@^0.27.2:
-  version "0.27.2"
-  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.27.2.tgz#f33d46d046f73dd5c155a37922e422816e878736"
+  version "0.27.5"
+  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.27.5.tgz#41e1a41a5acf971cbb2b0558a9590779234d591f"
   dependencies:
     minimist "^1.2.0"
     mkdirp "^0.5.1"
