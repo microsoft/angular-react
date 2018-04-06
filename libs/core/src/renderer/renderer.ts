@@ -148,7 +148,7 @@ class VirtualRenderer implements Renderer2 {
   }
 
   removeChild(parent: HTMLElement, oldChild: VirtualNode): void {
-    console.log('Renderer > removeChild > parent:', parent, 'child:', oldChild);
+    console.log('Renderer > removeChild > parent:', parent.toString(), 'child:', oldChild.toString());
 
     if (parent) {
       parent.removeChild(oldChild.domElement);
