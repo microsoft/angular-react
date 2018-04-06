@@ -138,21 +138,56 @@ class VirtualRenderer implements Renderer2 {
     (parent as VirtualNode).children.push(newChild);
   }
 
-  insertBefore(parent: any, newChild: VirtualNode, refChild: any): void {
-    console.log('Renderer > insertBefore > parent:', parent.toString(), 'child:', newChild.toString(), 'refChild:', refChild.toString());
-
-    if (parent) {
-      ((parent as VirtualNode).domElement || parent as HTMLElement)
-        .insertBefore(newChild.renderDom(), refChild);
+  insertBefore(parent: HTMLElement | VirtualNode | void, newChild: VirtualNode, refChild: any): void {
+    // Only insert a child if there is a parent.
+    if (!parent) {
+      return;
     }
+
+    // If the child is being appended to an HTMLElement or VirtualNode that has been
+    // rendered as an HTMLElement...
+    if ((!isVirtualNode(parent)  || !!parent.domElement)) {
+      if (!newChild.isReactNode) {
+        console.log('Renderer > insertBefore > parent:', parent ? parent.toString() : 'undefined', 'child:', newChild.toString(), 'refChild:', refChild.toString());
+
+        this.domRenderer.insertBefore((parent as VirtualNode).domElement || parent, newChild.renderDom(), refChild);
+        return;
+      }
+
+      // If the child is a ReactNode, then DO SOMETHING.
+      console.warn('NOT IMPLEMENTED - Renderer > appendChild > asReact > parentElement:', parent.toString(), 'newChild:', newChild.toString());
+    }
+
+    // If the child is NOT being appended to an HTMLElement or VirtualNode that has been
+    // rendered as an HTMLElement, then DO SOMETHING.
+    console.warn('NOT IMPLEMENTED - Renderer > appendChild > asVirtual > parentNode:', parent.toString(), 'newChild:', newChild.toString());
   }
 
-  removeChild(parent: HTMLElement, oldChild: VirtualNode): void {
-    console.log('Renderer > removeChild > parent:', parent.toString(), 'child:', oldChild.toString());
+  removeChild(parent: HTMLElement | VirtualNode | void, oldChild: VirtualNode): void {
+    // NEEDS WORK.
+    console.log('Renderer > removeChild > parent:', parent ? parent.toString() : 'undefined', 'child:', oldChild.toString());
 
     if (parent) {
-      parent.removeChild(oldChild.domElement);
+      (parent as any).removeChild(oldChild.domElement);
     }
+
+
+
+
+    // if (parent) {
+    //   // Use DOM Renderer to update rendered element and return (the virtual node is
+    //   //  not used once the DOM element is rendered).
+    //   if ((!isVirtualNode(oldChild) || !!oldChild.domElement)) {
+    //     this.domRenderer.removeChild(parent, (oldChild as VirtualNode).domElement || oldChild);
+    //     return;
+    //   }
+
+    //   // Update the virtual node.
+    //   // TODO: Should we do something here for the React rendering scenario?
+
+    //   // Provide a callback for deferred DOM rendering.
+    //   oldChild.addRenderDomCallback((el) => this.domRenderer.removeChild(parent, el));
+    // }
   }
 
   selectRootElement(selectorOrNode: string | any): any {
@@ -182,106 +217,161 @@ class VirtualRenderer implements Renderer2 {
     return ((node as VirtualNode).domElement || node as HTMLElement).nextSibling;
   }
 
-  setAttribute(node: VirtualNode, name: string, value: string, namespace?: string ): void {
-    console.log('Renderer > setAttribute > element:', node.toString(), 'name:', name, 'value:', value, namespace ? 'namespace:' : '', namespace);
+  setAttribute(node: HTMLElement | VirtualNode, name: string, value: string, namespace?: string ): void {
+    console.log('Renderer > setAttribute > node:', node.toString(), 'name:', name, 'value:', value, namespace ? 'namespace:' : '', namespace);
 
-    if (node.domElement) {
-      this.domRenderer.setAttribute(node.domElement, name, value, namespace);
+    // Use DOM Renderer to update rendered element and return (the virtual node is
+    //  not used once the DOM element is rendered).
+    if ((!isVirtualNode(node)  || !!node.domElement)) {
+      this.domRenderer.setAttribute((node as VirtualNode).domElement || node, name, value, namespace);
       return;
     }
 
-    if (node && node.setProperty) node.setProperty(name, value);
-  }
-
-  removeAttribute(node: VirtualNode, name: string, namespace?: string): void {
-    // NEEDS WORK
-    console.log('Renderer > removeAttribute > element:', node.toString(), 'name:', name, namespace ? 'namespace:' : '', namespace);
-
-    // if (namespace) {
-    //   const namespaceUri = ɵNAMESPACE_URIS[namespace];
-    //   if (namespaceUri) {
-    //     el.removeAttributeNS(namespaceUri, name);
-    //   } else {
-    //     el.removeAttribute(`${namespace}:${name}`);
-    //   }
-    // } else {
-    //   el.removeAttribute(name);
-    // }
-    node.removeProperty(name);
-  }
-
-  addClass(el: any, name: string): void {
-    // NEEDS WORK
-    console.log('Renderer > addClass > element:', el, 'name:', name);
-
-    el.classList.add(name);
-  }
-
-  removeClass(el: any, name: string): void {
-    // NEEDS WORK
-    console.log('Renderer > removeClass > element:', el, 'name:', name);
-
-    el.classList.remove(name);
-  }
-
-  setStyle(el: any, style: string, value: any, flags: RendererStyleFlags2): void {
-    // NEEDS WORK
-    console.log('Renderer > setStyle > element: ', el, 'style:', style, 'value:', value, 'flags:', flags);
-
-    if (flags & RendererStyleFlags2.DashCase) {
-      el.style.setProperty(
-        style,
-        value,
-        !!(flags & RendererStyleFlags2.Important) ? 'important' : ''
-      );
-    } else {
-      el.style[style] = value;
-    }
-  }
-
-  removeStyle(el: any, style: string, flags: RendererStyleFlags2): void {
-    // NEEDS WORK
-    console.log( 'Renderer > removeStyle > element:', el, 'style:', style, 'flags:', flags);
-
-    if (flags & RendererStyleFlags2.DashCase) {
-      el.style.removeProperty(style);
-    } else {
-      // IE requires '' instead of null
-      // see https://github.com/angular/angular/issues/7916
-      el.style[style] = '';
-    }
-  }
-
-  setProperty(node: VirtualNode, name: string, value: any): void {
-    console.log('Renderer > setProperty > element:', node.toString(), 'name:', name, 'value:', value);
-
-    if (node.domElement) {
-      this.domRenderer.setProperty(node.domElement, name, value);
-      return;
-    }
-
+    // Update the virtual node.
     node.setProperty(name, value);
+
+    // Provide a callback for deferred DOM rendering.
+    node.addRenderDomCallback((el) => this.domRenderer.setAttribute(el, name, value, namespace));
   }
 
-  setValue(node: VirtualNode, value: string): void {
+  removeAttribute(node: HTMLElement | VirtualNode, name: string, namespace?: string): void {
+    console.log('Renderer > removeAttribute > node:', node.toString(), 'name:', name, namespace ? 'namespace:' : '', namespace);
+
+    // Use DOM Renderer to update rendered element and return (the virtual node is
+    //  not used once the DOM element is rendered).
+    if ((!isVirtualNode(node)  || !!node.domElement)) {
+      this.domRenderer.removeAttribute((node as VirtualNode).domElement || node, name, namespace);
+      return;
+    }
+
+    // Update the virtual node.
+    node.removeProperty(name);
+
+    // Provide a callback for deferred DOM rendering.
+    node.addRenderDomCallback((el) => this.domRenderer.removeAttribute(el, name, namespace));
+  }
+
+  addClass(node: HTMLElement | VirtualNode, name: string): void {
+    console.log('Renderer > addClass > node:', node.toString(), 'name:', name);
+
+    // Use DOM Renderer to update rendered element and return (the virtual node is
+    //  not used once the DOM element is rendered).
+    if ((!isVirtualNode(node)  || !!node.domElement)) {
+      this.domRenderer.addClass((node as VirtualNode).domElement || node, name);
+      return;
+    }
+
+    // Update the virtual node.
+    // TODO: This may only support a single class name, but might work if property name is a single
+    //       comma-delimited list of classes...
+    node.setProperty('className', name);
+
+    // Provide a callback for deferred DOM rendering.
+    node.addRenderDomCallback((el) => this.domRenderer.addClass(el, name));
+  }
+
+  removeClass(node: HTMLElement | VirtualNode, name: string): void {
+    console.log('Renderer > removeClass > node:', node.toString(), 'name:', name);
+
+    // Use DOM Renderer to update rendered element and return (the virtual node is
+    //  not used once the DOM element is rendered).
+    if ((!isVirtualNode(node)  || !!node.domElement)) {
+      this.domRenderer.removeClass((node as VirtualNode).domElement || node, name);
+      return;
+    }
+
+    // Update the virtual node.
+    // TODO: This may not work correctly to remove a single name from a comma-delimited list.
+    node.removeProperty('className');
+
+    // Provide a callback for deferred DOM rendering.
+    node.addRenderDomCallback((el) => this.domRenderer.removeClass(el, name));
+  }
+
+  setStyle(node: HTMLElement | VirtualNode, style: string, value: any, flags: RendererStyleFlags2): void {
+    console.log('Renderer > setStyle > node: ', node.toString(), 'style:', style, 'value:', value, 'flags:', flags);
+
+    // Use DOM Renderer to update rendered element and return (the virtual node is
+    //  not used once the DOM element is rendered).
+    if ((!isVirtualNode(node)  || !!node.domElement)) {
+      this.domRenderer.setStyle((node as VirtualNode).domElement || node, name, value, flags);
+      return;
+    }
+
+    // Update the virtual node.
+    if (flags & RendererStyleFlags2.DashCase) {
+      node.setProperty('style', { style: value + !!(flags & RendererStyleFlags2.Important) ? ' !important' : '' });
+    } else {
+      node.setProperty('style', { style: value });
+    }
+
+    // Provide a callback for deferred DOM rendering.
+    node.addRenderDomCallback((el) => this.domRenderer.setStyle(el, name, value, flags));
+  }
+
+  removeStyle(node: HTMLElement | VirtualNode, style: string, flags: RendererStyleFlags2): void {
+    console.log( 'Renderer > removeStyle > node:', node.toString(), 'style:', style, 'flags:', flags);
+
+    // Use DOM Renderer to update rendered element and return (the virtual node is
+    //  not used once the DOM element is rendered).
+    if ((!isVirtualNode(node)  || !!node.domElement)) {
+      this.domRenderer.removeStyle((node as VirtualNode).domElement || node, style, flags);
+      return;
+    }
+
+    // Update the virtual node.
+    node.removeProperty('style', style);
+
+    // Provide a callback for deferred DOM rendering.
+    node.addRenderDomCallback((el) => this.domRenderer.removeStyle(el, style, flags));
+  }
+
+  setProperty(node: HTMLElement | VirtualNode, name: string, value: any): void {
+    console.log('Renderer > setProperty > node:', node.toString(), 'name:', name, 'value:', value);
+
+    // Use DOM Renderer to update rendered element and return (the virtual node is
+    //  not used once the DOM element is rendered).
+    if ((!isVirtualNode(node)  || !!node.domElement)) {
+      this.domRenderer.setProperty((node as VirtualNode).domElement || node, name, value);
+      return;
+    }
+    // Update the virtual node.
+    node.setProperty(name, value);
+
+    // Provide a callback for deferred DOM rendering.
+    node.addRenderDomCallback((el) => this.domRenderer.setProperty(el, name, value));
+  }
+
+  setValue(node: HTMLElement | VirtualNode, value: string): void {
     console.log('Renderer > setValue > node:', node.toString(), 'value:', value);
 
-    if (node.domElement) {
-      this.domRenderer.setValue(node.domElement, value);
+    // Use DOM Renderer to update rendered element and return (the virtual node is
+    //  not used once the DOM element is rendered).
+    if ((!isVirtualNode(node)  || !!node.domElement)) {
+      this.domRenderer.setValue((node as VirtualNode).domElement || node, value);
       return;
     }
-
+    // Update the virtual node.
     node.setProperty('value', value);
+
+    // Provide a callback for deferred DOM rendering.
+    node.addRenderDomCallback((el) => this.domRenderer.setValue(el, value));
   }
 
-  listen(target: 'window' | 'document' | 'body' | VirtualNode, event: string, callback: (event: any) => boolean): () => void {
+  listen(target: 'window' | 'document' | 'body' | HTMLElement | VirtualNode, event: string, callback: (event: any) => boolean): () => void {
     console.log('Renderer > listen > target:', target.toString(), 'event:', event);
 
+    // Use DOM Renderer to update rendered element and return (the virtual node is
+    //  not used once the DOM element is rendered).
     if (!isVirtualNode(target) || target.domElement) {
       return this.domRenderer.listen((target as VirtualNode).domElement || target, event, callback);
     }
 
+    // Update the virtual node.
     target.setProperty(event, callback);
+
+    // Provide a callback for deferred DOM rendering.
+    target.addRenderDomCallback((el) => this.domRenderer.listen(el, event, callback));
 
     // NEEDS WORK: Implement prevent default callback behavior.
     // return <() => void>this.eventManager.addEventListener(

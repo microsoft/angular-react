@@ -79,9 +79,13 @@ export class VirtualNode {
     this.props[name] = value;
   }
 
-  removeProperty(name: string) {
+  removeProperty(name: string, childName?: string) {
     this.setRenderPending();
-    delete this.props[name]
+    if (childName) {
+      return delete this.props[name][childName];
+    }
+
+    return delete this.props[name];
   }
 
   constructor(public rootRenderer: AngularReactRendererFactory) {}
@@ -107,6 +111,14 @@ export class VirtualNode {
   }
 
   renderDom(parentElement?: HTMLElement) {
+    // The DOM element can only be rendered once.  There is no requirement to support re-rendering
+    // as subsquent updates to a rendered DOM element will be directly against the element (the
+    // virtual node is only used until the DOM element is rendered).  Once the element is rendered,
+    // it is just returned.
+    if (this.renderedDomElement) {
+      return this.renderedDomElement;
+    }
+
     // Render this element.
     this.renderDomCallbackStack.map(cb => this.renderedDomElement = cb(this.renderedDomElement));
 
@@ -117,6 +129,9 @@ export class VirtualNode {
 
     // Recursively render all children.
     this.children.map(child => child.renderDom(this.renderedDomElement));
+
+    // Flush the callbacks to free up the memory used to hold the closure of the callback.
+    this.renderDomCallbackStack = [];
 
     return this.renderedDomElement;
   }
