@@ -19,6 +19,8 @@ import { ReactComponentClass, getComponentClass } from './registry';
 import { VirtualNode, isVirtualNode } from './virtual-node';
 
 
+const DEBUG = true;
+
 @Injectable()
 export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   private rendererMap = new Map<string, VirtualRenderer>();
@@ -90,21 +92,21 @@ class VirtualRenderer implements Renderer2 {
   destroy(): void {}
 
   createElement(name: string, namespace?: string): VirtualNode {
-    console.error('Renderer > createElement > name:', name, namespace ? 'namespace:' : '', namespace);
+    if (DEBUG) { console.error('Renderer > createElement > name:', name, namespace ? 'namespace:' : '', namespace); }
     return new VirtualNode(this.rootRenderer)
       .asElement(name)
       .addRenderDomCallback(() => this.domRenderer.createElement(name, namespace));
   }
 
   createComment(value: string): VirtualNode {
-    console.error('Renderer > createComment > value:', value);
+    if (DEBUG) { console.error('Renderer > createComment > value:', value); }
     return new VirtualNode(this.rootRenderer)
       .asComment(value)
       .addRenderDomCallback(() => this.domRenderer.createComment(value));
   }
 
   createText(value: string): VirtualNode {
-    console.error('Renderer > createText > value:', value);
+    if (DEBUG) { console.error('Renderer > createText > value:', value); }
     return new VirtualNode(this.rootRenderer)
       .asText(value)
       .addRenderDomCallback(() => this.domRenderer.createText(value));
@@ -121,20 +123,20 @@ class VirtualRenderer implements Renderer2 {
     if ((!isVirtualNode(parent)  || !!parent.domElement)) {
       // If the child is not a ReactNode, then use the DOMRenderer.
       if (!newChild.isReactNode) {
-        console.warn('Renderer > appendChild > asDOM > parentElement:', parent.toString(), 'newChild:', newChild.toString());
+        if (DEBUG) { console.warn('Renderer > appendChild > asDOM > parentElement:', parent.toString(), 'newChild:', newChild.toString()); }
         return this.domRenderer.appendChild((parent as VirtualNode).domElement || parent, newChild.renderDom());
       }
 
       // If the child is a ReactNode, then set the parent property of the virtual element to
       // be referenced later when rendering the React element.
-      console.warn('Renderer > appendChild > asReact > parentElement:', parent.toString(), 'newChild:', newChild.toString());
+      if (DEBUG) { console.warn('Renderer > appendChild > asReact > parentElement:', parent.toString(), 'newChild:', newChild.toString()); }
       newChild.parent = (parent as VirtualNode).domElement || parent as HTMLElement;
       return;
     }
 
     // If the child is NOT being appended to an HTMLElement or VirtualNode that has been
     // rendered as an HTMLElement, then update the newChild.
-    console.warn('Renderer > appendChild > asVirtual > parentNode:', parent.toString(), 'newChild:', newChild.toString());
+    if (DEBUG) { console.warn('Renderer > appendChild > asVirtual > parentNode:', parent.toString(), 'newChild:', newChild.toString()); }
     (parent as VirtualNode).children.push(newChild);
   }
 
@@ -148,24 +150,24 @@ class VirtualRenderer implements Renderer2 {
     // rendered as an HTMLElement...
     if ((!isVirtualNode(parent)  || !!parent.domElement)) {
       if (!newChild.isReactNode) {
-        console.log('Renderer > insertBefore > parent:', parent ? parent.toString() : 'undefined', 'child:', newChild.toString(), 'refChild:', refChild.toString());
+        if (DEBUG) { console.log('Renderer > insertBefore > parent:', parent ? parent.toString() : 'undefined', 'child:', newChild.toString(), 'refChild:', refChild.toString()); }
 
         this.domRenderer.insertBefore((parent as VirtualNode).domElement || parent, newChild.renderDom(), refChild);
         return;
       }
 
       // If the child is a ReactNode, then DO SOMETHING.
-      console.warn('NOT IMPLEMENTED - Renderer > appendChild > asReact > parentElement:', parent.toString(), 'newChild:', newChild.toString());
+      if (DEBUG) { console.warn('NOT IMPLEMENTED - Renderer > appendChild > asReact > parentElement:', parent.toString(), 'newChild:', newChild.toString()); }
     }
 
     // If the child is NOT being appended to an HTMLElement or VirtualNode that has been
     // rendered as an HTMLElement, then DO SOMETHING.
-    console.warn('NOT IMPLEMENTED - Renderer > appendChild > asVirtual > parentNode:', parent.toString(), 'newChild:', newChild.toString());
+    if (DEBUG) { console.warn('NOT IMPLEMENTED - Renderer > appendChild > asVirtual > parentNode:', parent.toString(), 'newChild:', newChild.toString()); }
   }
 
   removeChild(parent: HTMLElement | VirtualNode | void, oldChild: VirtualNode): void {
     // NEEDS WORK.
-    console.log('Renderer > removeChild > parent:', parent ? parent.toString() : 'undefined', 'child:', oldChild.toString());
+    if (DEBUG) { console.log('Renderer > removeChild > parent:', parent ? parent.toString() : 'undefined', 'child:', oldChild.toString()); }
 
     if (parent) {
       (parent as any).removeChild(oldChild.domElement);
@@ -192,7 +194,7 @@ class VirtualRenderer implements Renderer2 {
 
   selectRootElement(selectorOrNode: string | any): any {
     // NEEDS WORK
-    console.log('Renderer > selectRootElement > selectorOrNode:', selectorOrNode);
+    if (DEBUG) { console.log('Renderer > selectRootElement > selectorOrNode:', selectorOrNode); }
 
     const el: any =
       typeof selectorOrNode === 'string'
@@ -208,17 +210,17 @@ class VirtualRenderer implements Renderer2 {
   }
 
   parentNode(node: HTMLElement | VirtualNode): any {
-    console.log('Renderer > parentNode > node:', node.toString());
+    if (DEBUG) { console.log('Renderer > parentNode > node:', node.toString()); }
     return ((node as VirtualNode).domElement || node as HTMLElement).parentNode;
   }
 
   nextSibling(node: any): any {
-    console.log('Renderer > nextSibling > node:', node.toString());
+    if (DEBUG) { console.log('Renderer > nextSibling > node:', node.toString()); }
     return ((node as VirtualNode).domElement || node as HTMLElement).nextSibling;
   }
 
   setAttribute(node: HTMLElement | VirtualNode, name: string, value: string, namespace?: string ): void {
-    console.log('Renderer > setAttribute > node:', node.toString(), 'name:', name, 'value:', value, namespace ? 'namespace:' : '', namespace);
+    if (DEBUG) { console.log('Renderer > setAttribute > node:', node.toString(), 'name:', name, 'value:', value, namespace ? 'namespace:' : '', namespace); }
 
     // Use DOM Renderer to update rendered element and return (the virtual node is
     //  not used once the DOM element is rendered).
@@ -235,7 +237,7 @@ class VirtualRenderer implements Renderer2 {
   }
 
   removeAttribute(node: HTMLElement | VirtualNode, name: string, namespace?: string): void {
-    console.log('Renderer > removeAttribute > node:', node.toString(), 'name:', name, namespace ? 'namespace:' : '', namespace);
+    if (DEBUG) { console.log('Renderer > removeAttribute > node:', node.toString(), 'name:', name, namespace ? 'namespace:' : '', namespace); }
 
     // Use DOM Renderer to update rendered element and return (the virtual node is
     //  not used once the DOM element is rendered).
@@ -252,7 +254,7 @@ class VirtualRenderer implements Renderer2 {
   }
 
   addClass(node: HTMLElement | VirtualNode, name: string): void {
-    console.log('Renderer > addClass > node:', node.toString(), 'name:', name);
+    if (DEBUG) { console.log('Renderer > addClass > node:', node.toString(), 'name:', name); }
 
     // Use DOM Renderer to update rendered element and return (the virtual node is
     //  not used once the DOM element is rendered).
@@ -271,7 +273,7 @@ class VirtualRenderer implements Renderer2 {
   }
 
   removeClass(node: HTMLElement | VirtualNode, name: string): void {
-    console.log('Renderer > removeClass > node:', node.toString(), 'name:', name);
+    if (DEBUG) { console.log('Renderer > removeClass > node:', node.toString(), 'name:', name); }
 
     // Use DOM Renderer to update rendered element and return (the virtual node is
     //  not used once the DOM element is rendered).
@@ -289,7 +291,7 @@ class VirtualRenderer implements Renderer2 {
   }
 
   setStyle(node: HTMLElement | VirtualNode, style: string, value: any, flags: RendererStyleFlags2): void {
-    console.log('Renderer > setStyle > node: ', node.toString(), 'style:', style, 'value:', value, 'flags:', flags);
+    // if (DEBUG) { console.log('Renderer > setStyle > node: ', node.toString(), 'style:', style, 'value:', value, 'flags:', flags); }
 
     // Use DOM Renderer to update rendered element and return (the virtual node is
     //  not used once the DOM element is rendered).
@@ -310,7 +312,7 @@ class VirtualRenderer implements Renderer2 {
   }
 
   removeStyle(node: HTMLElement | VirtualNode, style: string, flags: RendererStyleFlags2): void {
-    console.log( 'Renderer > removeStyle > node:', node.toString(), 'style:', style, 'flags:', flags);
+    if (DEBUG) { console.log( 'Renderer > removeStyle > node:', node.toString(), 'style:', style, 'flags:', flags); }
 
     // Use DOM Renderer to update rendered element and return (the virtual node is
     //  not used once the DOM element is rendered).
@@ -327,7 +329,7 @@ class VirtualRenderer implements Renderer2 {
   }
 
   setProperty(node: HTMLElement | VirtualNode, name: string, value: any): void {
-    console.log('Renderer > setProperty > node:', node.toString(), 'name:', name, 'value:', value);
+    if (DEBUG) { console.log('Renderer > setProperty > node:', node.toString(), 'name:', name, 'value:', value); }
 
     // Use DOM Renderer to update rendered element and return (the virtual node is
     //  not used once the DOM element is rendered).
@@ -343,7 +345,7 @@ class VirtualRenderer implements Renderer2 {
   }
 
   setValue(node: HTMLElement | VirtualNode, value: string): void {
-    console.log('Renderer > setValue > node:', node.toString(), 'value:', value);
+    if (DEBUG) { console.log('Renderer > setValue > node:', node.toString(), 'value:', value); }
 
     // Use DOM Renderer to update rendered element and return (the virtual node is
     //  not used once the DOM element is rendered).
@@ -359,7 +361,7 @@ class VirtualRenderer implements Renderer2 {
   }
 
   listen(target: 'window' | 'document' | 'body' | HTMLElement | VirtualNode, event: string, callback: (event: any) => boolean): () => void {
-    console.log('Renderer > listen > target:', target.toString(), 'event:', event);
+    if (DEBUG) { console.log('Renderer > listen > target:', target, 'event:', event); }
 
     // Use DOM Renderer to update rendered element and return (the virtual node is
     //  not used once the DOM element is rendered).

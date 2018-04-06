@@ -6,6 +6,8 @@ import { AngularReactRendererFactory } from "./renderer";
 import { Renderer2 } from '@angular/core';
 
 
+const DEBUG = true;
+
 export function isVirtualNode(node: any): node is VirtualNode {
   return (<VirtualNode>node).rootRenderer !== undefined;
 }
@@ -111,6 +113,8 @@ export class VirtualNode {
   }
 
   renderDom(parentElement?: HTMLElement) {
+    if (DEBUG) { console.error('VirtualNode > renderDom > parent:', parentElement ? parentElement.toString() : 'undefined'); }
+
     // The DOM element can only be rendered once.  There is no requirement to support re-rendering
     // as subsquent updates to a rendered DOM element will be directly against the element (the
     // virtual node is only used until the DOM element is rendered).  Once the element is rendered,
@@ -120,10 +124,19 @@ export class VirtualNode {
     }
 
     // Render this element.
-    this.renderDomCallbackStack.map(cb => this.renderedDomElement = cb(this.renderedDomElement));
+    this.renderDomCallbackStack.map(cb => {
+      if (!this.renderedDomElement) {
+        // The first callback should return the rendered dom element.  We need not assign the
+        // response of any of the other callbacks.
+        return this.renderedDomElement = cb(this.renderedDomElement);
+      }
 
-    // Set the parent for this element if one is specified.
+      return cb(this.renderedDomElement);
+    });
+
+    // Add this rendered element to a parent if one is provided.
     if (parentElement) {
+      if (DEBUG) { console.error('VirtualNode > renderDom > appending parent:', parentElement.toString(), 'child:', this.renderedDomElement.toString()); }
       parentElement.appendChild(this.renderedDomElement);
     }
 
