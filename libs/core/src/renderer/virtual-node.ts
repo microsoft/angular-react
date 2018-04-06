@@ -5,6 +5,11 @@ import { ReactComponentClass, getComponentClass } from "./registry";
 import { AngularReactRendererFactory } from "./renderer";
 import { Renderer2 } from '@angular/core';
 
+
+export function isVirtualNode(node: any): node is VirtualNode {
+  return (<VirtualNode>node).rootRenderer !== undefined;
+}
+
 export class VirtualNode {
   // Access to these properties are restriced through setters and functions
   // so that the dirty "render pending" state of this object can be properly
@@ -14,6 +19,7 @@ export class VirtualNode {
   private type: ReactComponentClass | string;
   private comment: string;
   private text: string;
+  private renderDomCallbackStack: Array<(el?: HTMLElement) => any> = [];
 
   private renderedDomElement: HTMLElement;
   get domElement() {
@@ -28,7 +34,7 @@ export class VirtualNode {
   }
 
   private _parent: any;
-  set parent(parent: {}) {
+  set parent(parent: HTMLElement) {
     this.setRenderPending();
     this._parent = parent;
 
@@ -64,6 +70,10 @@ export class VirtualNode {
     }
   }
 
+  setAttribute(name: string, value: any) {
+    this.setProperty(name, value);
+  }
+
   setProperty(name: string, value: any) {
     this.setRenderPending();
     this.props[name] = value;
@@ -74,10 +84,7 @@ export class VirtualNode {
     delete this.props[name]
   }
 
-  constructor(
-    public rootRenderer: AngularReactRendererFactory,
-    protected createCallback: () => any
-  ) {}
+  constructor(public rootRenderer: AngularReactRendererFactory) {}
 
   asElement(type: ReactComponentClass | string) {
     this.type = type;
@@ -94,10 +101,24 @@ export class VirtualNode {
     return this;
   }
 
-  renderDom() {
-    // No need to recursively render children.  The created element will be saved as and referenced
-    // later when children are added (directly to the rendered HTMLElement).
-    return this.renderedDomElement = this.createCallback();
+  addRenderDomCallback(callback: (el?: HTMLElement) => any): VirtualNode {
+    this.renderDomCallbackStack.push(callback);
+    return this;
+  }
+
+  renderDom(parentElement?: HTMLElement) {
+    // Render this element.
+    this.renderDomCallbackStack.map(cb => this.renderedDomElement = cb(this.renderedDomElement));
+
+    // Set the parent for this element if one is specified.
+    if (parentElement) {
+      parentElement.appendChild(this.renderedDomElement);
+    }
+
+    // Recursively render all children.
+    this.children.map(child => child.renderDom(this.renderedDomElement));
+
+    return this.renderedDomElement;
   }
 
   renderReact() {
@@ -110,7 +131,7 @@ export class VirtualNode {
   }
 
   toString(): string {
-    return '[' + (this.type === undefined ? 'undefined' : typeof this.type === 'string' ? this.type : this.type.constructor.name) + ' VirtualNode]';
+    return '[' + (this.type === undefined ? (this.text && this.text.trim()) || (this.comment && this.comment.trim()) : typeof this.type === 'string' ? this.type : this.type.constructor.name) + ' VirtualNode]';
   }
 
   private renderRecursive(node: VirtualNode): React.ReactElement<{}> {

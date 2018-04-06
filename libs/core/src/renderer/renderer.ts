@@ -16,13 +16,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { ReactComponentClass, getComponentClass } from './registry';
-import { VirtualNode } from './virtual-node';
+import { VirtualNode, isVirtualNode } from './virtual-node';
 
 
 @Injectable()
 export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
-  private reactRendererByCompId = new Map<string, Renderer2>();
-  private defaultReactRenderer: AngularReactRenderer;
+  private rendererMap = new Map<string, VirtualRenderer>();
 
   // Collection of ReactNodes that can be evaluated and flushed at the
   // end of Render.  This is necessary as the flow of element creation
@@ -42,29 +41,25 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
 
   constructor(eventManager: EventManager, sharedStylesHost: ɵDomSharedStylesHost) {
     super(eventManager, sharedStylesHost);
-
-    this.defaultReactRenderer = new AngularReactRenderer(eventManager, this);
   }
 
   createRenderer(element: any, type: RendererType2 | null): Renderer2 {
-    // return super.createRenderer(element, type);
-
-    if (!element || !type) {
-      return super.createRenderer(element, type);
-    }
-
-    // Determine whether this component is a react wrapper and provide the unique renderer.
-    let renderer = this.reactRendererByCompId.get(type.id);
-    // Attempt to get a React Renderer for this element.
+    // Determine whether a renderer has already been mapped for this element.
+    let renderer = type && type.id && this.rendererMap.get(type.id);
     if (!renderer) {
       // Get the DOM Renderer for this element.
       const domRenderer = super.createRenderer(element, type);
 
-      // Get the React Renderer for this element. It will take in the DOM
-      // Renderer and optionally use it when the DOM Element is not a React
-      // Element and is not a child of a React Element.
-      renderer = this.defaultReactRenderer.setDomRenderer(domRenderer);
-      this.reactRendererByCompId.set(type.id, renderer);
+      // Create the HybridRenderer for this element. The HybridRenderer acts as a switch operator
+      // and creates each element via callback when the element is inserted.  This delay in create allows
+      // determination of whether the element is a child of only DOM elements or a child of a React Element
+      // and allows for the appropriate renderer (DOM or React) to be used.
+      renderer = new VirtualRenderer(domRenderer, this);
+
+      // Store the mapped renderer for reuse.
+      if (type && type.id) {
+        this.rendererMap.set(type.id, renderer);
+      }
     }
 
     return renderer;
@@ -83,36 +78,36 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   }
 }
 
-class AngularReactRenderer implements Renderer2 {
+class VirtualRenderer implements Renderer2 {
   data: { [key: string]: any } = Object.create(null);
-  domRenderer: Renderer2;
   destroyNode: null;
 
   constructor(
-    private eventManager: EventManager,
-    private rootRenderer: AngularReactRendererFactory
+    private domRenderer: Renderer2,
+    private rootRenderer: AngularReactRendererFactory,
   ) {}
 
   destroy(): void {}
 
-  setDomRenderer(domRenderer: Renderer2): AngularReactRenderer {
-    this.domRenderer = domRenderer;
-    return this;
-  }
-
   createElement(name: string, namespace?: string): VirtualNode {
     console.error('Renderer > createElement > name:', name, namespace ? 'namespace:' : '', namespace);
-    return new VirtualNode(this.rootRenderer, () => this.domRenderer.createElement(name, namespace)).asElement(name);
+    return new VirtualNode(this.rootRenderer)
+      .asElement(name)
+      .addRenderDomCallback(() => this.domRenderer.createElement(name, namespace));
   }
 
   createComment(value: string): VirtualNode {
     console.error('Renderer > createComment > value:', value);
-    return new VirtualNode(this.rootRenderer, () => this.domRenderer.createComment(value)).asComment(value);
+    return new VirtualNode(this.rootRenderer)
+      .asComment(value)
+      .addRenderDomCallback(() => this.domRenderer.createComment(value));
   }
 
   createText(value: string): VirtualNode {
     console.error('Renderer > createText > value:', value);
-    return new VirtualNode(this.rootRenderer, () => this.domRenderer.createText(value)).asText(value);
+    return new VirtualNode(this.rootRenderer)
+      .asText(value)
+      .addRenderDomCallback(() => this.domRenderer.createText(value));
   }
 
   appendChild(parent: HTMLElement | VirtualNode, newChild: VirtualNode): void {
@@ -121,34 +116,34 @@ class AngularReactRenderer implements Renderer2 {
       return;
     }
 
-    // If the child is NOT being appended to an HTMLElement or VirtualNode that has been rendered as an
-    // HTMLElement, then just push it to the children collection of the VirtualNode.
-    if (!this.htmlElement(parent)) {
-      console.warn('Renderer > appendChild > asReact > parentNode:', parent.toString(), 'newChild:', newChild.toString());
-      (parent as VirtualNode).children.push(newChild);
-      return;
-    }
+    // If the child is being appended to an HTMLElement or VirtualNode that has been
+    // rendered as an HTMLElement...
+    if ((!isVirtualNode(parent)  || !!parent.domElement)) {
+      // If the child is not a ReactNode, then use the DOMRenderer.
+      if (!newChild.isReactNode) {
+        console.warn('Renderer > appendChild > asDOM > parentElement:', parent.toString(), 'newChild:', newChild.toString());
+        return this.domRenderer.appendChild((parent as VirtualNode).domElement || parent, newChild.renderDom());
+      }
 
-    // If the child IS being appended to an HTMLElement and it is a ReactElement, then set the parent
-    // of the ReactElement for insertion later when it is fully defined and rendered.
-    if (newChild.isReactNode) {
+      // If the child is a ReactNode, then set the parent property of the virtual element to
+      // be referenced later when rendering the React element.
       console.warn('Renderer > appendChild > asReact > parentElement:', parent.toString(), 'newChild:', newChild.toString());
-      newChild.parent = this.htmlElement(parent);
+      newChild.parent = (parent as VirtualNode).domElement || parent as HTMLElement;
       return;
     }
 
-    // If the child IS being appended to an HTMLElement, get the element as either the parent or
-    // as the 'domElement' property of the parent (if the parent is a VirtualNode) and append.
-    console.warn('Renderer > appendChild > asDOM > parentElement:', parent.toString(), 'newChild:', newChild.toString());
-    this.htmlElement(parent).appendChild(newChild.renderDom());
+    // If the child is NOT being appended to an HTMLElement or VirtualNode that has been
+    // rendered as an HTMLElement, then update the newChild.
+    console.warn('Renderer > appendChild > asVirtual > parentNode:', parent.toString(), 'newChild:', newChild.toString());
+    (parent as VirtualNode).children.push(newChild);
   }
 
-  insertBefore(parent: any, newChild: any, refChild: any): void {
-    // NEEDS WORK
-    console.log('Renderer > insertBefore > parent:', parent, 'child:', newChild);
+  insertBefore(parent: any, newChild: VirtualNode, refChild: any): void {
+    console.log('Renderer > insertBefore > parent:', parent.toString(), 'child:', newChild.toString(), 'refChild:', refChild.toString());
 
     if (parent) {
-      parent.insertBefore(newChild, refChild);
+      ((parent as VirtualNode).domElement || parent as HTMLElement)
+        .insertBefore(newChild.renderDom(), refChild);
     }
   }
 
@@ -178,18 +173,14 @@ class AngularReactRenderer implements Renderer2 {
     return el;
   }
 
-  parentNode(node: any): any {
-    // NEEDS WORK
-    console.log('Renderer > parentNode > node:', node);
-
-    return node.parentNode;
+  parentNode(node: HTMLElement | VirtualNode): any {
+    console.log('Renderer > parentNode > node:', node.toString());
+    return ((node as VirtualNode).domElement || node as HTMLElement).parentNode;
   }
 
   nextSibling(node: any): any {
-    // NEEDS WORK
-    console.log('Renderer > nextSibling > node:', node);
-
-    return node.nextSibling;
+    console.log('Renderer > nextSibling > node:', node.toString());
+    return ((node as VirtualNode).domElement || node as HTMLElement).nextSibling;
   }
 
   setAttribute(node: VirtualNode, name: string, value: string, namespace?: string ): void {
@@ -200,7 +191,7 @@ class AngularReactRenderer implements Renderer2 {
       return;
     }
 
-    node.setProperty(name, value);
+    if (node && node.setProperty) node.setProperty(name, value);
   }
 
   removeAttribute(node: VirtualNode, name: string, namespace?: string): void {
@@ -287,7 +278,7 @@ class AngularReactRenderer implements Renderer2 {
   listen(target: 'window' | 'document' | 'body' | VirtualNode, event: string, callback: (event: any) => boolean): () => void {
     console.log('Renderer > listen > target:', target.toString(), 'event:', event);
 
-    if (!this.isVirtualNode(target) || target.domElement) {
+    if (!isVirtualNode(target) || target.domElement) {
       return this.domRenderer.listen((target as VirtualNode).domElement || target, event, callback);
     }
 
@@ -302,37 +293,4 @@ class AngularReactRenderer implements Renderer2 {
     return () => null;
   }
 
-  private isVirtualNode(node: any): node is VirtualNode {
-    return (<VirtualNode>node).rootRenderer !== undefined;
-  }
-
-  private htmlElement(node: VirtualNode | HTMLElement): HTMLElement {
-    return (!this.isVirtualNode(node)  || !!node.domElement) ? ((node as VirtualNode).domElement || node as HTMLElement) : null;
-  }
-
-}
-
-function decoratePreventDefault(eventHandler: Function): Function {
-  console.log('Renderer > decoratePreventDefault > eventHandler:', eventHandler);
-
-  return (event: any) => {
-    const allowDefaultBehavior = eventHandler(event);
-    if (allowDefaultBehavior === false) {
-      // TODO(tbosch): move preventDefault into event plugins...
-      event.preventDefault();
-      event.returnValue = false;
-    }
-  };
-}
-
-const AT_CHARCODE = '@'.charCodeAt(0);
-function checkNoSyntheticProp(name: string, nameKind: string) {
-  console.log('checkNoSyntheticProp > name:', name, 'nameKind:', nameKind);
-
-  if (name.charCodeAt(0) === AT_CHARCODE) {
-    throw new Error(
-      // tslint:disable-next-line:max-line-length
-      `Found the synthetic ${nameKind} ${name}. Please include either "BrowserAnimationsModule" or "NoopAnimationsModule" in your application.`
-    );
-  }
 }
