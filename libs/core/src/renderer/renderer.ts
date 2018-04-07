@@ -58,12 +58,11 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   begin() { }
 
   end() {
-    if (DEBUG) { console.error('RootRenderer > end > isRenderPending:', this.isRenderPending, 'reactRootNodes:', this.reactRootNodes); }
+    if (DEBUG) { console.log('RootRenderer > end > isRenderPending:', this.isRenderPending, 'reactRootNodes:', this.reactRootNodes); }
     // Flush any pending React element render updates.  This cannot be done
     // earlier (as is done for DOM elements) because React element props
     // are ReadOnly.
     if (this.isRenderPending) {
-      if (DEBUG) { console.error('RootRenderer > end > rendering'); }
       this.reactRootNodes.map(node => node.render());
       this.isRenderPending = false;
     }
@@ -84,12 +83,12 @@ class ReactRenderer implements Renderer2 {
   }
 
   createComment(value: string): ReactNode {
-    if (DEBUG) { console.error('Renderer > createComment > value:', value); }
+    if (DEBUG) { console.error('Renderer > createComment > value:', value.trim()); }
     return new ReactNode().asComment(value);
   }
 
   createText(value: string): ReactNode {
-    if (DEBUG) { console.error('Renderer > createText > value:', value); }
+    if (DEBUG) { console.error('Renderer > createText > value:', value.trim()); }
     return new ReactNode().asText(value);
   }
 
@@ -115,7 +114,7 @@ class ReactRenderer implements Renderer2 {
     }
 
     if (DEBUG) { console.warn('Renderer > appendChild > asReact > parent:', parent.toString(), 'node:', node.toString()); }
-    node.setRenderPendingCallback = parent.setRenderPending;
+    node.setRenderPendingCallback = () => parent.setRenderPending();
     parent.addChild(node);
     node.parent = parent;
   }
@@ -130,7 +129,7 @@ class ReactRenderer implements Renderer2 {
     // once the ReactNode is fully defined and it is subsequently rendered.  In this
     // case, React cannot "insertBefore".  Instead, we have to create a target element
     // where the ReactNode can be rendered later.
-    if (DEBUG) { console.log('Renderer > insertBefore > asDOM > parent:', parent.toString(), 'node:', node.toString(), 'refChild:', refChild.toString()); }
+    if (DEBUG) { console.warn('Renderer > insertBefore > asDOM > parent:', parent.toString(), 'node:', node.toString(), 'refChild:', refChild.toString()); }
     const target = document.createElement('div');
     parent.insertBefore(target, refChild);
     node.parent = target;

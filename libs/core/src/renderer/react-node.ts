@@ -24,6 +24,8 @@ export class ReactNode {
   private children = [];
   private typeName: string;
 
+  private appendChildCallback: (target: HTMLElement) => void;
+
   private renderedDomElement: HTMLElement;
   get domElement() {
     return this.renderedDomElement;
@@ -68,7 +70,7 @@ export class ReactNode {
       // If type is still a string, then no React Element matches this string.
       this.typeIsReactElementClass = typeof this.type !== 'string';
 
-      if (DEBUG) { console.error('ReactNode > tryResolveTypeIsReactElementClass > type:', this.typeName); }
+      if (DEBUG) { console.log('ReactNode > tryResolveTypeIsReactElementClass > type:', this.typeName); }
     }
   }
 
@@ -130,25 +132,35 @@ export class ReactNode {
 
   render() {
     if (this.isRenderPending) {
-      if (DEBUG) { console.error('ReactNode > render > node:', this.toString(), 'parent:', this.parent); }
+      if (DEBUG) { console.log('ReactNode > render > node:', this.toString(), 'parent:', this.parent); }
       // It is expected that the element will be recreated and rerendered with each attribute change.
       // See: https://reactjs.org/docs/rendering-elements.html
-      ReactDOM.render(this.renderRecursive(this) as any, this._parent);
+      ReactDOM.render(this.renderRecursive() as any, this._parent);
       this.isRenderPending = false;
+
+      this.appendChildCallback(this._parent);
     }
   }
 
-  private renderRecursive(node: ReactNode): React.ReactElement<{}> {
-    // const children = node.children ? node.children.map(child => this.renderRecursive(child)) : [];
+  private renderRecursive(): React.ReactElement<{}> | string {
     let children = [];
-    if (node.children) {
-      children = node.children.map(
-        child =>
-          typeof child === 'string' ? child : this.renderRecursive(child)
-      );
+    if (this.children) {
+      children = this.children.map(child => child.renderRecursive());
     }
 
-    return React.createElement(node.type, node.props, children);
+    if (this.text) {
+      return this.text;
+    }
+
+    return React.createElement(this.type, this.props, children);
+  }
+
+  // This is called by Angular core when projected content is being added.
+  appendChild(projectedContent: HTMLElement) {
+    if (DEBUG) { console.log('ReactNode > appendChild > node:', this.toString(), 'projectedContent:', projectedContent.toString().trim()); }
+    this.appendChildCallback = (target: HTMLElement) => {
+      target.appendChild(projectedContent);
+    }
   }
 
   toString(): string {
