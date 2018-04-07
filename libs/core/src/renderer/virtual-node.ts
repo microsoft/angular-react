@@ -6,7 +6,7 @@ import { AngularReactRendererFactory } from "./renderer";
 import { Renderer2 } from '@angular/core';
 
 
-const DEBUG = true;
+const DEBUG = false;
 
 export function isVirtualNode(node: any): node is VirtualNode {
   return (<VirtualNode>node).rootRenderer !== undefined;

@@ -18,12 +18,17 @@ export class TriangleComponent implements OnInit {
   callback;
   interval;
 
-  constructor() { }
+  constructor() {
+    // Force stop after limited time during development.
+    setTimeout(() => {
+      this.stop();
+    }, 3000);
+  }
 
   ngOnInit() {
-    this.dots = (new SierpinskiTriangle({x: 0, y: 0, s: 1000}, 25)).getDots();
+    this.dots = (new SierpinskiTriangle({x: 0, y: 0, s: 1000}, 500)).getDots();
 
-    this.begin();
+    // this.begin();
   }
 
   update(elapsed) {

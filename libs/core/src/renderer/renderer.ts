@@ -19,12 +19,10 @@ import { ReactComponentClass, getComponentClass } from './registry';
 import { VirtualNode, isVirtualNode } from './virtual-node';
 
 
-const DEBUG = true;
+const DEBUG = false;
 
 @Injectable()
 export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
-  private rendererMap = new Map<string, VirtualRenderer>();
-
   // Collection of ReactNodes that can be evaluated and flushed at the
   // end of Render.  This is necessary as the flow of element creation
   // and update goes from "create" > "insert" > "update" property/attribute.
@@ -46,25 +44,17 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   }
 
   createRenderer(element: any, type: RendererType2 | null): Renderer2 {
-    // Determine whether a renderer has already been mapped for this element.
-    let renderer = type && type.id && this.rendererMap.get(type.id);
-    if (!renderer) {
-      // Get the DOM Renderer for this element.
-      const domRenderer = super.createRenderer(element, type);
+    // Get the DOM Renderer for this element.
+    console.log('Element before:', element)
+    const domRenderer = super.createRenderer(element, type);
+    console.log('Element after:', element, domRenderer);
 
-      // Create the HybridRenderer for this element. The HybridRenderer acts as a switch operator
-      // and creates each element via callback when the element is inserted.  This delay in create allows
-      // determination of whether the element is a child of only DOM elements or a child of a React Element
-      // and allows for the appropriate renderer (DOM or React) to be used.
-      renderer = new VirtualRenderer(domRenderer, this);
-
-      // Store the mapped renderer for reuse.
-      if (type && type.id) {
-        this.rendererMap.set(type.id, renderer);
-      }
-    }
-
-    return renderer;
+    // Create the HybridRenderer for this element. The HybridRenderer acts as a switch operator
+    // and creates each element via callback when the element is inserted.  This delay in create allows
+    // determination of whether the element is a child of only DOM elements or a child of a React Element
+    // and allows for the appropriate renderer (DOM or React) to be used.
+    return new VirtualRenderer(domRenderer, this);
+    // return domRenderer;
   }
 
   begin() { }
