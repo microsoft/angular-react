@@ -24,7 +24,7 @@ import { DialogType, DialogFooter } from 'office-ui-fabric-react/lib/components/
       [dialogContentProps]="dialogContentProps"
       [modalProps]="modalProps"
     >
-      <ng-content></ng-content>
+      <ReactContent><ng-content></ng-content></ReactContent>
       <div>test123</div>
     </Dialog>
   `,

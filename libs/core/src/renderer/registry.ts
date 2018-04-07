@@ -1,3 +1,5 @@
+import { ReactContent } from "./react-content";
+
 export interface ReactComponentClass {
   new (): React.Component;
 }
@@ -45,3 +47,5 @@ export function getComponentClass(
     throw new TypeError(`Could not load component for: ${elementName}.${e}`);
   }
 }
+
+registerElement('ReactContent', () => ReactContent);

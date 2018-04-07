@@ -10,12 +10,19 @@ export class FabricComponent implements OnInit {
   disabled = true;
   dialogHidden = true;
   sampleContentCounter = 0;
+  secondsCounter = 0;
+  sampleContent2 = '0 Seconds Passed';
 
   get sampleContent() {
     return `Button clicked ${this.sampleContentCounter} times.`;
   }
 
-  constructor() { }
+  constructor() {
+    setInterval(() => {
+      this.secondsCounter += 1;
+      this.sampleContent2 = `${this.secondsCounter} Seconds Passed`
+    }, 1000);
+  }
 
   ngOnInit() { }
 
