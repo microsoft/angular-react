@@ -18,10 +18,10 @@ export class FabricComponent implements OnInit {
   }
 
   constructor() {
-    setInterval(() => {
-      this.secondsCounter += 1;
-      this.sampleContent2 = `${this.secondsCounter} Seconds Passed`
-    }, 1000);
+    // setInterval(() => {
+    //   this.secondsCounter += 1;
+    //   this.sampleContent2 = `${this.secondsCounter} Seconds Passed`
+    // }, 1000);
   }
 
   ngOnInit() { }

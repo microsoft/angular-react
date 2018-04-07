@@ -56,7 +56,7 @@ export class FabricDialogComponent {
   selector: 'fabric-dialog-footer',
   template: `
     <DialogFooter key="4">
-      <ng-content></ng-content>
+      <ReactContent><ng-content></ng-content></ReactContent>
     </DialogFooter>
   `,
   styles: ['react-renderer'],

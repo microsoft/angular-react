@@ -7,6 +7,7 @@ import { AngularReactRendererFactory } from "./renderer";
 
 
 const DEBUG = true;
+export const CHILD_TO_APPEND_PROP = 'child-to-append';
 
 export function isReactNode(node: any): node is ReactNode {
   return (<ReactNode>node).setRenderPendingCallback !== undefined;
@@ -149,7 +150,7 @@ export class ReactNode {
       return this.text;
     }
 
-    this.props['childtoappend'] = this.childToAppend;
+    this.props[CHILD_TO_APPEND_PROP] = this.childToAppend;
 
     if (DEBUG) { console.warn('ReactNode > renderRecursive > type:', this.toString(), 'props:', this.props, 'children:', children); }
     return React.createElement(this.type, this.props, children);
