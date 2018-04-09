@@ -1,14 +1,17 @@
 import * as React from 'react';
 import ReactDOM = require('react-dom');
-import { CHILD_TO_APPEND_PROP } from '@angular-react/core/src/renderer/react-node';
+
+
+const DEBUG = false;
+export const CHILDREN_TO_APPEND_PROP = 'children-to-append';
 
 export class ReactContent extends React.Component {
 
   componentDidMount() {
     const element = ReactDOM.findDOMNode(this);
-    console.log('component mounted, node:', element, 'props:', this.props);
-    if (this.props['childtoappend']) {
-      element.appendChild(this.props[CHILD_TO_APPEND_PROP]);
+    if (this.props[CHILDREN_TO_APPEND_PROP]) {
+      if (DEBUG) { console.warn('ReactContent Component > componentDidMount > childrenToAppend:', this.props[CHILDREN_TO_APPEND_PROP]); }
+      this.props[CHILDREN_TO_APPEND_PROP].map(child => element.appendChild(child));
     }
   }
 

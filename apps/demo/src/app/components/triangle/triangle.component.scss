@@ -1,5 +1,6 @@
 :host {
   display: block;
+  position: relative;
 
   .container {
     position: absolute;
@@ -8,6 +9,6 @@
     top: 50%;
     width: 10px;
     height: 10px;
-    background: #eee;
+    font-size: 20px;
   }
 }

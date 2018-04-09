@@ -4,9 +4,11 @@
   [style.height]="size"
   [style.left]="x"
   [style.top]="y"
-  [class.hover]="hover"
+  [style.color]="color"
+  [style.background-color]="backgroundColor"
   (mouseenter)="onMouseEnter($event)"
   (mouseleave)="onMouseLeave($event)"
 >
-  {{ text }}
+  <ng-container *ngIf="textOverride">{{ textOverride }}</ng-container>
+  <ng-container *ngIf="!textOverride"><ng-content></ng-content></ng-container>
 </div>

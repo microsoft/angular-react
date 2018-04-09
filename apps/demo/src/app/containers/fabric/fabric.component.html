@@ -1,6 +1,6 @@
 <h1>Microsoft Fabric Components</h1>
 
-<!-- <ul>
+<ul>
   <li>
     <fabric-button label="Toggle Disabled" (onClick)="toggle()"></fabric-button>
     <fabric-button [disabled]="disabled" (onClick)="click()" label="Primary Button{{ disabled ? ' (0)' : ' (2)' }}"></fabric-button>
@@ -11,25 +11,12 @@
   </li>
   <li>
     <fabric-button label="Toggle Dialog" (onClick)="toggleDialog()"></fabric-button>
-    <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()"></fabric-dialog>
+    <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2">
+      {{ sampleContent2 }} {{ sampleContent3 }}
+      <fabric-dialog-footer key="d3">
+        <fabric-button (onClick)="clickSave()" label='Save' style="margin-right:10px;"></fabric-button>
+        <fabric-button (onClick)="toggleDialog()" label='Cancel'></fabric-button>
+      </fabric-dialog-footer>
+    </fabric-dialog>
   </li>
-</ul> -->
-
-<button (click)="toggleDialog()">Toggle Dialog</button>
-<button (click)="click()">Increment</button>
-
-<!-- <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()"></fabric-dialog> -->
-
-
-<!-- <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()">
-  {{ sampleContent2 }}
-</fabric-dialog> -->
-
-
-
-<fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()">
-  <fabric-dialog-footer key="3">
-    <fabric-button (onClick)="click()" text='Save'></fabric-button>
-    <fabric-button (onClick)="click()" text='Cancel'></fabric-button>
-  </fabric-dialog-footer>
-</fabric-dialog>
+</ul>

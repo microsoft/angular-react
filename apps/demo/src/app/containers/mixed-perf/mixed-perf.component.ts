@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-mixed-perf',
   templateUrl: './mixed-perf.component.html',
   styleUrls: ['./mixed-perf.component.scss']
 })
-export class MixedPerfComponent implements OnInit {
+export class MixedPerfComponent {
 
-  constructor() { }
+  projectAsAngular = true;
 
-  ngOnInit() {
+  toggle() {
+    this.projectAsAngular = !this.projectAsAngular;
   }
 
 }

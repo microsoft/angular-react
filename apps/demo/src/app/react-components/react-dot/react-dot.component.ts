@@ -1,77 +1,93 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+// tslint:disable:no-input-rename
+// tslint:disable:no-output-rename
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+
 @Component({
   selector: 'app-react-dot',
-  template: `
-    <ReactDot [text]="hover ? '*' + text + '*' : text">
-    </ReactDot>
-  `,
+  templateUrl: './react-dot.component.html',
+  styleUrls: ['./react-dot.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [ 'react-renderer' ],
 })
 export class ReactDotComponent implements OnChanges {
 
-  @Input() x: number;
-  @Input() y: number;
-  @Input() size: number;
-  @Input() text: string;
+  style: ReactDotStyle;
 
-  hover = false;
-  style: { [k: string]: any };
-  bgColor: string;
+  @Input() x: string;
+  @Input() y: string;
+  @Input() size: string;
+  @Input('text') _text: string;
+  @Input() color: string;
+  @Input() backgroundColor: string;
+  @Input() textOverride: string;
 
-  ngOnChanges(changes: SimpleChanges) {
-    const shapeChanged = 'x' in changes || 'y' in changes || 'size' in changes;
+  @Output('onMouseEnter') mouseEnter: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
+  @Output('onMouseLeave') mouseLeave: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
-    if (shapeChanged) {
-      this.updateStyle();
-    }
+  onMouseEnter = ev => this.mouseEnter.emit(ev as any);
+  onMouseLeave = ev => this.mouseLeave.emit(ev as any);
+
+  get text() {
+    return this.textOverride && this._text ? this.textOverride : this._text;
   }
 
-  enter() {
-    this.hover = true;
-    this.bgColor = '#ff0';
-  }
-
-  leave() {
-    this.hover = false;
-    this.bgColor = undefined;
-  }
-
-  private updateStyle() {
-    const s = this.size * 1.3;
+  ngOnChanges() {
     this.style = {
-      width: s + 'px',
-      height: s + 'px',
-      left: (this.x) + 'px',
-      top: (this.y) + 'px',
-      borderRadius: (s / 2) + 'px',
-      lineHeight: (s) + 'px',
+      width: this.size,
+      lineHeight: this.size,
+      height: this.size,
+      left: this.x,
+      top: this.y,
+      color: this.color,
+      backgroundColor: this.backgroundColor,
     };
   }
 
 }
 
+interface ReactDotStyle {
+  display?: string,
+  position?: string,
+  textAlign?: string,
+  borderRadius?: string,
+  cursor?: string,
+
+  width?: string,
+  lineHeight?: string,
+  height?: string,
+  left?: string,
+  top?: string,
+  color?: string,
+  backgroundColor?: string,
+}
+
+interface ReactDotProps {
+  style: ReactDotStyle
+  onMouseEnter?: (ev) => void,
+  onMouseLeave?: (ev) => void,
+}
+
 export class ReactDot extends React.Component {
 
-  private divStyle = {
-    position: 'absolute',
-    background: '#61dafb',
-    font: 'normal 15px sans-serif',
-    textAlign: 'center',
-    cursor: 'pointer'
-  }
-
-
-  constructor(props) {
-    super(props);
-
+  private propsOut: ReactDotProps = {
+    style: {
+      display: 'block',
+      position: 'absolute',
+      textAlign: 'center',
+      borderRadius: '50%',
+      cursor: 'pointer',
+    }
   }
 
   render() {
-    return React.createElement('div', { style: this.divStyle }, [this.props['text']]);
+    this.propsOut.style = { ...this.propsOut.style, ...this.props['dynamicStyle'] };
+    this.propsOut.onMouseEnter = this.props['onMouseEnter'];
+    this.propsOut.onMouseLeave = this.props['onMouseLeave'];
+
+    return React.createElement('div', this.propsOut, [this.props['text'], ...this.props.children as any]);
   }
 
 }

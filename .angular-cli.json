@@ -20,7 +20,7 @@
       "testTsconfig": "../../../tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -45,7 +45,7 @@
       "testTsconfig": "../../../tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -104,8 +104,7 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {
-    },
+    "component": {},
     "schematics": {
       "collection": "@nrwl/schematics"
     }

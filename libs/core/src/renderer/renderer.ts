@@ -19,7 +19,7 @@ import { ReactComponentClass, getComponentClass } from './registry';
 import { ReactNode, isReactNode } from './react-node';
 
 
-const DEBUG = true;
+const DEBUG = false;
 
 @Injectable()
 export class AngularReactRendererFactory extends ɵDomRendererFactory2 {

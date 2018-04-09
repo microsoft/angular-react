@@ -4,10 +4,10 @@ import { Renderer2 } from '@angular/core';
 
 import { ReactComponentClass, getComponentClass } from "./registry";
 import { AngularReactRendererFactory } from "./renderer";
+import { CHILDREN_TO_APPEND_PROP } from './react-content';
 
 
-const DEBUG = true;
-export const CHILD_TO_APPEND_PROP = 'child-to-append';
+const DEBUG = false;
 
 export function isReactNode(node: any): node is ReactNode {
   return (<ReactNode>node).setRenderPendingCallback !== undefined;
@@ -24,7 +24,7 @@ export class ReactNode {
   private typeIsReactElementClass;
   private children: Array<ReactNode> = [];
   private typeName: string;
-  private childToAppend: HTMLElement;
+  private childrenToAppend: Array<HTMLElement> = [];
 
   private renderedDomElement: HTMLElement;
   get domElement() {
@@ -150,7 +150,7 @@ export class ReactNode {
       return this.text;
     }
 
-    this.props[CHILD_TO_APPEND_PROP] = this.childToAppend;
+    this.props[CHILDREN_TO_APPEND_PROP] = this.childrenToAppend;
 
     if (DEBUG) { console.warn('ReactNode > renderRecursive > type:', this.toString(), 'props:', this.props, 'children:', children); }
     return React.createElement(this.type, this.props, children);
@@ -159,7 +159,7 @@ export class ReactNode {
   // This is called by Angular core when projected content is being added.
   appendChild(projectedContent: HTMLElement) {
     if (DEBUG) { console.error('ReactNode > appendChild > node:', this.toString(), 'projectedContent:', projectedContent.toString().trim()); }
-    this.childToAppend = projectedContent;
+    this.childrenToAppend.push(projectedContent);
   }
 
   toString(): string {

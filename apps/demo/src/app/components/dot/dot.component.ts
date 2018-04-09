@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+// tslint:disable:no-output-rename
+import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-dot',
@@ -11,16 +13,14 @@ export class DotComponent {
   @Input() x: string;
   @Input() y: string;
   @Input() size: string;
-  @Input() text: string;
+  @Input() color: string;
+  @Input() backgroundColor: string;
+  @Input() textOverride: string;
 
-  hover = false;
+  @Output('onMouseEnter') mouseEnter: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
+  @Output('onMouseLeave') mouseLeave: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
-  onMouseEnter(ev) {
-    this.hover = true;
-  }
-
-  onMouseLeave(ev) {
-    this.hover = false;
-  }
+  onMouseEnter = ev => this.mouseEnter.emit(ev as any);
+  onMouseLeave = ev => this.mouseLeave.emit(ev as any);
 
 }

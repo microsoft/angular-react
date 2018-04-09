@@ -1,11 +1,7 @@
 <!-- <fabric-button label="Stop Triangle" (onClick)="toggle()"></fabric-button> -->
 
 <div class="container" [style.transform]="'scale(' + scale + ', 0.7)'">
-  <app-dot
-    *ngFor="let dot of dots"
-    [size]="dot.size"
-    [x]="dot.x"
-    [y]="dot.y"
-    [text]="seconds"
-  ></app-dot>
+  <ng-container *ngFor="let dot of dots">
+    <ng-container *ngTemplateOutlet="dotTemplate; context: { dot: dot, text: seconds }"></ng-container>
+  </ng-container>
 </div>
