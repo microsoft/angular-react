@@ -18,7 +18,7 @@
     "build:docs": "ng build --app docs",
     "build:docs:prod": "ng build --app docs --prod",
     "build:docs:prod:package": "ng build --app docs-from-packages --prod",
-    "build:docs:github": "ng build --app docs --prod --output-path docs --base-href /angular-react",
+    "build:docs:github": "ng build --app docs --prod --output-path docs --base-href https://benfeely.github.io/angular-react/",
 
     "build:core": "ng-packagr -p libs/core/package.json",
     "build:fabric": "ng-packagr -p libs/fabric/package.json",
