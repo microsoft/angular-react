@@ -1,17 +1,11 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc/e2e/demo",
-    "module": "commonjs",
-    "target": "es5",
-    "types": [
-      "jasmine",
-      "jasminewd2",
-      "node"
-    ]
+    "outDir": "../../../dist/out-tsc/apps/docs-from-packages",
+    "module": "es2015"
   },
   "include": [
-    "../**/*.ts"
+    "**/*.ts"
     /* add all lazy-loaded libraries here: "../../../libs/my-lib/index.ts" */
   ],
   "exclude": [

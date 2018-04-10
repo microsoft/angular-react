@@ -29,12 +29,17 @@ export class TriangleComponent implements OnInit {
   ngOnInit() {
     // setTimeout(() => this.stop(), 10000);   // Force stop after limited time during development.
 
-    if (!this.triangleSize) {
-      // Calculate size based on this element's size.
-      this.triangleSize = Math.min(this.el.nativeElement.offsetHeight * 1.3, this.el.nativeElement.offsetWidth * 0.7);
-    }
-    this.dots = (new SierpinskiTriangle({x: 0, y: 0, size: this.triangleSize}, this.dotSize)).getDots();
-    this.begin();
+    // This delay is necessary as the calculated size is wrong when evaluated
+    // without a delay (flex layout of this element has not yet happened?).
+    setTimeout(() => {
+      if (!this.triangleSize) {
+        // Calculate size based on this element's size.
+        this.triangleSize = Math.min(this.el.nativeElement.parentNode.offsetHeight * 1.3, this.el.nativeElement.parentNode.offsetWidth * 0.7);
+        console.log('triangleSize:', this.el.nativeElement.parentNode);
+      }
+      this.dots = (new SierpinskiTriangle({x: 0, y: 0, size: this.triangleSize}, this.dotSize)).getDots();
+      this.begin();
+    }, 0);
   }
 
   begin() {

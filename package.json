@@ -4,27 +4,44 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+
     "start": "ng serve",
+    "start:demo": "ng serve --app demo",
+    "start:docs": "ng serve --app docs",
+
     "build": "ng build",
+
     "build:demo": "ng build --app demo",
     "build:demo:prod": "ng build --app demo --prod",
     "build:demo:prod:package": "ng build --app demo-from-packages --prod",
+
+    "build:docs": "ng build --app docs",
+    "build:docs:prod": "ng build --app docs --prod",
+    "build:docs:prod:package": "ng build --app docs-from-packages --prod",
+    "build:docs:github": "ng build --app docs --prod --output-path docs --base-href angular-react",
+
     "build:core": "ng-packagr -p libs/core/package.json",
     "build:fabric": "ng-packagr -p libs/fabric/package.json",
     "build:material": "ng-packagr -p libs/material/package.json",
+
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
     "e2e": "ng e2e",
+
     "affected:apps": "./node_modules/.bin/nx affected apps",
     "affected:build": "./node_modules/.bin/nx affected build",
     "affected:e2e": "./node_modules/.bin/nx affected e2e",
+
     "format": "./node_modules/.bin/nx format write",
     "format:write": "./node_modules/.bin/nx format write",
     "format:check": "./node_modules/.bin/nx format check",
+
     "update": "./node_modules/.bin/nx update",
     "update:check": "./node_modules/.bin/nx update check",
     "update:skip": "./node_modules/.bin/nx update skip",
+
     "postinstall": "./node_modules/.bin/nx postinstall",
+
     "publish:core": "npm run build:core && npm adduser && npm publish ./@angular-react/core.tgz --access=public",
     "publish:fabric": "npm run build:fabric && npm adduser && npm publish ./@angular-react/fabric.tgz --access=public",
     "publish:material": "npm run build:material && npm adduser && npm publish ./@angular-react/material.tgz --access=public"
@@ -32,17 +49,19 @@
   "private": false,
   "dependencies": {
     "@angular/animations": "5.2.7",
+    "@angular/cdk": "^5.2.4",
     "@angular/common": "5.2.7",
     "@angular/compiler": "5.2.7",
     "@angular/core": "5.2.7",
     "@angular/forms": "5.2.7",
+    "@angular/material": "^5.2.4",
     "@angular/platform-browser": "5.2.7",
     "@angular/platform-browser-dynamic": "5.2.7",
     "@angular/router": "5.2.7",
-    "@ngrx/effects": "5.2.0",
+    "@ngrx/effects": "5.1.0",
     "@ngrx/router-store": "5.0.1",
-    "@ngrx/store": "5.2.0",
-    "@ngrx/store-devtools": "5.2.0",
+    "@ngrx/store": "5.1.0",
+    "@ngrx/store-devtools": "5.1.0",
     "@nrwl/nx": "0.10.0",
     "core-js": "^2.4.1",
     "ngrx-store-freeze": "^0.2.1",
@@ -50,15 +69,16 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "rxjs": "^5.5.6",
+    "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "1.7.1",
+    "@angular/cli": "^1.7.4",
     "@angular/compiler-cli": "5.2.7",
     "@angular/language-service": "5.2.7",
     "@ngrx/schematics": "5.2.0",
     "@nrwl/schematics": "0.10.0",
-    "@types/jasmine": "~2.8.3",
+    "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "@types/react": "^16.3.4",

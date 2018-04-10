@@ -11,7 +11,7 @@
   </li>
   <li>
     <fabric-button label="Toggle Dialog" (onClick)="toggleDialog()"></fabric-button>
-    <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2">
+    <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!" [type]="DialogType.largeHeader">
       {{ sampleContent2 }} {{ sampleContent3 }}
       <fabric-dialog-footer key="d3">
         <fabric-button (onClick)="clickSave()" label='Save' style="margin-right:10px;"></fabric-button>

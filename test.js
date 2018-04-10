@@ -1,3 +1,4 @@
+
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 require('zone.js/dist/zone-testing');
 const getTestBed  = require('@angular/core/testing').getTestBed;
@@ -22,4 +23,5 @@ const contextLibs = require.context('./libs', true, /\.spec\.ts$/);
 contextLibs.keys().map(contextLibs);
 
 // Finally, start Karma to run the tests.
-__karma__.start();
+__karma__.start();    
+    

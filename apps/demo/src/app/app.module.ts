@@ -1,29 +1,14 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 
-import { AngularReactBrowserModule, registerElement } from '@angular-react/core';
+import { AngularReactBrowserModule } from '@angular-react/core';
 import { AngularReactFabricModule } from '@angular-react/fabric';
 import { AppComponent } from './app.component';
-import { ComponentsModule } from './components/components.module';
-import { ReactComponentsModule } from './react-components/react-components.module';
-import { AppRoutingModule } from './app-routing.module';
-import { ContainersModule } from './containers/containers.module';
 
 
 @NgModule({
-  imports: [
-    AngularReactBrowserModule,
-    NxModule.forRoot(),
-    AngularReactFabricModule,
-    AppRoutingModule,
-
-    ContainersModule,
-    ComponentsModule,
-    ReactComponentsModule,
-  ],
+  imports: [AngularReactBrowserModule, NxModule.forRoot(), AngularReactFabricModule],
   declarations: [AppComponent],
-  bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogType } from 'office-ui-fabric-react/lib/Dialog';
 
 @Component({
   selector: 'app-fabric',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fabric.component.scss']
 })
 export class FabricComponent implements OnInit {
+  DialogType = DialogType;
 
   disabled = true;
   dialogHidden = true;

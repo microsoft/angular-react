@@ -1,13 +1,14 @@
 {
   "$schema": "./node_modules/@nrwl/schematics/src/schema.json",
   "project": {
-    "name": "angular-react"
+    "name": "angular-react",
+    "latestMigration": "20180328-add-nx-lint"
   },
   "apps": [
     {
-      "name": "demo",
-      "root": "apps/demo/src",
-      "outDir": "dist/apps/demo",
+      "name": "docs",
+      "root": "apps/docs/src",
+      "outDir": "dist/apps/docs",
       "assets": [
         "assets",
         "favicon.ico"
@@ -27,12 +28,39 @@
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
-      }
+      },
+      "tags": []
     },
     {
-      "name": "demo-from-packages",
+      "name": "demo",
       "root": "apps/demo/src",
       "outDir": "dist/apps/demo",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "../../../test.js",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "../../../tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      },
+      "tags": []
+    },
+    {
+      "name": "docs-from-packages",
+      "root": "apps/docs/src",
+      "outDir": "dist/apps/docs",
       "assets": [
         "assets",
         "favicon.ico"
@@ -52,30 +80,35 @@
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
-      }
+      },
+      "tags": []
     },
     {
       "name": "core",
       "appRoot": "",
       "root": "libs/core/src",
-      "test": "../../../test.js"
+      "test": "../../../test.js",
+      "tags": []
     },
     {
       "name": "fabric",
       "appRoot": "",
       "root": "libs/fabric/src",
-      "test": "../../../test.js"
+      "test": "../../../test.js",
+      "tags": []
     },
     {
       "name": "material",
       "appRoot": "",
       "root": "libs/material/src",
-      "test": "../../../test.js"
+      "test": "../../../test.js",
+      "tags": []
     },
     {
       "name": "$workspaceRoot",
       "appRoot": "",
-      "root": "."
+      "root": ".",
+      "tags": []
     }
   ],
   "e2e": {
@@ -86,6 +119,14 @@
   "lint": [
     {
       "project": "./tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "apps/docs/src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "apps/docs/e2e/tsconfig.e2e.json",
       "exclude": "**/node_modules/**"
     },
     {
