@@ -4,4 +4,5 @@
   <ng-container *ngFor="let dot of dots">
     <ng-container *ngTemplateOutlet="dotTemplate; context: { dot: dot, text: seconds }"></ng-container>
   </ng-container>
+  <ng-content></ng-content>
 </div>

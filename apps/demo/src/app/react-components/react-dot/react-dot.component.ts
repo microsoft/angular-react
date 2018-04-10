@@ -77,7 +77,7 @@ export class ReactDot extends React.Component {
       display: 'block',
       position: 'absolute',
       textAlign: 'center',
-      borderRadius: '50%',
+      borderRadius: '30%',
       cursor: 'pointer',
     }
   }

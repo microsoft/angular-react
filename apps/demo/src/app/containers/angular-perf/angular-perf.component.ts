@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { TriangleComponent } from '../../components/triangle/triangle.component';
 
 @Component({
   selector: 'app-angular-perf',
   templateUrl: './angular-perf.component.html',
   styleUrls: ['./angular-perf.component.scss']
 })
-export class AngularPerfComponent implements OnInit {
+export class AngularPerfComponent {
 
-  constructor() { }
+  @ViewChild(TriangleComponent) triangle: TriangleComponent;
 
-  ngOnInit() {
+  get toggleTriangleLabel() {
+    return this.triangle.isActive ? 'Stop' : 'Restart';
+  }
+
+  toggleTriangle() {
+    this.triangle.toggle();
   }
 
 }

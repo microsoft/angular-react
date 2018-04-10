@@ -1,9 +1,6 @@
 <header>
   <h1>Mixed Perf Demo</h1>
   <h3>React leaf nodes rendered in an Angular View</h3>
-  <h4 *ngIf="projectAsAngular">Number as Angular projection</h4>
-  <h4 *ngIf="!projectAsAngular">Number as React attribute</h4>
-  <button (click)="toggle()">Toggle Projection</button>
 </header>
 <app-triangle>
     <ng-template let-text="text" let-dot="dot">
@@ -21,4 +18,16 @@
         {{ projectAsAngular ? dot.textOverride ? dot.textOverride : text : '' }}
       </app-react-dot>
     </ng-template>
+    <div style="width:400px;margin-left:-200px;text-align:center;position:relative;">
+      <h2>
+        <ng-container *ngIf="projectAsAngular">
+          Number as Angular projection
+        </ng-container>
+        <ng-container *ngIf="!projectAsAngular">
+          Number as React attribute
+        </ng-container>
+      </h2>
+      <button (click)="toggle()">Toggle Projection</button>
+      <button (click)="toggleTriangle()">{{ toggleTriangleLabel }}</button>
+    </div>
 </app-triangle>
