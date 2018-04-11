@@ -15,13 +15,84 @@
     color: #fff;
   }
 
-  mat-toolbar.secondary {
-    height: $navSecondaryHeight;
+  nav.secondary {
     background: rgba(240, 240, 240, 0.94);
-    transition: height 500ms;
+
+    /deep/ .mat-tab-links {
+      display: flex;
+
+      .mat-tab-link {
+        height: $navSecondaryHeight;
+        transition: height 500ms;
+        display: flex;
+        flex-direction: column;
+        transition: height 500ms;
+
+        mat-icon {
+          font-size: $navSecondaryHeight - 24;
+          height: $navSecondaryHeight - 24;
+          width: $navSecondaryHeight - 24;
+          transition: 500ms;
+
+          svg {
+            transition: 500ms;
+            margin: $navSecondaryHeight / 6;
+          }
+
+          &.stack {
+            position: relative;
+
+            svg {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+
+              &:first-child {
+                margin: -30%;
+                height: 50%;
+              }
+
+              &:last-child {
+                margin: 10%;
+                height: 30%;
+              }
+            }
+          }
+        }
+      }
+    }
 
     &.collapse {
-      height: $navSecondaryHeight / 3;
+
+      .mat-tab-link {
+        height: 48px;
+
+        mat-icon {
+          font-size: 24px;
+          height: 24px;
+          width: 24px;
+
+          svg {
+            margin: 0;
+          }
+
+          &.stack {
+
+            svg {
+
+              &:first-child {
+                margin: -40%;
+                height: 80%;
+              }
+
+              &:last-child {
+                margin: 20%;
+                height: 50%;
+              }
+            }
+          }
+        }
+      }
     }
   }
 

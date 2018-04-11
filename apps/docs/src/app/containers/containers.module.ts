@@ -10,6 +10,7 @@ import { MaterialComponent } from './material/material.component';
 import { LandingComponent } from './landing/landing.component';
 import { ComponentsModule } from '../components/components.module';
 import { ReactComponentsModule } from '../react-components/react-components.module';
+import { ProfilesComponent } from './profiles/profiles.component';
 
 
 @NgModule({
@@ -19,6 +20,6 @@ import { ReactComponentsModule } from '../react-components/react-components.modu
     AngularReactFabricModule,
     ReactComponentsModule,
   ],
-  declarations: [AngularPerfComponent, MixedPerfComponent, FabricComponent, MaterialComponent, LandingComponent]
+  declarations: [AngularPerfComponent, MixedPerfComponent, FabricComponent, MaterialComponent, LandingComponent, ProfilesComponent]
 })
 export class ContainersModule { }

@@ -9,6 +9,7 @@ import { TriangleComponent } from './triangle/triangle.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from '../material.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { IconsComponent } from './icons/icons.component';
 
 
 const components = [
@@ -16,6 +17,7 @@ const components = [
   TriangleComponent,
   NavbarComponent,
   SidebarComponent,
+  IconsComponent,
 ];
 
 @NgModule({
