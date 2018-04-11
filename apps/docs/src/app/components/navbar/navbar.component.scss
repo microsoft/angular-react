@@ -1,63 +1,31 @@
-.docs-navbar-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 8px 16px;
+@import '../../styles/variables.scss';
 
-  > .mat-button {
-    &:last-child {
-      margin-left: auto;
+:host {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  mat-toolbar.primary {
+    height: $navPrimaryHeight * 4;
+    margin-top: 0 - $navPrimaryHeight * 3;
+    padding-top: $navPrimaryHeight * 3;
+    background: rgba(30, 30, 30, 0.94);
+    color: #fff;
+  }
+
+  mat-toolbar.secondary {
+    height: $navSecondaryHeight;
+    background: rgba(240, 240, 240, 0.94);
+    transition: height 500ms;
+
+    &.collapse {
+      height: $navSecondaryHeight / 3;
     }
   }
-}
 
-.flex-spacer {
-  flex-grow: 1;
-}
-
-.docs-angular-logo {
-  height: 26px;
-  margin: 0 4px 3px 0;
-  vertical-align: middle;
-}
-
-.docs-github-logo {
-  height: 21px;
-  margin: 0 7px 2px 0;
-  vertical-align: middle;
-}
-
-.docs-navbar-link {
-  text-decoration: inherit;
-  flex: 1;
-}
-
-.docs-navbar {
-  display: none;
-}
-
-.docs-navbar-show-small {
-  display: none;
-}
-
-/**
-  * Rules for when the device is detected to be a small screen.
-  * Moves content two rows instead of one.
-  */
-@media (max-width: 720px) {
-  .docs-navbar-hide-small {
-    display: none;
-  }
-
-  .docs-navbar-show-small {
-    display: block;
-  }
-
-  .docs-navbar {
-    display: flex;
-  }
-
-  .docs-navbar--github-logo {
-    margin: 0;
+  .spacer {
+    flex: 1 1 auto;
   }
 }

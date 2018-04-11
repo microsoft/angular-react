@@ -1,19 +1,8 @@
+@import './styles/variables.scss';
+
 :host {
-  display: block;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-
-    li {
-
-      a {
-        margin-right: 10px;
-      }
-    }
-  }
+  display: block;
+  box-sizing: border-box;
+  border-top: $navPrimaryHeight + $navSecondaryHeight solid transparent;
 }

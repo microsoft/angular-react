@@ -8,12 +8,14 @@ import { ReactComponentsModule } from '../react-components/react-components.modu
 import { TriangleComponent } from './triangle/triangle.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from '../material.module';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 const components = [
   DotComponent,
   TriangleComponent,
   NavbarComponent,
+  SidebarComponent,
 ];
 
 @NgModule({
