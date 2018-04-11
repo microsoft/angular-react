@@ -1,4 +1,5 @@
 :host {
+  display: block;
 
   fabric-button {
     margin-right: 20px;
@@ -15,8 +16,4 @@
       }
     }
   }
-}
-:host {
-  display: block;
-
 }

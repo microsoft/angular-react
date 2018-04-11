@@ -1,3 +1,8 @@
-$navPrimaryHeight: 44px;
-$navSecondaryHeight: $navPrimaryHeight * 3;
-$navSecondaryHeightCollapsed: $navPrimaryHeight * 2;
+$navPrimaryHeight: 48px;
+$navSecondaryHeight: $navPrimaryHeight * 2;
+$navSecondaryHeightCollapsed: $navPrimaryHeight * 0.75;
+
+$rubberbandScrollBuffer: 200px;
+$oil: rgba(30, 30, 30, 0.94);
+$smoke: rgba(240, 240, 240, 0.94);
+$snow: #fff;

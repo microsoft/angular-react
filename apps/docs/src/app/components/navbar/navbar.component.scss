@@ -6,20 +6,44 @@
   top: 0;
   left: 0;
   right: 0;
+  // box-sizing: border-box;
+  border-top: $rubberbandScrollBuffer solid $oil;
+  margin-top: 0 - $rubberbandScrollBuffer;
 
-  mat-toolbar.primary {
-    height: $navPrimaryHeight * 4;
-    margin-top: 0 - $navPrimaryHeight * 3;
-    padding-top: $navPrimaryHeight * 3;
-    background: rgba(30, 30, 30, 0.94);
-    color: #fff;
-  }
+  nav.primary {
+    background-color: $oil;
+    color: $snow;
 
-  nav.secondary {
-    background: rgba(240, 240, 240, 0.94);
+    .mat-button {
+      line-height: $navPrimaryHeight;
+    }
 
     /deep/ .mat-tab-links {
       display: flex;
+
+      .mat-ink-bar {
+        background-color: $smoke;
+      }
+
+      .mat-tab-link {
+        color: $snow;
+
+        &.mat-tab-label-active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  nav.secondary {
+    background: $smoke;
+
+    /deep/ .mat-tab-links {
+      display: flex;
+
+      .mat-ink-bar {
+        background-color: $oil;
+      }
 
       .mat-tab-link {
         height: $navSecondaryHeight;
@@ -28,10 +52,15 @@
         flex-direction: column;
         transition: height 500ms;
 
+        &.mat-tab-label-active {
+          opacity: 1;
+        }
+
         mat-icon {
           font-size: $navSecondaryHeight - 24;
           height: $navSecondaryHeight - 24;
           width: $navSecondaryHeight - 24;
+          opacity: 1;
           transition: 500ms;
 
           svg {
@@ -65,12 +94,13 @@
     &.collapse {
 
       .mat-tab-link {
-        height: 48px;
+        height: $navSecondaryHeightCollapsed;
 
         mat-icon {
-          font-size: 24px;
-          height: 24px;
-          width: 24px;
+          font-size: 1px;
+          height: 1px;
+          width: 1px;
+          opacity: 0;
 
           svg {
             margin: 0;
@@ -81,13 +111,13 @@
             svg {
 
               &:first-child {
-                margin: -40%;
-                height: 80%;
+                margin: -30%;
+                height: 70%;
               }
 
               &:last-child {
-                margin: 20%;
-                height: 50%;
+                margin: 18%;
+                height: 55%;
               }
             }
           }

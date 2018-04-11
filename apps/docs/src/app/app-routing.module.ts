@@ -13,11 +13,13 @@ const routes: Routes = [
     { path: 'landing', redirectTo: '' },
     { path: '', component: LandingComponent },
     { path: 'performance', children: [
+      { path: '', redirectTo: 'angular', pathMatch: 'full' },
       { path: 'angular', component: AngularPerfComponent },
       { path: 'mixed', component: MixedPerfComponent },
       { path: 'profiles', component: ProfilesComponent },
     ] },
     { path: 'components', children: [
+      { path: '', redirectTo: 'fabric', pathMatch: 'full' },
       { path: 'fabric', component: FabricComponent },
       { path: 'material', component: MaterialComponent },
     ] },

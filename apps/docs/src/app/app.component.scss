@@ -4,5 +4,9 @@
   height: 100%;
   display: block;
   box-sizing: border-box;
-  border-top: $navPrimaryHeight + $navSecondaryHeight solid transparent;
+  border-top: $navPrimaryHeight + $navSecondaryHeight + 2 solid transparent;
+
+  /deep/ > * {
+    background: $snow;
+  }
 }
