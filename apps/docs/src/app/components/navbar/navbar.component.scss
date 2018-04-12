@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 :host {
   display: block;
@@ -16,6 +17,7 @@
 
     .mat-button {
       line-height: $navPrimaryHeight;
+      min-width: 50px;
     }
 
     /deep/ .mat-tab-links {
@@ -31,6 +33,12 @@
         &.mat-tab-label-active {
           opacity: 1;
         }
+
+        div {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
       }
     }
   }
@@ -38,52 +46,58 @@
   nav.secondary {
     background: $smoke;
 
-    /deep/ .mat-tab-links {
-      display: flex;
+    /deep/ .mat-tab-nav-bar {
+      // display: flex;
+      // justify-content: center;
 
-      .mat-ink-bar {
-        background-color: $oil;
-      }
-
-      .mat-tab-link {
-        height: $navSecondaryHeight;
-        transition: height 500ms;
+      .mat-tab-links {
         display: flex;
-        flex-direction: column;
-        transition: height 500ms;
+        overflow-y: auto;
 
-        &.mat-tab-label-active {
-          opacity: 1;
+        .mat-ink-bar {
+          background-color: $oil;
         }
 
-        mat-icon {
-          font-size: $navSecondaryHeight - 24;
-          height: $navSecondaryHeight - 24;
-          width: $navSecondaryHeight - 24;
-          opacity: 1;
-          transition: 500ms;
+        .mat-tab-link {
+          height: $navSecondaryHeight;
+          transition: height 500ms;
+          display: flex;
+          flex-direction: column;
+          transition: height 500ms;
 
-          svg {
-            transition: 500ms;
-            margin: $navSecondaryHeight / 6;
+          &.mat-tab-label-active {
+            opacity: 1;
           }
 
-          &.stack {
-            position: relative;
+          mat-icon {
+            font-size: $navSecondaryHeight - 24;
+            height: $navSecondaryHeight - 24;
+            width: $navSecondaryHeight - 24;
+            opacity: 1;
+            transition: 500ms;
 
             svg {
-              position: absolute;
-              top: 50%;
-              left: 50%;
+              transition: 500ms;
+              margin: $navSecondaryHeight / 10;
+            }
 
-              &:first-child {
-                margin: -30%;
-                height: 50%;
-              }
+            &.stack {
+              position: relative;
 
-              &:last-child {
-                margin: 10%;
-                height: 30%;
+              svg {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+
+                &:first-child {
+                  margin: -30%;
+                  height: 50%;
+                }
+
+                &:last-child {
+                  margin: 10%;
+                  height: 30%;
+                }
               }
             }
           }
@@ -93,31 +107,37 @@
 
     &.collapse {
 
-      .mat-tab-link {
-        height: $navSecondaryHeightCollapsed;
+      /deep/ .mat-tab-nav-bar {
 
-        mat-icon {
-          font-size: 1px;
-          height: 1px;
-          width: 1px;
-          opacity: 0;
+        .mat-tab-links {
 
-          svg {
-            margin: 0;
-          }
+          .mat-tab-link {
+            height: $navSecondaryHeightCollapsed;
 
-          &.stack {
+            mat-icon {
+              font-size: 1px;
+              height: 1px;
+              width: 1px;
+              opacity: 0;
 
-            svg {
-
-              &:first-child {
-                margin: -30%;
-                height: 70%;
+              svg {
+                margin: 0;
               }
 
-              &:last-child {
-                margin: 18%;
-                height: 55%;
+              &.stack {
+
+                svg {
+
+                  &:first-child {
+                    margin: -30%;
+                    height: 70%;
+                  }
+
+                  &:last-child {
+                    margin: 18%;
+                    height: 55%;
+                  }
+                }
               }
             }
           }
@@ -128,5 +148,60 @@
 
   .spacer {
     flex: 1 1 auto;
+  }
+}
+
+@include mediaMobile {
+  :host {
+    nav.primary {
+
+      /deep/ .mat-button:first-child {
+        .mat-button-wrapper {
+          b {
+            display: none;
+          }
+
+          .mat-icon:last-child {
+            margin-left: -14px;
+            margin-top: 8px;
+
+            svg {
+              height: 60%;
+            }
+          }
+        }
+      }
+
+      /deep/ .mat-tab-links {
+
+        .mat-tab-link {
+          padding: 0 3%;
+          min-width: 0;
+        }
+      }
+    }
+
+    nav.secondary {
+
+      /deep/ .mat-tab-nav-bar {
+
+        .mat-tab-links {
+
+          .mat-tab-link {
+            height: $navSecondaryHeightNarrow;
+
+            mat-icon {
+              font-size: $navSecondaryHeightNarrow - 24;
+              height: $navSecondaryHeightNarrow - 24;
+              width: $navSecondaryHeightNarrow - 24;
+
+              svg {
+                margin: $navSecondaryHeightNarrow / 8;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

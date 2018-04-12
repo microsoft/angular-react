@@ -23,3 +23,7 @@ export class ReactComponentsModule {
   }
 
 }
+
+export {
+  ReactDotComponent,
+}

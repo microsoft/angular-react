@@ -4,20 +4,20 @@
 
   <ol>
     <li>Add <i>AngularReactBrowserModule</i>> to <i>app.module.ts</i> in place of the default <i>BrowserModule</i>.</li>
-    <li>Add <i>AngularReactFabricModule</i> or <i>AngularReactFabricModule</i> to <i>app.module.ts</i> imports.</li>
+    <li>Add <i>Fab[component]Module</i> or <i>Mat[component]Module</i> to <i>app.module.ts</i> imports.</li>
     <li>Add Fabric or Material components to your views.</li>
   </ol>
 </div>
 
 <div>
-  <fabric-button label="Test Dialog" (onClick)="toggleDialog()"></fabric-button>
-  <fabric-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!" [type]="DialogType.largeHeader">
+  <fab-button label="Test Dialog" (onClick)="toggleDialog()"></fab-button>
+  <fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!" [type]="DialogType.largeHeader">
     Hello world! {{ counter }}
-    <fabric-dialog-footer>
-      <fabric-button (onClick)="incrementCounter()" label='Save' style="margin-right:10px;"></fabric-button>
-      <fabric-button (onClick)="toggleDialog()" label='Cancel'></fabric-button>
-    </fabric-dialog-footer>
-  </fabric-dialog>
+    <fab-dialog-footer>
+      <fab-button (onClick)="incrementCounter()" label='Save' style="margin-right:10px;"></fab-button>
+      <fab-button (onClick)="toggleDialog()" label='Cancel'></fab-button>
+    </fab-dialog-footer>
+  </fab-dialog>
 </div>
 
 <img src="assets/app-module-dif.png">

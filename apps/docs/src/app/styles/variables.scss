@@ -1,8 +1,11 @@
 $navPrimaryHeight: 48px;
 $navSecondaryHeight: $navPrimaryHeight * 2;
-$navSecondaryHeightCollapsed: $navPrimaryHeight * 0.75;
+$navSecondaryHeightNarrow: $navPrimaryHeight * 1.3;
+$navSecondaryHeightCollapsed: $navPrimaryHeight * 0.70;
 
 $rubberbandScrollBuffer: 200px;
 $oil: rgba(30, 30, 30, 0.94);
 $smoke: rgba(240, 240, 240, 0.94);
 $snow: #fff;
+
+$mobile-width: 599px;

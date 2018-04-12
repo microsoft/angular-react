@@ -1,0 +1,29 @@
+<app-sub-nav>
+  <div mat-tab-nav-bar>
+    <a mat-tab-link routerLink="angular" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive">
+      <mat-icon>
+        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24">
+          <use xlink:href="#angular" />
+        </svg>
+      </mat-icon>
+      Angular
+    </a>
+    <a mat-tab-link routerLink="mixed" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive">
+      <mat-icon class="stack">
+        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24">
+          <use xlink:href="#angular" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24">
+          <use xlink:href="#react" />
+        </svg>
+      </mat-icon>
+      Mixed
+    </a>
+    <a mat-tab-link routerLink="profiles" routerLinkActive #rla3="routerLinkActive" [active]="rla3.isActive">
+      <mat-icon>multiline_chart</mat-icon>
+      Profiles
+    </a>
+  </div>
+</app-sub-nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,7 @@
+@import '../../styles/mixins.scss';
+
+:host {
+  display: block;
+
+  @include navSecondarySpacer;
+}

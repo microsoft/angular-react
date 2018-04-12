@@ -1,0 +1,20 @@
+<app-sub-nav>
+  <div mat-tab-nav-bar>
+    <a mat-tab-link routerLink="quick-start" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive">
+      <mat-icon>
+        directions_run
+      </mat-icon>
+      Quick Start
+    </a>
+    <a mat-tab-link routerLink="wrappers" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive">
+      <mat-icon>
+        card_giftcard
+      </mat-icon>
+      Wrappers
+    </a>
+  </div>
+</app-sub-nav>
+
+<h1>Performance Profiles</h1>
+
+<router-outlet></router-outlet>

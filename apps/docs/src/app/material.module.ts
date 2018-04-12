@@ -1,12 +1,18 @@
-import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatTabsModule } from '@angular/material';
 import { NgModule } from '@angular/core';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatIconModule,
+  MatTabsModule,
+  MatToolbarModule,
+} from '@angular/material';
 
 const componentModules = [
   MatButtonModule,
   MatCheckboxModule,
-  MatToolbarModule,
   MatIconModule,
   MatTabsModule,
+  MatToolbarModule,
 ]
 @NgModule({
   imports: componentModules,

@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+@mixin navSecondarySpacer {
+  box-sizing: border-box;
+  border-top: $navSecondaryHeight + 1 solid transparent;
+
+  @include mediaMobile {
+    border-top: $navSecondaryHeightNarrow + 1 solid transparent;
+  }
+}
+
+@mixin mediaMobile {
+  @media (max-width: #{$mobile-width}) {
+    @content;
+  }
+}
