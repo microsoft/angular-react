@@ -32,15 +32,17 @@
   ],
   "private": false,
   "devDependencies": {
+    "@types/react-dom": "^16.0.4",
+    "@types/react": "^16.3.4"
   },
   "peerDependencies": {
-    "@angular-react/core": "^0.1.4",
+    "@angular-react/core": "^0.1.0",
     "@angular/common": "^5.2.7",
     "@angular/core": "^5.2.7",
-    "@types/react-dom": "^16.0.4",
-    "@types/react": "^16.3.4",
+    "@angular/platform-browser-dynamic": "^5.2.7",
+    "@angular/platform-browser": "^5.2.7",
+    "semantic-ui-react": "^0.79.1",
     "react-dom": "^16.3.1",
-    "react": "^16.3.1",
-    "semantic-ui-react": "^0.79.1"
+    "react": "^16.3.1"
   }
 }
