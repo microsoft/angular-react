@@ -2,7 +2,7 @@
 
 <div class="container" [style.transform]="'scale(' + scale + ', 0.7)'">
   <ng-container *ngFor="let dot of dots">
-    <ng-container *ngTemplateOutlet="dotTemplate; context: { dot: dot, text: seconds }"></ng-container>
+    <ng-container *ngTemplateOutlet="dotTemplate; context: { dot: dot, text: counter }"></ng-container>
   </ng-container>
   <ng-container *ngIf="dots">
     <ng-content></ng-content>

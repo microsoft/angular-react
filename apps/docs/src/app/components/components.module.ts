@@ -12,12 +12,14 @@ import { IconsComponent } from './icons/icons.component';
 import { SubNavComponent } from './sub-nav/sub-nav.component';
 import { SharedModule } from '../shared';
 import { FabricModule } from '../fabric.module';
+import { PageHeaderComponent } from './page-header/page-header.component';
 
 
 const components = [
   DotComponent,
   IconsComponent,
   NavbarComponent,
+  PageHeaderComponent,
   SubNavComponent,
   TriangleComponent,
 ];

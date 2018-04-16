@@ -6,4 +6,44 @@
   app-triangle {
     flex-grow: 1;
   }
+
+  .message {
+    width: 200px;
+    margin-left: -100px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .content {
+    position: relative;
+    margin-top: 10px;
+
+    .expand {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .expand, .collapse {
+      cursor: pointer;
+    }
+
+    &.collapsed {
+      height: 30px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      .expand {
+        display: block;
+      }
+
+      .spacer {
+        display: none;
+      }
+    }
+  }
 }

@@ -7,7 +7,7 @@ import {
   DocsComponent,
   FabricComponent,
   LandingComponent,
-  MaterialComponent,
+  SemanticUiComponent,
   MixedPerfComponent,
   PerformanceComponent,
   ProfilesComponent,
@@ -26,7 +26,7 @@ const routes: Routes = [
     { path: 'components', component: ComponentDocsComponent, children: [
       { path: '', redirectTo: 'fabric', pathMatch: 'full' },
       { path: 'fabric', component: FabricComponent },
-      { path: 'material', component: MaterialComponent },
+      { path: 'semantic-ui', component: SemanticUiComponent },
     ] },
     { path: 'docs', component: DocsComponent },
 ];

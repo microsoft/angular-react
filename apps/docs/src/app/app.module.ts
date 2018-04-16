@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactComponentsModule } from './react-components';
 import { AppComponent } from './app.component';
 import { FabricModule } from './fabric.module';
+import { SemanticModule } from './semantic.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FabricModule } from './fabric.module';
     BrowserAnimationsModule,
     MaterialModule,
     FabricModule,
+    SemanticModule,
 
     SharedModule,
     ReactComponentsModule,

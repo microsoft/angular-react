@@ -8,15 +8,16 @@ import { ComponentsModule } from '../../components';
 
 import { ComponentDocsComponent } from './component-docs.component';
 import { FabricComponent } from './fabric/fabric.component';
-import { MaterialComponent } from './material/material.component';
+import { SemanticUiComponent } from './semantic-ui/semantic-ui.component';
 import { MaterialModule } from '../../material.module';
 import { FabricModule } from '../../fabric.module';
+import { SemanticModule } from '../../semantic.module';
 
 
 const components = [
   ComponentDocsComponent,
   FabricComponent,
-  MaterialComponent,
+  SemanticUiComponent,
 ];
 
 @NgModule({
@@ -25,6 +26,7 @@ const components = [
     RouterModule,
 
     FabricModule,
+    SemanticModule,
     ReactComponentsModule,
     SharedModule,
     MaterialModule,
@@ -38,5 +40,5 @@ export class ComponentDocsModule { }
 export {
   ComponentDocsComponent,
   FabricComponent,
-  MaterialComponent,
+  SemanticUiComponent,
 };

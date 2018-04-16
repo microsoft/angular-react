@@ -1,4 +1,62 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
 :host {
   display: block;
+  min-width: 600px;
 
+  .mat-button-toggle-group {
+    width: 100%;
+  }
+
+  .perf-images {
+    h3 {
+      margin-bottom: 0;
+    }
+
+    .perf-image {
+      overflow: hidden;
+      width: 100%;
+      border: 1px $oil solid;
+      margin-bottom: 10px;
+
+      img {
+        width: 100%;
+        transition: 500ms;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .perf-images.summary .perf-image img {
+      margin-top: -58%;
+      margin-bottom: -1%;
+  }
+
+  .perf-images.heap .perf-image img {
+      margin-top: -40.3%;
+      margin-bottom: -27.7%;
+  }
+
+  .perf-images.detail-zoom .perf-image img {
+      margin-top: -22.1%;
+      margin-bottom: -39%;
+  }
+
+  .perf-images.detail .perf-image img {
+      margin-bottom: -57.2%;
+  }
+
+  .perf-images .perf-image img.zoom {
+      margin-top: 0;
+      margin-bottom: 0;
+  }
 }
+
+// @include mediaMobile {
+//   :host {
+//     mat-button-toggle span {
+//       display: none;
+//     }
+//   }
+// }

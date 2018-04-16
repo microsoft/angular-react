@@ -43,6 +43,7 @@ export class ReactDotComponent implements OnChanges {
       top: this.y,
       color: this.color,
       backgroundColor: this.backgroundColor,
+      fontSize: this.size,
     };
   }
 
@@ -62,6 +63,7 @@ interface ReactDotStyle {
   top?: string,
   color?: string,
   backgroundColor?: string,
+  fontSize?: string,
 }
 
 interface ReactDotProps {

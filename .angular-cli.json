@@ -99,9 +99,9 @@
       "tags": []
     },
     {
-      "name": "material",
+      "name": "semantic-ui",
       "appRoot": "",
-      "root": "libs/material/src",
+      "root": "libs/semantic-ui/src",
       "test": "../../../test.js",
       "tags": []
     },

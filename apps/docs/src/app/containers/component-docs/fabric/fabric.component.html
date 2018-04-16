@@ -1,22 +1,19 @@
 <h1>Microsoft Fabric [React] Components</h1>
 
-<ul>
-  <li>
-    <fab-button label="Toggle Disabled" (onClick)="toggle()"></fab-button>
-    <fab-button [disabled]="disabled" (onClick)="click()" label="Primary Button{{ disabled ? ' (0)' : ' (2)' }}"></fab-button>
-  </li>
-  <li>
-    <fab-button [primary]="false" (onClick)="click()" label="Secondary Button"></fab-button>
-    <span class="button-height">{{ sampleContent }}</span>
-  </li>
-  <li>
-    <fab-button label="Toggle Dialog" (onClick)="toggleDialog()"></fab-button>
-    <fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!" [type]="DialogType.largeHeader">
-      {{ sampleContent2 }} {{ sampleContent3 }}
-      <fab-dialog-footer key="d3">
-        <fab-button (onClick)="clickSave()" label='Save' style="margin-right:10px;"></fab-button>
-        <fab-button (onClick)="toggleDialog()" label='Cancel'></fab-button>
-      </fab-dialog-footer>
-    </fab-dialog>
-  </li>
-</ul>
+<h2>Button</h2>
+<fab-button label="Toggle Disabled" (onClick)="toggle()"></fab-button>
+<fab-button [disabled]="disabled" (onClick)="click()" label="Primary Button{{ disabled ? ' (0)' : ' (2)' }}"></fab-button>
+<fab-button [primary]="false" (onClick)="click()" label="Secondary Button"></fab-button>
+<h3 class="button-height">{{ sampleContent }}</h3>
+
+<hr />
+
+<h2>Dialog</h2>
+<fab-button label="Toggle Dialog" (onClick)="toggleDialog()"></fab-button>
+<fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!" [type]="DialogType.largeHeader">
+  {{ sampleContent2 }} {{ sampleContent3 }}
+  <fab-dialog-footer key="d3">
+    <fab-button (onClick)="clickSave()" label='Save' style="margin-right:10px;"></fab-button>
+    <fab-button (onClick)="toggleDialog()" label='Cancel'></fab-button>
+  </fab-dialog-footer>
+</fab-dialog>

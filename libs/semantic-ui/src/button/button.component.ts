@@ -9,29 +9,32 @@ import { IButtonProps, DefaultButton } from 'office-ui-fabric-react/lib/Button';
 
 
 @Component({
-  selector: 'fab-button',
-  exportAs: 'fabButton',
+  selector: 'sem-button',
+  exportAs: 'semButton',
   template: `
-    <DefaultButton
-      key="c1"
-      data-automation-id='test_automation_id'
+    <Button
       [primary]="primary"
+      [secondary]="secondary"
       [disabled]="disabled"
-      [text]="text"
-      (onClick)="onClick($event)"></DefaultButton>
+      [loading]="loading"
+      [content]="content"
+      (onClick)="onClick($event)"
+    ></Button>
   `,
   styleUrls: ['./button.component.css'],
   styles: [
     'react-renderer',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-button' }
+  host: { 'class': 'sem-button' }
 })
-export class FabButtonComponent {
+export class SemButtonComponent {
 
   @Input() disabled = false;
-  @Input() primary = true;
-  @Input('label') text = '';
+  @Input() primary = false;
+  @Input() secondary = false;
+  @Input() loading = false;
+  @Input('label') content = '';
 
   @Output('onClick') click: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
   onClick = ev => this.click.emit(ev as any);
