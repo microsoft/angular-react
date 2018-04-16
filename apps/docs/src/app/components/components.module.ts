@@ -42,5 +42,7 @@ export {
   DotComponent,
   IconsComponent,
   NavbarComponent,
+  PageHeaderComponent,
+  SubNavComponent,
   TriangleComponent,
 }
