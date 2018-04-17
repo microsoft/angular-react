@@ -7,9 +7,9 @@
   top: 0;
   left: 0;
   right: 0;
-  // box-sizing: border-box;
   border-top: $rubberbandScrollBuffer solid $oil;
   margin-top: 0 - $rubberbandScrollBuffer;
+  z-index: 10;
 
   nav.primary {
     background-color: $oil;
@@ -47,8 +47,6 @@
     background: $smoke;
 
     /deep/ .mat-tab-nav-bar {
-      // display: flex;
-      // justify-content: center;
 
       .mat-tab-links {
         display: flex;
