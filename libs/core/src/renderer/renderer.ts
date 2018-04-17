@@ -63,7 +63,8 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
     // earlier (as is done for DOM elements) because React element props
     // are ReadOnly.
     if (this.isRenderPending) {
-      this.reactRootNodes.map(node => node.render());
+      // Remove root nodes that are pending destroy after render.
+      this.reactRootNodes = this.reactRootNodes.filter(node => !node.render().destroyPending);
       this.isRenderPending = false;
     }
   }
@@ -71,11 +72,15 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
 
 class ReactRenderer implements Renderer2 {
   data: { [key: string]: any } = Object.create(null);
-  destroyNode: null;
 
   constructor(private rootRenderer: AngularReactRendererFactory) {}
 
   destroy(): void {}
+
+  destroyNode(node: ReactNode): void {
+    if (DEBUG) { console.error('Renderer > destroyNode > node:', node.toString()); }
+    node.destroyNode();
+  }
 
   createElement(name: string, namespace?: string): ReactNode {
     if (DEBUG) { console.error('Renderer > createElement > name:', name, namespace ? 'namespace:' : '', namespace); }

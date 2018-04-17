@@ -31,7 +31,7 @@ export class ReactNode {
     return this.renderedDomElement;
   }
 
-  private _parent: any;
+  private _parent: HTMLElement | ReactNode;
   set parent(parent: HTMLElement | ReactNode) {
     this._parent = parent;
     this.setRenderPending();
@@ -42,14 +42,24 @@ export class ReactNode {
     return !this.isNotRenderable;
   }
 
+  private isDestroyPending = false;
+  get destroyPending() {
+    return this.isDestroyPending;
+  }
+
   private isRenderPending = true;
-  public setRenderPendingCallback = () => null;
+  setRenderPendingCallback = () => null;
   // Track all pending render operations internally and set flag on
   // renderer factory so that a flush operation can be scheduled for
   // the "end" of render.
-  public setRenderPending() {
+  setRenderPending() {
     this.setRenderPendingCallback();
     this.isRenderPending = true;
+  }
+
+  destroyNode() {
+    this.setRenderPending();
+    this.isDestroyPending = true;
   }
 
   private tryResolveTypeIsReactElementClass() {
@@ -102,9 +112,7 @@ export class ReactNode {
     this.children = this.children.filter(child => child !== node);
   }
 
-  constructor(
-    private type?: ReactComponentClass | string
-  ) {
+  constructor(private type?: ReactComponentClass | string) {
     this.setRenderPending();
     this.tryResolveTypeIsReactElementClass();
   }
@@ -130,14 +138,27 @@ export class ReactNode {
     return this;
   }
 
-  render() {
-    if (this.isRenderPending) {
-      if (DEBUG) { console.log('ReactNode > render > node:', this.toString(), 'parent:', this.parent); }
-      // It is expected that the element will be recreated and rerendered with each attribute change.
-      // See: https://reactjs.org/docs/rendering-elements.html
-      ReactDOM.render(this.renderRecursive() as any, this._parent);
-      this.isRenderPending = false;
+  render(): ReactNode {
+    // Only complete render operations for ReactNodes that are parented by HTMLElements.
+    // Those that are parented by other ReactNodes will be rendered recursively by their
+    // parent.
+    if (!isReactNode(this._parent)) {
+      if (this.isDestroyPending && this._parent) {
+        if (DEBUG) { console.log('ReactNode > render > destroy > node:', this.toString(), 'parent:', this.parent); }
+        ReactDOM.unmountComponentAtNode(this._parent);
+        return this;
+      }
+
+      if (this.isRenderPending) {
+        if (DEBUG) { console.log('ReactNode > render > node:', this.toString(), 'parent:', this.parent); }
+        // It is expected that the element will be recreated and rerendered with each attribute change.
+        // See: https://reactjs.org/docs/rendering-elements.html
+        ReactDOM.render(this.renderRecursive() as any, this._parent);
+        this.isRenderPending = false;
+      }
     }
+
+    return this;
   }
 
   private renderRecursive(): React.ReactElement<{}> | string {
