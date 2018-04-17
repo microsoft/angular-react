@@ -7,6 +7,7 @@
     "start": "ng serve",
     "start:demo": "ng serve --app demo",
     "start:docs": "ng serve --app docs",
+
     "build": "ng build",
     "build:demo": "ng build --app demo",
     "build:demo:prod": "ng build --app demo --prod",
@@ -15,10 +16,13 @@
     "build:docs:prod": "ng build --app docs --prod",
     "build:docs:prod:package": "ng build --app docs-from-packages --prod",
     "build:docs:github": "ng build --app docs --prod --output-path docs --base-href https://benfeely.github.io/angular-react/",
-    "build:core": "ng-packagr -p libs/core/package.json",
-    "postbuild:core": "copyfiles README.md ./@angular-react/core",
-    "build:fabric": "ng-packagr -p libs/fabric/package.json",
-    "build:semantic-ui": "ng-packagr -p libs/semantic-ui/package.json",
+
+    "build:libs": "npm run build:libs:core && npm run build:libs:fabric && npm run build:libs:semantic-ui",
+    "build:libs:core": "ng-packagr -p libs/core/package.json",
+    "postbuild:libs:core": "copyfiles README.md ./@angular-react/core",
+    "build:libs:fabric": "ts-node libs/fabric/build.ts",
+    "build:libs:semantic-ui": "ts-node libs/semantic-ui/build.ts",
+
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
     "e2e": "ng e2e",
@@ -32,9 +36,10 @@
     "update:check": "./node_modules/.bin/nx update check",
     "update:skip": "./node_modules/.bin/nx update skip",
     "postinstall": "./node_modules/.bin/nx postinstall",
-    "publish:core": "npm run build:core && npm adduser && npm publish ./@angular-react/core --access=public",
-    "publish:fabric": "npm run build:fabric && npm adduser && npm publish ./@angular-react/fabric.tgz --access=public",
-    "publish:semantic-ui": "npm run build:semantic-ui && npm adduser && npm publish ./@angular-react/material.tgz --access=public"
+
+    "publish:core": "npm run build:libs && npm adduser && npm publish ./@angular-react/core --access=public",
+    "publish:fabric": "npm run build:libs && npm adduser && npm publish ./@angular-react/fabric.tgz --access=public",
+    "publish:semantic-ui": "npm run build:libs && npm adduser && npm publish ./@angular-react/semantic-ui.tgz --access=public"
   },
   "private": false,
   "dependencies": {
@@ -64,6 +69,8 @@
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
+    "@angular-devkit/core": "0.4.6",
+    "@angular-devkit/schematics": "0.4.6",
     "@angular/cli": "^1.7.4",
     "@angular/compiler-cli": "5.2.7",
     "@angular/language-service": "5.2.7",
@@ -87,6 +94,8 @@
     "prettier": "1.10.2",
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
+    "tsickle": "^0.27.5",
+    "tslib": "^1.9.0",
     "tslint": "~5.9.1",
     "typescript": "2.6.2"
   }

@@ -6,6 +6,58 @@
   },
   "apps": [
     {
+      "name": "demo",
+      "root": "apps/demo/src",
+      "outDir": "dist/apps/demo",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "../../../test.js",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "../../../tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      },
+      "tags": []
+    },
+    {
+      "name": "demo-from-packages",
+      "root": "apps/demo/src",
+      "outDir": "dist/apps/demo",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "../../../test.js",
+      "tsconfig": "tsconfig.packages.json",
+      "testTsconfig": "../../../tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      },
+      "tags": []
+    },
+    {
       "name": "docs",
       "root": "apps/docs/src",
       "outDir": "dist/apps/docs",
@@ -33,38 +85,13 @@
       "tags": []
     },
     {
-      "name": "demo",
-      "root": "apps/demo/src",
-      "outDir": "dist/apps/demo",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
-      "index": "index.html",
-      "main": "main.ts",
-      "polyfills": "polyfills.ts",
-      "test": "../../../test.js",
-      "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "../../../tsconfig.spec.json",
-      "prefix": "app",
-      "styles": [
-        "styles.css"
-      ],
-      "scripts": [],
-      "environmentSource": "environments/environment.ts",
-      "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
-      },
-      "tags": []
-    },
-    {
       "name": "docs-from-packages",
       "root": "apps/docs/src",
       "outDir": "dist/apps/docs",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "404.html"
       ],
       "index": "index.html",
       "main": "main.ts",
