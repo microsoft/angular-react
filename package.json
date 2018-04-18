@@ -39,9 +39,9 @@
     "update:skip":              "./node_modules/.bin/nx update skip",
 
     "prepublish:all":           "npm run clean:publish && npm run build:libs",
-    "prepublish:core":          "npm run prepublish:all && cd ./libs/core && npm version patch",
-    "prepublish:fabric":        "npm run prepublish:all && cd ./libs/fabric && npm version patch",
-    "prepublish:semantic-ui":   "npm run prepublish:all && cd ./libs/semantic-ui && npm version patch",
+    "prepublish:core":          "npm run prepublish:all && cd ./libs/core",
+    "prepublish:fabric":        "npm run prepublish:all && cd ./libs/fabric",
+    "prepublish:semantic-ui":   "npm run prepublish:all && cd ./libs/semantic-ui",
     "publish:core":             "npm adduser && npm publish ./@angular-react/core --access=public",
     "publish:fabric":           "npm adduser && npm publish ./@angular-react/fabric --access=public",
     "publish:semantic-ui":      "npm adduser && npm publish ./@angular-react/semantic-ui --access=public",
