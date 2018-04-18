@@ -13,7 +13,7 @@
     "build:demo": "ng build --app demo",
     "build:demo:prod": "ng build --app demo --prod",
     "build:demo:prod:package": "ng build --app demo-from-packages --prod",
-    "build:demo:github": "ng build --app demo --prod --output-path docs/demo --base-href https://benfeely.github.io/angular-react/demo",
+    "build:demo:github": "ng build --app demo --prod --output-path docs/demo --base-href https://benfeely.github.io/angular-react/demo/",
 
     "build:docs": "ng build --app docs",
     "build:docs:prod": "ng build --app docs --prod",

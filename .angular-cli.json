@@ -65,7 +65,8 @@
       "outDir": "dist/apps/demo",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "404.html"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -91,7 +92,8 @@
       "outDir": "dist/apps/demo",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "404.html"
       ],
       "index": "index.html",
       "main": "main.ts",
