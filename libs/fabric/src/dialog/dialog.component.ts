@@ -12,8 +12,7 @@ import {
   Output,
 } from '@angular/core';
 
-import { IDialogProps, Dialog,  } from 'office-ui-fabric-react/lib/Dialog';
-import { DialogType, DialogFooter } from 'office-ui-fabric-react/lib/components/Dialog';
+import { IDialogProps, Dialog, DialogType, DialogFooter } from 'office-ui-fabric-react/lib/components/Dialog';
 
 
 @Component({

@@ -7,6 +7,7 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 
 import { FabButtonComponent } from './button.component';
 
+
 const components = [
   FabButtonComponent,
 ];
@@ -24,8 +25,4 @@ export class FabButtonModule {
     registerElement('DefaultButton', () => DefaultButton);
   }
 
-}
-
-export {
-  FabButtonComponent,
 }

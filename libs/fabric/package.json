@@ -1,13 +1,16 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/fabric",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "ngPackage": {
     "lib": {
-      "entryFile": "index.ts",
+      "entryFile": "public-api.ts",
       "umdModuleIds": {
         "react": "React",
-        "react-dom": "ReactDOM"
+        "react-dom": "ReactDOM",
+        "@angular-react/core": "ɵa",
+        "office-ui-fabric-react/lib/Button": "Button",
+        "office-ui-fabric-react/lib/components/Dialog": "Dialog"
       },
       "comments": "none"
     },
@@ -33,16 +36,14 @@
     "fabric"
   ],
   "private": false,
-  "devDependencies": {
-    "@types/react-dom": "^16.0.4",
-    "@types/react": "^16.3.4"
-  },
   "peerDependencies": {
     "@angular-react/core": "^0.1.0",
     "@angular/common": "^5.2.7",
     "@angular/core": "^5.2.7",
     "@angular/platform-browser-dynamic": "^5.2.7",
     "@angular/platform-browser": "^5.2.7",
+    "@types/react-dom": "^16.0.4",
+    "@types/react": "^16.3.4",
     "office-ui-fabric-react": "^5.78.0",
     "react-dom": "^16.3.1",
     "react": "^16.3.1"

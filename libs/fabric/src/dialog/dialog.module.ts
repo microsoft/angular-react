@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { registerElement } from '@angular-react/core';
 import { Fabric } from 'office-ui-fabric-react/lib/Fabric';
-import { Dialog } from 'office-ui-fabric-react/lib/Dialog';
-import { DialogFooter } from 'office-ui-fabric-react/lib/components/Dialog';
+import { Dialog, DialogFooter } from 'office-ui-fabric-react/lib/components/Dialog';
 
 import { FabDialogComponent, FabDialogFooterComponent } from './dialog.component';
 
@@ -27,9 +26,4 @@ export class FabDialogModule {
     registerElement('DialogFooter', () => DialogFooter);
   }
 
-}
-
-export {
-  FabDialogComponent,
-  FabDialogFooterComponent,
 }
