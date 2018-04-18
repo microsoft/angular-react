@@ -6,11 +6,13 @@ import {
   ComponentDocsComponent,
   DocsComponent,
   FabricComponent,
+  GettingStartedComponent,
   LandingComponent,
-  SemanticUiComponent,
   MixedPerfComponent,
   PerformanceComponent,
   ProfilesComponent,
+  SemanticUiComponent,
+  WrappersComponent,
 } from './containers';
 
 
@@ -28,7 +30,11 @@ const routes: Routes = [
       { path: 'fabric', component: FabricComponent },
       { path: 'semantic-ui', component: SemanticUiComponent },
     ] },
-    { path: 'docs', component: DocsComponent },
+    { path: 'docs', component: DocsComponent, children: [
+      { path: '', redirectTo: 'getting-started', pathMatch: 'full' },
+      { path: 'getting-started', component: GettingStartedComponent },
+      { path: 'wrappers', component: WrappersComponent },
+    ] },
 ];
 
 @NgModule({

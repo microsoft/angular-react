@@ -9,10 +9,14 @@ import { ComponentsModule } from '../../components';
 
 import { DocsComponent } from './docs.component';
 import { FabricModule } from '../../fabric.module';
+import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { WrappersComponent } from './wrappers/wrappers.component';
 
 
 const components = [
   DocsComponent,
+  GettingStartedComponent,
+  WrappersComponent,
 ];
 
 @NgModule({
@@ -33,4 +37,6 @@ export class DocsModule { }
 
 export {
   DocsComponent,
+  GettingStartedComponent,
+  WrappersComponent,
 }
