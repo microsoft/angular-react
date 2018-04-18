@@ -27,6 +27,6 @@ If you'd like to contribute, you must follow our [contributing guidelines](https
 You can look through the issues (which should be up-to-date on who is working on which features and which pieces are blocked) and make a comment.
 
 [ard]: https://benfeely.github.io/angular-react
-[ard-demo]: https://benfeely.github.io/angular-react
+[ard-demo]: https://benfeely.github.io/angular-react/demo
 [getting-started]: https://benfeely.github.io/angular-react/docs/getting-started
 [fab]: https://developer.microsoft.com/en-us/fabric

@@ -2,6 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { registerElement } from '@angular-react/core';
+import { Fabric } from 'office-ui-fabric-react/lib/Fabric';
 import { Dialog } from 'office-ui-fabric-react/lib/Dialog';
 import { DialogFooter } from 'office-ui-fabric-react/lib/components/Dialog';
 

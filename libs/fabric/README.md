@@ -51,7 +51,7 @@ High level stuff planned for Q2 2018 (April - June):
 [1]: https://benfeely.github.io/angular-react/docs/fabric
 
 [ard]: https://benfeely.github.io/angular-react
-[ard-demo]: https://benfeely.github.io/angular-react
+[ard-demo]: https://benfeely.github.io/angular-react/demo
 [getting-started]: https://benfeely.github.io/angular-react/docs/getting-started
 [fab]: https://developer.microsoft.com/en-us/fabric
 
