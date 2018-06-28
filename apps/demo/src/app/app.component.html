@@ -3,21 +3,40 @@
   <h2>Getting up and running...</h2>
 
   <ol>
-    <li>Add <i>AngularReactBrowserModule</i>> to <i>app.module.ts</i> in place of the default <i>BrowserModule</i>.</li>
-    <li>Add <i>Fab[component]Module</i> or <i>Mat[component]Module</i> to <i>app.module.ts</i> imports.</li>
+    <li>Add
+      <i>AngularReactBrowserModule</i>> to
+      <i>app.module.ts</i> in place of the default
+      <i>BrowserModule</i>.</li>
+    <li>Add
+      <i>Fab[component]Module</i> or
+      <i>Mat[component]Module</i> to
+      <i>app.module.ts</i> imports.</li>
     <li>Add Fabric or Material components to your views.</li>
   </ol>
 </div>
 
 <div>
-  <fab-button label="Test Dialog" (onClick)="toggleDialog()"></fab-button>
-  <fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!" [type]="DialogType.largeHeader">
+  <fab-button text="Test Dialog" (onClick)="toggleDialog()"></fab-button>
+  <fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!"
+    [type]="DialogType.largeHeader">
     Hello world! {{ counter }}
     <fab-dialog-footer>
-      <fab-button (onClick)="incrementCounter()" label='Save' style="margin-right:10px;"></fab-button>
-      <fab-button (onClick)="toggleDialog()" label='Cancel'></fab-button>
+      <fab-button (onClick)="incrementCounter()" text='Save' style="margin-right:10px;"></fab-button>
+      <fab-button (onClick)="toggleDialog()" text='Cancel'></fab-button>
     </fab-dialog-footer>
   </fab-dialog>
-</div>
 
-<img src="assets/app-module-dif.png">
+  <!-- <fab-button [primary]="true" [split]="true" [menuProps]="menuProps" [iconProps]="iconProps" [text]="'Test Dialog'" (onClick)="onClick($event)"></fab-button>
+
+  <fab-icon [iconName]="'Add'"></fab-icon> -->
+
+  <!-- <fab-image src="http://placehold.it/350x150" alt="Example implementation with no image fit property and no height or width is specified."></fab-image> -->
+
+  <fab-button (onClick)="isPanelOpen = !isPanelOpen" text="Open panel"></fab-button>
+
+  <fab-panel [isOpen]="isPanelOpen">
+    <fab-panel-header>
+      <div>Hello header!</div>
+    </fab-panel-header>
+  </fab-panel>
+</div>

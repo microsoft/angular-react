@@ -1,25 +1,10 @@
 // tslint:disable:no-bitwise
 
-import {
-  Injectable,
-  RendererType2,
-  Renderer2,
-  RendererStyleFlags2
-} from '@angular/core';
-import { BrowserModule, EventManager } from '@angular/platform-browser';
-import {
-  ɵDomRendererFactory2,
-  ɵDomSharedStylesHost,
-  ɵNAMESPACE_URIS
-} from '@angular/platform-browser';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { Injectable, Renderer2, RendererStyleFlags2, RendererType2 } from '@angular/core';
+import { EventManager, ɵDomRendererFactory2, ɵDomSharedStylesHost } from '@angular/platform-browser';
+import { isReactNode, ReactNode } from './react-node';
 
-import { ReactComponentClass, getComponentClass } from './registry';
-import { ReactNode, isReactNode } from './react-node';
-
-
-const DEBUG = false;
+const DEBUG = true;
 
 @Injectable()
 export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
@@ -52,7 +37,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
       return this.defaultReactRenderer;
     }
 
-    return  super.createRenderer(element, type);
+    return super.createRenderer(element, type);
   }
 
   begin() { }
@@ -73,9 +58,9 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
 class ReactRenderer implements Renderer2 {
   data: { [key: string]: any } = Object.create(null);
 
-  constructor(private rootRenderer: AngularReactRendererFactory) {}
+  constructor(private rootRenderer: AngularReactRendererFactory) { }
 
-  destroy(): void {}
+  destroy(): void { }
 
   destroyNode(node: ReactNode): void {
     if (DEBUG) { console.error('Renderer > destroyNode > node:', node.toString()); }
@@ -171,7 +156,7 @@ class ReactRenderer implements Renderer2 {
     if (DEBUG) { console.log('NOT IMPLEMENTED - Renderer > nextSibling > node:', node.toString()); }
   }
 
-  setAttribute(node: ReactNode, name: string, value: string, namespace?: string ): void {
+  setAttribute(node: ReactNode, name: string, value: string, namespace?: string): void {
     if (DEBUG) { console.log('Renderer > setAttribute > node:', node.toString(), 'name:', name, 'value:', value, namespace ? 'namespace:' : '', namespace); }
     node.setProperty(name, value);
   }
@@ -208,7 +193,7 @@ class ReactRenderer implements Renderer2 {
   }
 
   removeStyle(node: ReactNode, style: string, flags: RendererStyleFlags2): void {
-    if (DEBUG) { console.log( 'Renderer > removeStyle > node:', node.toString(), 'style:', style, 'flags:', flags); }
+    if (DEBUG) { console.log('Renderer > removeStyle > node:', node.toString(), 'style:', style, 'flags:', flags); }
     node.removeProperty('style', style);
   }
 

@@ -3,23 +3,16 @@
 // tslint:disable:no-output-rename
 // tslint:disable:use-host-property-decorator
 
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-} from '@angular/core';
-
-import { IDialogProps, Dialog, DialogType, DialogFooter } from 'office-ui-fabric-react/lib/components/Dialog';
-
+import { ReactWrapperComponent } from '@angular-react/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { DialogType, IDialogProps } from 'office-ui-fabric-react/lib/components/Dialog';
 
 @Component({
   selector: 'fab-dialog',
   exportAs: 'fabDialog',
   template: `
     <Dialog
+      #reactNode
       [hidden]="hidden"
       (onDismiss)="onDismiss($event)"
       [dialogContentProps]="{
@@ -39,7 +32,8 @@ import { IDialogProps, Dialog, DialogType, DialogFooter } from 'office-ui-fabric
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-dialog' }
 })
-export class FabDialogComponent {
+export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() hidden = false;
   @Input() type = DialogType.normal;
@@ -49,16 +43,22 @@ export class FabDialogComponent {
   @Input() isBlocking = false;
   @Input() containerClassName = 'ms-dialogMainOverride';
 
-  @Output('onDismiss') dismiss: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
-  onDismiss = ev => this.dismiss.emit(ev as any);
-}
+  @Output('onDismiss') dismiss = new EventEmitter<MouseEvent>();
 
+  constructor(elementRef: ElementRef) {
+    super(elementRef);
+  }
+
+  onDismiss(reactEvent: React.MouseEvent<HTMLButtonElement>) {
+    this.dismiss.emit(reactEvent.nativeEvent);
+  }
+}
 
 @Component({
   selector: 'fab-dialog-footer',
   exportAs: 'fabDialogFooter',
   template: `
-    <DialogFooter key="4">
+    <DialogFooter>
       <ReactContent><ng-content></ng-content></ReactContent>
     </DialogFooter>
   `,

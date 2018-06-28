@@ -4,35 +4,41 @@
 // tslint:disable:use-host-property-decorator
 // tslint:disable:no-output-on-prefix
 
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
-
-import { IButtonProps, DefaultButton } from 'office-ui-fabric-react/lib/Button';
-
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 
 @Component({
   selector: 'fab-button',
   exportAs: 'fabButton',
   template: `
     <DefaultButton
-      key="c1"
-      data-automation-id='test_automation_id'
       [primary]="primary"
       [disabled]="disabled"
       [text]="text"
-      (onClick)="onClick.emit($event)"></DefaultButton>
+      [split]="split"
+      [href]="href"
+      [menuProps]="menuProps"
+      [iconProps]="iconProps"
+      (onClick)="onClick.emit($event)">
+    </DefaultButton>
   `,
   styles: [
     'react-renderer',
-    ':host { display: inline-block; background: red; }' // TODO: this isn't working.  Problem with react-renderer.
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-button' }
 })
 export class FabButtonComponent {
 
-  @Input() disabled = false;
-  @Input() primary = true;
-  @Input('label') text = '';
+  @Input() disabled?: IButtonProps['disabled'];
+  @Input() primary?: IButtonProps['primary'];
+  @Input() checked?: IButtonProps['checked'];
+  @Input() href?: IButtonProps['href'];
+  @Input() text?: IButtonProps['text'];
+  @Input() split?: IButtonProps['split'];
+  @Input() menuProps?: IButtonProps['menuProps'];
+  @Input() iconProps?: IButtonProps['iconProps'];
+  @Input() primaryDisabled?: IButtonProps['primaryDisabled'];
 
   @Output() onClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 

@@ -1,10 +1,12 @@
+/// <reference path="../types/StringMap.d.ts" />
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import removeUndefinedProperties from '../utils/object/remove-undefined-properties';
 import { CHILDREN_TO_APPEND_PROP } from './react-content';
 import { getComponentClass, ReactComponentClass } from "./registry";
 
-const DEBUG = false;
+const DEBUG = true;
 
 export function isReactNode(node: any): node is ReactNode {
   return (<ReactNode>node).setRenderPendingCallback !== undefined;
@@ -182,10 +184,35 @@ export class ReactNode {
 
     this.props[CHILDREN_TO_APPEND_PROP] = this.childrenToAppend;
 
-    const clearedProps = removeUndefinedProperties(this.props);
+    const clearedProps = this.transformProps(
+      removeUndefinedProperties(this.props)
+    );
 
     if (DEBUG) { console.warn('ReactNode > renderRecursive > type:', this.toString(), 'props:', this.props, 'children:', children); }
     return React.createElement(this.type, clearedProps, children.length > 0 ? children : undefined);
+  }
+
+  private transformProps(props: object) {
+    return Object.entries(props).reduce((acc, [key, value]) => {
+      const [transformKey, transformValue] = this.transformProp(key, value);
+      return {
+        ...acc,
+        [transformKey]: transformValue,
+      };
+    }, {});
+  }
+
+  private transformProp<TValue = any>(name: string, value: TValue): [string, TValue] {
+    // prop name is camelCased already
+    const firstLetter = name[0];
+    if (firstLetter === firstLetter.toLowerCase()) {
+      return [name, value];
+    }
+
+    // prop name is PascalCased & is a function - assuming render prop
+    if (typeof value === 'function') {
+      return [`on${name}`, value];
+    }
   }
 
   // This is called by Angular core when projected content is being added.

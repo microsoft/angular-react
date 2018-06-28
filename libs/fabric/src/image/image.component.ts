@@ -1,4 +1,4 @@
-import { ReactWrapperComponent } from '@angular-react/core/src/components/wrapper-component';
+import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
 

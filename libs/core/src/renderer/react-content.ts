@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 
-const DEBUG = false;
+const DEBUG = true;
 export const CHILDREN_TO_APPEND_PROP = 'children-to-append';
 
 export class ReactContent extends React.Component {

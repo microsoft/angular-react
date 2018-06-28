@@ -1,5 +1,5 @@
-import { isReactNode } from "@angular-react/core/src/renderer/react-node";
 import { AfterViewInit, ElementRef } from "@angular/core";
+import { isReactNode } from "../renderer/react-node";
 
 const blacklistedAttributesAsProps = [
   'class',
@@ -7,7 +7,7 @@ const blacklistedAttributesAsProps = [
 ];
 
 const blacklistedAttributeMatchers = [
-  /^_ng.*/
+  /^_?ng-?.*/
 ]
 
 
