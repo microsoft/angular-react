@@ -9,8 +9,11 @@
         "react": "React",
         "react-dom": "ReactDOM",
         "@angular-react/core": "ɵa",
-        "office-ui-fabric-react/lib/Button": "Button",
-        "office-ui-fabric-react/lib/components/Dialog": "Dialog"
+        "office-ui-fabric-react/lib/components/Button": "Button",
+        "office-ui-fabric-react/lib/components/Image": "Image",
+        "office-ui-fabric-react/lib/components/Icon": "Icon",
+        "office-ui-fabric-react/lib/components/Dialog": "Dialog",
+        "office-ui-fabric-react/lib/components/Fabric": "Fabric"
       },
       "comments": "none"
     },
