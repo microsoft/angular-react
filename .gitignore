@@ -49,3 +49,5 @@ yarn-error.log
 
 # ng-packagr (temporary files)
 .ng_pkg_build/
+
+.nyc-output/
