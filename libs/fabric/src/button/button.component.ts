@@ -20,6 +20,7 @@ import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
       [menuProps]="menuProps"
       [iconProps]="iconProps"
       (onClick)="onClick.emit($event)">
+      <ReactContent><ng-content></ng-content></ReactContent>
     </DefaultButton>
   `,
   styles: [
