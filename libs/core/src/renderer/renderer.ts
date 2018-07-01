@@ -4,7 +4,7 @@ import { Injectable, Renderer2, RendererStyleFlags2, RendererType2 } from '@angu
 import { EventManager, ɵDomRendererFactory2, ɵDomSharedStylesHost } from '@angular/platform-browser';
 import { isReactNode, ReactNode } from './react-node';
 
-const DEBUG = true;
+const DEBUG = false;
 
 @Injectable()
 export class AngularReactRendererFactory extends ɵDomRendererFactory2 {

@@ -6,7 +6,7 @@ import removeUndefinedProperties from '../utils/object/remove-undefined-properti
 import { CHILDREN_TO_APPEND_PROP } from './react-content';
 import { getComponentClass, ReactComponentClass } from "./registry";
 
-const DEBUG = true;
+const DEBUG = false;
 
 export function isReactNode(node: any): node is ReactNode {
   return (<ReactNode>node).setRenderPendingCallback !== undefined;
@@ -172,10 +172,10 @@ export class ReactNode {
     return this;
   }
 
-  private renderRecursive(): React.ReactElement<{}> | string {
+  private renderRecursive(key?: string): React.ReactElement<{}> | string {
     const children =
       this.children
-        ? this.children.map(child => child.renderRecursive())
+        ? this.children.map((child, index) => child.renderRecursive(index.toString()))
         : [];
 
     if (this.text) {
@@ -183,6 +183,8 @@ export class ReactNode {
     }
 
     this.props[CHILDREN_TO_APPEND_PROP] = this.childrenToAppend;
+
+    if (key) this.props['key'] = key;
 
     const clearedProps = this.transformProps(
       removeUndefinedProperties(this.props)

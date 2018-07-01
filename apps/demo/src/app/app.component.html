@@ -16,6 +16,8 @@
 </div>
 
 <div>
+  <fab-command-bar [items]="commandBarItems"></fab-command-bar>
+
   <fab-button text="Test Dialog" (onClick)="toggleDialog()"></fab-button>
   <fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!"
     [type]="DialogType.largeHeader">
@@ -34,11 +36,15 @@
 
   <fab-button (onClick)="isPanelOpen = !isPanelOpen" text="Open panel"></fab-button>
 
-  <!-- <fab-panel [isOpen]="true">
-    <fab-panel-header>
-      <div>Hello header!</div>
-    </fab-panel-header>
-  </fab-panel> -->
+  <ng-template #panelHeader>
+    <div style="background:red;width:100px;height:50px">
+      TEST HEADER
+    </div>
+  </ng-template>
 
-  <fab-command-bar [items]="commandBarItems"></fab-command-bar>
+  <fab-panel [isOpen]="isPanelOpen" [panelHeader]="panelHeader" (onDismissed)="isPanelOpen = false">
+    <fab-panel-header>
+    </fab-panel-header>
+  </fab-panel>
+
 </div>
