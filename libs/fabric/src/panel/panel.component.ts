@@ -5,26 +5,9 @@
 // tslint:disable:no-output-on-prefix
 
 import { ReactContent, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ComponentFactoryResolver, ElementRef, EventEmitter, Injector, Input, Output, TemplateRef, Type, ViewChild } from '@angular/core';
 import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Panel';
 import * as React from 'react';
-
-@Component({
-  selector: 'fab-panel-header',
-  exportAs: 'fabPanelHeader',
-  template: `
-      <ReactContent #contentTemplate><ng-content></ng-content></ReactContent>
-  `,
-  styles: ['react-renderer'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-panel-header' }
-})
-export class FabPanelHeaderComponent {
-
-  @ViewChild('contentTemplate') contentTemplate: ElementRef;
-
-}
-
 
 @Component({
   selector: 'fab-panel',
@@ -55,9 +38,9 @@ export class FabPanelHeaderComponent {
       (onDismiss)="onDismiss.emit($event)"
       (onDismissed)="onDismissed.emit($event)"
       (onLightDismissClick)="onLightDismissClick.emit($event)"
-      [RenderHeader]="onRenderHeader">
+      [RenderHeader]="onRenderHeader"
+      [RenderBody]="onRenderBody">
       <!--
-      (onRenderBody)="onRenderBody.emit($event)"
       (onRenderFooter)="onRenderFooter.emit($event)"
       (onRenderFooterContent)="onRenderFooterContent.emit($event)"
       (onRenderNavigation)="onRenderNavigation.emit($event)"
@@ -94,49 +77,64 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> {
   @Input() layerProps?: IPanelProps['layerProps'];
   @Input() componentId?: IPanelProps['componentId'];
 
-  // @Input() headerTemplate?: TemplateRef<IPanelHeaderTemplateContext>
+  @Input() headerTemplate?: TemplateRef<IPanelHeaderTemplateContext>;
+  @Input() bodyComponent?: { componentType: Type<Component>, factoryResolver: ComponentFactoryResolver, injector: Injector };
 
   @Output() onLightDismissClick = new EventEmitter<void>();
   @Output() onDismiss = new EventEmitter<void>();
   @Output() onDismissed = new EventEmitter<void>();
   @Output() onRenderNavigation = new EventEmitter<IPanelProps>();
-  // @Output() onRenderHeader = new EventEmitter<IPanelProps['onRenderHeader']>();
-  // @Output() onRenderBody = new EventEmitter<IPanelProps['onRenderBody']>();
   // @Output() onRenderFooter = new EventEmitter<IPanelProps['onRenderFooter']>();
   // @Output() onRenderFooterContent = new EventEmitter<IPanelProps['onRenderFooterContent']>();
 
-  // @ContentChild(FabPanelHeaderComponent) headerComponent?: FabPanelHeaderComponent;
-
-  // @ViewChild('headerTmplRef') headerTmplRef: TemplateRef<any>;
-
-  @Input() panelHeader: TemplateRef<any>;
-
-  // @ViewChild('headerPlaceholder', { read: TemplateRef }) headerPlaceholder: TemplateRef<any>;
-
   constructor(
     elementRef: ElementRef,
-    private readonly vcr: ViewContainerRef
   ) {
     super(elementRef);
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onRenderHeader = this.onRenderHeader.bind(this);
+    this.onRenderBody = this.onRenderBody.bind(this);
   }
 
   onRenderHeader(props?: IPanelProps, defaultRender?: IPanelHeaderRenderer, headerTextId?: string | undefined): JSX.Element {
-    /*  if (!this.panelHeader) {
-       return defaultRender(props, defaultRender, headerTextId);
-     } */
+    if (!this.headerTemplate) {
+      return defaultRender(props, defaultRender, headerTextId);
+    }
 
-    const x = this.panelHeader.createEmbeddedView(null);
+    const viewRef = this.headerTemplate.createEmbeddedView({ props, headerTextId });
+    viewRef.detectChanges();
+
     return React.createElement(
       ReactContent,
       {
-        ['children-to-append']: x.rootNodes
+        ['children-to-append']: viewRef.rootNodes
       } as any
     );
   }
 
+  onRenderBody(props?: IPanelProps, defaultRender?: IPanelHeaderRenderer, headerTextId?: string | undefined): JSX.Element {
+    if (!this.bodyComponent) {
+      return defaultRender(props, defaultRender, headerTextId);
+    }
+
+    const bodyFactory = this.bodyComponent.factoryResolver.resolveComponentFactory(this.bodyComponent.componentType);
+    const bodyComponentRef = bodyFactory.create(this.bodyComponent.injector);
+
+    Object.assign(bodyComponentRef.instance, {
+      props,
+      headerTextId
+    });
+
+    bodyComponentRef.hostView.detectChanges();
+
+    return React.createElement(
+      ReactContent,
+      {
+        ['children-to-append']: [bodyComponentRef.location.nativeElement]
+      } as any
+    );
+  }
 }
 
 /**

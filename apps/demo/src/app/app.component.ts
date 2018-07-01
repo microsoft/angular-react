@@ -1,12 +1,43 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input } from '@angular/core';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { DialogType } from 'office-ui-fabric-react/lib/Dialog';
 
+
+@Component({
+  selector: 'fab-panel-header',
+  template: `
+    <div>props: {{ propsVal }}</div>
+
+    <div>{{ dynamicText }}</div>
+
+    <button (click)="onClick()">Click</button>
+  `
+})
+export class PanelBodyComponent {
+  @Input() props: any;
+
+  @Input() headerTextId: any;
+
+  dynamicText: string = "initial";
+
+  constructor(private cd: ChangeDetectorRef) { }
+
+  get propsVal() {
+    return JSON.stringify(this.props);
+  }
+
+  onClick() {
+    this.dynamicText = "new text!";
+    this.cd.detectChanges();
+  }
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  entryComponents: [PanelBodyComponent]
 })
 export class AppComponent {
   DialogType = DialogType;
@@ -16,6 +47,13 @@ export class AppComponent {
 
   isPanelOpen = false;
 
+  constructor(injector: Injector, componentFactoryResolver: ComponentFactoryResolver) {
+    this.panelBodyComponent = {
+      componentType: PanelBodyComponent,
+      factoryResolver: componentFactoryResolver,
+      injector: injector
+    };
+  }
 
   menuProps: IButtonProps['menuProps'] = {
     items: [
@@ -39,6 +77,8 @@ export class AppComponent {
       }
     ]
   }
+
+  panelBodyComponent;
 
   iconProps = {
     iconName: 'Add',

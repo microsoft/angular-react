@@ -34,17 +34,18 @@
 
   <!-- <fab-image src="http://placehold.it/350x150" alt="Example implementation with no image fit property and no height or width is specified."></fab-image> -->
 
-  <fab-button (onClick)="isPanelOpen = !isPanelOpen" text="Open panel"></fab-button>
+  <fab-button (onClick)="isPanelOpen = true" text="Open panel"></fab-button>
 
-  <ng-template #panelHeader>
+  <ng-template #panelHeader let-props="props" let-headerTextId="headerTextId">
     <div style="background:red;width:100px;height:50px">
-      TEST HEADER
+      My header
     </div>
+
+    <div>isOpen: {{ props.isOpen }}</div>
+    <div>hasCloseButton: {{ props.hasCloseButton }}</div>
   </ng-template>
 
-  <fab-panel [isOpen]="isPanelOpen" [panelHeader]="panelHeader" (onDismissed)="isPanelOpen = false">
-    <fab-panel-header>
-    </fab-panel-header>
+  <fab-panel [isOpen]="isPanelOpen" [headerTemplate]="panelHeader" (onDismissed)="isPanelOpen = false" [bodyComponent]="panelBodyComponent">
   </fab-panel>
 
 </div>

@@ -3,7 +3,7 @@ import { FabButtonModule, FabCommandBarModule, FabDialogModule, FabIconModule, F
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
-import { AppComponent } from './app.component';
+import { AppComponent, PanelBodyComponent } from './app.component';
 import { WrapperComponent } from './wrapper.component';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { WrapperComponent } from './wrapper.component';
     FabPanelModule,
     FabCommandBarModule,
   ],
-  declarations: [AppComponent, WrapperComponent],
+  declarations: [AppComponent, WrapperComponent, PanelBodyComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {
