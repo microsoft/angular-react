@@ -18,7 +18,7 @@ export interface RenderComponentOptions<TContext extends object> {
   readonly injector: Injector;
 }
 
-export type RenderInput<TContext extends object> =
+export type InputRendererOptions<TContext extends object> =
   TemplateRef<TContext>
   | ((context: TContext) => HTMLElement)
   | ComponentRef<TContext>
@@ -42,7 +42,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     this._setHostDisplay();
   }
 
-  protected initRenderInput<TContext extends object>(input: RenderInput<TContext>): JsxRenderFunc<TContext> | undefined {
+  protected createInputJsxRenderer<TContext extends object>(input: InputRendererOptions<TContext>): JsxRenderFunc<TContext> | undefined {
     if (input === undefined) {
       return undefined;
     }
@@ -68,6 +68,18 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     }
 
     assertNever(input);
+  }
+
+  protected createRenderPropHandler<TProps extends object>(renderInputValue: InputRendererOptions<TProps>, jsxRenderer?: JsxRenderFunc<TProps>): (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => JSX.Element | null {
+    const renderer = jsxRenderer || this.createInputJsxRenderer(renderInputValue);
+
+    return (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => {
+      if (!renderInputValue) {
+        return typeof defaultRender === 'function' ? defaultRender(props) : null;
+      }
+
+      return renderer(props);
+    };
   }
 
   private _passAttributesAsProps() {

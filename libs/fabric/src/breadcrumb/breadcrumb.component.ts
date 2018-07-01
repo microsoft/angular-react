@@ -4,7 +4,7 @@
 // tslint:disable:use-host-property-decorator
 // tslint:disable:no-output-on-prefix
 
-import { JsxRenderFunc, ReactWrapperComponent, RenderInput } from '@angular-react/core';
+import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react';
 
@@ -49,7 +49,7 @@ export class FabBreadcrumbComponent extends ReactWrapperComponent<IBreadcrumbPro
   @Input() styles?: IBreadcrumbProps['styles'];
   @Input() theme?: IBreadcrumbProps['theme'];
 
-  @Input() item?: RenderInput<IBreadcrumbItem>;
+  @Input() item?: InputRendererOptions<IBreadcrumbItem>;
   @Input() onReduceData?: IBreadcrumbProps['onReduceData'];
 
   private _renderItem: JsxRenderFunc<IBreadcrumbItem>;
@@ -61,7 +61,7 @@ export class FabBreadcrumbComponent extends ReactWrapperComponent<IBreadcrumbPro
   }
 
   ngOnInit() {
-    this._renderItem = this.initRenderInput(this.item);
+    this._renderItem = this.createInputJsxRenderer(this.item);
   }
 
   onRenderItem(props?: IBreadcrumbItem, defaultRender?: JsxRenderFunc<IBreadcrumbItem>): JSX.Element {

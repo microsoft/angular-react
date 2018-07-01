@@ -4,7 +4,7 @@
 // tslint:disable:use-host-property-decorator
 // tslint:disable:no-output-on-prefix
 
-import { JsxRenderFunc, ReactWrapperComponent, RenderInput } from '@angular-react/core';
+import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Panel';
 
@@ -34,11 +34,11 @@ import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Pa
       [focusTrapZoneProps]="focusTrapZoneProps"
       [layerProps]="layerProps"
       [componentId]="componentId"
-      [RenderHeader]="header && onRenderHeader"
-      [RenderNavigation]="navigation && onRenderNavigation"
-      [RenderBody]="body && onRenderBody"
-      [RenderFooter]="footer && onRenderFooter"
-      [RenderFooterContent]="footerContent && onRenderFooterContent"
+      [RenderHeader]="renderHeader && onRenderHeader"
+      [RenderNavigation]="renderNavigation && onRenderNavigation"
+      [RenderBody]="renderBody && onRenderBody"
+      [RenderFooter]="renderFooter && onRenderFooter"
+      [RenderFooterContent]="renderFooterContent && onRenderFooterContent"
       (onDismiss)="onDismiss.emit($event)"
       (onDismissed)="onDismissed.emit($event)"
       (onLightDismissClick)="onLightDismissClick.emit($event)">
@@ -75,21 +75,21 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
   @Input() layerProps?: IPanelProps['layerProps'];
   @Input() componentId?: IPanelProps['componentId'];
 
-  @Input() navigation?: RenderInput<IPanelRenderContext>;
-  @Input() header?: RenderInput<IPanelHeaderRenderContext>;
-  @Input() body?: RenderInput<IPanelRenderContext>;
-  @Input() footer?: RenderInput<IPanelRenderContext>;
-  @Input() footerContent?: RenderInput<IPanelRenderContext>;
+  @Input() renderNavigation?: InputRendererOptions<IPanelProps>;
+  @Input() renderHeader?: InputRendererOptions<IPanelHeaderRenderContext>;
+  @Input() renderBody?: InputRendererOptions<IPanelProps>;
+  @Input() renderFooter?: InputRendererOptions<IPanelProps>;
+  @Input() renderFooterContent?: InputRendererOptions<IPanelProps>;
 
-  @Output() onLightDismissClick = new EventEmitter<void>();
-  @Output() onDismiss = new EventEmitter<void>();
-  @Output() onDismissed = new EventEmitter<void>();
+  @Output() readonly onLightDismissClick = new EventEmitter<void>();
+  @Output() readonly onDismiss = new EventEmitter<void>();
+  @Output() readonly onDismissed = new EventEmitter<void>();
 
-  private _renderNavigation: JsxRenderFunc<IPanelRenderContext>;
+  private _renderNavigation: JsxRenderFunc<IPanelProps>;
   private _renderHeader: JsxRenderFunc<IPanelHeaderRenderContext>;
-  private _renderBody: JsxRenderFunc<IPanelRenderContext>;
-  private _renderFooter: JsxRenderFunc<IPanelRenderContext>;
-  private _renderFooterContent: JsxRenderFunc<IPanelRenderContext>;
+  private _renderBody: JsxRenderFunc<IPanelProps>;
+  private _renderFooter: JsxRenderFunc<IPanelProps>;
+  private _renderFooterContent: JsxRenderFunc<IPanelProps>;
 
   constructor(elementRef: ElementRef) {
     super(elementRef);
@@ -103,23 +103,23 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
   }
 
   ngOnInit() {
-    this._renderNavigation = this.initRenderInput(this.navigation);
-    this._renderHeader = this.initRenderInput(this.header);
-    this._renderBody = this.initRenderInput(this.body);
-    this._renderFooter = this.initRenderInput(this.footer);
-    this._renderFooterContent = this.initRenderInput(this.footerContent);
+    this._renderNavigation = this.createInputJsxRenderer(this.renderNavigation);
+    this._renderHeader = this.createInputJsxRenderer(this.renderHeader);
+    this._renderBody = this.createInputJsxRenderer(this.renderBody);
+    this._renderFooter = this.createInputJsxRenderer(this.renderFooter);
+    this._renderFooterContent = this.createInputJsxRenderer(this.renderFooterContent);
   }
 
   onRenderNavigation(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
-    if (!this.navigation) {
+    if (!this.renderNavigation) {
       return typeof defaultRender === 'function' ? defaultRender(props) : null;
     }
 
-    return this._renderNavigation({ props });
+    return this._renderNavigation(props);
   }
 
   onRenderHeader(props?: IPanelProps, defaultRender?: IPanelHeaderRenderer, headerTextId?: string | undefined): JSX.Element {
-    if (!this.header) {
+    if (!this.renderHeader) {
       return typeof defaultRender === 'function' ? defaultRender(props, defaultRender, headerTextId) : null;
     }
 
@@ -127,27 +127,27 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
   }
 
   onRenderBody(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
-    if (!this.body) {
+    if (!this.renderBody) {
       return typeof defaultRender === 'function' ? defaultRender(props) : null;
     }
 
-    return this._renderBody({ props });
+    return this._renderBody(props);
   }
 
   onRenderFooter(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
-    if (!this.footer) {
+    if (!this.renderFooter) {
       return typeof defaultRender === 'function' ? defaultRender(props) : null;
     }
 
-    return this._renderFooter({ props });
+    return this._renderFooter(props);
   }
 
   onRenderFooterContent(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
-    if (!this.footerContent) {
+    if (!this.renderFooterContent) {
       return typeof defaultRender === 'function' ? defaultRender(props) : null;
     }
 
-    return this._renderFooterContent({ props });
+    return this._renderFooterContent(props);
   }
 }
 
@@ -159,6 +159,3 @@ export interface IPanelHeaderRenderContext {
   headerTextId?: string | undefined
 }
 
-export interface IPanelRenderContext {
-  props: IPanelProps;
-}

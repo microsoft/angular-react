@@ -2,13 +2,10 @@ import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { FabButtonComponent } from './button.component';
-
-
-
+import { FabDefaultButtonComponent } from './default-button.component';
 
 const components = [
-  FabButtonComponent,
+  FabDefaultButtonComponent,
 ];
 
 @NgModule({

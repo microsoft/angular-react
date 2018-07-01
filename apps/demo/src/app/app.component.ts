@@ -165,4 +165,8 @@ export class AppComponent {
     this.counter += 1;
   }
 
+  onMenuClick(event) {
+    alert('menuButton Clicked');
+  }
+
 }
