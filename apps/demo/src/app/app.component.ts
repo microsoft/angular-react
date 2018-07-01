@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input } from '@angular/core';
+import { IBreadcrumbItem } from 'office-ui-fabric-react/lib/Breadcrumb';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import { PanelType } from '../../../../node_modules/office-ui-fabric-react/lib/Panel';
-
+import { PanelType } from 'office-ui-fabric-react/lib/Panel';
 
 @Component({
   selector: 'fab-panel-header',
@@ -143,6 +143,15 @@ export class AppComponent {
       disabled: true
     }
   ];
+
+  breadcrumbItems: IBreadcrumbItem[] = [
+    { text: 'Files', 'key': 'Files', href: '#/examples/breadcrumb' },
+    { text: 'This is link 1', 'key': 'l1', href: '#/examples/breadcrumb' },
+    { text: 'This is link 2', 'key': 'l2', href: '#/examples/breadcrumb' },
+    { text: 'This is link 3 with a long name', 'key': 'l3', href: '#/examples/breadcrumb', onClick: () => alert('link 3 clicked') },
+    { text: 'This is link 4', 'key': 'l4', href: '#/examples/breadcrumb' },
+    { text: 'This is link 5', 'key': 'l5', href: '#/examples/breadcrumb', isCurrentItem: true },
+  ]
 
   toggleDialog() {
     this.dialogHidden = !this.dialogHidden;

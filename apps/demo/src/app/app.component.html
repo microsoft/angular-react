@@ -30,11 +30,11 @@
     </fab-dialog-footer>
   </fab-dialog>
 
-  <!-- <fab-button [primary]="true" [split]="true" [menuProps]="menuProps" [iconProps]="iconProps" [text]="'Test Dialog'" (onClick)="onClick($event)"></fab-button>
+  <fab-button [primary]="true" [split]="true" [menuProps]="menuProps" [iconProps]="iconProps" [text]="'Test Dialog'" (onClick)="onClick($event)"></fab-button>
 
-  <fab-icon [iconName]="'Add'"></fab-icon> -->
+  <fab-icon [iconName]="'Add'"></fab-icon>
 
-  <!-- <fab-image src="http://placehold.it/350x150" alt="Example implementation with no image fit property and no height or width is specified."></fab-image> -->
+  <fab-image src="http://placehold.it/350x150" alt="Example implementation with no image fit property and no height or width is specified."></fab-image>
 
   <fab-button (onClick)="isPanelOpen = true" text="Open panel"></fab-button>
   <fab-button (onClick)="isCustomPanelOpen = true" text="Open custom panel"></fab-button>
@@ -68,5 +68,7 @@
     [closeButtonAriaLabel]="'Close'" [footerContent]="panelFooter">
     <span>Content goes here.</span>
   </fab-panel>
+
+  <fab-breadcrumb [items]="breadcrumbItems" [maxDisplayedItems]="3" aria-label="Website breadcrumb"></fab-breadcrumb>
 
 </div>

@@ -1,3 +1,5 @@
+export * from './src/breadcrumb/breadcrumb.component';
+export * from './src/breadcrumb/breadcrumb.module';
 export * from './src/button/button.component';
 export * from './src/button/button.module';
 export * from './src/command-bar/command-bar.component';
