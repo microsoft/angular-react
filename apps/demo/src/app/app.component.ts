@@ -2,12 +2,13 @@ import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import { PanelType } from '../../../../node_modules/office-ui-fabric-react/lib/Panel';
 
 
 @Component({
   selector: 'fab-panel-header',
   template: `
-    <div>props: {{ propsVal }}</div>
+    <div>props: {{ props }}</div>
 
     <div>{{ dynamicText }}</div>
 
@@ -22,10 +23,6 @@ export class PanelBodyComponent {
   dynamicText: string = "initial";
 
   constructor(private cd: ChangeDetectorRef) { }
-
-  get propsVal() {
-    return JSON.stringify(this.props);
-  }
 
   onClick() {
     this.dynamicText = "new text!";
@@ -46,6 +43,9 @@ export class AppComponent {
   counter = 0;
 
   isPanelOpen = false;
+  isCustomPanelOpen = false;
+
+  panelType = PanelType.smallFixedFar;
 
   constructor(injector: Injector, componentFactoryResolver: ComponentFactoryResolver) {
     this.panelBodyComponent = {

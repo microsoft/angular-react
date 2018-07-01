@@ -42,6 +42,7 @@ import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Pa
       (onDismiss)="onDismiss.emit($event)"
       (onDismissed)="onDismissed.emit($event)"
       (onLightDismissClick)="onLightDismissClick.emit($event)">
+        <ReactContent><ng-content></ng-content></ReactContent>
     </Panel>
   `,
   styles: [

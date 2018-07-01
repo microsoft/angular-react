@@ -35,6 +35,7 @@
   <!-- <fab-image src="http://placehold.it/350x150" alt="Example implementation with no image fit property and no height or width is specified."></fab-image> -->
 
   <fab-button (onClick)="isPanelOpen = true" text="Open panel"></fab-button>
+  <fab-button (onClick)="isCustomPanelOpen = true" text="Open custom panel"></fab-button>
 
   <ng-template #panelHeader let-props="props" let-headerTextId="headerTextId">
     <div style="background:red;width:100px;height:50px">
@@ -47,11 +48,23 @@
 
   <ng-template #navigationTemplate let-props="props">
     <span>Navigation content</span>
-    <button (click)="isPanelOpen = false">Close</button>
+    <button (click)="isCustomPanelOpen = false">Close</button>
   </ng-template>
 
-  <fab-panel [isOpen]="isPanelOpen" [header]="panelHeader" [navigation]="navigationTemplate" (onDismissed)="isPanelOpen = false"
+  <fab-panel [isOpen]="isCustomPanelOpen" [header]="panelHeader" [navigation]="navigationTemplate" (onDismissed)="isCustomPanelOpen = false"
     [body]="panelBodyComponent">
+  </fab-panel>
+
+  <ng-template #panelFooter>
+    <div>
+      <fab-button [primary]="true" (onClick)="isPanelOpen = false" [style]="{ marginRight: '8px' }" [text]="'Save'"></fab-button>
+      <fab-button (onClick)="isPanelOpen = false" [text]="'Cancel'"></fab-button>
+    </div>
+  </ng-template>
+
+  <fab-panel [isOpen]="isPanelOpen" [type]="panelType" (onDismiss)="isPanelOpen = false" [isFooterAtBottom]="true" [headerText]="'Panel with footer at bottom'"
+    [closeButtonAriaLabel]="'Close'" [footerContent]="panelFooter">
+    <span>Content goes here.</span>
   </fab-panel>
 
 </div>
