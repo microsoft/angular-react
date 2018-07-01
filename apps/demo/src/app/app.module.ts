@@ -16,7 +16,7 @@ import { WrapperComponent } from './wrapper.component';
     FabPanelModule,
     FabCommandBarModule,
   ],
-  declarations: [AppComponent, WrapperComponent, PanelBodyComponent],
+  declarations: [AppComponent, PanelBodyComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {
