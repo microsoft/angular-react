@@ -45,7 +45,13 @@
     <div>hasCloseButton: {{ props.hasCloseButton }}</div>
   </ng-template>
 
-  <fab-panel [isOpen]="isPanelOpen" [headerTemplate]="panelHeader" (onDismissed)="isPanelOpen = false" [bodyComponent]="panelBodyComponent">
+  <ng-template #navigationTemplate let-props="props">
+    <span>Navigation content</span>
+    <button (click)="isPanelOpen = false">Close</button>
+  </ng-template>
+
+  <fab-panel [isOpen]="isPanelOpen" [header]="panelHeader" [navigation]="navigationTemplate" (onDismissed)="isPanelOpen = false"
+    [body]="panelBodyComponent">
   </fab-panel>
 
 </div>

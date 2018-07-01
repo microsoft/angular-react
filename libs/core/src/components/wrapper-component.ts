@@ -1,5 +1,7 @@
-import { AfterViewInit, ElementRef } from "@angular/core";
+import { AfterViewInit, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, TemplateRef, Type } from "@angular/core";
+import { assertNever } from "@uifabric/utilities";
 import { isReactNode } from "../renderer/react-node";
+import { renderComponent, renderFunc, renderTemplate } from "../utils/render/render-function";
 
 const blacklistedAttributesAsProps = [
   'class',
@@ -8,8 +10,21 @@ const blacklistedAttributesAsProps = [
 
 const blacklistedAttributeMatchers = [
   /^_?ng-?.*/
-]
+];
 
+export interface RenderComponentOptions<TContext extends object> {
+  readonly componentType: Type<TContext>;
+  readonly factoryResolver: ComponentFactoryResolver;
+  readonly injector: Injector;
+}
+
+export type RenderInput<TContext extends object> =
+  TemplateRef<TContext>
+  | ((context: TContext) => HTMLElement)
+  | ComponentRef<TContext>
+  | RenderComponentOptions<TContext>;
+
+export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 
 /**
  * Base class for Angular @Components wrapping React Components.
@@ -25,6 +40,34 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   ngAfterViewInit() {
     this._passAttributesAsProps();
     this._setHostDisplay();
+  }
+
+  protected initRenderInput<TContext extends object>(input: RenderInput<TContext>): JsxRenderFunc<TContext> | undefined {
+    if (input === undefined) {
+      return undefined;
+    }
+
+    if (input instanceof TemplateRef) {
+      return (context: TContext) => renderTemplate(input, context);
+    }
+
+    if (input instanceof ComponentRef) {
+      return (context: TContext) => renderComponent(input, context);
+    }
+
+    if (input instanceof Function) {
+      return (context: TContext) => renderFunc(input, context);
+    }
+
+    if (typeof input === "object") {
+      const { componentType, factoryResolver, injector } = input;
+      const componentFactory = factoryResolver.resolveComponentFactory(componentType);
+      const componentRef = componentFactory.create(injector);
+
+      return (context: TContext) => renderComponent(componentRef, context);
+    }
+
+    assertNever(input);
   }
 
   private _passAttributesAsProps() {

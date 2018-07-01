@@ -4,10 +4,9 @@
 // tslint:disable:use-host-property-decorator
 // tslint:disable:no-output-on-prefix
 
-import { ReactContent, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ComponentFactoryResolver, ElementRef, EventEmitter, Injector, Input, Output, TemplateRef, Type, ViewChild } from '@angular/core';
+import { JsxRenderFunc, ReactWrapperComponent, RenderInput } from '@angular-react/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Panel';
-import * as React from 'react';
 
 @Component({
   selector: 'fab-panel',
@@ -35,16 +34,14 @@ import * as React from 'react';
       [focusTrapZoneProps]="focusTrapZoneProps"
       [layerProps]="layerProps"
       [componentId]="componentId"
+      [RenderHeader]="header && onRenderHeader"
+      [RenderNavigation]="navigation && onRenderNavigation"
+      [RenderBody]="body && onRenderBody"
+      [RenderFooter]="footer && onRenderFooter"
+      [RenderFooterContent]="footerContent && onRenderFooterContent"
       (onDismiss)="onDismiss.emit($event)"
       (onDismissed)="onDismissed.emit($event)"
-      (onLightDismissClick)="onLightDismissClick.emit($event)"
-      [RenderHeader]="onRenderHeader"
-      [RenderBody]="onRenderBody">
-      <!--
-      (onRenderFooter)="onRenderFooter.emit($event)"
-      (onRenderFooterContent)="onRenderFooterContent.emit($event)"
-      (onRenderNavigation)="onRenderNavigation.emit($event)"
-      -->
+      (onLightDismissClick)="onLightDismissClick.emit($event)">
     </Panel>
   `,
   styles: [
@@ -53,7 +50,7 @@ import * as React from 'react';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-panel' }
 })
-export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> {
+export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IPanelProps['componentRef'];
@@ -77,70 +74,90 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> {
   @Input() layerProps?: IPanelProps['layerProps'];
   @Input() componentId?: IPanelProps['componentId'];
 
-  @Input() headerTemplate?: TemplateRef<IPanelHeaderTemplateContext>;
-  @Input() bodyComponent?: { componentType: Type<Component>, factoryResolver: ComponentFactoryResolver, injector: Injector };
+  @Input() navigation?: RenderInput<IPanelRenderContext>;
+  @Input() header?: RenderInput<IPanelHeaderRenderContext>;
+  @Input() body?: RenderInput<IPanelRenderContext>;
+  @Input() footer?: RenderInput<IPanelRenderContext>;
+  @Input() footerContent?: RenderInput<IPanelRenderContext>;
 
   @Output() onLightDismissClick = new EventEmitter<void>();
   @Output() onDismiss = new EventEmitter<void>();
   @Output() onDismissed = new EventEmitter<void>();
-  @Output() onRenderNavigation = new EventEmitter<IPanelProps>();
-  // @Output() onRenderFooter = new EventEmitter<IPanelProps['onRenderFooter']>();
-  // @Output() onRenderFooterContent = new EventEmitter<IPanelProps['onRenderFooterContent']>();
 
-  constructor(
-    elementRef: ElementRef,
-  ) {
+  private _renderNavigation: JsxRenderFunc<IPanelRenderContext>;
+  private _renderHeader: JsxRenderFunc<IPanelHeaderRenderContext>;
+  private _renderBody: JsxRenderFunc<IPanelRenderContext>;
+  private _renderFooter: JsxRenderFunc<IPanelRenderContext>;
+  private _renderFooterContent: JsxRenderFunc<IPanelRenderContext>;
+
+  constructor(elementRef: ElementRef) {
     super(elementRef);
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onRenderHeader = this.onRenderHeader.bind(this);
     this.onRenderBody = this.onRenderBody.bind(this);
+    this.onRenderFooter = this.onRenderFooter.bind(this);
+    this.onRenderFooterContent = this.onRenderFooterContent.bind(this);
+    this.onRenderNavigation = this.onRenderNavigation.bind(this);
+  }
+
+  ngOnInit() {
+    this._renderNavigation = this.initRenderInput(this.navigation);
+    this._renderHeader = this.initRenderInput(this.header);
+    this._renderBody = this.initRenderInput(this.body);
+    this._renderFooter = this.initRenderInput(this.footer);
+    this._renderFooterContent = this.initRenderInput(this.footerContent);
+  }
+
+  onRenderNavigation(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
+    if (!this.navigation) {
+      return typeof defaultRender === 'function' ? defaultRender(props) : null;
+    }
+
+    return this._renderNavigation({ props });
   }
 
   onRenderHeader(props?: IPanelProps, defaultRender?: IPanelHeaderRenderer, headerTextId?: string | undefined): JSX.Element {
-    if (!this.headerTemplate) {
-      return defaultRender(props, defaultRender, headerTextId);
+    if (!this.header) {
+      return typeof defaultRender === 'function' ? defaultRender(props, defaultRender, headerTextId) : null;
     }
 
-    const viewRef = this.headerTemplate.createEmbeddedView({ props, headerTextId });
-    viewRef.detectChanges();
-
-    return React.createElement(
-      ReactContent,
-      {
-        ['children-to-append']: viewRef.rootNodes
-      } as any
-    );
+    return this._renderHeader({ props, headerTextId });
   }
 
-  onRenderBody(props?: IPanelProps, defaultRender?: IPanelHeaderRenderer, headerTextId?: string | undefined): JSX.Element {
-    if (!this.bodyComponent) {
-      return defaultRender(props, defaultRender, headerTextId);
+  onRenderBody(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
+    if (!this.body) {
+      return typeof defaultRender === 'function' ? defaultRender(props) : null;
     }
 
-    const bodyFactory = this.bodyComponent.factoryResolver.resolveComponentFactory(this.bodyComponent.componentType);
-    const bodyComponentRef = bodyFactory.create(this.bodyComponent.injector);
+    return this._renderBody({ props });
+  }
 
-    Object.assign(bodyComponentRef.instance, {
-      props,
-      headerTextId
-    });
+  onRenderFooter(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
+    if (!this.footer) {
+      return typeof defaultRender === 'function' ? defaultRender(props) : null;
+    }
 
-    bodyComponentRef.hostView.detectChanges();
+    return this._renderFooter({ props });
+  }
 
-    return React.createElement(
-      ReactContent,
-      {
-        ['children-to-append']: [bodyComponentRef.location.nativeElement]
-      } as any
-    );
+  onRenderFooterContent(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
+    if (!this.footerContent) {
+      return typeof defaultRender === 'function' ? defaultRender(props) : null;
+    }
+
+    return this._renderFooterContent({ props });
   }
 }
 
 /**
  * Counterpart of `IPanelHeaderRenderer`.
  */
-export interface IPanelHeaderTemplateContext {
+export interface IPanelHeaderRenderContext {
   props?: IPanelProps
   headerTextId?: string | undefined
+}
+
+export interface IPanelRenderContext {
+  props: IPanelProps;
 }
