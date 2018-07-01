@@ -34,9 +34,11 @@
 
   <fab-button (onClick)="isPanelOpen = !isPanelOpen" text="Open panel"></fab-button>
 
-  <fab-panel [isOpen]="isPanelOpen">
+  <!-- <fab-panel [isOpen]="true">
     <fab-panel-header>
       <div>Hello header!</div>
     </fab-panel-header>
-  </fab-panel>
+  </fab-panel> -->
+
+  <fab-command-bar [items]="commandBarItems"></fab-command-bar>
 </div>

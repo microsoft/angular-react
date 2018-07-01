@@ -1,5 +1,7 @@
 export * from './src/button/button.component';
 export * from './src/button/button.module';
+export * from './src/command-bar/command-bar.component';
+export * from './src/command-bar/command-bar.module';
 export * from './src/dialog/dialog.component';
 export * from './src/dialog/dialog.module';
 export * from './src/icon/icon.component';
