@@ -1,7 +1,6 @@
 import { ComponentRef, TemplateRef } from "@angular/core";
 import * as React from 'react';
-import { CHILDREN_TO_APPEND_PROP, ReactContent } from "../../renderer/react-content";
-
+import { CHILDREN_TO_APPEND_PROP, ReactContent } from "../renderer/react-content";
 
 function renderReactContent(rootNodes: HTMLElement[]): JSX.Element {
   return React.createElement(

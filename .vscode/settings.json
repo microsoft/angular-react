@@ -5,6 +5,8 @@
     "Packagr",
     "Renderable",
     "nrwl",
+    "renderprop",
+    "uifabric",
     "unmount",
     "whitelisted"
   ]

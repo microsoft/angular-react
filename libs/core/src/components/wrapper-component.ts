@@ -1,7 +1,7 @@
 import { AfterViewInit, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, TemplateRef, Type } from "@angular/core";
 import { assertNever } from "@uifabric/utilities";
 import { isReactNode } from "../renderer/react-node";
-import { renderComponent, renderFunc, renderTemplate } from "../utils/render/render-function";
+import { renderComponent, renderFunc, renderTemplate } from "../renderer/renderprop-helpers";
 
 const blacklistedAttributesAsProps = [
   'class',
