@@ -14,5 +14,6 @@
     "uifabric",
     "unmount",
     "whitelisted"
-  ]
+  ],
+  "typescript.updateImportsOnFileMove.enabled": "never"
 }

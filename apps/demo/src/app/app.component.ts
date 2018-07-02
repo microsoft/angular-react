@@ -4,6 +4,7 @@ import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { PanelType } from 'office-ui-fabric-react/lib/Panel';
+import { IChoiceGroupProps } from '../../../../node_modules/office-ui-fabric-react/lib/components/ChoiceGroup/ChoiceGroup.types';
 
 @Component({
   selector: 'fab-panel-header',
@@ -154,6 +155,22 @@ export class AppComponent {
     { text: 'This is link 4', 'key': 'l4', href: '#/examples/breadcrumb' },
     { text: 'This is link 5', 'key': 'l5', href: '#/examples/breadcrumb', isCurrentItem: true },
   ]
+
+  choiceGroupOptions: IChoiceGroupProps['options'] = [
+    {
+      key: 'A',
+      text: 'Selected'
+    },
+    {
+      key: 'B',
+      text: 'Unselected',
+    },
+    {
+      key: 'C',
+      text: 'Disabled',
+      disabled: true
+    }
+  ];
 
   toggleDialog() {
     this.dialogHidden = !this.dialogHidden;
