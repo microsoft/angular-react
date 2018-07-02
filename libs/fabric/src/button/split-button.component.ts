@@ -8,10 +8,10 @@ import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angu
 import { FabBaseButtonComponent } from './base-button.component';
 
 @Component({
-  selector: 'fab-default-button',
-  exportAs: 'fabDefaultButton',
+  selector: 'fab-split-button',
+  exportAs: 'fabSplitButton',
   template: `
-    <DefaultButton
+    <SplitButton
       #reactNode
       [componentRef]="componentRef"
       [href]="href"
@@ -51,15 +51,15 @@ import { FabBaseButtonComponent } from './base-button.component';
       (onAfterMenuDismiss)="onAfterMenuDismiss.emit($event)"
       (onClick)="onClickHandler($event)">
       <ReactContent><ng-content></ng-content></ReactContent>
-    </DefaultButton>
+    </SplitButton>
   `,
   styles: [
     'react-renderer',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-default-button' }
+  host: { 'class': 'fab-split-button' }
 })
-export class FabDefaultButtonComponent extends FabBaseButtonComponent {
+export class FabSplitButtonComponent extends FabBaseButtonComponent {
 
   @ViewChild('reactNode') reactNodeRef: ElementRef;
 

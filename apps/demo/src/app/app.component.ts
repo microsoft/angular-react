@@ -165,8 +165,20 @@ export class AppComponent {
     this.counter += 1;
   }
 
-  onMenuClick(event) {
+  onMenuClick(event: MouseEvent | KeyboardEvent) {
     alert('menuButton Clicked');
+  }
+
+  onActionButtonClicked(event: MouseEvent) {
+    alert('action button clicked');
+  }
+
+  onCommandBarButtonClicked(event: MouseEvent) {
+    alert('commandbar button clicked');
+  }
+
+  onCompoundButtonClicked(event: MouseEvent) {
+    alert('compound button clicked');
   }
 
 }

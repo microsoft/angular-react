@@ -8,10 +8,10 @@ import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angu
 import { FabBaseButtonComponent } from './base-button.component';
 
 @Component({
-  selector: 'fab-default-button',
-  exportAs: 'fabDefaultButton',
+  selector: 'fab-primary-button',
+  exportAs: 'fabPrimaryButton',
   template: `
-    <DefaultButton
+    <PrimaryButton
       #reactNode
       [componentRef]="componentRef"
       [href]="href"
@@ -51,15 +51,15 @@ import { FabBaseButtonComponent } from './base-button.component';
       (onAfterMenuDismiss)="onAfterMenuDismiss.emit($event)"
       (onClick)="onClickHandler($event)">
       <ReactContent><ng-content></ng-content></ReactContent>
-    </DefaultButton>
+    </PrimaryButton>
   `,
   styles: [
     'react-renderer',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-default-button' }
+  host: { 'class': 'fab-primary-button' }
 })
-export class FabDefaultButtonComponent extends FabBaseButtonComponent {
+export class FabPrimaryButtonComponent extends FabBaseButtonComponent {
 
   @ViewChild('reactNode') reactNodeRef: ElementRef;
 

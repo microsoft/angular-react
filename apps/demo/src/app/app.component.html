@@ -18,6 +18,21 @@
 <div>
   <fab-default-button [primary]="true" [split]="true" [menuProps]="menuProps" (onMenuClick)="onMenuClick($event)">Button Content</fab-default-button>
 
+  <fab-action-button [iconProps]="{ iconName: 'AddFriend' }" text="Compound" [secondaryText]="'Loren ipsum dolor sit amet'"
+    (onClick)="onActionButtonClicked($event)"></fab-action-button>
+
+  <fab-compound-button [iconProps]="{ iconName: 'AddFriend' }" [secondaryText]="'Loren ipsum dolor sit amet'" (onClick)="onCompoundButtonClicked($event)"
+    text="Compound"></fab-compound-button>
+
+  <!-- style as seen in Fabric's react Storybook wrapper div -->
+  <fab-commandbar-button style="display: flex; align-items: stretch; height: 40px" [iconProps]="{ iconName: 'Add',  styles: { root: { fontSize: 'x-large' } } }"
+    text="Create account" (onClick)="onCommandBarButtonClicked($event)" [menuProps]="{ items: [ { key: 'emailMessage', text: 'Email message', iconProps: { iconName: 'Mail' } }, { key: 'calendarEvent', text: 'Calendar event', iconProps: { iconName: 'Calendar' } }] }"></fab-commandbar-button>
+
+
+  <fab-icon-button [iconProps]="{ color: 'red', iconName: 'Add' }"></fab-icon-button>
+
+  <fab-messagebar-button>Yes</fab-messagebar-button>
+
   <fab-command-bar [items]="commandBarItems"></fab-command-bar>
 
   <fab-default-button text="Test Dialog" (onClick)="toggleDialog()"></fab-default-button>
