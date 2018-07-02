@@ -211,7 +211,8 @@ export class ReactNode {
       return [name, value];
     }
 
-    // prop name is PascalCased & is a function - assuming render prop
+    // prop name is PascalCased & is a function - assuming render prop or callback prop that has return value
+    // NOTE: Angular doesn't allow passing these prefixed with "on", and @Output EventEmitters don't have return value.
     if (typeof value === 'function') {
       return [`on${name}`, value];
     }
