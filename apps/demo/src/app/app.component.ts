@@ -45,6 +45,8 @@ export class AppComponent {
   isPanelOpen = false;
   isCustomPanelOpen = false;
 
+  isChecked = true;
+
   panelType = PanelType.smallFixedFar;
 
   constructor(injector: Injector, componentFactoryResolver: ComponentFactoryResolver) {
