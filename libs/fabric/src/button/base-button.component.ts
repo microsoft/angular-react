@@ -63,6 +63,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
   constructor(elementRef: ElementRef) {
     super(elementRef);
 
+    // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onMenuClickHandler = this.onMenuClickHandler.bind(this);
   }
 
@@ -78,7 +79,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
 
   onMenuClickHandler(ev?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>, button?: IButtonProps) {
     this.onMenuClick.emit({
-      ev: ev.nativeEvent,
+      ev: ev && ev.nativeEvent,
       button,
     })
   }
