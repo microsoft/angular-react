@@ -1,5 +1,5 @@
 import { AngularReactBrowserModule } from '@angular-react/core';
-import { FabBreadcrumbModule, FabButtonModule, FabCommandBarModule, FabDialogModule, FabIconModule, FabImageModule, FabPanelModule } from '@angular-react/fabric';
+import { FabBreadcrumbModule, FabButtonModule, FabCalloutModule, FabCommandBarModule, FabDialogModule, FabIconModule, FabImageModule, FabPanelModule } from '@angular-react/fabric';
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
@@ -16,6 +16,7 @@ import { AppComponent, PanelBodyComponent } from './app.component';
     FabPanelModule,
     FabCommandBarModule,
     FabBreadcrumbModule,
+    FabCalloutModule,
   ],
   declarations: [AppComponent, PanelBodyComponent],
   bootstrap: [AppComponent],

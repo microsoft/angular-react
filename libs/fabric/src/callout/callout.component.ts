@@ -1,0 +1,98 @@
+// tslint:disable:component-selector
+// tslint:disable:no-input-rename
+// tslint:disable:no-output-rename
+// tslint:disable:use-host-property-decorator
+// tslint:disable:no-output-on-prefix
+
+import { ReactWrapperComponent } from '@angular-react/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ICalloutProps } from 'office-ui-fabric-react';
+import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/positioning/positioning.types';
+
+@Component({
+  selector: 'fab-callout',
+  exportAs: 'fabCallout',
+  template: `
+    <Callout
+      #reactNode
+      [componentRef]="componentRef"
+      [target]="target"
+      [directionalHint]="directionalHint"
+      [directionalHintForRTL]="directionalHintForRTL"
+      [gapSpace]="gapSpace"
+      [beakWidth]="beakWidth"
+      [calloutWidth]="calloutWidth"
+      [backgroundColor]="backgroundColor"
+      [bounds]="bounds"
+      [minPagePadding]="minPagePadding"
+      [isBeakVisible]="isBeakVisible"
+      [preventDismissOnScroll]="preventDismissOnScroll"
+      [preventDismissOnLostFocus]="preventDismissOnLostFocus"
+      [coverTarget]="coverTarget"
+      [role]="role"
+      [ariaLabel]="ariaLabel"
+      [ariaLabelledBy]="ariaLabelledBy"
+      [ariaDescribedBy]="ariaDescribedBy"
+      [className]="className"
+      [doNotLayer]="doNotLayer"
+      [directionalHintFixed]="directionalHintFixed"
+      [finalHeight]="finalHeight"
+      [setInitialFocus]="setInitialFocus"
+      [calloutMaxHeight]="calloutMaxHeight"
+      [theme]="theme"
+      [styles]="styles"
+      [hidden]="hidden"
+      (onLayerMounted)="onLayerMounted.emit()"
+      (onPositioned)="onPositioned.emit($event)"
+      (onDismiss)="onDismiss.emit($event)"
+      (onScroll)="onScroll.emit()">
+      <ReactContent><ng-content></ng-content></ReactContent>
+    </Callout>
+  `,
+  styles: [
+    'react-renderer',
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'class': 'fab-callout' }
+})
+export class FabCalloutComponent extends ReactWrapperComponent<ICalloutProps> {
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+
+  @Input() componentRef?: ICalloutProps['componentRef'];
+  @Input() target?: ICalloutProps['target'];
+  @Input() directionalHint?: ICalloutProps['directionalHint'];
+  @Input() directionalHintForRTL?: ICalloutProps['directionalHintForRTL'];
+  @Input() gapSpace?: ICalloutProps['gapSpace'];
+  @Input() beakWidth?: ICalloutProps['beakWidth'];
+  @Input() calloutWidth?: ICalloutProps['calloutWidth'];
+  @Input() backgroundColor?: ICalloutProps['backgroundColor'];
+  @Input() bounds?: ICalloutProps['bounds'];
+  @Input() minPagePadding?: ICalloutProps['minPagePadding'];
+  @Input() isBeakVisible?: ICalloutProps['isBeakVisible'];
+  @Input() preventDismissOnScroll?: ICalloutProps['preventDismissOnScroll'];
+  @Input() preventDismissOnLostFocus?: ICalloutProps['preventDismissOnLostFocus'];
+  @Input() coverTarget?: ICalloutProps['coverTarget'];
+  @Input() role?: ICalloutProps['role'];
+  @Input() ariaLabel?: ICalloutProps['ariaLabel'];
+  @Input() ariaLabelledBy?: ICalloutProps['ariaLabelledBy'];
+  @Input() ariaDescribedBy?: ICalloutProps['ariaDescribedBy'];
+  @Input() className?: ICalloutProps['className'];
+  @Input() doNotLayer?: ICalloutProps['doNotLayer'];
+  @Input() directionalHintFixed?: ICalloutProps['directionalHintFixed'];
+  @Input() finalHeight?: ICalloutProps['finalHeight'];
+  @Input() setInitialFocus?: ICalloutProps['setInitialFocus'];
+  @Input() calloutMaxHeight?: ICalloutProps['calloutMaxHeight'];
+  @Input() theme?: ICalloutProps['theme'];
+  @Input() styles?: ICalloutProps['styles'];
+  @Input() hidden?: ICalloutProps['hidden'];
+
+  @Output() readonly onLayerMounted = new EventEmitter<void>();
+  @Output() readonly onPositioned = new EventEmitter<{ positions?: ICalloutPositionedInfo }>();
+  @Output() readonly onDismiss = new EventEmitter<{ ev?: any }>();
+  @Output() readonly onScroll = new EventEmitter<void>();
+
+  constructor(elementRef: ElementRef) {
+    super(elementRef);
+  }
+
+}
