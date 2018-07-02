@@ -52,9 +52,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
 
   /**
    * Create an JSX renderer for an `@Input` property.
-   * @template TContext The context passed to the renderer.
    * @param input The input property
-   * @returns {(JsxRenderFunc<TContext> | undefined)}
    */
   protected createInputJsxRenderer<TContext extends object>(input: InputRendererOptions<TContext>): JsxRenderFunc<TContext> | undefined {
     if (input === undefined) {
@@ -86,10 +84,8 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
 
   /**
    * Create an event handler for a render prop
-   * @template TProps The context passed to the renderer.
    * @param renderInputValue the value of the render `@Input` property.
    * @param jsxRenderer an optional renderer to use.
-   * @returns {((props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => JSX.Element | null)}
    */
   protected createRenderPropHandler<TProps extends object>(renderInputValue: InputRendererOptions<TProps>, jsxRenderer?: JsxRenderFunc<TProps>): (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => JSX.Element | null {
     const renderer = jsxRenderer || this.createInputJsxRenderer(renderInputValue);
