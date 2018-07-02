@@ -105,4 +105,11 @@
     </fab-combo-box>
   </fab-fabric>
 
+  <ng-template #renderCell let-nestingDepth="nestingDepth" let-item="item" let-itemIndex="itemIndex">
+    <div>{{ item.name }}</div>
+  </ng-template>
+
+  <fab-fabric>
+    <fab-grouped-list [groups]="groupedListItemsGroups" [items]="groupedListItems" [renderCell]="renderCell"></fab-grouped-list>
+  </fab-fabric>
 </div>
