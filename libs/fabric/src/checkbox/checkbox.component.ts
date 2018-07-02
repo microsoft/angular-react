@@ -7,7 +7,7 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ICheckboxProps } from 'office-ui-fabric-react/lib/components/Checkbox';
-import { FormEvent } from '../../../../node_modules/@types/react';
+import { FormEvent } from 'react';
 
 @Component({
   selector: 'fab-checkbox',
