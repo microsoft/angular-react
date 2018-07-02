@@ -36,16 +36,22 @@
   <fab-command-bar [items]="commandBarItems"></fab-command-bar>
 
   <fab-default-button text="Test Dialog" (onClick)="toggleDialog()"></fab-default-button>
-  <fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!"
-    [type]="DialogType.largeHeader">
-    Hello world! {{ counter }}
+  <fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" [dialogContentProps]="{
+    title: 'Fabric [React] Dialog',
+    subText: 'Use Fabric React components inside your Angular app!',
+    type: DialogType.largeHeader
+  }">
+    <fab-dialog-content [className]="'test'">
+      <p>Hello world! {{ counter }}</p>
+      <p>You can also omit the &lt;fab-dialog-content&gt; and just include content.</p>
+    </fab-dialog-content>
     <fab-dialog-footer>
       <fab-default-button (onClick)="incrementCounter()" text='Save' style="margin-right:10px;"></fab-default-button>
       <fab-default-button (onClick)="toggleDialog()" text='Cancel'></fab-default-button>
     </fab-dialog-footer>
   </fab-dialog>
 
-  <fab-default-button [primary]="true" [split]="true" [menuProps]="menuProps" [iconProps]="iconProps" [text]="'Test Dialog'"
+  <fab-default-button [primary]="true" [split]="true" [menuProps]="menuProps" [iconProps]="iconProps" text="Default Button"
     (onClick)="onClick($event)"></fab-default-button>
 
   <fab-icon [iconName]="'Add'"></fab-icon>
