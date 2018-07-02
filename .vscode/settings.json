@@ -5,6 +5,7 @@
     "Injectable",
     "Packagr",
     "Renderable",
+    "borderless",
     "checkmark",
     "commandbar",
     "dropdown",
