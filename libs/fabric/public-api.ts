@@ -5,7 +5,6 @@ export * from './src/checkbox/public-api';
 export * from './src/choice-group/public-api';
 export * from './src/combo-box/public-api';
 export * from './src/command-bar/public-api';
-export * from './src/contextual-menu/public-api';
 export * from './src/dialog/public-api';
 export * from './src/fabric/public-api';
 export * from './src/grouped-list/public-api';
