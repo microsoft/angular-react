@@ -1,5 +1,5 @@
 import { AngularReactBrowserModule } from '@angular-react/core';
-import { FabBreadcrumbModule, FabButtonModule, FabCalloutModule, FabCheckboxModule, FabChoiceGroupModule, FabCommandBarModule, FabDialogModule, FabIconModule, FabImageModule, FabPanelModule } from '@angular-react/fabric';
+import { FabBreadcrumbModule, FabButtonModule, FabCalloutModule, FabCheckboxModule, FabChoiceGroupModule, FabComboBoxModule, FabCommandBarModule, FabDialogModule, FabFabricModule, FabIconModule, FabImageModule, FabPanelModule } from '@angular-react/fabric';
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
@@ -9,6 +9,7 @@ import { AppComponent, PanelBodyComponent } from './app.component';
   imports: [
     AngularReactBrowserModule,
     NxModule.forRoot(),
+    FabFabricModule,
     FabIconModule,
     FabButtonModule,
     FabDialogModule,
@@ -19,6 +20,7 @@ import { AppComponent, PanelBodyComponent } from './app.component';
     FabCalloutModule,
     FabCheckboxModule,
     FabChoiceGroupModule,
+    FabComboBoxModule,
   ],
   declarations: [AppComponent, PanelBodyComponent],
   bootstrap: [AppComponent],

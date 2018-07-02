@@ -5,6 +5,7 @@ import { ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { PanelType } from 'office-ui-fabric-react/lib/Panel';
 import { IChoiceGroupProps } from '../../../../node_modules/office-ui-fabric-react/lib/components/ChoiceGroup/ChoiceGroup.types';
+import { SelectableOptionMenuItemType } from '../../../../node_modules/office-ui-fabric-react/lib/utilities/selectableOption/SelectableOption.types';
 
 @Component({
   selector: 'fab-panel-header',
@@ -170,6 +171,15 @@ export class AppComponent {
       text: 'Disabled',
       disabled: true
     }
+  ];
+
+  testOptions = [
+    { key: 'Header', text: 'Theme Fonts', itemType: SelectableOptionMenuItemType.Header },
+    { key: 'A', text: 'Arial Black' },
+    { key: 'B', text: 'Times New Roman' },
+    { key: 'divider_2', text: '-', itemType: SelectableOptionMenuItemType.Divider },
+    { key: 'Header1', text: 'Other Options', itemType: SelectableOptionMenuItemType.Header },
+    { key: 'D', text: 'Option d' },
   ];
 
   toggleDialog() {

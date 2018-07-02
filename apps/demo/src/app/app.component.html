@@ -15,7 +15,7 @@
   </ol>
 </div>
 
-<div>
+<div style="height: 500vh">
   <fab-default-button [primary]="true" [split]="true" [menuProps]="menuProps" (onMenuClick)="onMenuClick($event)">Button Content</fab-default-button>
 
   <fab-action-button [iconProps]="{ iconName: 'AddFriend' }" text="Compound" [secondaryText]="'Loren ipsum dolor sit amet'"
@@ -98,5 +98,11 @@
   </fab-callout> -->
 
   <fab-choice-group [options]="choiceGroupOptions" label="Pick one" [required]="true"></fab-choice-group>
+
+  <fab-fabric>
+    <fab-combo-box defaultSelectedKey="A" label="Default with dividers" ariaLabel="Basic ComboBox example" autoComplete="on"
+      [options]="testOptions">
+    </fab-combo-box>
+  </fab-fabric>
 
 </div>
