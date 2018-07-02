@@ -85,37 +85,25 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
   @Output() readonly onDismiss = new EventEmitter<void>();
   @Output() readonly onDismissed = new EventEmitter<void>();
 
-  private _renderNavigation: JsxRenderFunc<IPanelProps>;
   private _renderHeader: JsxRenderFunc<IPanelHeaderRenderContext>;
-  private _renderBody: JsxRenderFunc<IPanelProps>;
-  private _renderFooter: JsxRenderFunc<IPanelProps>;
-  private _renderFooterContent: JsxRenderFunc<IPanelProps>;
+  onRenderNavigation: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
+  onRenderBody: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
+  onRenderFooter: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
+  onRenderFooterContent: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
 
   constructor(elementRef: ElementRef) {
     super(elementRef);
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onRenderHeader = this.onRenderHeader.bind(this);
-    this.onRenderBody = this.onRenderBody.bind(this);
-    this.onRenderFooter = this.onRenderFooter.bind(this);
-    this.onRenderFooterContent = this.onRenderFooterContent.bind(this);
-    this.onRenderNavigation = this.onRenderNavigation.bind(this);
   }
 
   ngOnInit() {
-    this._renderNavigation = this.createInputJsxRenderer(this.renderNavigation);
+    this.onRenderNavigation = this.createRenderPropHandler(this.renderNavigation);
     this._renderHeader = this.createInputJsxRenderer(this.renderHeader);
-    this._renderBody = this.createInputJsxRenderer(this.renderBody);
-    this._renderFooter = this.createInputJsxRenderer(this.renderFooter);
-    this._renderFooterContent = this.createInputJsxRenderer(this.renderFooterContent);
-  }
-
-  onRenderNavigation(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
-    if (!this.renderNavigation) {
-      return typeof defaultRender === 'function' ? defaultRender(props) : null;
-    }
-
-    return this._renderNavigation(props);
+    this.onRenderBody = this.createRenderPropHandler(this.renderBody);
+    this.onRenderFooter = this.createRenderPropHandler(this.renderFooter);
+    this.onRenderFooterContent = this.createRenderPropHandler(this.renderFooterContent);
   }
 
   onRenderHeader(props?: IPanelProps, defaultRender?: IPanelHeaderRenderer, headerTextId?: string | undefined): JSX.Element {
@@ -126,29 +114,6 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
     return this._renderHeader({ props, headerTextId });
   }
 
-  onRenderBody(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
-    if (!this.renderBody) {
-      return typeof defaultRender === 'function' ? defaultRender(props) : null;
-    }
-
-    return this._renderBody(props);
-  }
-
-  onRenderFooter(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
-    if (!this.renderFooter) {
-      return typeof defaultRender === 'function' ? defaultRender(props) : null;
-    }
-
-    return this._renderFooter(props);
-  }
-
-  onRenderFooterContent(props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>): JSX.Element {
-    if (!this.renderFooterContent) {
-      return typeof defaultRender === 'function' ? defaultRender(props) : null;
-    }
-
-    return this._renderFooterContent(props);
-  }
 }
 
 /**
