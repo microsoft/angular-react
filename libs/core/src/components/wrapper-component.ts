@@ -1,7 +1,7 @@
 import { AfterViewInit, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, TemplateRef, Type } from "@angular/core";
-import { assertNever } from "@uifabric/utilities";
 import { isReactNode } from "../renderer/react-node";
 import { renderComponent, renderFunc, renderTemplate } from "../renderer/renderprop-helpers";
+import { unreachable } from "../utils/types/unreachable";
 
 const blacklistedAttributesAsProps = [
   'class',
@@ -79,7 +79,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       return (context: TContext) => renderComponent(componentRef, context);
     }
 
-    assertNever(input);
+    unreachable(input);
   }
 
   /**
