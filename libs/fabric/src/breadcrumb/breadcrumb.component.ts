@@ -6,7 +6,7 @@
 
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react';
+import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react/lib/components/Breadcrumb';
 
 @Component({
   selector: 'fab-breadcrumb',
