@@ -4,7 +4,11 @@ import * as ReactDOM from 'react-dom';
 const DEBUG = false;
 export const CHILDREN_TO_APPEND_PROP = 'children-to-append';
 
-export class ReactContent extends React.Component {
+export interface ReactContentProps {
+  readonly [CHILDREN_TO_APPEND_PROP]: HTMLElement[];
+}
+
+export class ReactContent extends React.PureComponent<ReactContentProps> {
 
   componentDidMount() {
     const element = ReactDOM.findDOMNode(this);

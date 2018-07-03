@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import removeUndefinedProperties from '../utils/object/remove-undefined-properties';
 import { CHILDREN_TO_APPEND_PROP } from './react-content';
-import { getComponentClass, ReactComponentClass } from "./registry";
+import { getComponentClass } from "./registry";
 
 const DEBUG = false;
 
@@ -123,7 +123,7 @@ export class ReactNode {
     this.children = this.children.filter(child => child !== node);
   }
 
-  constructor(private type?: ReactComponentClass | string) {
+  constructor(private type?: React.ReactType) {
     this.setRenderPending();
     this.tryResolveTypeIsReactElementClass();
   }

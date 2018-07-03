@@ -1,7 +1,8 @@
+import { Disguise } from "./components/multiple-children";
 import { ReactContent } from "./react-content";
 
 export interface ReactComponentClass {
-  new (): React.Component;
+  new(): React.Component;
 }
 export type ComponentResolver = () => any; // ReactComponentClass;
 
@@ -49,3 +50,4 @@ export function getComponentClass(
 }
 
 registerElement('ReactContent', () => ReactContent);
+registerElement('Disguise', () => Disguise);
