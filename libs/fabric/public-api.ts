@@ -7,6 +7,7 @@ export * from './src/combo-box/public-api';
 export * from './src/command-bar/public-api';
 export * from './src/date-picker/public-api';
 export * from './src/dialog/public-api';
+export * from './src/divider/public-api';
 export * from './src/fabric/public-api';
 export * from './src/grouped-list/public-api';
 export * from './src/icon/public-api';

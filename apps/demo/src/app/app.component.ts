@@ -6,6 +6,7 @@ import { DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { PanelType } from 'office-ui-fabric-react/lib/Panel';
 import { IChoiceGroupProps } from '../../../../node_modules/office-ui-fabric-react/lib/components/ChoiceGroup/ChoiceGroup.types';
 import { SelectableOptionMenuItemType } from '../../../../node_modules/office-ui-fabric-react/lib/utilities/selectableOption/SelectableOption.types';
+import { ITheme } from '../../../../node_modules/@uifabric/styling';
 
 @Component({
   selector: 'fab-panel-header',
@@ -56,6 +57,13 @@ export class AppComponent {
       componentType: PanelBodyComponent,
       factoryResolver: componentFactoryResolver,
       injector: injector
+    };
+  }
+
+  getClassNames(theme: ITheme) {
+    return {
+      wrapper: 'my-wrapper',
+      divider: 'my-divider'
     };
   }
 
