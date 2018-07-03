@@ -36,7 +36,7 @@ export class FabImageComponent extends ReactWrapperComponent<IImageProps> {
   @Input() maximizeFrame?: IImageProps['maximizeFrame'];
   @Input() coverStyle?: IImageProps['coverStyle'];
 
-  @Output() onLoadingStateChange = new EventEmitter<ImageLoadState>();
+  @Output() readonly onLoadingStateChange = new EventEmitter<ImageLoadState>();
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 

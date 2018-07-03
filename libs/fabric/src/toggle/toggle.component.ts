@@ -62,7 +62,7 @@ export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {
   @Input() styles?: IToggleProps['styles'];
   @Input() keytipProps?: IToggleProps['keytipProps'];
 
-  @Output() onChanged = new EventEmitter<boolean>();
+  @Output() readonly onChanged = new EventEmitter<boolean>();
 
   constructor(elementRef: ElementRef) {
     super(elementRef);

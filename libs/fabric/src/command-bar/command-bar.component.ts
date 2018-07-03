@@ -57,8 +57,8 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   @Input() onReduceData?: ICommandBarProps['onReduceData'];
   @Input() onGrowData?: ICommandBarProps['onGrowData'];
 
-  @Output() onDataReduced = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
-  @Output() onDataGrown = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
+  @Output() readonly onDataReduced = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
+  @Output() readonly onDataGrown = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 

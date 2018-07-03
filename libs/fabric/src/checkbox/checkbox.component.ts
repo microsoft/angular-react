@@ -65,11 +65,11 @@ export class FabCheckboxComponent extends ReactWrapperComponent<ICheckboxProps> 
 
   @Input() renderLabel?: InputRendererOptions<ICheckboxProps>;
 
-  @Output() onChange = new EventEmitter<{ ev?: Event, checked?: boolean }>();
+  @Output() readonly onChange = new EventEmitter<{ ev?: Event, checked?: boolean }>();
 
   /* Non-React props, more native support for Angular */
   // support for two-way data binding for `@Input() checked`.
-  @Output() checkedChange = new EventEmitter<boolean>();
+  @Output() readonly checkedChange = new EventEmitter<boolean>();
 
   onRenderLabel: (props?: ICheckboxProps, defaultRender?: JsxRenderFunc<ICheckboxProps>) => JSX.Element;
 
