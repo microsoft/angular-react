@@ -7,6 +7,7 @@ import { PanelType } from 'office-ui-fabric-react/lib/Panel';
 import { IChoiceGroupProps } from '../../../../node_modules/office-ui-fabric-react/lib/components/ChoiceGroup/ChoiceGroup.types';
 import { SelectableOptionMenuItemType } from '../../../../node_modules/office-ui-fabric-react/lib/utilities/selectableOption/SelectableOption.types';
 import { ITheme } from '../../../../node_modules/@uifabric/styling';
+import { SpinnerSize } from '../../../../node_modules/office-ui-fabric-react/lib/Spinner';
 
 @Component({
   selector: 'fab-panel-header',
@@ -41,6 +42,8 @@ export class PanelBodyComponent {
 })
 export class AppComponent {
   DialogType = DialogType;
+
+  spinnerSize = SpinnerSize.medium;
 
   dialogHidden = true;
   counter = 0;

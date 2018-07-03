@@ -1,0 +1,51 @@
+// tslint:disable:component-selector
+// tslint:disable:no-input-rename
+// tslint:disable:no-output-rename
+// tslint:disable:use-host-property-decorator
+// tslint:disable:no-output-on-prefix
+
+import { ReactWrapperComponent } from '@angular-react/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ISpinnerProps } from 'office-ui-fabric-react/lib/components/Spinner';
+
+@Component({
+  selector: 'fab-spinner',
+  exportAs: 'fabSpinner',
+  template: `
+    <Spinner
+      #reactNode
+      [componentRef]="componentRef"
+      [type]="type"
+      [size]="size"
+      [label]="label"
+      [className]="className"
+      [ariaLive]="ariaLive"
+      [ariaLabel]="ariaLabel"
+      [theme]="theme"
+      [styles]="styles">
+    </Spinner>
+  `,
+  styles: [
+    'react-renderer',
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'class': 'fab-spinner' }
+})
+export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+
+  @Input() componentRef?: ISpinnerProps['componentRef'];
+  @Input() type?: ISpinnerProps['type'];
+  @Input() size?: ISpinnerProps['size'];
+  @Input() label?: ISpinnerProps['label'];
+  @Input() className?: ISpinnerProps['className'];
+  @Input() ariaLive?: ISpinnerProps['ariaLive'];
+  @Input() ariaLabel?: ISpinnerProps['ariaLabel'];
+  @Input() theme?: ISpinnerProps['theme'];
+  @Input() styles?: ISpinnerProps['styles'];
+
+  constructor(elementRef: ElementRef) {
+    super(elementRef);
+  }
+
+}

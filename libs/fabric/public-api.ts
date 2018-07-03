@@ -13,3 +13,4 @@ export * from './src/grouped-list/public-api';
 export * from './src/icon/public-api';
 export * from './src/image/public-api';
 export * from './src/panel/public-api';
+export * from './src/spinner/public-api';
