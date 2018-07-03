@@ -315,11 +315,11 @@
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
 
-"@uifabric/icons@>=6.0.1 <7.0.0":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-6.0.1.tgz#6870a661216b6858db7e179cac62fb16b91aa361"
+"@uifabric/icons@>=6.0.2 <7.0.0":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-6.0.2.tgz#743ed18028285e2c6498b3f15b2195581255cafb"
   dependencies:
-    "@uifabric/styling" ">=6.0.3 <7.0.0"
+    "@uifabric/styling" ">=6.3.0 <7.0.0"
     tslib "^1.7.1"
 
 "@uifabric/merge-styles@>=6.2.1 <7.0.0":
@@ -328,7 +328,7 @@
   dependencies:
     tslib "^1.7.1"
 
-"@uifabric/styling@>=6.0.3 <7.0.0", "@uifabric/styling@>=6.3.0 <7.0.0":
+"@uifabric/styling@>=6.3.0 <7.0.0":
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-6.3.0.tgz#d57540073d793a4186a01f853e82b2eb04559dc8"
   dependencies:
@@ -4857,12 +4857,12 @@ obuf@^1.0.0, obuf@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
 
-office-ui-fabric-react@^6.20.0:
-  version "6.20.0"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-6.20.0.tgz#71b6e7c30bc4897992435861cc36d273783e6d89"
+office-ui-fabric-react@6.22.0:
+  version "6.22.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-6.22.0.tgz#ae60641435c28c2b714d5d270e0374200e66dd75"
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
-    "@uifabric/icons" ">=6.0.1 <7.0.0"
+    "@uifabric/icons" ">=6.0.2 <7.0.0"
     "@uifabric/merge-styles" ">=6.2.1 <7.0.0"
     "@uifabric/styling" ">=6.3.0 <7.0.0"
     "@uifabric/utilities" ">=6.7.1 <7.0.0"
