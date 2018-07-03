@@ -1,10 +1,8 @@
-import { Disguise } from "./components/multiple-children";
+import * as React from 'react';
+import { Disguise } from "./components/Disguise";
 import { ReactContent } from "./react-content";
 
-export interface ReactComponentClass {
-  new(): React.Component;
-}
-export type ComponentResolver = () => any; // ReactComponentClass;
+export type ComponentResolver = () => React.ReactType;
 
 const elementMap = new Map<string, { resolver: ComponentResolver }>();
 const camelCaseSplit = /([a-z0-9])([A-Z])/g;
@@ -34,7 +32,7 @@ export function isKnownComponent(elementName: string): boolean {
 
 export function getComponentClass(
   elementName: string
-): ReactComponentClass | string {
+): React.ReactType {
   const entry =
     elementMap.get(elementName) || elementMap.get(elementName.toLowerCase());
   if (!entry) {
