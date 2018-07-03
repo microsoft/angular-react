@@ -24,6 +24,8 @@
 
   <fab-spinner [size]="spinnerSize"></fab-spinner>
 
+  <fab-toggle [defaultChecked]="true" [label]="'Enabled and checked'" onnText="On" offText="Off"></fab-toggle>
+
   <fab-action-button [iconProps]="{ iconName: 'AddFriend' }" text="Compound" [secondaryText]="'Loren ipsum dolor sit amet'"
     (onClick)="onActionButtonClicked($event)"></fab-action-button>
 

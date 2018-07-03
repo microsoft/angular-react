@@ -1,5 +1,6 @@
 import { AngularReactBrowserModule } from '@angular-react/core';
 import { FabBreadcrumbModule, FabButtonModule, FabCalloutModule, FabCheckboxModule, FabChoiceGroupModule, FabComboBoxModule, FabCommandBarModule, FabDatePickerModule, FabDialogModule, FabDividerModule, FabFabricModule, FabGroupedListModule, FabIconModule, FabImageModule, FabPanelModule, FabSpinnerModule } from '@angular-react/fabric';
+import { FabToggleModule } from '@angular-react/fabric/src/toggle';
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
@@ -25,6 +26,7 @@ import { AppComponent, PanelBodyComponent } from './app.component';
     FabDatePickerModule,
     FabDividerModule,
     FabSpinnerModule,
+    FabToggleModule,
   ],
   declarations: [AppComponent, PanelBodyComponent],
   bootstrap: [AppComponent],
