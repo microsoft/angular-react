@@ -212,10 +212,9 @@ export class ReactNode {
     }
 
     // prop name is PascalCased & is a function - assuming render prop or callback prop that has return value
-    // NOTE: Angular doesn't allow passing these prefixed with "on", and @Output EventEmitters don't have return value.
-    if (typeof value === 'function') {
-      return [`on${name}`, value];
-    }
+    // NOTE: Angular doesn't allow passing @Inputs that are prefixed with "on". This is useful for render props and properties representing the "on" state (for example, Toggle).
+    // As a convention, any @Input that starts with a capital letter is prefixed with "on" when passed as a prop to the underlying React component.
+    return [`on${name}`, value];
   }
 
   // This is called by Angular core when projected content is being added.
