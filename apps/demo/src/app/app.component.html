@@ -26,6 +26,9 @@
 
   <fab-toggle [defaultChecked]="true" [label]="'Enabled and checked'" onnText="On" offText="Off"></fab-toggle>
 
+  <fab-persona [size]="personaSize" [presence]="personaPresence" imageUrl="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-react-assets/persona-female.png"
+    imageInitials="AL" text="Annie Lindqvist" secondaryText="Software Engineer" tertiaryText="In a meeting" optionalText="Available at 4:00pm"></fab-persona>
+
   <fab-action-button [iconProps]="{ iconName: 'AddFriend' }" text="Compound" [secondaryText]="'Loren ipsum dolor sit amet'"
     (onClick)="onActionButtonClicked($event)"></fab-action-button>
 
