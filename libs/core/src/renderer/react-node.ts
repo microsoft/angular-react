@@ -6,7 +6,7 @@ import removeUndefinedProperties from '../utils/object/remove-undefined-properti
 import { CHILDREN_TO_APPEND_PROP } from './react-content';
 import { getComponentClass, ReactComponentClass } from "./registry";
 
-const DEBUG = true;
+const DEBUG = false;
 
 export function isReactNode(node: any): node is ReactNode {
   return (<ReactNode>node).setRenderPendingCallback !== undefined;
