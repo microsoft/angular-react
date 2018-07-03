@@ -40,7 +40,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
    * @param elementRef The host element.
    * @param setHostDisplay Whether the host's `display` should be set to the root child node's `display`. defaults to `false`
    */
-  constructor(protected readonly elementRef: ElementRef, private readonly setHostDisplay: boolean = false) { }
+  constructor(public readonly elementRef: ElementRef, private readonly setHostDisplay: boolean = false) { }
 
   ngAfterViewInit() {
     this._passAttributesAsProps();
