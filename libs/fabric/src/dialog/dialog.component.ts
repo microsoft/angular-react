@@ -26,8 +26,7 @@ import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui
       [dialogContentProps]="dialogContentProps"
       [hidden]="hidden"
       [modalProps]="modalProps"
-      (onDismiss)="onDismissHandler($event)"
-    >
+      (onDismiss)="onDismissHandler($event)">
       <ReactContent><ng-content></ng-content></ReactContent>
     </Dialog>
   `,

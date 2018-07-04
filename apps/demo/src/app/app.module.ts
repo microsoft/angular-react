@@ -1,5 +1,6 @@
 import { AngularReactBrowserModule } from '@angular-react/core';
 import { FabBreadcrumbModule, FabButtonModule, FabCalloutModule, FabCheckboxModule, FabChoiceGroupModule, FabComboBoxModule, FabCommandBarModule, FabDatePickerModule, FabDialogModule, FabDividerModule, FabFabricModule, FabGroupedListModule, FabIconModule, FabImageModule, FabPanelModule, FabPersonaModule, FabSpinnerModule, FabMessageBarModule } from '@angular-react/fabric';
+import { FabPivotModule } from '@angular-react/fabric/src/pivot';
 import { FabToggleModule } from '@angular-react/fabric/src/toggle';
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
@@ -29,6 +30,7 @@ import { AppComponent, PanelBodyComponent } from './app.component';
     FabToggleModule,
     FabPersonaModule,
     FabMessageBarModule,
+    FabPivotModule,
   ],
   declarations: [AppComponent, PanelBodyComponent],
   bootstrap: [AppComponent],

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input, ComponentRef } from '@angular/core';
 import { IBreadcrumbItem } from 'office-ui-fabric-react/lib/Breadcrumb';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
@@ -230,6 +230,10 @@ export class AppComponent {
 
   onCompoundButtonClicked(event: MouseEvent) {
     alert('compound button clicked');
+  }
+
+  onPivotLinkClick(event: { item?: any, ev?: MouseEvent}) {
+    debugger;
   }
 
 }
