@@ -25,9 +25,21 @@
   <fab-persona [size]="personaSize" [presence]="personaPresence" imageUrl="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-react-assets/persona-female.png"
     imageInitials="AL" text="Annie Lindqvist" secondaryText="Software Engineer" tertiaryText="In a meeting" optionalText="Available at 4:00pm"></fab-persona>
  -->
-  <fab-pivot>
+  <fab-pivot [linkSize]="pivotLinkSize">
     <fab-pivot-item [headerText]="'My files'">Files content</fab-pivot-item>
     <fab-pivot-item [headerText]="'Tab 2'">Tab2 content</fab-pivot-item>
+  </fab-pivot>
+
+
+  <fab-pivot>
+    <fab-pivot-item linkText="My Files" [itemCount]="42" itemIcon="Emoji2">
+      my files content
+    </fab-pivot-item>
+    <fab-pivot-item [itemCount]="23" itemIcon="Recent">
+      recent content
+    </fab-pivot-item>
+    <fab-pivot-item itemIcon="Globe">globe content</fab-pivot-item>
+    <fab-pivot-item linkText="Shared with me" itemIcon="Ringer" [itemCount]="1">shared with me content</fab-pivot-item>
   </fab-pivot>
 
   <!--   <fab-action-button [iconProps]="{ iconName: 'AddFriend' }" text="Compound" [secondaryText]="'Loren ipsum dolor sit amet'"

@@ -18,5 +18,6 @@
     "unmount",
     "whitelisted"
   ],
-  "typescript.updateImportsOnFileMove.enabled": "never"
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

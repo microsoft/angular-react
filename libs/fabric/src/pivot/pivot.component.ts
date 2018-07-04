@@ -1,4 +1,4 @@
-import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
+import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent, passProp } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ContentChildren, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChild } from '@angular/core';
 import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib/components/Pivot';
 import * as React from 'react';
@@ -28,21 +28,37 @@ import * as React from 'react';
 export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
+  @passProp()
   @Input() componentRef?: IPivotItemProps['componentRef'];
+
+  @passProp()
   @Input() headerText?: IPivotItemProps['headerText'];
+
+  @passProp()
   @Input() headerButtonProps?: IPivotItemProps['headerButtonProps'];
+
+  @passProp()
   @Input() itemKey?: IPivotItemProps['itemKey'];
+
+  @passProp()
   @Input() ariaLabel?: IPivotItemProps['ariaLabel'];
+
+  @passProp()
   @Input() itemCount?: IPivotItemProps['itemCount'];
+
+  @passProp()
   @Input() itemIcon?: IPivotItemProps['itemIcon'];
+
+  @passProp()
   @Input() keytipProps?: IPivotItemProps['keytipProps'];
 
+  @passProp()
   @Input() renderItemLink?: InputRendererOptions<IPivotItemProps>;
 
   onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
 
   constructor(elementRef: ElementRef) {
-    super(elementRef);
+    super(elementRef, true);
   }
 
   ngOnInit() {
@@ -105,7 +121,7 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
   @Output() readonly onLinkClick = new EventEmitter<{ item?: PivotItem, ev?: MouseEvent }>();
 
   constructor(elementRef: ElementRef) {
-    super(elementRef);
+    super(elementRef, true);
 
     this.onLinkClickHandler = this.onLinkClickHandler.bind(this);
   }
