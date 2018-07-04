@@ -1,14 +1,5 @@
 import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input, ComponentRef } from '@angular/core';
-import { IBreadcrumbItem } from 'office-ui-fabric-react/lib/Breadcrumb';
-import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
-import { ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
-import { DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import { PanelType } from 'office-ui-fabric-react/lib/Panel';
-import { IChoiceGroupProps } from '../../../../node_modules/office-ui-fabric-react/lib/components/ChoiceGroup/ChoiceGroup.types';
-import { SelectableOptionMenuItemType } from '../../../../node_modules/office-ui-fabric-react/lib/utilities/selectableOption/SelectableOption.types';
-import { ITheme } from '../../../../node_modules/@uifabric/styling';
-import { SpinnerSize } from '../../../../node_modules/office-ui-fabric-react/lib/Spinner';
-import { PersonaSize, PersonaPresence, PivotLinkSize } from '../../../../node_modules/office-ui-fabric-react';
+import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button } from 'office-ui-fabric-react';
 
 @Component({
   selector: 'fab-panel-header',
@@ -68,6 +59,8 @@ export class AppComponent {
       injector: injector
     };
   }
+
+  linkAs = Button;
 
   getClassNames(theme: ITheme) {
     return {

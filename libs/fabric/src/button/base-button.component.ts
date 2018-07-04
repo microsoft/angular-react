@@ -1,11 +1,4 @@
-// tslint:disable:component-selector
-// tslint:disable:no-input-rename
-// tslint:disable:no-output-rename
-// tslint:disable:use-host-property-decorator
-// tslint:disable:no-output-on-prefix
-
-import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
-import { JsxRenderFunc } from '@angular-react/core/public-api';
+import { InputRendererOptions, ReactWrapperComponent, JsxRenderFunc } from '@angular-react/core';
 import { ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { IContextualMenuProps } from 'office-ui-fabric-react/lib/components/ContextualMenu';

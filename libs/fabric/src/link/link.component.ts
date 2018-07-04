@@ -1,35 +1,50 @@
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { ILinkProps } from 'office-ui-fabric-react/lib/components/Link';
+import { ILinkProps, Link } from 'office-ui-fabric-react/lib/components/Link';
+import { passProp } from '@angular-react/core/src/renderer/pass-prop-decorator';
 
 @Component({
   selector: 'fab-link',
   exportAs: 'fabLink',
   template: `
-    <!--<Link
-      #reactNode
-      [componentRef]="componentRef"
-      [disabled]="disabled"
-      [styles]="styles"
-      [theme]="theme"
-      [keytipProps]="keytipProps">
-      <ReactContent><ng-content></ng-content></ReactContent>
-    </Link> -->
-    <div>PLACEHOLDER</div>
+    <Disguise
+        #reactNode
+        [disguiseRootAs]="LinkType"
+
+        [href]="href"
+        [type]="type"
+        [download]="download"
+        [hrefLang]="hrefLang"
+        [media]="media"
+        [rel]="rel"
+        [target]="target"
+        [autoFocus]="autoFocus"
+        [form]="form"
+        [formAction]="formAction"
+        [formEncType]="formEncType"
+        [formMethod]="formMethod"
+        [formNoValidate]="formNoValidate"
+        [formTarget]="formTarget"
+        [name]="name"
+        [value]="value"
+        [as]="linkAs"
+
+        [componentRef]="componentRef"
+        [disabled]="disabled"
+        [styles]="styles"
+        [theme]="theme"
+        [keytipProps]="keytipProps">
+        <ReactContent><ng-content></ng-content></ReactContent>
+    </Disguise>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-link' }
 })
 export class FabLinkComponent extends ReactWrapperComponent<ILinkProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  readonly LinkType = Link;
 
-  @Input() componentRef?: ILinkProps['componentRef'];
-  @Input() disabled?: ILinkProps['disabled'];
-  @Input() styles?: ILinkProps['styles'];
-  @Input() theme?: ILinkProps['theme'];
-  @Input() as?: string | React.ComponentClass | React.StatelessComponent;
-  @Input() keytipProps?: ILinkProps['keytipProps'];
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() href: ILinkProps['href'];
   @Input() type?: ILinkProps['type'];
@@ -47,6 +62,13 @@ export class FabLinkComponent extends ReactWrapperComponent<ILinkProps> {
   @Input() formTarget?: ILinkProps['formTarget'];
   @Input() name?: ILinkProps['name'];
   @Input() value?: ILinkProps['value'];
+
+  @Input() componentRef?: ILinkProps['componentRef'];
+  @Input() disabled?: ILinkProps['disabled'];
+  @Input() styles?: ILinkProps['styles'];
+  @Input() theme?: ILinkProps['theme'];
+  @Input('as') linkAs?: string | React.ComponentClass | React.StatelessComponent;
+  @Input() keytipProps?: ILinkProps['keytipProps'];
 
   constructor(elementRef: ElementRef) {
     super(elementRef);

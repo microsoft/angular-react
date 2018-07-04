@@ -72,8 +72,8 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   template: `
     <Disguise
       #reactNode
-      [as]="PivotType"
-      [childrenAs]="PivotItemType"
+      [disguiseRootAs]="PivotType"
+      [disguiseChildrenAs]="PivotItemType"
       [ngChildComponents]="pivotItems?.toArray()"
 
       [componentRef]="componentRef"
