@@ -29,6 +29,7 @@ import { AppComponent, PanelBodyComponent } from './app.component';
     FabPersonaModule,
     FabPivotModule,
     FabLinkModule,
+    FabMessageBarModule,
   ],
   declarations: [AppComponent, PanelBodyComponent],
   bootstrap: [AppComponent],

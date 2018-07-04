@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input, ComponentRef } from '@angular/core';
-import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button } from 'office-ui-fabric-react';
+import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType } from 'office-ui-fabric-react';
 
 @Component({
   selector: 'fab-panel-header',
@@ -51,6 +51,8 @@ export class AppComponent {
   personaPresence = PersonaPresence.online;
 
   pivotLinkSize = PivotLinkSize.large;
+
+  messageBarType = MessageBarType.severeWarning;
 
   constructor(injector: Injector, componentFactoryResolver: ComponentFactoryResolver) {
     this.panelBodyComponent = {
