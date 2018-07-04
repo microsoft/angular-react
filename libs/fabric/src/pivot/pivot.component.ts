@@ -9,8 +9,15 @@ import * as React from 'react';
   template: `
     <PivotItem
       #reactNode
-      [ref]="setReactRef"
-      [headerText]="headerText">
+      [componentRef]="componentRef"
+      [headerText]="headerText"
+      [headerButtonProps]="headerButtonProps"
+      [itemKey]="itemKey"
+      [ariaLabel]="ariaLabel"
+      [itemCount]="itemCount"
+      [itemIcon]="itemIcon"
+      [keytipProps]="keytipProps"
+      [RenderItemLink]="renderItemLink && onRenderItemLink">
       <ReactContent><ng-content></ng-content></ReactContent>
     </PivotItem>
   `,
@@ -19,8 +26,9 @@ import * as React from 'react';
   host: { 'class': 'fab-pivot-item' }
 })
 export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps> implements OnInit {
-  @ViewChild('reactNode') reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
+  @Input() componentRef?: IPivotItemProps['componentRef'];
   @Input() headerText?: IPivotItemProps['headerText'];
   @Input() headerButtonProps?: IPivotItemProps['headerButtonProps'];
   @Input() itemKey?: IPivotItemProps['itemKey'];
@@ -33,20 +41,12 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
 
   onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
 
-  @Output() readonly __internal__onReactRefSet = new EventEmitter<PivotItem>();
-
   constructor(elementRef: ElementRef) {
     super(elementRef);
-
-    this.setReactRef = this.setReactRef.bind(this);
   }
 
   ngOnInit() {
     this.onRenderItemLink = this.createRenderPropHandler(this.renderItemLink);
-  }
-
-  setReactRef(ref: PivotItem) {
-    this.__internal__onReactRefSet.emit(ref);
   }
 }
 
@@ -56,12 +56,24 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   template: `
     <Disguise
       #reactNode
-      [parentAs]="PivotType"
+      [as]="PivotType"
       [childrenAs]="PivotItemType"
-      [parentProps]="parentProps"
-      [angularChildren]="pivotItems?.toArray()">
+      [ngChildComponents]="pivotItems?.toArray()"
+
+      [componentRef]="componentRef"
+      [styles]="styles"
+      [theme]="theme"
+      [className]="className"
+      [initialSelectedIndex]="initialSelectedIndex"
+      [initialSelectedKey]="initialSelectedKey"
+      [selectedKey]="selectedKey"
+      [linkSize]="linkSize"
+      [linkFormat]="linkFormat"
+      [headersOnly]="headersOnly"
+      [getTabId]="getTabId"
+      [LinkClick]="onLinkClickHandler">
       <ReactContent>
-        <ng-content></ng-content>
+        <ng-content select="fab-pivot-item"></ng-content>
       </ReactContent>
     </Disguise>
   `,
@@ -69,13 +81,10 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-pivot' }
 })
-export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> /* implements OnDestroy */ {
+export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
 
   readonly PivotType = Pivot;
   readonly PivotItemType = PivotItem;
-  readonly parentProps = {
-    onLinkClick: (item, ev) => this.onLinkClickHandler(item, ev),
-  }
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
@@ -97,6 +106,8 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> /* imp
 
   constructor(elementRef: ElementRef) {
     super(elementRef);
+
+    this.onLinkClickHandler = this.onLinkClickHandler.bind(this);
   }
 
   onLinkClickHandler(item?: PivotItem, ev?: React.MouseEvent<HTMLElement>) {
@@ -105,5 +116,4 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> /* imp
       item: item,
     });
   }
-
 }
