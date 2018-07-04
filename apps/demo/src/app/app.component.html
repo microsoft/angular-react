@@ -1,5 +1,24 @@
+<div>
+  <h1>Angular-React Demo</h1>
+  <h2>Getting up and running...</h2>
+
+  <ol>
+    <li>Add
+      <i>AngularReactBrowserModule</i>> to
+      <i>app.module.ts</i> in place of the default
+      <i>BrowserModule</i>.</li>
+    <li>Add
+      <i>Fab[component]Module</i> or
+      <i>Mat[component]Module</i> to
+      <i>app.module.ts</i> imports.</li>
+    <li>Add Fabric or Material components to your views.</li>
+  </ol>
+</div>
+
 <div style="height: 500vh">
-  <!--   <fab-default-button [primary]="true" [split]="true" [menuProps]="menuProps" (onMenuClick)="onMenuClick($event)">Button Content</fab-default-button>
+  <fab-link [href]="'http://dev.office.com/fabric/components/link'">it renders as an anchor tag.</fab-link>
+
+  <fab-default-button [primary]="true" [split]="true" [menuProps]="menuProps" (onMenuClick)="onMenuClick($event)">Button Content</fab-default-button>
 
   <div style="height: 50px">
     <fab-vertical-divider></fab-vertical-divider>
