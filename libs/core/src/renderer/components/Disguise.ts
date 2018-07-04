@@ -3,24 +3,22 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { ReactContent } from '../react-content';
 
-export interface DisguiseProps<TParentProps extends {}> {
-  parentType: React.ReactType;
-  parentProps?: TParentProps;
-  parentAs?: React.ReactType;
+export interface DisguiseProps {
+  as?: React.ReactType;
   childrenAs?: React.ReactType;
-  angularChildren: ReactWrapperComponent<any>[];
+  ngChildComponents: ReactWrapperComponent<any>[];
 }
 
-export class Disguise<TParentProps extends {}> extends React.PureComponent<DisguiseProps<TParentProps>> {
+export class Disguise extends React.PureComponent<DisguiseProps> {
   render() {
-    const { parentType, parentProps, parentAs, childrenAs, children, angularChildren, ...rest } = this.props;
-    const Root = parentAs || React.Fragment;
+    const { as, childrenAs, children, ngChildComponents, ...rest } = this.props;
+    const Root = as || React.Fragment;
 
     if (React.Children.count(children) === 1) {
       const [onlyChild] = React.Children.toArray(children);
       if (typeof onlyChild === 'object' && onlyChild.type === ReactContent) {
 
-        const renderedChildren = angularChildren.map((child, index) => {
+        const renderedChildren = ngChildComponents.map((child, index) => {
           return React.createElement(childrenAs, {
             ...child,
             key: index,
@@ -34,9 +32,9 @@ export class Disguise<TParentProps extends {}> extends React.PureComponent<Disgu
               childDomElement.appendChild(child.elementRef.nativeElement)
             }
           })
-        })
+        });
 
-        return React.createElement(Root, parentProps || null, renderedChildren);
+        return React.createElement(Root, rest || null, renderedChildren);
       }
     }
 
@@ -50,6 +48,6 @@ export class Disguise<TParentProps extends {}> extends React.PureComponent<Disgu
         ChildRoot, { ...child.props, key: child.key }, child);
     });
 
-    return React.createElement(Root, parentProps || null, renderedChildren);
+    return React.createElement(Root, rest || null, renderedChildren);
   }
 }
