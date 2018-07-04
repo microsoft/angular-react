@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 const DEBUG = false;
-export const CHILDREN_TO_APPEND_PROP = 'children-to-append';
+export const CHILDREN_TO_APPEND_PROP = 'children-to-append'; // TODO: Change to Symbol('children-to-append') after upgrade to TS 2.7.
 
 export interface ReactContentProps {
-  readonly [CHILDREN_TO_APPEND_PROP]: HTMLElement[];
+  readonly 'children-to-append': HTMLElement[]; // TODO: use CHILDREN_TO_APPEND_PROP after upgrade to TS 2.7.
 }
 
 export class ReactContent extends React.PureComponent<ReactContentProps> {

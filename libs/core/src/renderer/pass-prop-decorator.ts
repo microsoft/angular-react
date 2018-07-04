@@ -1,0 +1,41 @@
+export const passPropsSymbol = Symbol('passProps');
+
+export interface PassProp {
+  sourceKey: PropertyKey;
+  targetKey: PropertyKey;
+}
+
+function passPropImpl(target: Object, propertyKey: PropertyKey, targetKey: PropertyKey) {
+  if (!target[passPropsSymbol]) {
+    target[passPropsSymbol] = [];
+  }
+
+  (target[passPropsSymbol] as PassProp[]).push({
+    sourceKey: propertyKey,
+    targetKey: targetKey,
+  });
+}
+
+const passPropRename: (propName: string) => PropertyDecorator =
+  propName => (target, propertyKey) => passPropImpl(target, propertyKey, propName);
+
+const passPropDirect: PropertyDecorator =
+  (target, propertyKey) => passPropImpl(target, propertyKey, propertyKey);
+
+export function passProp(): PropertyDecorator;
+export function passProp(propName: string): PropertyDecorator;
+export function passProp(...args: any[]) {
+  if (args.length === 0) {
+    return passPropDirect;
+  }
+
+  if (args.length === 1) {
+    return passPropRename(args[0]);
+  }
+
+  throw new Error('[passProp] Only 0 or 1 arguments accepted.')
+}
+
+export function getPassProps<T extends object>(obj: T): PassProp[] {
+  return obj[passPropsSymbol];
+}
