@@ -15,3 +15,4 @@ export * from './src/image/public-api';
 export * from './src/panel/public-api';
 export * from './src/persona/public-api';
 export * from './src/spinner/public-api';
+export * from './src/message-bar/public-api';

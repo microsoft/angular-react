@@ -26,6 +26,19 @@
 
   <fab-toggle [defaultChecked]="true" [label]="'Enabled and checked'" onnText="On" offText="Off"></fab-toggle>
 
+
+  <ng-template #messageBarActions>
+    <div>
+      <fab-messagebar-button>Yes</fab-messagebar-button>
+      <fab-messagebar-button>No</fab-messagebar-button>
+    </div>
+  </ng-template>
+
+  <fab-message-bar [messageBarType]="messageBarType" [renderActions]="messageBarActions">
+    <span>Severe warning lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.</span>
+    <a href="www.bing.com">Visit our website.</a>
+  </fab-message-bar>
+
   <fab-persona [size]="personaSize" [presence]="personaPresence" imageUrl="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-react-assets/persona-female.png"
     imageInitials="AL" text="Annie Lindqvist" secondaryText="Software Engineer" tertiaryText="In a meeting" optionalText="Available at 4:00pm"></fab-persona>
 
@@ -106,14 +119,6 @@
 
   <fab-checkbox label="Checked checkbox" [(checked)]="isChecked"></fab-checkbox>
 
-  <!--   <div #calloutTarget>Width of callout is 200 unless otherwise noted</div>
-
-  <fab-callout [target]="calloutTarget" [calloutWidth]="200">
-    <p>
-      Message body is optional. If help documentation is available, consider adding a link to learn more at the bottom.
-    </p>
-  </fab-callout> -->
-
   <fab-choice-group [options]="choiceGroupOptions" label="Pick one" [required]="true"></fab-choice-group>
 
   <fab-fabric>
@@ -125,10 +130,6 @@
   <ng-template #renderCell let-nestingDepth="nestingDepth" let-item="item" let-itemIndex="itemIndex">
     <div>{{ item.name }}</div>
   </ng-template>
-
-  <fab-fabric>
-    <fab-grouped-list [groups]="groupedListItemsGroups" [items]="groupedListItems" [renderCell]="renderCell"></fab-grouped-list>
-  </fab-fabric>
 
   <fab-date-picker [value]="date"></fab-date-picker>
 </div>

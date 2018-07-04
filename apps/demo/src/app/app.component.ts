@@ -8,7 +8,7 @@ import { IChoiceGroupProps } from '../../../../node_modules/office-ui-fabric-rea
 import { SelectableOptionMenuItemType } from '../../../../node_modules/office-ui-fabric-react/lib/utilities/selectableOption/SelectableOption.types';
 import { ITheme } from '../../../../node_modules/@uifabric/styling';
 import { SpinnerSize } from '../../../../node_modules/office-ui-fabric-react/lib/Spinner';
-import { PersonaSize, PersonaPresence } from '../../../../node_modules/office-ui-fabric-react';
+import { PersonaSize, PersonaPresence, MessageBarType } from '../../../../node_modules/office-ui-fabric-react';
 
 @Component({
   selector: 'fab-panel-header',
@@ -58,6 +58,8 @@ export class AppComponent {
 
   personaSize = PersonaSize.size40;
   personaPresence = PersonaPresence.online;
+
+  messageBarType = MessageBarType.severeWarning;
 
   constructor(injector: Injector, componentFactoryResolver: ComponentFactoryResolver) {
     this.panelBodyComponent = {
