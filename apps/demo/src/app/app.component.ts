@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input, ComponentRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input, ComponentRef, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType } from 'office-ui-fabric-react';
+import { IExpandingCardOptions } from '@angular-react/fabric/src/components/hover-card';
 
 @Component({
   selector: 'fab-panel-header',
@@ -32,7 +33,7 @@ export class PanelBodyComponent {
   styleUrls: ['./app.component.css'],
   entryComponents: [PanelBodyComponent]
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   DialogType = DialogType;
 
   spinnerSize = SpinnerSize.medium;
@@ -54,7 +55,12 @@ export class AppComponent {
 
   messageBarType = MessageBarType.severeWarning;
 
-  constructor(injector: Injector, componentFactoryResolver: ComponentFactoryResolver) {
+  linkAs = Button;
+
+  @ViewChild('expandedCard') expandedCardTemplate: TemplateRef<any>;
+  expandingCardOptions: IExpandingCardOptions;
+
+  constructor(injector: Injector, componentFactoryResolver: ComponentFactoryResolver, private readonly cd: ChangeDetectorRef) {
     this.panelBodyComponent = {
       componentType: PanelBodyComponent,
       factoryResolver: componentFactoryResolver,
@@ -62,7 +68,24 @@ export class AppComponent {
     };
   }
 
-  linkAs = Button;
+  ngAfterViewInit() {
+    this.expandingCardOptions = {
+      renderCompactCard: ({data}) => {
+        const div = document.createElement("div");
+        div.innerText = `
+          Content!
+          Data: ${data}
+        `;
+
+        return div;
+      },
+      renderExpandedCard: this.expandedCardTemplate,
+      renderData: 'Some render data',
+    };
+
+    this.cd.detectChanges();
+  }
+
 
   getClassNames(theme: ITheme) {
     return {
@@ -227,7 +250,7 @@ export class AppComponent {
     alert('compound button clicked');
   }
 
-  onPivotLinkClick(event: { item?: any, ev?: MouseEvent}) {
+  onPivotLinkClick(event: { item?: any, ev?: MouseEvent }) {
     debugger;
   }
 

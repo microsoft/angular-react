@@ -19,4 +19,13 @@
   <fab-fabric>
     <fab-link [as]="linkAs" href="https://example.com">it renders as an anchor tag.</fab-link>
   </fab-fabric>
+
+  <ng-template #expandedCard let-data="data">
+    Expanded! Data: {{ data }}
+  </ng-template>
+
+  <fab-hover-card [expandingCardOptions]="expandingCardOptions" [instantOpenOnClick]="true">
+    Hover over me
+  </fab-hover-card>
+
 </div>
