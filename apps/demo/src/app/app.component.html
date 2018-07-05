@@ -30,11 +30,10 @@
 
   <fab-default-button (onClick)="isModalOpen = true">Open modal</fab-default-button>
 
-  <fab-modal [isOpen]="isModalOpen" [isBlocking]="false" (onDismiss)="onModalDismiss()" containerClassName="ms-modalExample-container">
+  <fab-modal [isOpen]="isModalOpen" [isBlocking]="false" (onDismiss)="isModalOpen = false" containerClassName="ms-modalExample-container">
       <div class="ms-modalExample-header">
         <span>Lorem Ipsum</span>
       </div>
-      <button (click)="isModalOpen = false">Dismiss</button>
       <div class="ms-modalExample-body">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lorem nulla, malesuada ut sagittis sit amet, vulputate

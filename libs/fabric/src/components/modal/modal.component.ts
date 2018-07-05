@@ -31,7 +31,9 @@ import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/d
       [Dismiss]="onDismissHandler"
       (onLayerDidMount)="onLayerDidMount.emit()"
       (onDismissed)="onDismissed.emit()">
-      <ReactContent><ng-content></ng-content></ReactContent>
+      <ReactContent [experimentalMode]="true">
+        <ng-content></ng-content>
+      </ReactContent>
     </Modal>
   `,
   styles: ['react-renderer'],

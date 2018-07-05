@@ -89,10 +89,6 @@ export class AppComponent implements AfterViewInit {
     this.cd.detectChanges();
   }
 
-  onModalDismiss(event) {
-    this.isModalOpen = false
-  }
-
   getClassNames(theme: ITheme) {
     return {
       wrapper: 'my-wrapper',

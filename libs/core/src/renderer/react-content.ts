@@ -6,6 +6,7 @@ export const CHILDREN_TO_APPEND_PROP = 'children-to-append'; // TODO: Change to 
 
 export interface ReactContentProps {
   readonly 'children-to-append': HTMLElement[]; // TODO: use CHILDREN_TO_APPEND_PROP after upgrade to TS 2.7.
+  experimentalMode?: boolean;
 }
 
 export class ReactContent extends React.PureComponent<ReactContentProps> {
@@ -15,12 +16,12 @@ export class ReactContent extends React.PureComponent<ReactContentProps> {
     if (this.props[CHILDREN_TO_APPEND_PROP]) {
       if (DEBUG) { console.warn('ReactContent Component > componentDidMount > childrenToAppend:', this.props[CHILDREN_TO_APPEND_PROP]); }
 
-      const parentElement = element.parentElement;
-      this.props[CHILDREN_TO_APPEND_PROP].forEach(child => parentElement.appendChild(child));
+      const hostElement = this.props.experimentalMode ? element.parentElement : element;
+      this.props[CHILDREN_TO_APPEND_PROP].forEach(child => hostElement.appendChild(child));
     }
   }
 
   render() {
-    return React.createElement('react-content', { style: { display: 'none' } });
+    return React.createElement('react-content', this.props.experimentalMode && { style: { display: 'none' } });
   }
 }
