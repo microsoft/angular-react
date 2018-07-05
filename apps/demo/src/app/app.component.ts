@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input, ComponentRef, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef, ViewEncapsulation, Component, ComponentFactoryResolver, Injector, Input, ComponentRef, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType } from 'office-ui-fabric-react';
 import { IExpandingCardOptions } from '@angular-react/fabric/src/components/hover-card';
 
@@ -31,7 +31,8 @@ export class PanelBodyComponent {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  entryComponents: [PanelBodyComponent]
+  entryComponents: [PanelBodyComponent],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements AfterViewInit {
   DialogType = DialogType;
@@ -56,6 +57,8 @@ export class AppComponent implements AfterViewInit {
   messageBarType = MessageBarType.severeWarning;
 
   linkAs = Button;
+
+  isModalOpen = false;
 
   @ViewChild('expandedCard') expandedCardTemplate: TemplateRef<any>;
   expandingCardOptions: IExpandingCardOptions;
@@ -86,6 +89,9 @@ export class AppComponent implements AfterViewInit {
     this.cd.detectChanges();
   }
 
+  onModalDismiss(event) {
+    this.isModalOpen = false
+  }
 
   getClassNames(theme: ITheme) {
     return {

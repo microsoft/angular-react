@@ -20,3 +20,4 @@ export * from './src/components/link/public-api';
 export * from './src/components/pivot/public-api';
 export * from './src/components/toggle/public-api';
 export * from './src/components/hover-card/public-api';
+export * from './src/components/modal/public-api';

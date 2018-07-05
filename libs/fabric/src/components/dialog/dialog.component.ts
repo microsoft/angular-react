@@ -27,7 +27,7 @@ import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui
       [hidden]="hidden"
       [modalProps]="modalProps"
       (onDismiss)="onDismissHandler($event)">
-      <ReactContent><ng-content></ng-content></ReactContent>
+      <ReactContent><ng-content></ng-content></ReactContent> <!-- FIXME: Need ReactContent to ideally have display:contents (unsupported by all browsers, need to get it's style from the outside container, sometimes only?) -->
     </Dialog>
   `,
   styles: ['react-renderer'],
