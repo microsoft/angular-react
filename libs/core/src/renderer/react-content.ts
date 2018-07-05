@@ -14,7 +14,7 @@ export class ReactContent extends React.PureComponent<ReactContentProps> {
     const element = ReactDOM.findDOMNode(this);
     if (this.props[CHILDREN_TO_APPEND_PROP]) {
       if (DEBUG) { console.warn('ReactContent Component > componentDidMount > childrenToAppend:', this.props[CHILDREN_TO_APPEND_PROP]); }
-      this.props[CHILDREN_TO_APPEND_PROP].map(child => element.appendChild(child));
+      this.props[CHILDREN_TO_APPEND_PROP].forEach(child => element.appendChild(child));
     }
   }
 
