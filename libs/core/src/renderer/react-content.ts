@@ -14,11 +14,13 @@ export class ReactContent extends React.PureComponent<ReactContentProps> {
     const element = ReactDOM.findDOMNode(this);
     if (this.props[CHILDREN_TO_APPEND_PROP]) {
       if (DEBUG) { console.warn('ReactContent Component > componentDidMount > childrenToAppend:', this.props[CHILDREN_TO_APPEND_PROP]); }
-      this.props[CHILDREN_TO_APPEND_PROP].forEach(child => element.appendChild(child));
+
+      const parentElement = element.parentElement;
+      this.props[CHILDREN_TO_APPEND_PROP].forEach(child => parentElement.appendChild(child));
     }
   }
 
   render() {
-    return React.createElement('react-content');
+    return React.createElement('react-content', { style: { display: 'none' } });
   }
 }
