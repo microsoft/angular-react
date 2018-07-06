@@ -17,16 +17,16 @@
 
 <div style="height: 500vh">
 
-  <fab-fabric>
+<!--   <fab-fabric>
     <fab-default-button (onClick)="shimmerIsDataLoaded = !shimmerIsDataLoaded">Toggle shimmer loading</fab-default-button>
 
-    <!--<div>Basic Shimmer with no elements provided. It defaults to a line of 16px height.</div>
+    <div>Basic Shimmer with no elements provided. It defaults to a line of 16px height.</div>
     <fab-shimmer [isDataLoaded]="shimmerIsDataLoaded">Loaded!</fab-shimmer>
     <fab-shimmer width="75%" [isDataLoaded]="shimmerIsDataLoaded">Loaded!</fab-shimmer>
     <fab-shimmer width="50%" [isDataLoaded]="shimmerIsDataLoaded">Loaded!</fab-shimmer>
 
     <div>Basic Shimmer with elements provided.</div>
-    <fab-shimmer [shimmerElements]="shimmerElements" [isDataLoaded]="shimmerIsDataLoaded">Loaded!</fab-shimmer>-->
+    <fab-shimmer [shimmerElements]="shimmerElements" [isDataLoaded]="shimmerIsDataLoaded">Loaded!</fab-shimmer>
 
     <ng-template #shimmerCustomElementsGroup>
         <div style="display: flex">
@@ -36,6 +36,10 @@
     </ng-template>
 
     <fab-shimmer [isDataLoaded]="shimmerIsDataLoaded" [renderCustomElementsGroup]="shimmerCustomElementsGroup" width="350">Loaded!</fab-shimmer>
+  </fab-fabric> -->
+
+  <fab-fabric>
+    <fab-slider label="Basic example:" [min]="1" [max]="3" [step]="1" [defaultValue]="2" [showValue]="true"></fab-slider>
   </fab-fabric>
 
   <!--<fab-fabric>

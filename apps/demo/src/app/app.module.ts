@@ -1,5 +1,5 @@
 import { AngularReactBrowserModule } from '@angular-react/core';
-import { FabBreadcrumbModule, FabButtonModule, FabCalloutModule, FabModalModule, FabCheckboxModule, FabChoiceGroupModule, FabComboBoxModule, FabCommandBarModule, FabDatePickerModule, FabDialogModule, FabDividerModule, FabFabricModule, FabGroupedListModule, FabIconModule, FabImageModule, FabPanelModule, FabPersonaModule, FabSpinnerModule, FabMessageBarModule, FabLinkModule, FabToggleModule, FabPivotModule, FabHoverCardModule, FabTooltipModule, FabShimmerModule } from '@angular-react/fabric';
+import { FabBreadcrumbModule, FabButtonModule, FabCalloutModule, FabModalModule, FabCheckboxModule, FabChoiceGroupModule, FabComboBoxModule, FabCommandBarModule, FabDatePickerModule, FabDialogModule, FabDividerModule, FabFabricModule, FabGroupedListModule, FabIconModule, FabImageModule, FabPanelModule, FabPersonaModule, FabSpinnerModule, FabMessageBarModule, FabLinkModule, FabToggleModule, FabPivotModule, FabHoverCardModule, FabTooltipModule, FabShimmerModule, FabSliderModule } from '@angular-react/fabric';
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
@@ -34,6 +34,7 @@ import { AppComponent, PanelBodyComponent } from './app.component';
     FabModalModule,
     FabTooltipModule,
     FabShimmerModule,
+    FabSliderModule,
   ],
   declarations: [AppComponent, PanelBodyComponent],
   bootstrap: [AppComponent],
