@@ -30,6 +30,8 @@
 
   <fab-default-button (onClick)="isModalOpen = true">Open modal</fab-default-button>
 
+  <fab-tooltip-host content="This is the tooltip">Hover over me</fab-tooltip-host>
+
   <fab-modal [isOpen]="isModalOpen" [isBlocking]="false" (onDismiss)="isModalOpen = false" containerClassName="ms-modalExample-container">
       <div class="ms-modalExample-header">
         <span>Lorem Ipsum</span>
