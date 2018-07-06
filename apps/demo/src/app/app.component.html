@@ -16,7 +16,29 @@
 </div>
 
 <div style="height: 500vh">
+
   <fab-fabric>
+    <fab-default-button (onClick)="shimmerIsDataLoaded = !shimmerIsDataLoaded">Toggle shimmer loading</fab-default-button>
+
+    <!--<div>Basic Shimmer with no elements provided. It defaults to a line of 16px height.</div>
+    <fab-shimmer [isDataLoaded]="shimmerIsDataLoaded">Loaded!</fab-shimmer>
+    <fab-shimmer width="75%" [isDataLoaded]="shimmerIsDataLoaded">Loaded!</fab-shimmer>
+    <fab-shimmer width="50%" [isDataLoaded]="shimmerIsDataLoaded">Loaded!</fab-shimmer>
+
+    <div>Basic Shimmer with elements provided.</div>
+    <fab-shimmer [shimmerElements]="shimmerElements" [isDataLoaded]="shimmerIsDataLoaded">Loaded!</fab-shimmer>-->
+
+    <ng-template #shimmerCustomElementsGroup>
+        <div style="display: flex">
+          <fab-shimmer-elements-group [shimmerElements]="shimmerCustomElementsGroupShimmerElementsOne"></fab-shimmer-elements-group>
+          <fab-shimmer-elements-group [flexWrap]="true" [shimmerElements]="shimmerCustomElementsGroupShimmerElementsTwo"></fab-shimmer-elements-group>
+      </div>
+    </ng-template>
+
+    <fab-shimmer [isDataLoaded]="shimmerIsDataLoaded" [renderCustomElementsGroup]="shimmerCustomElementsGroup" width="350">Loaded!</fab-shimmer>
+  </fab-fabric>
+
+  <!--<fab-fabric>
     <fab-link [as]="linkAs" href="https://example.com">it renders as an anchor tag.</fab-link>
   </fab-fabric>
 
@@ -75,6 +97,6 @@
           rhoncus dui.
         </p>
       </div>
-  </fab-modal>
+  </fab-modal>-->
 
 </div>

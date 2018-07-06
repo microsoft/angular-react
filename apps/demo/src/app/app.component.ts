@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ViewEncapsulation, Component, ComponentFactoryResolver, Injector, Input, ComponentRef, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
-import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType } from 'office-ui-fabric-react';
+import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType, ShimmerElementType } from 'office-ui-fabric-react';
 import { IExpandingCardOptions } from '@angular-react/fabric/src/components/hover-card';
 
 @Component({
@@ -60,8 +60,27 @@ export class AppComponent implements AfterViewInit {
 
   isModalOpen = false;
 
+  shimmerElements = [
+    { type: ShimmerElementType.circle },
+    { type: ShimmerElementType.gap, width: '2%' },
+    { type: ShimmerElementType.line }
+  ];
+
+  shimmerCustomElementsGroupShimmerElementsOne = [
+    { type: ShimmerElementType.circle, height: 40 },
+    { type: ShimmerElementType.gap, width: 10, height: 40 }
+  ];
+
+  shimmerCustomElementsGroupShimmerElementsTwo = [
+    { type: ShimmerElementType.line, width: 400, height: 10 },
+    { type: ShimmerElementType.gap, width: 100, height: 20 },
+    { type: ShimmerElementType.line, width: 500, height: 10 }
+  ];
+
   @ViewChild('expandedCard') expandedCardTemplate: TemplateRef<any>;
   expandingCardOptions: IExpandingCardOptions;
+
+  shimmerIsDataLoaded = false;
 
   constructor(injector: Injector, componentFactoryResolver: ComponentFactoryResolver, private readonly cd: ChangeDetectorRef) {
     this.panelBodyComponent = {
@@ -73,7 +92,7 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.expandingCardOptions = {
-      renderCompactCard: ({data}) => {
+      renderCompactCard: ({ data }) => {
         const div = document.createElement("div");
         div.innerText = `
           Content!

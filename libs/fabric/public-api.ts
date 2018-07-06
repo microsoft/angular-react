@@ -22,3 +22,4 @@ export * from './src/components/toggle/public-api';
 export * from './src/components/hover-card/public-api';
 export * from './src/components/tooltip/public-api';
 export * from './src/components/modal/public-api';
+export * from './src/components/shimmer/public-api';
