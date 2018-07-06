@@ -56,7 +56,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
    */
   protected createInputJsxRenderer<TContext extends object>(input: InputRendererOptions<TContext>): JsxRenderFunc<TContext> | undefined {
     if (input === undefined) {
-      throw new Error('input must be defined. Make sure you call "createInputJsxRenderer" after the Inputs have been set');
+      return undefined;
     }
 
     if (input instanceof TemplateRef) {
