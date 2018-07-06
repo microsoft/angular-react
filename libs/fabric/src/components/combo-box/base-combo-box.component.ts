@@ -1,9 +1,3 @@
-// tslint:disable:component-selector
-// tslint:disable:no-input-rename
-// tslint:disable:no-output-rename
-// tslint:disable:use-host-property-decorator
-// tslint:disable:no-output-on-prefix
-
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IComboBoxOption, IComboBoxProps } from 'office-ui-fabric-react/lib/components/ComboBox';

@@ -1,9 +1,3 @@
-// tslint:disable:component-selector
-// tslint:disable:no-input-rename
-// tslint:disable:no-output-rename
-// tslint:disable:use-host-property-decorator
-// tslint:disable:no-output-on-prefix
-
 import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
 import { FabBaseComboBoxComponent } from './base-combo-box.component';
 
@@ -39,9 +33,7 @@ import { FabBaseComboBoxComponent } from './base-combo-box.component';
       (onMenuDismissed)="onMenuDismissed.emit()">
     </ComboBox>
   `,
-  styles: [
-    'react-renderer',
-  ],
+  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-combo-box' }
 })

@@ -72,9 +72,7 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
       (onPhotoLoadingStateChange)="onPhotoLoadingStateChange.emit($event)">
     </Persona>
   `,
-  styles: [
-    'react-renderer',
-  ],
+  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-persona' }
 })
@@ -141,9 +139,7 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
       (onPhotoLoadingStateChange)="onPhotoLoadingStateChange.emit($event)">
     </PersonaCoin>
   `,
-  styles: [
-    'react-renderer',
-  ],
+  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-persona-coin' }
 })

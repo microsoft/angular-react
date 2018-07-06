@@ -1,12 +1,6 @@
-// tslint:disable:component-selector
-// tslint:disable:no-input-rename
-// tslint:disable:no-output-rename
-// tslint:disable:use-host-property-decorator
-// tslint:disable:no-output-on-prefix
-
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { ICalloutProps } from 'office-ui-fabric-react';
+import { ICalloutProps } from 'office-ui-fabric-react/lib/components/Callout';
 import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/positioning/positioning.types';
 
 @Component({
@@ -49,9 +43,7 @@ import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/pos
       <ReactContent><ng-content></ng-content></ReactContent>
     </Callout>
   `,
-  styles: [
-    'react-renderer',
-  ],
+  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-callout' }
 })

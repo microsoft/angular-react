@@ -20,7 +20,7 @@ import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
         [coverStyle]="coverStyle">
       </Image>
   `,
-  styles: ['react-renderer',],
+  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-image' }
 })

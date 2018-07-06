@@ -1,13 +1,7 @@
-// tslint:disable:component-selector
-// tslint:disable:no-input-rename
-// tslint:disable:no-output-rename
-// tslint:disable:use-host-property-decorator
-// tslint:disable:no-output-on-prefix
-
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
 import { IMessageBarProps } from 'office-ui-fabric-react/lib/components/MessageBar';
-import { BaseButton, Button } from 'office-ui-fabric-react';
+import { BaseButton, Button } from 'office-ui-fabric-react/lib/components/Button';
 
 @Component({
   selector: 'fab-message-bar',
@@ -30,9 +24,7 @@ import { BaseButton, Button } from 'office-ui-fabric-react';
       <ReactContent><ng-content></ng-content></ReactContent>
     </MessageBar>
   `,
-  styles: [
-    'react-renderer',
-  ],
+  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-message-bar' }
 })

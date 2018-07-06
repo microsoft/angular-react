@@ -1,7 +1,7 @@
 import { ReactWrapperComponent, InputRendererOptions, JsxRenderFunc } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit, EventEmitter, Output } from '@angular/core';
 import { ITooltipHostProps } from 'office-ui-fabric-react/lib/components/Tooltip';
-import { ITooltipProps } from 'office-ui-fabric-react';
+import { ITooltipProps } from 'office-ui-fabric-react/lib/components/Tooltip';
 import { omit } from '../../utils/omit';
 
 @Component({

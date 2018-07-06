@@ -1,9 +1,3 @@
-// tslint:disable:component-selector
-// tslint:disable:no-input-rename
-// tslint:disable:no-output-rename
-// tslint:disable:use-host-property-decorator
-// tslint:disable:no-output-on-prefix
-
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IGroupedListProps, IGroupRenderProps } from 'office-ui-fabric-react/lib/components/GroupedList';

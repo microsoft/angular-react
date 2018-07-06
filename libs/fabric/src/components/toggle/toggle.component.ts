@@ -1,9 +1,3 @@
-// tslint:disable:component-selector
-// tslint:disable:no-input-rename
-// tslint:disable:no-output-rename
-// tslint:disable:use-host-property-decorator
-// tslint:disable:no-output-on-prefix
-
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { IToggleProps } from 'office-ui-fabric-react/lib/components/Toggle';
@@ -29,9 +23,7 @@ import { IToggleProps } from 'office-ui-fabric-react/lib/components/Toggle';
       (onChanged)="onChanged.emit($event)">
     </Toggle>
   `,
-  styles: [
-    'react-renderer',
-  ],
+  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-toggle' }
 })

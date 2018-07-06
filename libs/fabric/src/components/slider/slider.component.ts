@@ -27,9 +27,7 @@ import { ISliderProps } from 'office-ui-fabric-react/lib/components/Slider';
       (onChange)="onChange.emit($event)">
     </Slider>
   `,
-  styles: [
-    'react-renderer',
-  ],
+  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-slider' }
 })

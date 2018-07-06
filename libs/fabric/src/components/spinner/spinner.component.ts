@@ -1,9 +1,3 @@
-// tslint:disable:component-selector
-// tslint:disable:no-input-rename
-// tslint:disable:no-output-rename
-// tslint:disable:use-host-property-decorator
-// tslint:disable:no-output-on-prefix
-
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ISpinnerProps } from 'office-ui-fabric-react/lib/components/Spinner';
@@ -25,9 +19,7 @@ import { ISpinnerProps } from 'office-ui-fabric-react/lib/components/Spinner';
       [styles]="styles">
     </Spinner>
   `,
-  styles: [
-    'react-renderer',
-  ],
+  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-spinner' }
 })

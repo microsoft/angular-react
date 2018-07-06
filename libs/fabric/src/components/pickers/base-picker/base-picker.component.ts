@@ -1,7 +1,8 @@
 import { ReactWrapperComponent, InputRendererOptions, JsxRenderFunc } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
 import { IBasePickerProps, BaseAutoFill } from 'office-ui-fabric-react/lib/components/Pickers';
-import { IPersonaProps, IPickerItemProps, IBasePickerSuggestionsProps } from 'office-ui-fabric-react';
+import { IPersonaProps } from 'office-ui-fabric-react/lib/components/Persona';
+import { IPickerItemProps, IBasePickerSuggestionsProps } from 'office-ui-fabric-react/lib/components/Pickers';
 import omit from '../../../utils/omit';
 
 export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<T>> extends ReactWrapperComponent<TProps> implements OnInit {
