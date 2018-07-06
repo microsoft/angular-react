@@ -82,6 +82,35 @@ export class AppComponent implements AfterViewInit {
 
   shimmerIsDataLoaded = false;
 
+  private _testTags = [
+    'black',
+    'blue',
+    'brown',
+    'cyan',
+    'green',
+    'magenta',
+    'mauve',
+    'orange',
+    'pink',
+    'purple',
+    'red',
+    'rose',
+    'violet',
+    'white',
+    'yellow'
+  ].map(item => ({ key: item, name: item }));
+
+  getTextFromItem = (item) => item.name;
+
+  getList = () => this._testTags;
+
+  private _listContainsDocument(tag: { key: string; name: string }, tagList: { key: string; name: string }[]) {
+    if (!tagList || !tagList.length || tagList.length === 0) {
+      return false;
+    }
+    return tagList.filter(compareTag => compareTag.key === tag.key).length > 0;
+  }
+
   constructor(injector: Injector, componentFactoryResolver: ComponentFactoryResolver, private readonly cd: ChangeDetectorRef) {
     this.panelBodyComponent = {
       componentType: PanelBodyComponent,
