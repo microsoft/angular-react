@@ -2,10 +2,6 @@ import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core
 import { EventEmitter, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, Output } from '@angular/core';
 import { IHoverCardProps, IExpandingCardProps } from 'office-ui-fabric-react/lib/components/HoverCard';
 import { omit } from '../../utils/omit';
-import * as React from 'react';
-import { ReactNode } from '@angular-react/core/src/renderer/react-node';
-import * as ReactDOM from 'react-dom';
-import { injectTemplateRef } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'fab-hover-card',

@@ -1,7 +1,6 @@
-import { ReactWrapperComponent } from '@angular-react/core';
+import { ReactWrapperComponent, passProp } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ILinkProps, Link } from 'office-ui-fabric-react/lib/components/Link';
-import { passProp } from '@angular-react/core/src/renderer/pass-prop-decorator';
 
 @Component({
   selector: 'fab-link',
@@ -42,7 +41,7 @@ import { passProp } from '@angular-react/core/src/renderer/pass-prop-decorator';
   host: { 'class': 'fab-link' }
 })
 export class FabLinkComponent extends ReactWrapperComponent<ILinkProps> {
-  readonly LinkType = Link;
+  readonly LinkType: any = Link;
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 

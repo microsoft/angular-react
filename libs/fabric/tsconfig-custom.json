@@ -21,7 +21,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "lib": ["dom", "es2015"],
+    "lib": ["dom", "es2017"],
     "paths": {
       "@angular-react/*": [
         "../../@angular-react/*"
