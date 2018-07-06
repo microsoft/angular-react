@@ -6,10 +6,20 @@ export const CHILDREN_TO_APPEND_PROP = 'children-to-append'; // TODO: Change to 
 
 export interface ReactContentProps {
   readonly 'children-to-append': HTMLElement[]; // TODO: use CHILDREN_TO_APPEND_PROP after upgrade to TS 2.7.
+
+  /**
+   * Experimental rendering mode.
+   * Uses a similar approach to `router-outlet`, where the child elements are added to the parent, instead of this node, and this is hidden.
+   * @default true
+   */
   experimentalMode?: boolean;
 }
 
 export class ReactContent extends React.PureComponent<ReactContentProps> {
+
+  static defaultProps: Partial<ReactContentProps> = {
+    experimentalMode: true,
+  };
 
   componentDidMount() {
     const element = ReactDOM.findDOMNode(this);

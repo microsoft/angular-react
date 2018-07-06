@@ -23,7 +23,7 @@ import { omit } from '../../utils/omit';
       [tooltipProps]="transformedTooltipProps"
       [TooltipToggle]="onTooltipToggleHandler"
       >
-      <ReactContent [experimentalMode]="true"><ng-content></ng-content></ReactContent>
+      <ReactContent><ng-content></ng-content></ReactContent>
     </TooltipHost>
   `,
   styles: [    'react-renderer'  ],
