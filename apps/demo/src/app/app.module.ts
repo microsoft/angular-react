@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
 import { AppComponent, PanelBodyComponent } from './app.component';
-import { FabTagPickerModule } from '@angular-react/fabric/src/components/pickers';
 
 @NgModule({
   imports: [
@@ -36,7 +35,6 @@ import { FabTagPickerModule } from '@angular-react/fabric/src/components/pickers
     FabTooltipModule,
     FabShimmerModule,
     FabSliderModule,
-    FabTagPickerModule,
     FabSearchBoxModule,
   ],
   declarations: [AppComponent, PanelBodyComponent],

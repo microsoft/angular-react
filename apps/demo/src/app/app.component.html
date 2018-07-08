@@ -17,18 +17,29 @@
 
 <div style="height: 500vh">
 
-  <!-- <fab-tag-picker [resolveSuggestions]="tagPicker.resolveSuggestions" [getTextFromItem]="tagPicker.getTextFromItem" [pickerSuggestionsOptions]="tagPicker.pickerSuggestionsOptions"
-    [itemLimit]="2">
-  </fab-tag-picker> -->
+  <fab-command-bar #commandBar [items]="commandBarItems" [farItems]="commandBarFarItems">
+  </fab-command-bar>
 
-  <fab-fabric>
-    <fab-tag-picker [resolveSuggestions]="getList" [emptyInputFocus]="getList" [getTextFromItem]="getTextFromItem" [pickerSuggestionsOptions]="{
-          suggestionsHeaderText: 'Suggested Tags',
-          noResultsFoundText: 'No Color Tags Found'
-      }" [itemLimit]="2"></fab-tag-picker>
-  </fab-fabric>
+  <fab-default-button (onClick)="toggleRun()" text="Toggle run"></fab-default-button>
 
-  <fab-search-box
-    placeholder="Search">
-  </fab-search-box>
+  <fab-panel [isOpen]="isPanelOpen" (onDismiss)="isPanelOpen = false">
+  </fab-panel>
+
+  <ng-template #customRange let-item="item">
+      <div>
+        Data: {{ item.data | json }}
+      </div>
+
+      <div>
+        <span>From: </span>
+        <input type="date" />
+      </div>
+
+      <div>
+        <span>To: </span>
+        <input type="date" />
+      </div>
+
+      <fab-default-button text="Done" (onClick)="item.onClick()"></fab-default-button>
+  </ng-template>
 </div>
