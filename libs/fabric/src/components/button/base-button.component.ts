@@ -1,7 +1,7 @@
 import { InputRendererOptions, ReactWrapperComponent, JsxRenderFunc } from '@angular-react/core';
 import { ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
-import { IContextualMenuProps } from 'office-ui-fabric-react/lib/components/ContextualMenu';
+import { IContextualMenuProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 
 export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButtonProps> implements OnInit {
 

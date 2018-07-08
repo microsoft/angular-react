@@ -1,6 +1,6 @@
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { IToggleProps } from 'office-ui-fabric-react/lib/components/Toggle';
+import { IToggleProps } from 'office-ui-fabric-react/lib/Toggle';
 
 @Component({
   selector: 'fab-toggle',

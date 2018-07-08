@@ -1,6 +1,6 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent, passProp } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ContentChildren, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChild } from '@angular/core';
-import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib/components/Pivot';
+import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
 import * as React from 'react';
 
 @Component({

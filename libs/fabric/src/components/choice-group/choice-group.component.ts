@@ -1,6 +1,6 @@
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { IChoiceGroupOption, IChoiceGroupProps } from 'office-ui-fabric-react/lib/components/ChoiceGroup';
+import { IChoiceGroupOption, IChoiceGroupProps } from 'office-ui-fabric-react/lib/ChoiceGroup';
 
 @Component({
   selector: 'fab-choice-group',

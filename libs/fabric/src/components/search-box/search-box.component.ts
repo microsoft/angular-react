@@ -1,8 +1,8 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
-import { ISearchBoxProps } from 'office-ui-fabric-react/lib/components/SearchBox';
-import { IButtonProps } from 'office-ui-fabric-react/lib/components/Button';
-import { IContextualMenuProps } from 'office-ui-fabric-react/lib/components/ContextualMenu';
+import { ISearchBoxProps } from 'office-ui-fabric-react/lib/SearchBox';
+import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
+import { IContextualMenuProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 import omit from '../../utils/omit';
 
 @Component({

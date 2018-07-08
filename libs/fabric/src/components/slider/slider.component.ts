@@ -1,6 +1,6 @@
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, Output, EventEmitter } from '@angular/core';
-import { ISliderProps } from 'office-ui-fabric-react/lib/components/Slider';
+import { ISliderProps } from 'office-ui-fabric-react/lib/Slider';
 
 @Component({
   selector: 'fab-slider',

@@ -1,6 +1,6 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IComboBoxOption, IComboBoxProps } from 'office-ui-fabric-react/lib/components/ComboBox';
+import { IComboBoxOption, IComboBoxProps } from 'office-ui-fabric-react/lib/ComboBox';
 
 export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<IComboBoxProps> implements OnInit {
   @Input() componentRef?: IComboBoxProps['componentRef'];

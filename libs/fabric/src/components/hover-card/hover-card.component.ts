@@ -1,6 +1,6 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
 import { EventEmitter, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, Output } from '@angular/core';
-import { IHoverCardProps, IExpandingCardProps } from 'office-ui-fabric-react/lib/components/HoverCard';
+import { IHoverCardProps, IExpandingCardProps } from 'office-ui-fabric-react/lib/HoverCard';
 import { omit } from '../../utils/omit';
 
 @Component({

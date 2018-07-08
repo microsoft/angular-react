@@ -1,7 +1,7 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ImageLoadState } from 'office-ui-fabric-react/lib/components/Image/Image.types';
-import { IPersonaCoinProps, IPersonaProps, IPersonaSharedProps } from 'office-ui-fabric-react/lib/components/Persona';
+import { IPersonaCoinProps, IPersonaProps, IPersonaSharedProps } from 'office-ui-fabric-react/lib/Persona';
 
 export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps> extends ReactWrapperComponent<TProps> implements OnInit {
   @Input() text?: IPersonaProps['text'];

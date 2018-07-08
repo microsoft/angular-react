@@ -1,6 +1,6 @@
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { ISpinnerProps } from 'office-ui-fabric-react/lib/components/Spinner';
+import { ISpinnerProps } from 'office-ui-fabric-react/lib/Spinner';
 
 @Component({
   selector: 'fab-spinner',

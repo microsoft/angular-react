@@ -1,7 +1,7 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { IGroupedListProps, IGroupRenderProps } from 'office-ui-fabric-react/lib/components/GroupedList';
-import { IListProps } from 'office-ui-fabric-react/lib/components/List/List.types';
+import { IGroupedListProps, IGroupRenderProps } from 'office-ui-fabric-react/lib/GroupedList';
+import { IListProps } from 'office-ui-fabric-react/lib/List';
 
 @Component({
   selector: 'fab-grouped-list',

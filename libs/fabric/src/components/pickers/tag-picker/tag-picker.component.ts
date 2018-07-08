@@ -1,6 +1,6 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit } from '@angular/core';
-import { ITagPickerProps, ITag } from 'office-ui-fabric-react/lib/components/Pickers/TagPicker/TagPicker';
+import { ITagPickerProps, ITag } from 'office-ui-fabric-react/lib/Pickers/TagPicker/TagPicker';
 import { FabBasePickerComponent } from '../base-picker/base-picker.component';
 
 @Component({

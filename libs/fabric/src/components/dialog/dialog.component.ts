@@ -1,6 +1,6 @@
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui-fabric-react/lib/components/Dialog';
+import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
 
 @Component({
   selector: 'fab-dialog',

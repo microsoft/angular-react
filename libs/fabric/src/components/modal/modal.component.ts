@@ -1,6 +1,6 @@
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, EventEmitter, ChangeDetectorRef, Output } from '@angular/core';
-import { IModalProps } from 'office-ui-fabric-react/lib/components/Modal';
+import { IModalProps } from 'office-ui-fabric-react/lib/Modal';
 import { IAccessiblePopupProps } from 'office-ui-fabric-react/lib/common/IAccessiblePopupProps';
 import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode';
 

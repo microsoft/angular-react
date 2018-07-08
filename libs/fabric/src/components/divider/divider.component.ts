@@ -1,6 +1,6 @@
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { IVerticalDividerProps } from 'office-ui-fabric-react/lib/components/Divider';
+import { IVerticalDividerProps } from 'office-ui-fabric-react/lib/Divider';
 
 @Component({
   selector: 'fab-vertical-divider',

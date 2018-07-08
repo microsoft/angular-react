@@ -1,6 +1,6 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit } from '@angular/core';
-import { IShimmerProps } from 'office-ui-fabric-react/lib/components/Shimmer';
+import { IShimmerProps } from 'office-ui-fabric-react/lib/Shimmer';
 import { IShimmerElementsGroupProps } from 'office-ui-fabric-react/lib/components/Shimmer/ShimmerElementsGroup/ShimmerElementsGroup.types';
 
 @Component({

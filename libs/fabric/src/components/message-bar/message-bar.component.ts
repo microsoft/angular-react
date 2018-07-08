@@ -1,7 +1,7 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
-import { IMessageBarProps } from 'office-ui-fabric-react/lib/components/MessageBar';
-import { BaseButton, Button } from 'office-ui-fabric-react/lib/components/Button';
+import { IMessageBarProps } from 'office-ui-fabric-react/lib/MessageBar';
+import { BaseButton, Button } from 'office-ui-fabric-react/lib/Button';
 
 @Component({
   selector: 'fab-message-bar',

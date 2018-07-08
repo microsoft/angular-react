@@ -1,7 +1,7 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/components/CommandBar';
-import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/components/ContextualMenu';
+import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
+import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 import omit from "../../utils/omit";
 
 @Component({
@@ -91,7 +91,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   private _farItems: ICommandBarItemOptions[];
   private _overflowItems: ICommandBarItemOptions[];
 
-  constructor(elementRef: ElementRef, private readonly changeDete\ctor: ChangeDetectorRef) {
+  constructor(elementRef: ElementRef, private readonly changeDetector: ChangeDetectorRef) {
     super(elementRef);
 
     this._transformCommandBarItemOptionsToProps = this._transformCommandBarItemOptionsToProps.bind(this);

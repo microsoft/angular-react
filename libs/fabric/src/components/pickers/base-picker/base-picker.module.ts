@@ -1,7 +1,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { BasePicker } from 'office-ui-fabric-react/lib/components/pickers';
+import { BasePicker } from 'office-ui-fabric-react/lib/pickers';
 
 @NgModule({
   imports: [CommonModule],

@@ -1,6 +1,6 @@
 import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { ICalloutProps } from 'office-ui-fabric-react/lib/components/Callout';
+import { ICalloutProps } from 'office-ui-fabric-react/lib/Callout';
 import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/positioning/positioning.types';
 
 @Component({
