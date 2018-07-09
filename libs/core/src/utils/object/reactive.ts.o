@@ -1,0 +1,17 @@
+export function reactive<T>(obj: T): T {
+  const propertyDescriptors = Object.keys(obj).map<PropertyDescriptor>(key => {
+    let backingValue = obj[key];
+
+    return {
+      get() { return backingValue; },
+      set(value) {
+        backingValue = value;
+      },
+    };
+  });
+
+  Object.defineProperties(obj, propertyDescriptors.reduce(({}, currentDescriptor) )
+    );
+}
+
+export func

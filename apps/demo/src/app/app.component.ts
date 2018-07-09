@@ -1,8 +1,7 @@
 import { ChangeDetectorRef, ViewEncapsulation, Component, ComponentFactoryResolver, Injector, Input, ComponentRef, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType, ShimmerElementType } from 'office-ui-fabric-react';
-import { IExpandingCardOptions } from '@angular-react/fabric/src/components/hover-card';
-import { ICommandBarItemOptions, FabCommandBarComponent } from '@angular-react/fabric/src/components/command-bar';
-import { DateRangeModel } from 'apps/demo/src/app/daterange.model';
+import { ICommandBarItemOptions, FabCommandBarComponent,IExpandingCardOptions } from '@angular-react/fabric';
+import { observable } from 'mobx';
 
 @Component({
   selector: 'fab-panel-header',
@@ -41,7 +40,7 @@ export class AppComponent {
   @ViewChild(FabCommandBarComponent) commandBar: FabCommandBarComponent;
   @ViewChild('customRange') customRangeTemplate: TemplateRef<{ item: any, dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
 
-  commandBarItems: ICommandBarItemOptions[] = [
+  @observable commandBarItems: ICommandBarItemOptions[] = [
     {
       key: 'run',
       text: 'Run',
@@ -97,6 +96,7 @@ export class AppComponent {
     {
       key: 'copy',
       text: 'Copy',
+      disabled: true,
       iconProps: {
         iconName: 'Copy'
       },
@@ -107,6 +107,9 @@ export class AppComponent {
       text: 'Last 30 days',
       iconProps: {
         iconName: 'Calendar',
+      },
+      onClick: () => {
+        console.log('date-picker clicked');
       },
       subMenuProps: {
         onItemClick: (ev, item) => {
@@ -119,15 +122,17 @@ export class AppComponent {
           {
             key: '24h',
             text: 'Last 24 hours',
-
+            onClick: () => console.log('24h clicked'),
           },
           {
             key: '7d',
             text: 'Last 7 days',
+            onClick: () => console.log('7d clicked'),
           },
           {
             key: '30d',
             text: 'Last 30 days',
+            onClick: () => console.log('30d clicked'),
           },
           {
             key: 'custom',
@@ -191,8 +196,6 @@ export class AppComponent {
   toggleRun() {
     const runItem = this.commandBarItems.find(item => item.key === 'run');
     runItem.disabled = !runItem.disabled;
-
-    this.commandBar.detectChanges();
   }
 
 }

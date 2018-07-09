@@ -1,8 +1,9 @@
-import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
+import { ReactWrapperComponent, InputRendererOptions, isReactNode } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 import omit from "../../utils/omit";
+import { IObservableArray, extendObservable, observable } from 'mobx';
 
 @Component({
   selector: 'fab-command-bar',
@@ -30,8 +31,8 @@ import omit from "../../utils/omit";
     </CommandBar>
   `,
   styles: ['react-renderer'],
+  host: { 'class': 'fab-command-bar' },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-command-bar' }
 })
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps> {
 
@@ -60,35 +61,35 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     return this._overflowItems;
   }
 
-  @Input() set items(value: ICommandBarItemOptions[]) {
+  @Input() set items(value: IObservableArray<ICommandBarItemOptions>) {
     this._items = value;
 
-    if (value) this.transformedItems = value.map(this._transformCommandBarItemOptionsToProps);
+    if (value) this.transformedItems = observable(value.map(this._transformCommandBarItemOptionsToProps));
   }
 
-  get items(): ICommandBarItemOptions[] {
+  get items(): IObservableArray<ICommandBarItemOptions> {
     return this._items;
   }
 
-  @Input() set farItems(value: ICommandBarItemOptions[]) {
+  @Input() set farItems(value: IObservableArray<ICommandBarItemOptions>) {
     this._farItems = value;
 
     if (value) this.transformedFarItems = value.map(this._transformCommandBarItemOptionsToProps);
   }
 
-  get farItems(): ICommandBarItemOptions[] {
+  get farItems(): IObservableArray<ICommandBarItemOptions> {
     return this._farItems;
   }
 
   @Output() readonly onDataReduced = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
   @Output() readonly onDataGrown = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
 
-  transformedItems: ICommandBarItemProps[];
+  transformedItems: IObservableArray<ICommandBarItemProps>;
   transformedFarItems: ICommandBarItemProps[];
   transformedOverflowItems: ICommandBarItemProps[];
 
-  private _items: ICommandBarItemOptions[];
-  private _farItems: ICommandBarItemOptions[];
+  private _items: IObservableArray<ICommandBarItemOptions>;
+  private _farItems: IObservableArray<ICommandBarItemOptions>;
   private _overflowItems: ICommandBarItemOptions[];
 
   constructor(elementRef: ElementRef, private readonly changeDetector: ChangeDetectorRef) {
@@ -98,26 +99,66 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   }
 
   detectChanges() {
-    // Since React only re-renders when props or state are changed, we need to manually change the props (reference).
-    if (this.items) this.items = [...this.items];
-    if (this.farItems) this.farItems = [...this.farItems];
-    if (this.overflowItems) this.overflowItems = [...this.overflowItems];
-
-    this.changeDetector.detectChanges();
+    if (isReactNode(this.reactNodeRef.nativeElement)) {
+      this.reactNodeRef.nativeElement.setRenderPending();
+    }
   }
 
   private _transformCommandBarItemOptionsToProps(itemOptions: ICommandBarItemOptions): ICommandBarItemProps {
-    const sharedProperties = omit(itemOptions, 'renderIcon', 'render');
+    '$mobx' in itemOptions && itemOptions['$mobx'].observe(changes => {
+      this.detectChanges();
+    });
 
     const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon);
     const renderer = this.createInputJsxRenderer(itemOptions.render);
 
-    return Object.assign(
+    return extendObservable(
+      itemOptions,
+      Object.assign({},
+        iconRenderer && { onRenderIcon: (props) => iconRenderer(props) } as Pick<ICommandBarItemProps, 'onRenderIcon'>,
+        renderer && { onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>
+      )
+    );
+
+
+    /* const sharedProperties = omit(itemOptions, 'renderIcon', 'render');
+
+    const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon);
+    const renderer = this.createInputJsxRenderer(itemOptions.render);
+
+    if (iconRenderer) Object.defineProperty(sharedProperties, 'onRenderIcon', {
+      get() {
+        return (props) => iconRenderer(props);
+      }
+    });
+
+    if (renderer) Object.defineProperty(sharedProperties, 'onRender', {
+      get() {
+        return (item, dismissMenu) => renderer({ item, dismissMenu });
+      }
+    });
+
+    const self = this;
+
+    let backingDisabledValue = itemOptions.disabled;
+    Object.defineProperty(itemOptions, 'disabled', {
+      get() {
+        return backingDisabledValue;
+      },
+      set(value) {
+        sharedProperties.disabled = backingDisabledValue = value;
+        self.detectChanges();
+      }
+    });
+
+    return sharedProperties as ICommandBarItemProps; */
+
+    /* return Object.assign(
       {},
       sharedProperties,
       iconRenderer && { onRenderIcon: (props) => iconRenderer(props) } as Pick<ICommandBarItemProps, 'onRenderIcon'>,
       renderer && { onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>,
-    ) as ICommandBarItemProps;
+    ) as ICommandBarItemProps; */
   }
 }
 

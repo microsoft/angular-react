@@ -5,6 +5,7 @@ import * as ReactDOM from 'react-dom';
 import removeUndefinedProperties from '../utils/object/remove-undefined-properties';
 import { CHILDREN_TO_APPEND_PROP } from './react-content';
 import { getComponentClass } from "./registry";
+import { observer, Observer } from 'mobx-react';
 
 const DEBUG = false;
 
@@ -190,7 +191,9 @@ export class ReactNode {
       removeUndefinedProperties(this.props)
     );
 
+
     if (DEBUG) { console.warn('ReactNode > renderRecursive > type:', this.toString(), 'props:', this.props, 'children:', children); }
+
     return React.createElement(this.type, clearedProps, children.length > 0 ? children : undefined);
   }
 
