@@ -12,7 +12,7 @@ export abstract class ReactiveReactWrapperComponent<TProps extends {}> extends R
     this._disposables.forEach(dispose => dispose());
   }
 
-  detectChanges(changes: IObjectDidChange) {
+  protected detectChanges(changes: IObjectDidChange) {
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       this.reactNodeRef.nativeElement.setRenderPending();
     }

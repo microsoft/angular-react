@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ViewEncapsulation, Component, ComponentFactoryResolver, Injector, Input, ComponentRef, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType, ShimmerElementType } from 'office-ui-fabric-react';
-import { ICommandBarItemOptions, FabCommandBarComponent,IExpandingCardOptions } from '@angular-react/fabric';
-import { observable } from 'mobx';
+import { ICommandBarItemOptions, FabCommandBarComponent, IExpandingCardOptions } from '@angular-react/fabric';
+import { observable, computed } from 'mobx';
 
 @Component({
   selector: 'fab-panel-header',
@@ -116,30 +116,27 @@ export class AppComponent {
           console.log(item.text, 'clicked');
 
           this.commandBarItems.find(item => item.key === 'date-picker').text = item.text;
-          this.commandBarItems = [...this.commandBarItems];
         },
         items: [
           {
             key: '24h',
             text: 'Last 24 hours',
-            onClick: () => console.log('24h clicked'),
           },
           {
             key: '7d',
             text: 'Last 7 days',
-            onClick: () => console.log('7d clicked'),
           },
           {
             key: '30d',
             text: 'Last 30 days',
-            onClick: () => console.log('30d clicked'),
           },
           {
             key: 'custom',
             text: 'Custom range...',
             onClick: () => {
-              this.commandBarItems = [
-                ...this.commandBarItems,
+              this.commandBarItems.find(item => item.key === 'date-picker').text = 'Custom range';
+
+              this.commandBarItems.push(
                 {
                   key: 'custom-range-range',
                   data: {
@@ -149,8 +146,8 @@ export class AppComponent {
                   onClick: () => {
                     debugger;
                   }
-                },
-              ];
+                }
+              );
             },
           },
         ]

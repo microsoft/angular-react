@@ -3,8 +3,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Ou
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 import omit from "../../utils/omit";
-import { IObservableArray, extendObservable, observable, isObservable } from 'mobx';
-// import { IObservableValue } from 'mobx/lib/types/observablevalue';
+import { IObservableArray, extendObservable, observable, isObservable, computed, autorun } from 'mobx';
 
 @Component({
   selector: 'fab-command-bar',
@@ -36,6 +35,7 @@ import { IObservableArray, extendObservable, observable, isObservable } from 'mo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCommandBarComponent extends ReactiveReactWrapperComponent<ICommandBarProps> {
+  _items: any;
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
@@ -52,46 +52,44 @@ export class FabCommandBarComponent extends ReactiveReactWrapperComponent<IComma
   @Input() onReduceData?: ICommandBarProps['onReduceData'];
   @Input() onGrowData?: ICommandBarProps['onGrowData'];
 
-  @Input() set overflowItems(value: ICommandBarItemOptions[]) {
-    this._overflowItems = value;
+  @Input() overflowItems: ICommandBarItemOptions[];
+  @Input() items: ICommandBarItemOptions[];
+  /*   @Input() set items(value: IObservableArray<ICommandBarItemOptions>) {
+      this._items = value;
 
-    if (value) this.transformedOverflowItems = value.map(this._transformCommandBarItemOptionsToProps);
-  }
+      if (value) {
+        extendObservable(this, {
+          get transformedItems() { return this._items.map(item => this._transformCommandBarItemOptionsToProps(item)); },
+        }, {
+          transformedItems: computed
+        });
+      }
+    }
 
-  get overflowItems(): ICommandBarItemOptions[] {
-    return this._overflowItems;
-  }
+    get items(): IObservableArray<ICommandBarItemOptions> {
+      return this._items;
+    } */
 
-  @Input() set items(value: IObservableArray<ICommandBarItemOptions>) {
-    this._items = value;
-
-    if (value) this.transformedItems = observable(value.map(this._transformCommandBarItemOptionsToProps));
-  }
-
-  get items(): IObservableArray<ICommandBarItemOptions> {
-    return this._items;
-  }
-
-  @Input() set farItems(value: IObservableArray<ICommandBarItemOptions>) {
-    this._farItems = value;
-
-    if (value) this.transformedFarItems = value.map(this._transformCommandBarItemOptionsToProps);
-  }
-
-  get farItems(): IObservableArray<ICommandBarItemOptions> {
-    return this._farItems;
-  }
+  @Input() farItems: IObservableArray<ICommandBarItemOptions>;
 
   @Output() readonly onDataReduced = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
   @Output() readonly onDataGrown = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
 
-  transformedItems: IObservableArray<ICommandBarItemProps>;
-  transformedFarItems: ICommandBarItemProps[];
-  transformedOverflowItems: ICommandBarItemProps[];
+  @computed({ keepAlive: true, requiresReaction: false}) get transformedItems(): ICommandBarItemProps[] {
+    if (!this.items) return [];
 
-  private _items: IObservableArray<ICommandBarItemOptions>;
-  private _farItems: IObservableArray<ICommandBarItemOptions>;
-  private _overflowItems: ICommandBarItemOptions[];
+    return this.items.map(item => this._transformCommandBarItemOptionsToProps(item));
+  }
+
+  @computed get transformedFarItems(): ICommandBarItemProps[] {
+    if (!this.farItems) return undefined;
+    return this.farItems.map(this._transformCommandBarItemOptionsToProps);
+  }
+
+  @computed get transformedOverflowItems(): ICommandBarItemProps[] {
+    if (!this.overflowItems) return undefined;
+    return this.overflowItems.map(this._transformCommandBarItemOptionsToProps);
+  }
 
   constructor(elementRef: ElementRef) {
     super(elementRef);
@@ -99,14 +97,8 @@ export class FabCommandBarComponent extends ReactiveReactWrapperComponent<IComma
     this._transformCommandBarItemOptionsToProps = this._transformCommandBarItemOptionsToProps.bind(this);
   }
 
-  detectChanges() {
-    if (isReactNode(this.reactNodeRef.nativeElement)) {
-      this.reactNodeRef.nativeElement.setRenderPending();
-    }
-  }
-
   private _transformCommandBarItemOptionsToProps(itemOptions: ICommandBarItemOptions): ICommandBarItemProps {
-    this.observe(itemOptions);
+    // this.observe(itemOptions);
 
     const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon);
     const renderer = this.createInputJsxRenderer(itemOptions.render);
