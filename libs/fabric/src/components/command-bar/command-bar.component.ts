@@ -1,9 +1,10 @@
-import { ReactWrapperComponent, InputRendererOptions, isReactNode } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { ReactiveReactWrapperComponent, InputRendererOptions, isReactNode } from '@angular-react/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 import omit from "../../utils/omit";
-import { IObservableArray, extendObservable, observable } from 'mobx';
+import { IObservableArray, extendObservable, observable, isObservable } from 'mobx';
+// import { IObservableValue } from 'mobx/lib/types/observablevalue';
 
 @Component({
   selector: 'fab-command-bar',
@@ -34,7 +35,7 @@ import { IObservableArray, extendObservable, observable } from 'mobx';
   host: { 'class': 'fab-command-bar' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps> {
+export class FabCommandBarComponent extends ReactiveReactWrapperComponent<ICommandBarProps> {
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
@@ -92,7 +93,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   private _farItems: IObservableArray<ICommandBarItemOptions>;
   private _overflowItems: ICommandBarItemOptions[];
 
-  constructor(elementRef: ElementRef, private readonly changeDetector: ChangeDetectorRef) {
+  constructor(elementRef: ElementRef) {
     super(elementRef);
 
     this._transformCommandBarItemOptionsToProps = this._transformCommandBarItemOptionsToProps.bind(this);
@@ -105,9 +106,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   }
 
   private _transformCommandBarItemOptionsToProps(itemOptions: ICommandBarItemOptions): ICommandBarItemProps {
-    '$mobx' in itemOptions && itemOptions['$mobx'].observe(changes => {
-      this.detectChanges();
-    });
+    this.observe(itemOptions);
 
     const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon);
     const renderer = this.createInputJsxRenderer(itemOptions.render);
@@ -119,46 +118,6 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
         renderer && { onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>
       )
     );
-
-
-    /* const sharedProperties = omit(itemOptions, 'renderIcon', 'render');
-
-    const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon);
-    const renderer = this.createInputJsxRenderer(itemOptions.render);
-
-    if (iconRenderer) Object.defineProperty(sharedProperties, 'onRenderIcon', {
-      get() {
-        return (props) => iconRenderer(props);
-      }
-    });
-
-    if (renderer) Object.defineProperty(sharedProperties, 'onRender', {
-      get() {
-        return (item, dismissMenu) => renderer({ item, dismissMenu });
-      }
-    });
-
-    const self = this;
-
-    let backingDisabledValue = itemOptions.disabled;
-    Object.defineProperty(itemOptions, 'disabled', {
-      get() {
-        return backingDisabledValue;
-      },
-      set(value) {
-        sharedProperties.disabled = backingDisabledValue = value;
-        self.detectChanges();
-      }
-    });
-
-    return sharedProperties as ICommandBarItemProps; */
-
-    /* return Object.assign(
-      {},
-      sharedProperties,
-      iconRenderer && { onRenderIcon: (props) => iconRenderer(props) } as Pick<ICommandBarItemProps, 'onRenderIcon'>,
-      renderer && { onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>,
-    ) as ICommandBarItemProps; */
   }
 }
 

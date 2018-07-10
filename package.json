@@ -67,7 +67,6 @@
     "@nrwl/nx": "0.10.0",
     "core-js": "^2.4.1",
     "mobx": "^4.3.1",
-    "mobx-react": "^5.2.3",
     "ngrx-store-freeze": "^0.2.1",
     "office-ui-fabric-react": "6.22.0",
     "react": "^16.3.1",

@@ -5,7 +5,6 @@ import * as ReactDOM from 'react-dom';
 import removeUndefinedProperties from '../utils/object/remove-undefined-properties';
 import { CHILDREN_TO_APPEND_PROP } from './react-content';
 import { getComponentClass } from "./registry";
-import { observer, Observer } from 'mobx-react';
 
 const DEBUG = false;
 
