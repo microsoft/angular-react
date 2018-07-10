@@ -1,5 +1,5 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ISearchBoxProps } from 'office-ui-fabric-react/lib/SearchBox';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { IContextualMenuProps } from 'office-ui-fabric-react/lib/ContextualMenu';
@@ -71,8 +71,8 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
 
   private _clearButtonOptions: IButtonOptions;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onSearchHandler = this.onSearchHandler.bind(this);
@@ -108,16 +108,6 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
   }
 
   private _transformButtonOptionsToProps(options: IButtonOptions): IButtonProps {
-    const sharedProperties = omit(options,
-      'renderIcon',
-      'renderText',
-      'renderDescription',
-      'renderAriaDescription',
-      'renderChildren',
-      'renderMenuIcon',
-      'renderMenu'
-    );
-
     const iconRenderer = this.createInputJsxRenderer(options.renderIcon);
     const textRenderer = this.createInputJsxRenderer(options.renderText);
     const descriptionRenderer = this.createInputJsxRenderer(options.renderDescription);
@@ -127,8 +117,7 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
     const menuRenderer = this.createInputJsxRenderer(options.renderMenu);
 
     return Object.assign(
-      {},
-      sharedProperties,
+      options,
       iconRenderer && { onRenderIcon: props => iconRenderer(props) } as Pick<IButtonProps, 'onRenderIcon'>,
       textRenderer && { onRenderText: props => textRenderer(props) } as Pick<IButtonProps, 'onRenderText'>,
       descriptionRenderer && { onRenderDescription: props => descriptionRenderer(props) } as Pick<IButtonProps, 'onRenderDescription'>,
@@ -142,11 +131,11 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
 }
 
 export interface IButtonOptions extends Pick<IButtonProps, 'componentRef' | 'href' | 'primary' | 'uniqueId' | 'disabled' | 'allowDisabledFocus' | 'primaryDisabled' | 'styles' | 'theme' | 'checked' | 'className' | 'ariaLabel' | 'ariaDescription' | 'ariaHidden' | 'text' | 'iconProps' | 'menuProps' | 'onAfterMenuDismiss' | 'split' | 'menuIconProps' | 'splitButtonAriaLabel' | 'onMenuClick' | 'secondaryText' | 'toggled' | 'data' | 'getClassNames' | 'getSplitButtonClassNames' | 'menuTriggerKeyCode' | 'keytipProps' | 'persistMenu'> {
-  renderIcon: InputRendererOptions<IButtonProps>;
-  renderText: InputRendererOptions<IButtonProps>;
-  renderDescription: InputRendererOptions<IButtonProps>;
-  renderAriaDescription: InputRendererOptions<IButtonProps>;
-  renderChildren: InputRendererOptions<IButtonProps>;
-  renderMenuIcon: InputRendererOptions<IButtonProps>;
-  renderMenu: InputRendererOptions<IContextualMenuProps>;
+  readonly renderIcon: InputRendererOptions<IButtonProps>;
+  readonly renderText: InputRendererOptions<IButtonProps>;
+  readonly renderDescription: InputRendererOptions<IButtonProps>;
+  readonly renderAriaDescription: InputRendererOptions<IButtonProps>;
+  readonly renderChildren: InputRendererOptions<IButtonProps>;
+  readonly renderMenuIcon: InputRendererOptions<IButtonProps>;
+  readonly renderMenu: InputRendererOptions<IContextualMenuProps>;
 }

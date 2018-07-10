@@ -1,5 +1,5 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
-import { EventEmitter, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, Output } from '@angular/core';
+import { EventEmitter, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, Output, ChangeDetectorRef } from '@angular/core';
 import { IHoverCardProps, IExpandingCardProps } from 'office-ui-fabric-react/lib/HoverCard';
 import { omit } from '../../utils/omit';
 
@@ -63,19 +63,16 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
   transformedExpandingCardProps: IExpandingCardProps;
   private _expandingCardOptions: IExpandingCardOptions;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 
   private _transformExpandingCardOptionsToProps(options: IExpandingCardOptions): IExpandingCardProps {
-    const sharedProperties = omit(options, 'renderCompactCard', 'renderExpandedCard');
-
     const compactCardRenderer = this.createInputJsxRenderer(options.renderCompactCard);
     const expandedCardRenderer = this.createInputJsxRenderer(options.renderExpandedCard);
 
     return Object.assign(
-      {},
-      sharedProperties,
+      options,
       compactCardRenderer && { onRenderCompactCard: data => compactCardRenderer({ data }) } as Pick<IExpandingCardProps, 'onRenderCompactCard'>,
       expandedCardRenderer && { onRenderExpandedCard: data => expandedCardRenderer({ data }) } as Pick<IExpandingCardProps, 'onRenderExpandedCard'>,
     );
@@ -86,8 +83,8 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
  * Counterpart of `IExpandingCardProps`, with Angular adjustments.
  */
 export interface IExpandingCardOptions extends Pick<IExpandingCardProps, 'componentRef' | 'renderData' | 'targetElement' | 'onEnter' | 'onLeave' | 'compactCardHeight' | 'expandedCardHeight' | 'mode' | 'theme' | 'directionalHint' | 'gapSpace' | 'styles' | 'directionalHintFixed' | 'trapFocus' | 'firstFocus'> {
-  renderCompactCard?: InputRendererOptions<RenderCardContext>;
-  renderExpandedCard?: InputRendererOptions<RenderCardContext>;
+  readonly renderCompactCard?: InputRendererOptions<RenderCardContext>;
+  readonly renderExpandedCard?: InputRendererOptions<RenderCardContext>;
 }
 
 export interface RenderCardContext<T = any> {

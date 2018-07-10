@@ -1,5 +1,5 @@
 import { ReactWrapperComponent, InputRendererOptions, JsxRenderFunc } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { IBasePickerProps, BaseAutoFill } from 'office-ui-fabric-react/lib/Pickers';
 import { IPersonaProps } from 'office-ui-fabric-react/lib/Persona';
 import { IPickerItemProps, IBasePickerSuggestionsProps } from 'office-ui-fabric-react/lib/Pickers';
@@ -53,8 +53,8 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
 
   private _pickerSuggestionsOptions: IBasePickerSuggestionsOptions;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef, true);
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onFocusHandler = this.onFocusHandler.bind(this);
@@ -96,15 +96,12 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
   }
 
   private _transformBasePickerSuggestionsOptionsToProps(options: IBasePickerSuggestionsOptions): IBasePickerSuggestionsProps {
-    const sharedProperties = omit(options, 'renderNoResultFound', 'renderResultsFooterFull', 'renderResultsFooter');
-
     const noResultFoundRenderer = this.createInputJsxRenderer(options.renderNoResultFound);
     const resultsFooterFullRenderer = this.createInputJsxRenderer(options.renderResultsFooterFull);
     const resultsFooterRenderer = this.createInputJsxRenderer(options.renderResultsFooter);
 
     return Object.assign(
-      {},
-      sharedProperties,
+      options,
       noResultFoundRenderer && { onRenderNoResultFound: () => noResultFoundRenderer({}) } as Pick<IBasePickerSuggestionsProps, 'onRenderNoResultFound'>,
       resultsFooterFullRenderer && { resultsFooterFull: () => resultsFooterFullRenderer({}) } as Pick<IBasePickerSuggestionsProps, 'resultsFooterFull'>,
       resultsFooterRenderer && { resultsFooter: () => resultsFooterRenderer({}) } as Pick<IBasePickerSuggestionsProps, 'resultsFooter'>,
@@ -113,12 +110,12 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
 }
 
 export interface IBasePickerSuggestionsOptions extends Pick<IBasePickerSuggestionsProps, 'suggestionsHeaderText' | 'mostRecentlyUsedHeaderText' | 'noResultsFoundText' | 'className' | 'suggestionsClassName' | 'suggestionsItemClassName' | 'searchForMoreText' | 'forceResolveText' | 'loadingText' | 'searchingText' | 'resultsMaximumNumber' | 'showRemoveButtons' | 'suggestionsAvailableAlertText' | 'suggestionsContainerAriaLabel'> {
-  renderNoResultFound: InputRendererOptions<{}>;
-  renderResultsFooterFull: InputRendererOptions<{}>;
-  renderResultsFooter: InputRendererOptions<{}>;
+  readonly renderNoResultFound: InputRendererOptions<{}>;
+  readonly renderResultsFooterFull: InputRendererOptions<{}>;
+  readonly renderResultsFooter: InputRendererOptions<{}>;
 }
 
 export interface IRenderSuggestionItemContext<T> {
-  props: T;
-  itemProps: any;
+  readonly props: T;
+  readonly itemProps: any;
 }

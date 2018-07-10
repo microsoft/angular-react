@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FabBaseButtonComponent } from './base-button.component';
 
 @Component({
@@ -55,8 +55,8 @@ export class FabIconButtonComponent extends FabBaseButtonComponent {
 
   @ViewChild('reactNode') reactNodeRef: ElementRef;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 
 }

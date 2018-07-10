@@ -1,5 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IVerticalDividerProps } from 'office-ui-fabric-react/lib/Divider';
 
 @Component({
@@ -20,8 +20,8 @@ export class FabDividerComponent extends ReactWrapperComponent<IVerticalDividerP
 
   @Input() getClassNames?: IVerticalDividerProps['getClassNames'];
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 
 }

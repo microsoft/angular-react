@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "0.1.13-alpha6",
+  "version": "0.2.0-1",
   "ngPackage": {
     "lib": {
       "languageLevel": [

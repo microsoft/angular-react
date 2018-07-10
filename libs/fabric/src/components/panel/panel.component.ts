@@ -1,5 +1,5 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Panel';
 
 @Component({
@@ -83,8 +83,8 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
   onRenderFooter: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
   onRenderFooterContent: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onRenderHeader = this.onRenderHeader.bind(this);
@@ -112,7 +112,7 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
  * Counterpart of `IPanelHeaderRenderer`.
  */
 export interface IPanelHeaderRenderContext {
-  props?: IPanelProps
-  headerTextId?: string | undefined
+  readonly props?: IPanelProps
+  readonly headerTextId?: string | undefined
 }
 

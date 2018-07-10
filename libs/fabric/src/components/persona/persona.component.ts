@@ -1,5 +1,5 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ImageLoadState } from 'office-ui-fabric-react/lib/components/Image/Image.types';
 import { IPersonaCoinProps, IPersonaProps, IPersonaSharedProps } from 'office-ui-fabric-react/lib/Persona';
 
@@ -94,8 +94,8 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
   onRenderTertiaryText: (props?: IPersonaProps, defaultRender?: JsxRenderFunc<IPersonaProps>) => JSX.Element;
   onRenderOptionalText: (props?: IPersonaProps, defaultRender?: JsxRenderFunc<IPersonaProps>) => JSX.Element;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 
   ngOnInit() {
@@ -150,8 +150,8 @@ export class FabPersonaCoinComponent extends FabPersonaBaseComponent<IPersonaCoi
   @Input() styles?: IPersonaCoinProps['styles'];
   @Input() className?: IPersonaCoinProps['className'];
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 }
 

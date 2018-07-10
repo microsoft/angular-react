@@ -1,5 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
 
 @Component({
@@ -40,8 +40,8 @@ export class FabImageComponent extends ReactWrapperComponent<IImageProps> {
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 
 }

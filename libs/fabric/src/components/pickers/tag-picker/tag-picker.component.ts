@@ -1,5 +1,5 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ITagPickerProps, ITag } from 'office-ui-fabric-react/lib/Pickers/TagPicker/TagPicker';
 import { FabBasePickerComponent } from '../base-picker/base-picker.component';
 
@@ -48,8 +48,8 @@ import { FabBasePickerComponent } from '../base-picker/base-picker.component';
 export class FabTagPickerComponent extends FabBasePickerComponent<ITag, ITagPickerProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 }
 

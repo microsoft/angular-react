@@ -1,5 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
 
 @Component({
@@ -50,8 +50,8 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
 
   @Output() readonly onDismiss = new EventEmitter<MouseEvent>();
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
 
     this.onDismissHandler = this.onDismissHandler.bind(this);
   }
@@ -86,8 +86,8 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
   @Input() theme?: IDialogFooterProps['theme'];
   @Input() className?: IDialogFooterProps['className'];
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 }
 
@@ -139,7 +139,7 @@ export class FabDialogContentComponent extends ReactWrapperComponent<IDialogCont
 
   @Output() readonly onDismiss = new EventEmitter<MouseEvent>();
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 }

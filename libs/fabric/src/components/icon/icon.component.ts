@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IIconProps } from 'office-ui-fabric-react/lib/Icon';
 import { ReactWrapperComponent } from '@angular-react/core';
 
@@ -18,9 +18,7 @@ import { ReactWrapperComponent } from '@angular-react/core';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    'class': 'fab-icon',
-  }
+  host: { 'class': 'fab-icon' }
 })
 export class FabIconComponent extends ReactWrapperComponent<IIconProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -32,8 +30,8 @@ export class FabIconComponent extends ReactWrapperComponent<IIconProps> {
   @Input() imageErrorAs?: IIconProps['imageErrorAs'];
   @Input() styles?: IIconProps['styles'];
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 
 }

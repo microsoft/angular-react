@@ -119,8 +119,6 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   }
 
   private _transformCommandBarItemOptionsToProps(itemOptions: ICommandBarItemOptions): ICommandBarItemProps {
-    const sharedProperties = omit(itemOptions, 'renderIcon', 'render');
-
     const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon);
     const renderer = this.createInputJsxRenderer(itemOptions.render);
 
