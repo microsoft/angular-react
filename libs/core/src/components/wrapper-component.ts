@@ -1,4 +1,4 @@
-import { AfterViewInit, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, TemplateRef, Type } from "@angular/core";
+import { AfterViewInit, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, TemplateRef, Type, ChangeDetectorRef } from "@angular/core";
 import { isReactNode } from "../renderer/react-node";
 import { renderComponent, renderFunc, renderTemplate } from "../renderer/renderprop-helpers";
 import { unreachable } from "../utils/types/unreachable";
@@ -40,7 +40,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
    * @param elementRef The host element.
    * @param setHostDisplay Whether the host's `display` should be set to the root child node's `display`. defaults to `false`
    */
-  constructor(public readonly elementRef: ElementRef, private readonly setHostDisplay: boolean = false) { }
+  constructor(public readonly elementRef: ElementRef, private readonly changeDetectorRef: ChangeDetectorRef, private readonly setHostDisplay: boolean = false) { }
 
   ngAfterViewInit() {
     this._passAttributesAsProps();
@@ -48,6 +48,14 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     if (this.setHostDisplay) {
       this._setHostDisplay();
     }
+  }
+
+  protected detectChanges() {
+    if (isReactNode(this.reactNodeRef.nativeElement)) {
+      this.reactNodeRef.nativeElement.setRenderPending();
+    }
+
+    this.changeDetectorRef.markForCheck();
   }
 
   /**

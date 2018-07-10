@@ -1,8 +1,9 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef, KeyValueDiffers, KeyValueDiffer, IterableDiffer, IterableDiffers, OnChanges, DoCheck, OnInit, SimpleChanges } from '@angular/core';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 import omit from "../../utils/omit";
+import { ArrayItemsDifferFactory, ArrayItemsDiffer } from '../../utils/array-items-differ';
 
 @Component({
   selector: 'fab-command-bar',
@@ -33,7 +34,7 @@ import omit from "../../utils/omit";
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'class': 'fab-command-bar' }
 })
-export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps> {
+export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps> implements OnInit, OnChanges, DoCheck {
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
@@ -50,35 +51,9 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   @Input() onReduceData?: ICommandBarProps['onReduceData'];
   @Input() onGrowData?: ICommandBarProps['onGrowData'];
 
-  @Input() set overflowItems(value: ICommandBarItemOptions[]) {
-    this._overflowItems = value;
-
-    if (value) this.transformedOverflowItems = value.map(this._transformCommandBarItemOptionsToProps);
-  }
-
-  get overflowItems(): ICommandBarItemOptions[] {
-    return this._overflowItems;
-  }
-
-  @Input() set items(value: ICommandBarItemOptions[]) {
-    this._items = value;
-
-    if (value) this.transformedItems = value.map(this._transformCommandBarItemOptionsToProps);
-  }
-
-  get items(): ICommandBarItemOptions[] {
-    return this._items;
-  }
-
-  @Input() set farItems(value: ICommandBarItemOptions[]) {
-    this._farItems = value;
-
-    if (value) this.transformedFarItems = value.map(this._transformCommandBarItemOptionsToProps);
-  }
-
-  get farItems(): ICommandBarItemOptions[] {
-    return this._farItems;
-  }
+  @Input() overflowItems: ICommandBarItemOptions[];
+  @Input() items: ICommandBarItemOptions[];
+  @Input() farItems: ICommandBarItemOptions[];
 
   @Output() readonly onDataReduced = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
   @Output() readonly onDataGrown = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
@@ -87,23 +62,60 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   transformedFarItems: ICommandBarItemProps[];
   transformedOverflowItems: ICommandBarItemProps[];
 
-  private _items: ICommandBarItemOptions[];
-  private _farItems: ICommandBarItemOptions[];
-  private _overflowItems: ICommandBarItemOptions[];
+  private readonly _differFactory: ArrayItemsDifferFactory;
+  private readonly _differs = new Map<string, ArrayItemsDiffer<ICommandBarItemProps>>();
 
-  constructor(elementRef: ElementRef, private readonly changeDetector: ChangeDetectorRef) {
-    super(elementRef);
+  constructor(
+    elementRef: ElementRef,
+    changeDetectorRef: ChangeDetectorRef,
+    iterableDiffers: IterableDiffers,
+    kvDiffers: KeyValueDiffers
+  ) {
+    super(elementRef, changeDetectorRef, true);
 
-    this._transformCommandBarItemOptionsToProps = this._transformCommandBarItemOptionsToProps.bind(this);
+    this._differFactory = new ArrayItemsDifferFactory(iterableDiffers, kvDiffers);
   }
 
-  detectChanges() {
-    // Since React only re-renders when props or state are changed, we need to manually change the props (reference).
-    if (this.items) this.items = [...this.items];
-    if (this.farItems) this.farItems = [...this.farItems];
-    if (this.overflowItems) this.overflowItems = [...this.overflowItems];
+  ngOnInit() {
+    if (this.items) this._createDiffer('items', () => this._createTransformedItems());
+    if (this.farItems) this._createDiffer('farItems', () => this._createTransformedFarItems());
+    if (this.overflowItems) this._createDiffer('overflowItems', () => this._createTransformedOverflowItems());
+  }
 
-    this.changeDetector.detectChanges();
+  ngDoCheck() {
+    this._differs.forEach((differ, key) => differ.detectChanges(this[key]));
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['items']) this._createDiffer('items', () => this._createTransformedItems());
+    if (changes['farItems']) this._createDiffer('farItems', () => this._createTransformedFarItems());
+    if (changes['overflowItems']) this._createDiffer('overflowItems', () => this._createTransformedOverflowItems());
+  }
+
+  private _createDiffer(key: 'items' | 'farItems' | 'overflowItems', recreateItems: () => void) {
+    this._differs.set(
+      key,
+      this._differFactory.createDiffer(
+        this[key],
+        () => {
+          recreateItems();
+          this.detectChanges();
+        },
+        () => this.detectChanges(),
+      )
+    );
+  }
+
+  private _createTransformedItems() {
+    if (this.items) this.transformedItems = this.items.map(item => this._transformCommandBarItemOptionsToProps(item));
+  }
+
+  private _createTransformedFarItems() {
+    if (this.farItems) this.transformedFarItems = this.farItems.map(item => this._transformCommandBarItemOptionsToProps(item));
+  }
+
+  private _createTransformedOverflowItems() {
+    if (this.overflowItems) this.transformedOverflowItems = this.overflowItems.map(item => this._transformCommandBarItemOptionsToProps(item));
   }
 
   private _transformCommandBarItemOptionsToProps(itemOptions: ICommandBarItemOptions): ICommandBarItemProps {
@@ -113,8 +125,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     const renderer = this.createInputJsxRenderer(itemOptions.render);
 
     return Object.assign(
-      {},
-      sharedProperties,
+      itemOptions,
       iconRenderer && { onRenderIcon: (props) => iconRenderer(props) } as Pick<ICommandBarItemProps, 'onRenderIcon'>,
       renderer && { onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>,
     ) as ICommandBarItemProps;

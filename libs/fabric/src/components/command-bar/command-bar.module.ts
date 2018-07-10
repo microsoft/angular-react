@@ -4,9 +4,6 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 import { FabCommandBarComponent } from './command-bar.component';
 
-
-
-
 const components = [
   FabCommandBarComponent,
 ];

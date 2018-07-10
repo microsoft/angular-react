@@ -1,8 +1,6 @@
 import { ChangeDetectorRef, ViewEncapsulation, Component, ComponentFactoryResolver, Injector, Input, ComponentRef, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType, ShimmerElementType } from 'office-ui-fabric-react';
-import { IExpandingCardOptions } from '@angular-react/fabric/src/components/hover-card';
-import { ICommandBarItemOptions, FabCommandBarComponent } from '@angular-react/fabric/src/components/command-bar';
-import { DateRangeModel } from 'apps/demo/src/app/daterange.model';
+import { ICommandBarItemOptions, FabCommandBarComponent, IExpandingCardOptions } from '@angular-react/fabric';
 
 @Component({
   selector: 'fab-panel-header',
@@ -97,6 +95,7 @@ export class AppComponent {
     {
       key: 'copy',
       text: 'Copy',
+      disabled: true,
       iconProps: {
         iconName: 'Copy'
       },
@@ -108,18 +107,26 @@ export class AppComponent {
       iconProps: {
         iconName: 'Calendar',
       },
+      onClick: () => {
+        console.log('date-picker clicked');
+      },
       subMenuProps: {
         onItemClick: (ev, item) => {
           console.log(item.text, 'clicked');
 
           this.commandBarItems.find(item => item.key === 'date-picker').text = item.text;
-          this.commandBarItems = [...this.commandBarItems];
+
+          if (item.key !== 'custom') {
+            const rangeItemIndex = this.commandBarItems.findIndex(cbItem => cbItem.key === 'custom-range-range');
+            if (rangeItemIndex) {
+              this.commandBarItems.splice(rangeItemIndex, 1);
+            }
+          }
         },
         items: [
           {
             key: '24h',
             text: 'Last 24 hours',
-
           },
           {
             key: '7d',
@@ -133,8 +140,9 @@ export class AppComponent {
             key: 'custom',
             text: 'Custom range...',
             onClick: () => {
-              this.commandBarItems = [
-                ...this.commandBarItems,
+              this.commandBarItems.find(item => item.key === 'date-picker').text = 'Custom range';
+
+              this.commandBarItems.push(
                 {
                   key: 'custom-range-range',
                   data: {
@@ -144,8 +152,8 @@ export class AppComponent {
                   onClick: () => {
                     debugger;
                   }
-                },
-              ];
+                }
+              );
             },
           },
         ]
@@ -191,8 +199,6 @@ export class AppComponent {
   toggleRun() {
     const runItem = this.commandBarItems.find(item => item.key === 'run');
     runItem.disabled = !runItem.disabled;
-
-    this.commandBar.detectChanges();
   }
 
 }
