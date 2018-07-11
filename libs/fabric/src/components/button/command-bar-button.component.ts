@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, ChangeDetect
 import { FabBaseButtonComponent } from './base-button.component';
 
 @Component({
-  selector: 'fab-commandbar-button',
+  selector: 'fab-command-bar-button',
   exportAs: 'fabCommandBarButton',
   template: `
     <CommandBarButton
@@ -49,7 +49,7 @@ import { FabBaseButtonComponent } from './base-button.component';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-commandbar-button' }
+  host: { 'class': 'fab-command-bar-button' }
 })
 export class FabCommandBarButtonComponent extends FabBaseButtonComponent {
 

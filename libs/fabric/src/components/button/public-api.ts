@@ -1,6 +1,6 @@
 export * from './action-button.component';
 export * from './button.module';
-export * from './commandbar-button.component';
+export * from './command-bar-button.component';
 export * from './compound-button.component';
 export * from './default-button.component';
 export * from './icon-button.component';

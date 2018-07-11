@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActionButton, CommandBarButton, CompoundButton, DefaultButton, IconButton, MessageBarButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { FabActionButtonComponent } from './action-button.component';
-import { FabCommandBarButtonComponent } from './commandbar-button.component';
+import { FabCommandBarButtonComponent } from './command-bar-button.component';
 import { FabCompoundButtonComponent } from './compound-button.component';
 import { FabDefaultButtonComponent } from './default-button.component';
 import { FabIconButtonComponent } from './icon-button.component';

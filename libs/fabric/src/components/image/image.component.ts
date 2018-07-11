@@ -8,6 +8,16 @@ import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
   template: `
       <Image
         #reactNode
+
+        [alt]="alt"
+        [crossOrigin]="crossOrigin"
+        [height]="height"
+        [sizes]="sizes"
+        [src]="src"
+        [srcSet]="srcSet"
+        [useMap]="useMap"
+        [width]="width"
+
         [styles]="styles"
         [theme]="theme"
         [className]="className"
@@ -25,6 +35,15 @@ import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
   host: { 'class': 'fab-image' }
 })
 export class FabImageComponent extends ReactWrapperComponent<IImageProps> {
+
+  @Input() alt?: IImageProps['alt'];
+  @Input() crossOrigin?: IImageProps['crossOrigin'];
+  @Input() height?: IImageProps['height'];
+  @Input() sizes?: IImageProps['sizes'];
+  @Input() src?: IImageProps['src'];
+  @Input() srcSet?: IImageProps['srcSet'];
+  @Input() useMap?: IImageProps['useMap'];
+  @Input() width?: IImageProps['width'];
 
   @Input() styles?: IImageProps['styles'];
   @Input() theme?: IImageProps['theme'];
