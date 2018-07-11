@@ -32,6 +32,7 @@ You can look through the issues (which should be up-to-date on who is working on
 [fab]: https://developer.microsoft.com/en-us/fabric
 
 ### Pull Requests
+See: https://gist.github.com/piscisaureus/3342247
 Locate the section for your github remote in the `.git/config` file. It looks like this:
 
 ```
