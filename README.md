@@ -68,3 +68,16 @@ $ git checkout pr/999
 Branch pr/999 set up to track remote branch pr/999 from origin.
 Switched to a new branch 'pr/999'
 ```
+
+To get latest changes to the PR:
+
+```
+$ git pull --tags origin refs/pull/1000/head
+From https://github.com/benfeely/angular-react
+ * branch            refs/pull/1000/head -> FETCH_HEAD
+Updating aab92e2..2896b73
+Fast-forward
+...
+```
+
+Note: "git pull" did not work for me by itself for the PR branch...
