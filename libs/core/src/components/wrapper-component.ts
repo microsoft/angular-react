@@ -1,12 +1,20 @@
-import { AfterViewInit, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, TemplateRef, Type, ChangeDetectorRef } from "@angular/core";
+import { AfterViewInit, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, TemplateRef, Type, ChangeDetectorRef, OnChanges, SimpleChanges, HostBinding } from "@angular/core";
 import { isReactNode } from "../renderer/react-node";
 import { renderComponent, renderFunc, renderTemplate } from "../renderer/renderprop-helpers";
 import { unreachable } from "../utils/types/unreachable";
+import toStyle from 'css-to-style';
+
+type PropMapper = (value: any) => [string, any];
 
 const blacklistedAttributesAsProps = [
-  'class',
-  'style'
+  'key'
 ];
+
+const knownPropMapping: StringMap<PropMapper> = {
+  'class': (value: string): [string, string] => ['className', value],
+  'for': (value: string): [string, string] => ['htmlFor', value],
+  'style': (value: string): [string, CSSStyleDeclaration] => ['style', toStyle(value)],
+};
 
 const blacklistedAttributeMatchers = [
   /^_?ng-?.*/
@@ -31,7 +39,7 @@ export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
  * Simplifies some of the handling around passing down props and setting CSS on the host component.
  */
 // NOTE: TProps is not used at the moment, but a preparation for a potential future change.
-export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit {
+export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit, OnChanges {
 
   protected abstract reactNodeRef: ElementRef;
 
@@ -48,6 +56,10 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     if (this.setHostDisplay) {
       this._setHostDisplay();
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this._passAttributesAsProps();
   }
 
   protected detectChanges() {
@@ -121,10 +133,13 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       throw new Error('reactNodeRef must hold a reference to a ReactNode');
     }
 
-    const props = whitelistedHostAttributes.reduce((acc, attr) => ({
-      ...acc,
-      [attr.name]: attr.value,
-    }), {});
+    const props = whitelistedHostAttributes.reduce((acc, attr) => {
+      const [transformedKey, transformedValue] = this._transformAttributeToProp(attr.name, attr.value);
+      return {
+        ...acc,
+        [transformedKey]: transformedValue,
+      };
+    }, {});
 
     this.reactNodeRef.nativeElement.setProperties(props);
   }
@@ -132,7 +147,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   private _setHostDisplay() {
     const nativeElement: HTMLElement = this.elementRef.nativeElement;
 
-    // setTimeout since we want to wait until child elements are rendered
+    // We want to wait until child elements are rendered
     setTimeout(() => {
       if (nativeElement.firstElementChild) {
         const rootChildDisplay = getComputedStyle(nativeElement.firstElementChild).display;
@@ -147,5 +162,13 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     }
 
     return blacklistedAttributeMatchers.some(regExp => regExp.test(attr.name));
+  }
+
+  private _transformAttributeToProp(propName: string, propValue: any): [string, any] {
+    if (propName in knownPropMapping) {
+      return knownPropMapping[propName](propValue);
+    }
+
+    return [propName, propValue];
   }
 }

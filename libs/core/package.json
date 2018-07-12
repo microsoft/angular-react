@@ -1,20 +1,28 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "0.2.0-2",
+  "version": "0.2.0-4",
   "ngPackage": {
     "lib": {
       "languageLevel": [
         "dom",
         "es2017"
       ],
+      "embedded": [
+        "css-to-style"
+      ],
       "entryFile": "public-api.ts",
       "umdModuleIds": {
         "react": "React",
-        "react-dom": "ReactDOM"
+        "react-dom": "ReactDOM",
+        "css-to-style": "toStyle"
       },
       "comments": "none"
     },
+    "whitelistedNonPeerDependencies": [
+      "tslib",
+      "css-to-style"
+    ],
     "dest": "../../@angular-react/core"
   },
   "description": "Use React components inside Angular",
@@ -39,9 +47,14 @@
     "@angular/core": "^5.2.7",
     "@angular/platform-browser-dynamic": "^5.2.7",
     "@angular/platform-browser": "^5.2.7",
-    "@types/react-dom": "^16.0.4",
-    "@types/react": "^16.3.4",
     "react-dom": "^16.3.1",
     "react": "^16.3.1"
+  },
+  "dependencies": {
+    "css-to-style": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^16.0.4",
+    "@types/react": "^16.3.4"
   }
 }
