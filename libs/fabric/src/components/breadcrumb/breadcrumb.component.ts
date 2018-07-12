@@ -24,8 +24,7 @@ import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react/lib/Br
     </Breadcrumb>
   `,
   styles: ['react-renderer'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-breadcrumb' }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FabBreadcrumbComponent extends ReactWrapperComponent<IBreadcrumbProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

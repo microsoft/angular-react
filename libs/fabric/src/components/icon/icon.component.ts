@@ -18,7 +18,6 @@ import { ReactWrapperComponent } from '@angular-react/core';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-icon' }
 })
 export class FabIconComponent extends ReactWrapperComponent<IIconProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

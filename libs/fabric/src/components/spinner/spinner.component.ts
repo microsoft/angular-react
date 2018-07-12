@@ -21,7 +21,6 @@ import { ISpinnerProps } from 'office-ui-fabric-react/lib/Spinner';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-spinner' }
 })
 export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

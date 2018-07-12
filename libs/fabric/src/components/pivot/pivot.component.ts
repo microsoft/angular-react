@@ -23,7 +23,6 @@ import * as React from 'react';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-pivot-item' }
 })
 export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -95,7 +94,6 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-pivot' }
 })
 export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
 

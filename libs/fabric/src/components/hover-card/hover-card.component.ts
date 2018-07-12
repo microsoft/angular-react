@@ -29,7 +29,6 @@ import { omit } from '../../utils/omit';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-hover-card' }
 })
 export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

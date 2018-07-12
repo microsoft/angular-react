@@ -30,7 +30,6 @@ import { IListProps } from 'office-ui-fabric-react/lib/List';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-grouped-list' }
 })
 export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

@@ -15,7 +15,6 @@ import { IFabricProps } from 'office-ui-fabric-react/lib/Fabric';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-fabric' }
 })
 export class FabFabricComponent extends ReactWrapperComponent<IFabricProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

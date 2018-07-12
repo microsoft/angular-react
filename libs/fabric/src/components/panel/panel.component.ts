@@ -41,7 +41,6 @@ import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Pa
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-panel' }
 })
 export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

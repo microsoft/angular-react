@@ -29,7 +29,6 @@ import { ISliderProps } from 'office-ui-fabric-react/lib/Slider';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-slider' }
 })
 export class FabSliderComponent extends ReactWrapperComponent<ISliderProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

@@ -25,7 +25,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
     'react-renderer',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'sem-button' }
 })
 export class SemButtonComponent {
 

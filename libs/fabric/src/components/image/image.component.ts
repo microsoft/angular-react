@@ -32,7 +32,6 @@ import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-image' }
 })
 export class FabImageComponent extends ReactWrapperComponent<IImageProps> {
 

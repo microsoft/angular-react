@@ -74,7 +74,6 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-persona' }
 })
 export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -141,7 +140,6 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-persona-coin' }
 })
 export class FabPersonaCoinComponent extends FabPersonaBaseComponent<IPersonaCoinProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

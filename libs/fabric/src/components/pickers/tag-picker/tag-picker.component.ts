@@ -43,7 +43,6 @@ import { FabBasePickerComponent } from '../base-picker/base-picker.component';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-tag-picker' }
 })
 export class FabTagPickerComponent extends FabBasePickerComponent<ITag, ITagPickerProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

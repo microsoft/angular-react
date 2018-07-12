@@ -23,7 +23,6 @@ import { IShimmerElementsGroupProps } from 'office-ui-fabric-react/lib/component
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-shimmer' }
 })
 export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -76,7 +75,6 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-shimmer-elements-group' }
 })
 export class FabShimmerElementsGroupComponent extends ReactWrapperComponent<IShimmerElementsGroupProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

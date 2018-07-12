@@ -32,7 +32,6 @@ import { FormEvent } from 'react';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-checkbox' }
 })
 export class FabCheckboxComponent extends ReactWrapperComponent<ICheckboxProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

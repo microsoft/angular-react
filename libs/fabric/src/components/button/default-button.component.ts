@@ -49,7 +49,6 @@ import { FabBaseButtonComponent } from './base-button.component';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-default-button' }
 })
 export class FabDefaultButtonComponent extends FabBaseButtonComponent {
 

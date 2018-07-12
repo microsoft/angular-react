@@ -26,7 +26,6 @@ import { BaseButton, Button } from 'office-ui-fabric-react/lib/Button';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-message-bar' }
 })
 export class FabMessageBarComponent extends ReactWrapperComponent<IMessageBarProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

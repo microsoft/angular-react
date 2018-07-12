@@ -28,7 +28,6 @@ import { omit } from '../../utils/omit';
   `,
   styles: [    'react-renderer'  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-tooltip-host' }
 })
 export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

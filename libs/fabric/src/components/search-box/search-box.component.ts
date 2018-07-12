@@ -32,7 +32,6 @@ import omit from '../../utils/omit';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-search-box' }
 })
 export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps> {
 

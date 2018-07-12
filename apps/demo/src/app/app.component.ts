@@ -39,6 +39,8 @@ export class AppComponent {
   @ViewChild(FabCommandBarComponent) commandBar: FabCommandBarComponent;
   @ViewChild('customRange') customRangeTemplate: TemplateRef<{ item: any, dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
 
+  x = true;
+
   commandBarItems: ICommandBarItemOptions[] = [
     {
       key: 'run',

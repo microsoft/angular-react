@@ -38,7 +38,6 @@ import { ILinkProps, Link } from 'office-ui-fabric-react/lib/Link';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-link' }
 })
 export class FabLinkComponent extends ReactWrapperComponent<ILinkProps> {
   readonly LinkType: any = Link;

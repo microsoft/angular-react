@@ -56,7 +56,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
 }
 
 class ReactRenderer implements Renderer2 {
-  data: { [key: string]: any } = Object.create(null);
+  readonly data: { [key: string]: any } = Object.create(null);
 
   constructor(private rootRenderer: AngularReactRendererFactory) { }
 

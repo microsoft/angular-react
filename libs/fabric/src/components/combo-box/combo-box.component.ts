@@ -35,7 +35,6 @@ import { FabBaseComboBoxComponent } from './base-combo-box.component';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-combo-box' }
 })
 export class FabComboBoxComponent extends FabBaseComboBoxComponent {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;

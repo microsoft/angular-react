@@ -32,7 +32,6 @@ import { ArrayItemsDifferFactory, ArrayItemsDiffer } from '../../utils/array-ite
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-command-bar' }
 })
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps> implements OnInit, OnChanges, DoCheck {
 

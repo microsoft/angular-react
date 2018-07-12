@@ -27,7 +27,6 @@ import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-dialog' }
 })
 export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -76,7 +75,7 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-dialog-footer' }
+
 })
 export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFooterProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -117,7 +116,7 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-dialog-content' }
+
 })
 export class FabDialogContentComponent extends ReactWrapperComponent<IDialogContentProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
