@@ -2,38 +2,12 @@ import { ChangeDetectorRef, ViewEncapsulation, Component, ComponentFactoryResolv
 import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType, ShimmerElementType } from 'office-ui-fabric-react';
 import { IExpandingCardOptions } from '@angular-react/fabric/src/components/hover-card';
 import { ICommandBarItemOptions, FabCommandBarComponent } from '@angular-react/fabric/src/components/command-bar';
-import { DateRangeModel } from 'apps/demo/src/app/daterange.model';
 
-@Component({
-  selector: 'fab-panel-header',
-  template: `
-    <div>props: {{ props }}</div>
-
-    <div>{{ dynamicText }}</div>
-
-    <button (click)="onClick()">Click</button>
-  `
-})
-export class PanelBodyComponent {
-  @Input() props: any;
-
-  @Input() headerTextId: any;
-
-  dynamicText: string = "initial";
-
-  constructor(private cd: ChangeDetectorRef) { }
-
-  onClick() {
-    this.dynamicText = "new text!";
-    this.cd.detectChanges();
-  }
-}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  entryComponents: [PanelBodyComponent],
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
@@ -41,7 +15,7 @@ export class AppComponent {
   @ViewChild(FabCommandBarComponent) commandBar: FabCommandBarComponent;
   @ViewChild('customRange') customRangeTemplate: TemplateRef<{ item: any, dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
 
-  commandBarItems: ICommandBarItemOptions[] = [
+  commandBarItems: ReadonlyArray<ICommandBarItemOptions> = [
     {
       key: 'run',
       text: 'Run',
@@ -164,7 +138,7 @@ export class AppComponent {
     },
   ];
 
-  readonly commandBarFarItems: ICommandBarItemOptions[] = [
+  commandBarFarItems: ReadonlyArray<ICommandBarItemOptions> = [
     {
       key: 'help',
       text: 'Help',
@@ -185,14 +159,12 @@ export class AppComponent {
 
   isPanelOpen = false;
 
-  constructor(private readonly cd: ChangeDetectorRef) {
-  }
-
   toggleRun() {
-    const runItem = this.commandBarItems.find(item => item.key === 'run');
-    runItem.disabled = !runItem.disabled;
-
-    this.commandBar.detectChanges();
+    this.commandBarItems = this.commandBarItems.map(item =>
+      item.key === 'run'
+        ? { ...item, disabled: !item.disabled }
+        : item
+    );
   }
 
 }

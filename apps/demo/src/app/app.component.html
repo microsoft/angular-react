@@ -15,8 +15,7 @@
   </ol>
 </div>
 
-<div style="height: 500vh">
-
+<div>
   <fab-command-bar #commandBar [items]="commandBarItems" [farItems]="commandBarFarItems">
   </fab-command-bar>
 
@@ -24,22 +23,4 @@
 
   <fab-panel [isOpen]="isPanelOpen" (onDismiss)="isPanelOpen = false">
   </fab-panel>
-
-  <ng-template #customRange let-item="item">
-      <div>
-        Data: {{ item.data | json }}
-      </div>
-
-      <div>
-        <span>From: </span>
-        <input type="date" />
-      </div>
-
-      <div>
-        <span>To: </span>
-        <input type="date" />
-      </div>
-
-      <fab-default-button text="Done" (onClick)="item.onClick()"></fab-default-button>
-  </ng-template>
 </div>

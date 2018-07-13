@@ -3,7 +3,7 @@ import { FabBreadcrumbModule, FabButtonModule, FabCalloutModule, FabModalModule,
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
-import { AppComponent, PanelBodyComponent } from './app.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
@@ -37,7 +37,7 @@ import { AppComponent, PanelBodyComponent } from './app.component';
     FabSliderModule,
     FabSearchBoxModule,
   ],
-  declarations: [AppComponent, PanelBodyComponent],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {
