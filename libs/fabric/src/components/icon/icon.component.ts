@@ -22,6 +22,8 @@ import { ReactWrapperComponent } from '@angular-react/core';
 export class FabIconComponent extends ReactWrapperComponent<IIconProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
+  @Input() componentRef?: IIconProps['componentRef'];
+
   @Input() iconName?: IIconProps['iconName'];
   @Input() ariaLabel?: IIconProps['ariaLabel'];
   @Input() iconType?: IIconProps['iconType'];
