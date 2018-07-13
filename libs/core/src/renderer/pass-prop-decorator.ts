@@ -22,6 +22,10 @@ const passPropRename: (propName: string) => PropertyDecorator =
 const passPropDirect: PropertyDecorator =
   (target, propertyKey) => passPropImpl(target, propertyKey, propertyKey);
 
+/**
+ * Decorator to specify a property that should be passed as a prop to the underlying React component implicitly.
+ * Mainly useful for passing child components using the `Disguise` component.
+ */
 export function passProp(): PropertyDecorator;
 export function passProp(propName: string): PropertyDecorator;
 export function passProp(...args: any[]) {

@@ -24,5 +24,7 @@ export * from './src/components/tooltip/public-api';
 export * from './src/components/modal/public-api';
 export * from './src/components/shimmer/public-api';
 export * from './src/components/slider/public-api';
-// export * from './src/components/pickers/public-api';
 export * from './src/components/search-box/public-api';
+
+// Pickers had some warnings at runtime. Leaving out of public API for now
+// export * from './src/components/pickers/public-api';

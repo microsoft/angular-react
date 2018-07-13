@@ -1,4 +1,4 @@
-import { ReactWrapperComponent, passProp } from '@angular-react/core';
+import { ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ILinkProps, Link } from 'office-ui-fabric-react/lib/Link';
 

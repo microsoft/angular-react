@@ -2,13 +2,14 @@
 
 import { Injectable, Renderer2, RendererStyleFlags2, RendererType2 } from '@angular/core';
 import { EventManager, ɵDomRendererFactory2, ɵDomSharedStylesHost } from '@angular/platform-browser';
+
 import { isReactNode, ReactNode } from './react-node';
 
 const DEBUG = false;
 
 @Injectable()
 export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
-  private defaultReactRenderer: ReactRenderer;
+  private readonly defaultReactRenderer: ReactRenderer;
 
   // Collection of ReactNodes that can be evaluated and flushed at the
   // end of Render.  This is necessary as the flow of element creation

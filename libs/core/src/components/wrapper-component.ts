@@ -12,12 +12,11 @@ import {
   HostBinding,
   Input
 } from '@angular/core';
+import toStyle from 'css-to-style';
+
 import { isReactNode } from '../renderer/react-node';
 import { renderComponent, renderFunc, renderTemplate } from '../renderer/renderprop-helpers';
 import { unreachable } from '../utils/types/unreachable';
-import toStyle from 'css-to-style';
-
-type PropMapper = (value: any) => [string, any];
 
 type AttributeNameAlternative = [string, string | undefined];
 
@@ -51,22 +50,47 @@ export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
  */
 // NOTE: TProps is not used at the moment, but a preparation for a potential future change.
 export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit, OnChanges {
+  private _rClass: string;
+  private _rStyle: string;
+
   protected abstract reactNodeRef: ElementRef;
 
+  /**
+   * Alternative to `class` using the same syntax.
+   *
+   * @description Since this is a wrapper component, sticking to the virtual DOM concept, this should have any styling of its own.
+   * Any value passes to `rClass` will be passed to the root component's class.
+   */
   @Input()
   set rClass(value: string) {
+    this._rClass = value;
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       this.reactNodeRef.nativeElement.setProperty('className', value);
       this.changeDetectorRef.detectChanges();
     }
   }
 
+  get rClass(): string {
+    return this._rClass;
+  }
+
+  /**
+   * Alternative to `style` using the same syntax.
+   *
+   * @description Since this is a wrapper component, sticking to the virtual DOM concept, this should have any styling of its own.
+   * Any value passes to `rStyle` will be passed to the root component's style.
+   */
   @Input()
   set rStyle(value: string) {
+    this._rStyle = value;
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       this.reactNodeRef.nativeElement.setProperty('style', toStyle(value));
       this.changeDetectorRef.detectChanges();
     }
+  }
+
+  get rStyle(): string {
+    return this._rStyle;
   }
 
   /**
@@ -94,6 +118,9 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     this.detectChanges();
   }
 
+  /**
+   * Trigger change detection on the component.
+   */
   protected detectChanges() {
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       this.reactNodeRef.nativeElement.setRenderPending();

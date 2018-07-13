@@ -1,10 +1,14 @@
-import { ReactWrapperComponent } from '../../components/wrapper-component';
-import { passPropsSymbol, getPassProps, PassProp } from '../../renderer/pass-prop-decorator';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+
+import { ReactWrapperComponent } from '../../components/wrapper-component';
+import { passPropsSymbol, getPassProps, PassProp } from '../../renderer/pass-prop-decorator';
 import { ReactContent } from '../react-content';
 import removeUndefinedProperties from '../../utils/object/remove-undefined-properties';
 
+/**
+ * Props for `Disguise` component.
+ */
 export interface DisguiseProps {
   /**
    * The type to render the root component as.
