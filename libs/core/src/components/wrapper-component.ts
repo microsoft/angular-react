@@ -18,6 +18,8 @@ const ignoredAttributeMatchers = [
   /^_?ng-?.*/
 ];
 
+const ngClassRegExp = /^ng-/;
+
 export interface RenderComponentOptions<TContext extends object> {
   readonly componentType: Type<TContext>;
   readonly factoryResolver: ComponentFactoryResolver;
@@ -142,10 +144,10 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
 
     // Ensure there are no blacklisted props. Suggest alternative as error if there is any
     hostAttributes.forEach(attr => {
-        const altAttrMapping = forbiddenAttributesAsProps.find(([originalAttrName, altAttrName]) => originalAttrName === attr.name);
-        if (altAttrMapping) {
-          throw new Error(`[${(this.elementRef.nativeElement as HTMLElement).tagName.toLowerCase()}] React wrapper components cannot have the '${attr.name}' attribute set. Use the following alternative: ${altAttrMapping && altAttrMapping[1] || ''}`);
-        }
+      const [forbidden, alternativeAttrName] = this._isForbiddenAttribute(attr);
+      if (forbidden) {
+        throw new Error(`[${(this.elementRef.nativeElement as HTMLElement).tagName.toLowerCase()}] React wrapper components cannot have the '${attr.name}' attribute set. Use the following alternative: ${alternativeAttrName || ''}`);
+      }
     });
 
     const whitelistedHostAttributes = hostAttributes.filter(attr => !this._isIgnoredAttribute(attr));
@@ -171,5 +173,21 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
 
   private _isIgnoredAttribute(attr: Attr) {
     return ignoredAttributeMatchers.some(regExp => regExp.test(attr.name));
+  }
+
+  private _isForbiddenAttribute(attr: Attr): [boolean, string | undefined] {
+    const { name, value } = attr;
+
+    if (name === 'key') return [true, undefined];
+    if (name === 'class' && value.split(' ').some(className => !ngClassRegExp.test(className))) return [true, 'rClass'];
+    if (name === 'style') {
+      const style = toStyle(value);
+      // Only allowing style if it's something that changes the display - setting anything else should be done on the child component directly (via the `styles` attribute in fabric for example)
+      if (Object.entries(style).filter(([key, value]) => value || key !== 'display').length > 0) {
+        return [true, 'rStyle'];
+      }
+    }
+
+    return [false, undefined];
   }
 }
