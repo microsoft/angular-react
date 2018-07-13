@@ -93,7 +93,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     return Object.assign(
       {},
       sharedProperties,
-      iconRenderer && { onRenderIcon: (props) => iconRenderer(props) } as Pick<ICommandBarItemProps, 'onRenderIcon'>,
+      iconRenderer && { onRenderIcon: (props) => iconRenderer({ contextualMenuItemProps: props }) } as Pick<ICommandBarItemProps, 'onRenderIcon'>,
       renderer && { onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>,
     ) as ICommandBarItemProps;
   }
@@ -101,7 +101,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
 
 export interface ICommandBarItemOptions<TData = any> extends Pick<ICommandBarItemProps, 'iconOnly' | 'buttonStyles' | 'cacheKey' | 'renderedInOverflow' | 'componentRef' | 'key' | 'text' | 'secondaryText' | 'iconProps' | 'submenuIconProps' | 'disabled' | 'primaryDisabled' | 'shortCut' | 'canCheck' | 'checked' | 'split' | 'data' | 'onClick' | 'href' | 'target' | 'rel' | 'subMenuProps' | 'getItemClassNames' | 'getSplitButtonVerticalDividerClassNames' | 'sectionProps' | 'className' | 'style' | 'ariaLabel' | 'title' | 'onMouseDown' | 'role' | 'customOnRenderListLength' | 'keytipProps' | 'inactive'> {
   readonly [propertyName: string]: any;
-  readonly renderIcon?: InputRendererOptions<IContextualMenuItemProps>;
+  readonly renderIcon?: InputRendererOptions<{ contextualMenuItemProps: IContextualMenuItemProps }>;
   readonly render?: InputRendererOptions<{ item: any, dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
   readonly data?: TData;
 }
