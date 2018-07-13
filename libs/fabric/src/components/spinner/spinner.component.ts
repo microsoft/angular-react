@@ -1,5 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ISpinnerProps } from 'office-ui-fabric-react/lib/Spinner';
 
 @Component({
@@ -21,7 +21,6 @@ import { ISpinnerProps } from 'office-ui-fabric-react/lib/Spinner';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-spinner' }
 })
 export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -36,8 +35,8 @@ export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {
   @Input() theme?: ISpinnerProps['theme'];
   @Input() styles?: ISpinnerProps['styles'];
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 
 }

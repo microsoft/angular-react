@@ -1,5 +1,5 @@
 import { ReactWrapperComponent, InputRendererOptions, JsxRenderFunc } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
 import { ITooltipHostProps } from 'office-ui-fabric-react/lib/Tooltip';
 import { ITooltipProps } from 'office-ui-fabric-react/lib/Tooltip';
 import { omit } from '../../utils/omit';
@@ -28,7 +28,6 @@ import { omit } from '../../utils/omit';
   `,
   styles: [    'react-renderer'  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-tooltip-host' }
 })
 export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -61,8 +60,8 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
   transformedTooltipProps: ITooltipHostProps['tooltipProps'];
   private _tooltipOptions: ITooltipOptions;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef, true);
 
     this.onTooltipToggleHandler = this.onTooltipToggleHandler.bind(this);
   }
@@ -88,5 +87,5 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
  * Counterpart of `ITooltipProps`, with Angular adjustments.
  */
 export interface ITooltipOptions extends Pick<ITooltipProps, 'componentRef' | 'calloutProps' | 'content' | 'delay' | 'maxWidth' | 'targetElement' | 'directionalHint' | 'directionalHintForRTL' | 'theme' | 'styles'> {
-  renderContent?: InputRendererOptions<ITooltipProps>;
+  readonly renderContent?: InputRendererOptions<ITooltipProps>;
 }

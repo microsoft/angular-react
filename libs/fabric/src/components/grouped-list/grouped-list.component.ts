@@ -1,5 +1,5 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IGroupedListProps, IGroupRenderProps } from 'office-ui-fabric-react/lib/GroupedList';
 import { IListProps } from 'office-ui-fabric-react/lib/List';
 
@@ -30,7 +30,6 @@ import { IListProps } from 'office-ui-fabric-react/lib/List';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-grouped-list' }
 })
 export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -56,9 +55,8 @@ export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListP
 
   private _renderCell: JsxRenderFunc<ICellRenderContext>;
 
-
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onRenderCell = this.onRenderCell.bind(this);
@@ -81,7 +79,7 @@ export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListP
 }
 
 export interface ICellRenderContext {
-  nestingDepth?: number;
-  item?: any;
-  index?: number
+  readonly nestingDepth?: number;
+  readonly item?: any;
+  readonly index?: number
 }

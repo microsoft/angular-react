@@ -1,5 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ICalloutProps } from 'office-ui-fabric-react/lib/Callout';
 import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/positioning/positioning.types';
 
@@ -45,7 +45,6 @@ import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/pos
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-callout' }
 })
 export class FabCalloutComponent extends ReactWrapperComponent<ICalloutProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -83,8 +82,8 @@ export class FabCalloutComponent extends ReactWrapperComponent<ICalloutProps> {
   @Output() readonly onDismiss = new EventEmitter<{ ev?: any }>();
   @Output() readonly onScroll = new EventEmitter<void>();
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 
 }

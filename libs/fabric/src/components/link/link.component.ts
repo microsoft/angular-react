@@ -1,5 +1,5 @@
 import { ReactWrapperComponent, passProp } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ILinkProps, Link } from 'office-ui-fabric-react/lib/Link';
 
 @Component({
@@ -38,7 +38,6 @@ import { ILinkProps, Link } from 'office-ui-fabric-react/lib/Link';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-link' }
 })
 export class FabLinkComponent extends ReactWrapperComponent<ILinkProps> {
   readonly LinkType: any = Link;
@@ -69,8 +68,8 @@ export class FabLinkComponent extends ReactWrapperComponent<ILinkProps> {
   @Input('as') linkAs?: string | React.ComponentClass | React.StatelessComponent;
   @Input() keytipProps?: ILinkProps['keytipProps'];
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 
 }

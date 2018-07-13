@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FabBaseComboBoxComponent } from './base-combo-box.component';
 
 @Component({
@@ -35,12 +35,11 @@ import { FabBaseComboBoxComponent } from './base-combo-box.component';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-combo-box' }
 })
 export class FabComboBoxComponent extends FabBaseComboBoxComponent {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 }

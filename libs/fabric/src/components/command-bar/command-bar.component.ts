@@ -1,5 +1,5 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef, SimpleChanges, OnChanges } from '@angular/core';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 import omit from "../../utils/omit";
@@ -31,9 +31,8 @@ import omit from "../../utils/omit";
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-command-bar' }
 })
-export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps> {
+export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps> implements OnChanges {
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
@@ -50,60 +49,39 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   @Input() onReduceData?: ICommandBarProps['onReduceData'];
   @Input() onGrowData?: ICommandBarProps['onGrowData'];
 
-  @Input() set overflowItems(value: ICommandBarItemOptions[]) {
-    this._overflowItems = value;
-
-    if (value) this.transformedOverflowItems = value.map(this._transformCommandBarItemOptionsToProps);
-  }
-
-  get overflowItems(): ICommandBarItemOptions[] {
-    return this._overflowItems;
-  }
-
-  @Input() set items(value: ICommandBarItemOptions[]) {
-    this._items = value;
-
-    if (value) this.transformedItems = value.map(this._transformCommandBarItemOptionsToProps);
-  }
-
-  get items(): ICommandBarItemOptions[] {
-    return this._items;
-  }
-
-  @Input() set farItems(value: ICommandBarItemOptions[]) {
-    this._farItems = value;
-
-    if (value) this.transformedFarItems = value.map(this._transformCommandBarItemOptionsToProps);
-  }
-
-  get farItems(): ICommandBarItemOptions[] {
-    return this._farItems;
-  }
+  @Input() overflowItems: ReadonlyArray<ICommandBarItemOptions>;
+  @Input() items: ReadonlyArray<ICommandBarItemOptions>;
+  @Input() farItems: ReadonlyArray<ICommandBarItemOptions>;
 
   @Output() readonly onDataReduced = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
   @Output() readonly onDataGrown = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
 
-  transformedItems: ICommandBarItemProps[];
-  transformedFarItems: ICommandBarItemProps[];
-  transformedOverflowItems: ICommandBarItemProps[];
+  transformedItems: ReadonlyArray<ICommandBarItemProps>;
+  transformedFarItems: ReadonlyArray<ICommandBarItemProps>;
+  transformedOverflowItems: ReadonlyArray<ICommandBarItemProps>;
 
-  private _items: ICommandBarItemOptions[];
-  private _farItems: ICommandBarItemOptions[];
-  private _overflowItems: ICommandBarItemOptions[];
-
-  constructor(elementRef: ElementRef, private readonly changeDetector: ChangeDetectorRef) {
-    super(elementRef);
-
-    this._transformCommandBarItemOptionsToProps = this._transformCommandBarItemOptionsToProps.bind(this);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef, true);
   }
 
-  detectChanges() {
-    // Since React only re-renders when props or state are changed, we need to manually change the props (reference).
-    if (this.items) this.items = [...this.items];
-    if (this.farItems) this.farItems = [...this.farItems];
-    if (this.overflowItems) this.overflowItems = [...this.overflowItems];
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['items'].previousValue !== changes['items'].currentValue && changes['items'].currentValue) this._createTransformedItems(changes['items'].currentValue);
+    if (changes['farItems'].previousValue !== changes['farItems'].currentValue && changes['farItems'].currentValue) this._createTransformedItems(changes['farItems'].currentValue);
+    if (changes['overflowItems'].previousValue !== changes['overflowItems'].currentValue && changes['overflowItems'].currentValue) this._createTransformedItems(changes['overflowItems'].currentValue);
 
-    this.changeDetector.detectChanges();
+    this.detectChanges();
+  }
+
+  private _createTransformedItems(newItems: ICommandBarItemOptions[]) {
+    this.transformedItems = newItems.map(item => this._transformCommandBarItemOptionsToProps(item));
+  }
+
+  private _createTransformedFarItems(newItems: ICommandBarItemOptions[]) {
+    this.transformedFarItems = newItems.map(item => this._transformCommandBarItemOptionsToProps(item));
+  }
+
+  private _createTransformedOverflowItems(newItems: ICommandBarItemOptions[]) {
+    this.transformedOverflowItems = newItems.map(item => this._transformCommandBarItemOptionsToProps(item));
   }
 
   private _transformCommandBarItemOptionsToProps(itemOptions: ICommandBarItemOptions): ICommandBarItemProps {
@@ -122,7 +100,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
 }
 
 export interface ICommandBarItemOptions extends Pick<ICommandBarItemProps, 'iconOnly' | 'buttonStyles' | 'cacheKey' | 'renderedInOverflow' | 'componentRef' | 'key' | 'text' | 'secondaryText' | 'iconProps' | 'submenuIconProps' | 'disabled' | 'primaryDisabled' | 'shortCut' | 'canCheck' | 'checked' | 'split' | 'data' | 'onClick' | 'href' | 'target' | 'rel' | 'subMenuProps' | 'getItemClassNames' | 'getSplitButtonVerticalDividerClassNames' | 'sectionProps' | 'className' | 'style' | 'ariaLabel' | 'title' | 'onMouseDown' | 'role' | 'customOnRenderListLength' | 'keytipProps' | 'inactive'> {
-  [propertyName: string]: any;
-  renderIcon?: InputRendererOptions<IContextualMenuItemProps>;
-  render?: InputRendererOptions<{ item: any, dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
+  readonly [propertyName: string]: any;
+  readonly renderIcon?: InputRendererOptions<IContextualMenuItemProps>;
+  readonly render?: InputRendererOptions<{ item: any, dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
 }

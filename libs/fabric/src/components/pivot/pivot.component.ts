@@ -1,5 +1,5 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent, passProp } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ContentChildren, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChildren, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
 import * as React from 'react';
 
@@ -23,7 +23,6 @@ import * as React from 'react';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-pivot-item' }
 })
 export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -57,8 +56,8 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
 
   onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef, true);
   }
 
   ngOnInit() {
@@ -95,7 +94,6 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-pivot' }
 })
 export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
 
@@ -120,8 +118,8 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
 
   @Output() readonly onLinkClick = new EventEmitter<{ item?: PivotItem, ev?: MouseEvent }>();
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef, true);
 
     this.onLinkClickHandler = this.onLinkClickHandler.bind(this);
   }

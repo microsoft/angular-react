@@ -1,5 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
 
 @Component({
@@ -27,7 +27,6 @@ import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-dialog' }
 })
 export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -50,8 +49,8 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
 
   @Output() readonly onDismiss = new EventEmitter<MouseEvent>();
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
 
     this.onDismissHandler = this.onDismissHandler.bind(this);
   }
@@ -76,7 +75,7 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-dialog-footer' }
+
 })
 export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFooterProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -86,8 +85,8 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
   @Input() theme?: IDialogFooterProps['theme'];
   @Input() className?: IDialogFooterProps['className'];
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 }
 
@@ -117,7 +116,7 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-dialog-content' }
+
 })
 export class FabDialogContentComponent extends ReactWrapperComponent<IDialogContentProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -139,7 +138,7 @@ export class FabDialogContentComponent extends ReactWrapperComponent<IDialogCont
 
   @Output() readonly onDismiss = new EventEmitter<MouseEvent>();
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 }

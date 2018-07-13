@@ -36,7 +36,6 @@ import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/d
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-modal' }
 })
 export class FabModalComponent extends ReactWrapperComponent<IModalProps> implements IWithResponsiveModeState, IAccessiblePopupProps {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -63,8 +62,8 @@ export class FabModalComponent extends ReactWrapperComponent<IModalProps> implem
   @Output() readonly onDismiss = new EventEmitter<MouseEvent>();
   @Output() readonly onDismissed = new EventEmitter<void>();
 
-  constructor(elementRef: ElementRef, private readonly cd: ChangeDetectorRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
 
     this.onDismissHandler = this.onDismissHandler.bind(this);
   }

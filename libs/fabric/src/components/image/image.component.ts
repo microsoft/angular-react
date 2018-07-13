@@ -1,5 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
 
 @Component({
@@ -8,6 +8,16 @@ import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
   template: `
       <Image
         #reactNode
+
+        [alt]="alt"
+        [crossOrigin]="crossOrigin"
+        [height]="height"
+        [sizes]="sizes"
+        [src]="src"
+        [srcSet]="srcSet"
+        [useMap]="useMap"
+        [width]="width"
+
         [styles]="styles"
         [theme]="theme"
         [className]="className"
@@ -22,9 +32,17 @@ import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-image' }
 })
 export class FabImageComponent extends ReactWrapperComponent<IImageProps> {
+
+  @Input() alt?: IImageProps['alt'];
+  @Input() crossOrigin?: IImageProps['crossOrigin'];
+  @Input() height?: IImageProps['height'];
+  @Input() sizes?: IImageProps['sizes'];
+  @Input() src?: IImageProps['src'];
+  @Input() srcSet?: IImageProps['srcSet'];
+  @Input() useMap?: IImageProps['useMap'];
+  @Input() width?: IImageProps['width'];
 
   @Input() styles?: IImageProps['styles'];
   @Input() theme?: IImageProps['theme'];
@@ -40,8 +58,8 @@ export class FabImageComponent extends ReactWrapperComponent<IImageProps> {
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 
 }

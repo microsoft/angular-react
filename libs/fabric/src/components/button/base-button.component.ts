@@ -1,5 +1,5 @@
 import { InputRendererOptions, ReactWrapperComponent, JsxRenderFunc } from '@angular-react/core';
-import { ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ElementRef, EventEmitter, Input, OnInit, Output, ChangeDetectorRef } from '@angular/core';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { IContextualMenuProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 
@@ -53,8 +53,8 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
   onRenderMenuIcon: (props?: IButtonProps, defaultRender?: JsxRenderFunc<IButtonProps>) => JSX.Element;
   onRenderMenu: (props?: IContextualMenuProps, defaultRender?: JsxRenderFunc<IContextualMenuProps>) => JSX.Element;
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef, true);
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onMenuClickHandler = this.onMenuClickHandler.bind(this);

@@ -1,5 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IDatePickerProps } from 'office-ui-fabric-react/lib/DatePicker';
 
 @Component({
@@ -43,7 +43,6 @@ import { IDatePickerProps } from 'office-ui-fabric-react/lib/DatePicker';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-date-picker' }
 })
 export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -81,8 +80,8 @@ export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerPro
   @Output() readonly onSelectDate = new EventEmitter<{ date: Date | null | undefined }>();
   @Output() readonly onAfterMenuDismiss = new EventEmitter<void>();
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
 
     this.onSelectDateHandler = this.onSelectDateHandler.bind(this);
   }

@@ -1,5 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { ISliderProps } from 'office-ui-fabric-react/lib/Slider';
 
 @Component({
@@ -29,7 +29,6 @@ import { ISliderProps } from 'office-ui-fabric-react/lib/Slider';
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fab-slider' }
 })
 export class FabSliderComponent extends ReactWrapperComponent<ISliderProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
@@ -53,7 +52,7 @@ export class FabSliderComponent extends ReactWrapperComponent<ISliderProps> {
 
   @Output() readonly onChange = new EventEmitter<number>();
 
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+    super(elementRef, changeDetectorRef);
   }
 }
