@@ -1,5 +1,13 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+  OnInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { IShimmerProps } from 'office-ui-fabric-react/lib/Shimmer';
 import { IShimmerElementsGroupProps } from 'office-ui-fabric-react/lib/components/Shimmer/ShimmerElementsGroup/ShimmerElementsGroup.types';
 
@@ -36,7 +44,8 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
   @Input() className?: IShimmerProps['className'];
   @Input() theme?: IShimmerProps['theme'];
 
-  @Input() set renderCustomElementsGroup(value: InputRendererOptions<{}>) {
+  @Input()
+  set renderCustomElementsGroup(value: InputRendererOptions<{}>) {
     this._renderCustomElementsGroup = value;
 
     if (value) {

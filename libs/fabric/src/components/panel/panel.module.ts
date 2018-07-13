@@ -4,21 +4,17 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Panel } from 'office-ui-fabric-react/lib/Panel';
 import { FabPanelComponent } from './panel.component';
 
-const components = [
-  FabPanelComponent,
-];
+const components = [FabPanelComponent];
 
 @NgModule({
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabPanelModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('Panel', () => Panel);
   }
-
 }

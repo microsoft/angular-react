@@ -1,5 +1,15 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ICheckboxProps } from 'office-ui-fabric-react/lib/Checkbox';
 import { FormEvent } from 'react';
 
@@ -56,7 +66,7 @@ export class FabCheckboxComponent extends ReactWrapperComponent<ICheckboxProps> 
 
   @Input() renderLabel?: InputRendererOptions<ICheckboxProps>;
 
-  @Output() readonly onChange = new EventEmitter<{ ev?: Event, checked?: boolean }>();
+  @Output() readonly onChange = new EventEmitter<{ ev?: Event; checked?: boolean }>();
 
   /* Non-React props, more native support for Angular */
   // support for two-way data binding for `@Input() checked`.

@@ -1,5 +1,14 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { IToggleProps } from 'office-ui-fabric-react/lib/Toggle';
 
 @Component({
@@ -58,5 +67,4 @@ export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);
   }
-
 }

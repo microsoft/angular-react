@@ -24,8 +24,15 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
 
   @Input() renderLowerContent?: InputRendererOptions<IComboBoxProps>;
 
-  @Output() readonly onChanged = new EventEmitter<{ option?: IComboBoxOption, index?: number, value?: string, submitPendingValueEvent?: any }>();
-  @Output() readonly onPendingValueChanged = new EventEmitter<{ option?: IComboBoxOption, index?: number, value?: string }>();
+  @Output()
+  readonly onChanged = new EventEmitter<{
+    option?: IComboBoxOption;
+    index?: number;
+    value?: string;
+    submitPendingValueEvent?: any;
+  }>();
+  @Output()
+  readonly onPendingValueChanged = new EventEmitter<{ option?: IComboBoxOption; index?: number; value?: string }>();
   @Output() readonly onMenuOpen = new EventEmitter<void>();
   @Output() readonly onMenuDismissed = new EventEmitter<void>();
   @Output() readonly onScrollToItem = new EventEmitter<{ itemIndex: number }>();
@@ -64,7 +71,7 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
 
   onScrollToItemHandler(itemIndex: number) {
     this.onScrollToItem.emit({
-      itemIndex
+      itemIndex,
     });
   }
 }

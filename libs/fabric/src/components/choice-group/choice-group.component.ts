@@ -1,5 +1,14 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { IChoiceGroupOption, IChoiceGroupProps } from 'office-ui-fabric-react/lib/ChoiceGroup';
 
 @Component({
@@ -24,7 +33,7 @@ import { IChoiceGroupOption, IChoiceGroupProps } from 'office-ui-fabric-react/li
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FabChoiceGroupComponent extends ReactWrapperComponent<IChoiceGroupProps>  {
+export class FabChoiceGroupComponent extends ReactWrapperComponent<IChoiceGroupProps> {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IChoiceGroupProps['componentRef'];
@@ -38,8 +47,8 @@ export class FabChoiceGroupComponent extends ReactWrapperComponent<IChoiceGroupP
   /** HTML Input props */
   @Input() required?: IChoiceGroupProps['required'];
 
-  @Output() readonly onChanged = new EventEmitter<{ option: IChoiceGroupOption, evt?: Event }>();
-  @Output() readonly onChange = new EventEmitter<{ ev?: Event, option?: IChoiceGroupOption }>();
+  @Output() readonly onChanged = new EventEmitter<{ option: IChoiceGroupOption; evt?: Event }>();
+  @Output() readonly onChange = new EventEmitter<{ ev?: Event; option?: IChoiceGroupOption }>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);

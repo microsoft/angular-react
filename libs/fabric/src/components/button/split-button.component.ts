@@ -51,11 +51,9 @@ import { FabBaseButtonComponent } from './base-button.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSplitButtonComponent extends FabBaseButtonComponent {
-
   @ViewChild('reactNode') reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);
   }
-
 }

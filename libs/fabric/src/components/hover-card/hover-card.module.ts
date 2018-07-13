@@ -13,14 +13,12 @@ const components = [
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabHoverCardModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('HoverCard', () => HoverCard);
     registerElement('ExpandingCard', () => ExpandingCard);
   }
-
 }

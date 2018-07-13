@@ -4,21 +4,17 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { VerticalDivider } from 'office-ui-fabric-react/lib/Divider';
 import { FabDividerComponent } from './divider.component';
 
-const components = [
-  FabDividerComponent,
-];
+const components = [FabDividerComponent];
 
 @NgModule({
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabDividerModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('VerticalDivider', () => VerticalDivider);
   }
-
 }

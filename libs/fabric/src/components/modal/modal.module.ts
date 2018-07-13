@@ -4,21 +4,17 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Modal } from 'office-ui-fabric-react/lib/Modal';
 import { FabModalComponent } from './modal.component';
 
-const components = [
-  FabModalComponent,
-];
+const components = [FabModalComponent];
 
 @NgModule({
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabModalModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('Modal', () => Modal);
   }
-
 }

@@ -5,13 +5,11 @@ import { BasePicker } from 'office-ui-fabric-react/lib/pickers';
 
 @NgModule({
   imports: [CommonModule],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabBasePickerModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('BasePicker', () => BasePicker);
   }
-
 }

@@ -4,21 +4,17 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Spinner } from 'office-ui-fabric-react/lib/Spinner';
 import { FabSpinnerComponent } from './spinner.component';
 
-const components = [
-  FabSpinnerComponent,
-];
+const components = [FabSpinnerComponent];
 
 @NgModule({
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabSpinnerModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('Spinner', () => Spinner);
   }
-
 }

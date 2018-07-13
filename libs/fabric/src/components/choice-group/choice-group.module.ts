@@ -4,21 +4,17 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import { FabChoiceGroupComponent } from './choice-group.component';
 
-const components = [
-  FabChoiceGroupComponent,
-];
+const components = [FabChoiceGroupComponent];
 
 @NgModule({
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabChoiceGroupModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('ChoiceGroup', () => ChoiceGroup);
   }
-
 }

@@ -4,21 +4,17 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
 import { FabSearchBoxComponent } from './search-box.component';
 
-const components = [
-  FabSearchBoxComponent,
-];
+const components = [FabSearchBoxComponent];
 
 @NgModule({
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabSearchBoxModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('SearchBox', () => SearchBox);
   }
-
 }

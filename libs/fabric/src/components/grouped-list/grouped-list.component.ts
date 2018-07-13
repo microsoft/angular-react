@@ -1,5 +1,15 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { IGroupedListProps, IGroupRenderProps } from 'office-ui-fabric-react/lib/GroupedList';
 import { IListProps } from 'office-ui-fabric-react/lib/List';
 
@@ -81,5 +91,5 @@ export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListP
 export interface ICellRenderContext {
   readonly nestingDepth?: number;
   readonly item?: any;
-  readonly index?: number
+  readonly index?: number;
 }

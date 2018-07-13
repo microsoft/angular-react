@@ -1,5 +1,14 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
 
 @Component({
@@ -34,7 +43,6 @@ import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabImageComponent extends ReactWrapperComponent<IImageProps> {
-
   @Input() alt?: IImageProps['alt'];
   @Input() crossOrigin?: IImageProps['crossOrigin'];
   @Input() height?: IImageProps['height'];
@@ -61,5 +69,4 @@ export class FabImageComponent extends ReactWrapperComponent<IImageProps> {
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);
   }
-
 }

@@ -4,7 +4,6 @@ import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { IContextualMenuProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 
 export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButtonProps> implements OnInit {
-
   @Input() componentRef?: IButtonProps['componentRef'];
   @Input() href?: IButtonProps['href'];
   @Input() primary?: IButtonProps['primary'];
@@ -42,7 +41,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
   @Input() renderMenu?: InputRendererOptions<IContextualMenuProps>;
 
   @Output() readonly onClick = new EventEmitter<MouseEvent>();
-  @Output() readonly onMenuClick = new EventEmitter<{ ev?: MouseEvent | KeyboardEvent, button?: IButtonProps }>();
+  @Output() readonly onMenuClick = new EventEmitter<{ ev?: MouseEvent | KeyboardEvent; button?: IButtonProps }>();
   @Output() readonly onAfterMenuDismiss = new EventEmitter<void>();
 
   onRenderIcon: (props?: IButtonProps, defaultRender?: JsxRenderFunc<IButtonProps>) => JSX.Element;
@@ -74,11 +73,10 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
     this.onMenuClick.emit({
       ev: ev && ev.nativeEvent,
       button,
-    })
+    });
   }
 
   onClickHandler(ev?: React.MouseEvent) {
     this.onClick.emit(ev.nativeEvent);
   }
-
 }

@@ -1,8 +1,19 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef, SimpleChanges, OnChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  ChangeDetectorRef,
+  SimpleChanges,
+  OnChanges,
+} from '@angular/core';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
-import omit from "../../utils/omit";
+import omit from '../../utils/omit';
 
 @Component({
   selector: 'fab-command-bar',
@@ -33,7 +44,6 @@ import omit from "../../utils/omit";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps> implements OnChanges {
-
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ICommandBarProps['componentRef'];
@@ -68,9 +78,24 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['items'] && changes['items'].previousValue !== changes['items'].currentValue && changes['items'].currentValue) this._createTransformedItems(changes['items'].currentValue);
-    if (changes['farItems'] && changes['farItems'].previousValue !== changes['farItems'].currentValue && changes['farItems'].currentValue) this._createTransformedFarItems(changes['farItems'].currentValue);
-    if (changes['overflowItems'] && changes['overflowItems'].previousValue !== changes['overflowItems'].currentValue && changes['overflowItems'].currentValue) this._createTransformedOverflowItems(changes['overflowItems'].currentValue);
+    if (
+      changes['items'] &&
+      changes['items'].previousValue !== changes['items'].currentValue &&
+      changes['items'].currentValue
+    )
+      this._createTransformedItems(changes['items'].currentValue);
+    if (
+      changes['farItems'] &&
+      changes['farItems'].previousValue !== changes['farItems'].currentValue &&
+      changes['farItems'].currentValue
+    )
+      this._createTransformedFarItems(changes['farItems'].currentValue);
+    if (
+      changes['overflowItems'] &&
+      changes['overflowItems'].previousValue !== changes['overflowItems'].currentValue &&
+      changes['overflowItems'].currentValue
+    )
+      this._createTransformedOverflowItems(changes['overflowItems'].currentValue);
 
     super.ngOnChanges(changes);
   }
@@ -96,15 +121,57 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     return Object.assign(
       {},
       sharedProperties,
-      iconRenderer && { onRenderIcon: (props) => iconRenderer({ contextualMenuItemProps: props }) } as Pick<ICommandBarItemProps, 'onRenderIcon'>,
-      renderer && { onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>,
+      iconRenderer &&
+        ({ onRenderIcon: props => iconRenderer({ contextualMenuItemProps: props }) } as Pick<
+          ICommandBarItemProps,
+          'onRenderIcon'
+        >),
+      renderer &&
+        ({ onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>)
     ) as ICommandBarItemProps;
   }
 }
 
-export interface ICommandBarItemOptions<TData = any> extends Pick<ICommandBarItemProps, 'iconOnly' | 'buttonStyles' | 'cacheKey' | 'renderedInOverflow' | 'componentRef' | 'key' | 'text' | 'secondaryText' | 'iconProps' | 'submenuIconProps' | 'disabled' | 'primaryDisabled' | 'shortCut' | 'canCheck' | 'checked' | 'split' | 'data' | 'onClick' | 'href' | 'target' | 'rel' | 'subMenuProps' | 'getItemClassNames' | 'getSplitButtonVerticalDividerClassNames' | 'sectionProps' | 'className' | 'style' | 'ariaLabel' | 'title' | 'onMouseDown' | 'role' | 'customOnRenderListLength' | 'keytipProps' | 'inactive'> {
+export interface ICommandBarItemOptions<TData = any>
+  extends Pick<
+      ICommandBarItemProps,
+      | 'iconOnly'
+      | 'buttonStyles'
+      | 'cacheKey'
+      | 'renderedInOverflow'
+      | 'componentRef'
+      | 'key'
+      | 'text'
+      | 'secondaryText'
+      | 'iconProps'
+      | 'submenuIconProps'
+      | 'disabled'
+      | 'primaryDisabled'
+      | 'shortCut'
+      | 'canCheck'
+      | 'checked'
+      | 'split'
+      | 'data'
+      | 'onClick'
+      | 'href'
+      | 'target'
+      | 'rel'
+      | 'subMenuProps'
+      | 'getItemClassNames'
+      | 'getSplitButtonVerticalDividerClassNames'
+      | 'sectionProps'
+      | 'className'
+      | 'style'
+      | 'ariaLabel'
+      | 'title'
+      | 'onMouseDown'
+      | 'role'
+      | 'customOnRenderListLength'
+      | 'keytipProps'
+      | 'inactive'
+    > {
   readonly [propertyName: string]: any;
   readonly renderIcon?: InputRendererOptions<{ contextualMenuItemProps: IContextualMenuItemProps }>;
-  readonly render?: InputRendererOptions<{ item: any, dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
+  readonly render?: InputRendererOptions<{ item: any; dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
   readonly data?: TData;
 }

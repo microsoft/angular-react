@@ -1,5 +1,17 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent, passProp } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ContentChildren, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
 import * as React from 'react';
 
@@ -28,31 +40,40 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @passProp()
-  @Input() componentRef?: IPivotItemProps['componentRef'];
+  @Input()
+  componentRef?: IPivotItemProps['componentRef'];
 
   @passProp()
-  @Input() headerText?: IPivotItemProps['headerText'];
+  @Input()
+  headerText?: IPivotItemProps['headerText'];
 
   @passProp()
-  @Input() headerButtonProps?: IPivotItemProps['headerButtonProps'];
+  @Input()
+  headerButtonProps?: IPivotItemProps['headerButtonProps'];
 
   @passProp()
-  @Input() itemKey?: IPivotItemProps['itemKey'];
+  @Input()
+  itemKey?: IPivotItemProps['itemKey'];
 
   @passProp()
-  @Input() ariaLabel?: IPivotItemProps['ariaLabel'];
+  @Input()
+  ariaLabel?: IPivotItemProps['ariaLabel'];
 
   @passProp()
-  @Input() itemCount?: IPivotItemProps['itemCount'];
+  @Input()
+  itemCount?: IPivotItemProps['itemCount'];
 
   @passProp()
-  @Input() itemIcon?: IPivotItemProps['itemIcon'];
+  @Input()
+  itemIcon?: IPivotItemProps['itemIcon'];
 
   @passProp()
-  @Input() keytipProps?: IPivotItemProps['keytipProps'];
+  @Input()
+  keytipProps?: IPivotItemProps['keytipProps'];
 
   @passProp()
-  @Input() renderItemLink?: InputRendererOptions<IPivotItemProps>;
+  @Input()
+  renderItemLink?: InputRendererOptions<IPivotItemProps>;
 
   onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
 
@@ -96,7 +117,6 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
-
   readonly PivotType = Pivot;
   readonly PivotItemType = PivotItem;
 
@@ -116,7 +136,7 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
   @Input() headersOnly?: IPivotProps['headersOnly'];
   @Input() getTabId?: IPivotProps['getTabId'];
 
-  @Output() readonly onLinkClick = new EventEmitter<{ item?: PivotItem, ev?: MouseEvent }>();
+  @Output() readonly onLinkClick = new EventEmitter<{ item?: PivotItem; ev?: MouseEvent }>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef, true);

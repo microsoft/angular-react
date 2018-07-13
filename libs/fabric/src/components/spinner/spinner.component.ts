@@ -38,5 +38,4 @@ export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);
   }
-
 }

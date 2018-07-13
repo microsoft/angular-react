@@ -1,5 +1,14 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, EventEmitter, ChangeDetectorRef, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+  EventEmitter,
+  ChangeDetectorRef,
+  Output,
+} from '@angular/core';
 import { IModalProps } from 'office-ui-fabric-react/lib/Modal';
 import { IAccessiblePopupProps } from 'office-ui-fabric-react/lib/common/IAccessiblePopupProps';
 import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode';
@@ -37,7 +46,8 @@ import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/d
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FabModalComponent extends ReactWrapperComponent<IModalProps> implements IWithResponsiveModeState, IAccessiblePopupProps {
+export class FabModalComponent extends ReactWrapperComponent<IModalProps>
+  implements IWithResponsiveModeState, IAccessiblePopupProps {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() responsiveMode?: IModalProps['responsiveMode'];

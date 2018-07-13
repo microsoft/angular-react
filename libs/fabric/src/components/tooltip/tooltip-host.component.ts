@@ -1,5 +1,15 @@
 import { ReactWrapperComponent, InputRendererOptions, JsxRenderFunc } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+  OnInit,
+  EventEmitter,
+  Output,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ITooltipHostProps } from 'office-ui-fabric-react/lib/Tooltip';
 import { ITooltipProps } from 'office-ui-fabric-react/lib/Tooltip';
 import { omit } from '../../utils/omit';
@@ -26,7 +36,7 @@ import { omit } from '../../utils/omit';
       <ReactContent><ng-content></ng-content></ReactContent>
     </TooltipHost>
   `,
-  styles: [    'react-renderer'  ],
+  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostProps> {
@@ -43,19 +53,19 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
   @Input() hostClassName?: ITooltipHostProps['hostClassName'];
   @Input() closeDelay?: ITooltipHostProps['closeDelay'];
 
-  @Input() set tooltipOptions(value: ITooltipOptions) {
-     this._tooltipOptions = value;
-     if (value) {
-       this.transformedTooltipProps = this._transformTooltipOptionsToProps(value);
-     }
-
+  @Input()
+  set tooltipOptions(value: ITooltipOptions) {
+    this._tooltipOptions = value;
+    if (value) {
+      this.transformedTooltipProps = this._transformTooltipOptionsToProps(value);
+    }
   }
 
-  get tooltipOptions() : ITooltipOptions {
+  get tooltipOptions(): ITooltipOptions {
     return this._tooltipOptions;
   }
 
-  @Output() readonly onTooltipToggle = new EventEmitter< { isTooltipVisible: boolean }>();
+  @Output() readonly onTooltipToggle = new EventEmitter<{ isTooltipVisible: boolean }>();
 
   transformedTooltipProps: ITooltipHostProps['tooltipProps'];
   private _tooltipOptions: ITooltipOptions;
@@ -78,7 +88,7 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
     return Object.assign(
       {},
       sharedProperties,
-      contentRenderer && { onRenderContent: data => contentRenderer(data) } as Pick<ITooltipProps, 'onRenderContent'>,
+      contentRenderer && ({ onRenderContent: data => contentRenderer(data) } as Pick<ITooltipProps, 'onRenderContent'>)
     );
   }
 }
@@ -86,6 +96,19 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
 /**
  * Counterpart of `ITooltipProps`, with Angular adjustments.
  */
-export interface ITooltipOptions extends Pick<ITooltipProps, 'componentRef' | 'calloutProps' | 'content' | 'delay' | 'maxWidth' | 'targetElement' | 'directionalHint' | 'directionalHintForRTL' | 'theme' | 'styles'> {
+export interface ITooltipOptions
+  extends Pick<
+      ITooltipProps,
+      | 'componentRef'
+      | 'calloutProps'
+      | 'content'
+      | 'delay'
+      | 'maxWidth'
+      | 'targetElement'
+      | 'directionalHint'
+      | 'directionalHintForRTL'
+      | 'theme'
+      | 'styles'
+    > {
   readonly renderContent?: InputRendererOptions<ITooltipProps>;
 }

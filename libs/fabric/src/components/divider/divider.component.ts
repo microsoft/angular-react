@@ -22,5 +22,4 @@ export class FabDividerComponent extends ReactWrapperComponent<IVerticalDividerP
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);
   }
-
 }

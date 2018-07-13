@@ -3,7 +3,7 @@ const clearUndefinedProperties = <T extends object>(obj: T): Partial<T> => {
     const _acc = acc;
     if (obj[key] !== undefined) _acc[key] = obj[key];
     return _acc;
-  }, {})
-}
+  }, {});
+};
 
 export default clearUndefinedProperties;

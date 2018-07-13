@@ -1,11 +1,23 @@
 import { ReactWrapperComponent, InputRendererOptions, JsxRenderFunc } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+  OnInit,
+  Output,
+  EventEmitter,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { IBasePickerProps, BaseAutoFill } from 'office-ui-fabric-react/lib/Pickers';
 import { IPersonaProps } from 'office-ui-fabric-react/lib/Persona';
 import { IPickerItemProps, IBasePickerSuggestionsProps } from 'office-ui-fabric-react/lib/Pickers';
 import omit from '../../../utils/omit';
 
-export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<T>> extends ReactWrapperComponent<TProps> implements OnInit {
+export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<T>>
+  extends ReactWrapperComponent<TProps>
+  implements OnInit {
   @Input() componentRef?: IBasePickerProps<T>['componentRef'];
   @Input() resolveDelay?: IBasePickerProps<T>['resolveDelay'];
   @Input() defaultSelectedItems?: IBasePickerProps<T>['defaultSelectedItems'];
@@ -26,7 +38,8 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
   @Input('getMoreResults') onGetMoreResults?: IBasePickerProps<T>['onGetMoreResults'];
   @Input('validateInput') onValidateInput?: IBasePickerProps<T>['onValidateInput'];
 
-  @Input() set pickerSuggestionsOptions(value: IBasePickerSuggestionsOptions) {
+  @Input()
+  set pickerSuggestionsOptions(value: IBasePickerSuggestionsOptions) {
     this._pickerSuggestionsOptions = value;
 
     if (value) {
@@ -44,11 +57,14 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
   @Output() readonly onChange = new EventEmitter<{ items?: T[] }>();
   @Output() readonly onFocus = new EventEmitter<FocusEvent>();
   @Output() readonly onBlur = new EventEmitter<FocusEvent>();
-  @Output() readonly onDismiss = new EventEmitter<{ ev?: any, selectedItem?: T }>();
+  @Output() readonly onDismiss = new EventEmitter<{ ev?: any; selectedItem?: T }>();
   @Output() readonly onRemoveSuggestion = new EventEmitter<{ item: IPersonaProps }>();
 
   pickerSuggestionsProps: IBasePickerSuggestionsProps;
-  onRenderSuggestionsItem: (props?: IRenderSuggestionItemContext<T>, defaultRender?: JsxRenderFunc<IRenderSuggestionItemContext<T>>) => JSX.Element;
+  onRenderSuggestionsItem: (
+    props?: IRenderSuggestionItemContext<T>,
+    defaultRender?: JsxRenderFunc<IRenderSuggestionItemContext<T>>
+  ) => JSX.Element;
   onRenderItem: (props?: IPickerItemProps<T>, defaultRender?: JsxRenderFunc<IPickerItemProps<T>>) => JSX.Element;
 
   private _pickerSuggestionsOptions: IBasePickerSuggestionsOptions;
@@ -84,7 +100,7 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
 
   onDismissHandler(ev?: any, selectedItem?: T) {
     this.onDismiss.emit({
-      ev: ev && ev.nativeEvent || ev,
+      ev: (ev && ev.nativeEvent) || ev,
       selectedItem,
     });
   }
@@ -95,7 +111,9 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
     });
   }
 
-  private _transformBasePickerSuggestionsOptionsToProps(options: IBasePickerSuggestionsOptions): IBasePickerSuggestionsProps {
+  private _transformBasePickerSuggestionsOptionsToProps(
+    options: IBasePickerSuggestionsOptions
+  ): IBasePickerSuggestionsProps {
     const sharedProperties = omit(options, 'renderNoResultFound', 'renderResultsFooterFull', 'renderResultsFooter');
 
     const noResultFoundRenderer = this.createInputJsxRenderer(options.renderNoResultFound);
@@ -105,14 +123,40 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
     return Object.assign(
       {},
       sharedProperties,
-      noResultFoundRenderer && { onRenderNoResultFound: () => noResultFoundRenderer({}) } as Pick<IBasePickerSuggestionsProps, 'onRenderNoResultFound'>,
-      resultsFooterFullRenderer && { resultsFooterFull: () => resultsFooterFullRenderer({}) } as Pick<IBasePickerSuggestionsProps, 'resultsFooterFull'>,
-      resultsFooterRenderer && { resultsFooter: () => resultsFooterRenderer({}) } as Pick<IBasePickerSuggestionsProps, 'resultsFooter'>,
+      noResultFoundRenderer &&
+        ({ onRenderNoResultFound: () => noResultFoundRenderer({}) } as Pick<
+          IBasePickerSuggestionsProps,
+          'onRenderNoResultFound'
+        >),
+      resultsFooterFullRenderer &&
+        ({ resultsFooterFull: () => resultsFooterFullRenderer({}) } as Pick<
+          IBasePickerSuggestionsProps,
+          'resultsFooterFull'
+        >),
+      resultsFooterRenderer &&
+        ({ resultsFooter: () => resultsFooterRenderer({}) } as Pick<IBasePickerSuggestionsProps, 'resultsFooter'>)
     );
   }
 }
 
-export interface IBasePickerSuggestionsOptions extends Pick<IBasePickerSuggestionsProps, 'suggestionsHeaderText' | 'mostRecentlyUsedHeaderText' | 'noResultsFoundText' | 'className' | 'suggestionsClassName' | 'suggestionsItemClassName' | 'searchForMoreText' | 'forceResolveText' | 'loadingText' | 'searchingText' | 'resultsMaximumNumber' | 'showRemoveButtons' | 'suggestionsAvailableAlertText' | 'suggestionsContainerAriaLabel'> {
+export interface IBasePickerSuggestionsOptions
+  extends Pick<
+      IBasePickerSuggestionsProps,
+      | 'suggestionsHeaderText'
+      | 'mostRecentlyUsedHeaderText'
+      | 'noResultsFoundText'
+      | 'className'
+      | 'suggestionsClassName'
+      | 'suggestionsItemClassName'
+      | 'searchForMoreText'
+      | 'forceResolveText'
+      | 'loadingText'
+      | 'searchingText'
+      | 'resultsMaximumNumber'
+      | 'showRemoveButtons'
+      | 'suggestionsAvailableAlertText'
+      | 'suggestionsContainerAriaLabel'
+    > {
   readonly renderNoResultFound: InputRendererOptions<{}>;
   readonly renderResultsFooterFull: InputRendererOptions<{}>;
   readonly renderResultsFooter: InputRendererOptions<{}>;

@@ -25,5 +25,4 @@ export class FabFabricComponent extends ReactWrapperComponent<IFabricProps> {
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);
   }
-
 }

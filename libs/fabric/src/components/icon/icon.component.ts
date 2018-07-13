@@ -34,5 +34,4 @@ export class FabIconComponent extends ReactWrapperComponent<IIconProps> {
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef, true);
   }
-
 }

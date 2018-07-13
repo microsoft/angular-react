@@ -1,7 +1,15 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ActionButton, CommandBarButton, CompoundButton, DefaultButton, IconButton, MessageBarButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
+import {
+  ActionButton,
+  CommandBarButton,
+  CompoundButton,
+  DefaultButton,
+  IconButton,
+  MessageBarButton,
+  PrimaryButton,
+} from 'office-ui-fabric-react/lib/Button';
 import { FabActionButtonComponent } from './action-button.component';
 import { FabCommandBarButtonComponent } from './command-bar-button.component';
 import { FabCompoundButtonComponent } from './compound-button.component';
@@ -26,10 +34,9 @@ const components = [
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabButtonModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('DefaultButton', () => DefaultButton);
@@ -40,5 +47,4 @@ export class FabButtonModule {
     registerElement('MessageBarButton', () => MessageBarButton);
     registerElement('PrimaryButton', () => PrimaryButton);
   }
-
 }

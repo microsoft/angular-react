@@ -71,5 +71,4 @@ export class FabLinkComponent extends ReactWrapperComponent<ILinkProps> {
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);
   }
-
 }

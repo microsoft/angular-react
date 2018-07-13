@@ -1,5 +1,15 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Panel';
 
 @Component({
@@ -97,21 +107,23 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
     this.onRenderFooterContent = this.createRenderPropHandler(this.renderFooterContent);
   }
 
-  onRenderHeader(props?: IPanelProps, defaultRender?: IPanelHeaderRenderer, headerTextId?: string | undefined): JSX.Element {
+  onRenderHeader(
+    props?: IPanelProps,
+    defaultRender?: IPanelHeaderRenderer,
+    headerTextId?: string | undefined
+  ): JSX.Element {
     if (!this.renderHeader) {
       return typeof defaultRender === 'function' ? defaultRender(props, defaultRender, headerTextId) : null;
     }
 
     return this._renderHeader({ props, headerTextId });
   }
-
 }
 
 /**
  * Counterpart of `IPanelHeaderRenderer`.
  */
 export interface IPanelHeaderRenderContext {
-  readonly props?: IPanelProps
-  readonly headerTextId?: string | undefined
+  readonly props?: IPanelProps;
+  readonly headerTextId?: string | undefined;
 }
-

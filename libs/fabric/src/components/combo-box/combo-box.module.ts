@@ -5,23 +5,18 @@ import { ComboBox, VirtualizedComboBox } from 'office-ui-fabric-react/lib/ComboB
 import { FabComboBoxComponent } from './combo-box.component';
 import { FabVirtualizedComboBoxComponent } from './virtualized-combo-box.component';
 
-const components = [
-  FabComboBoxComponent,
-  FabVirtualizedComboBoxComponent,
-];
+const components = [FabComboBoxComponent, FabVirtualizedComboBoxComponent];
 
 @NgModule({
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabComboBoxModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('ComboBox', () => ComboBox);
     registerElement('VirtualizedComboBox', () => VirtualizedComboBox);
   }
-
 }

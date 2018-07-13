@@ -1,5 +1,14 @@
 import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
-import { EventEmitter, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, Output, ChangeDetectorRef } from '@angular/core';
+import {
+  EventEmitter,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+  Output,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { IHoverCardProps, IExpandingCardProps } from 'office-ui-fabric-react/lib/HoverCard';
 import { omit } from '../../utils/omit';
 
@@ -45,7 +54,8 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
   @Input() trapFocus?: IHoverCardProps['trapFocus'];
   @Input() shouldBlockHoverCard?: () => boolean; // Workaround for bug in the Fabric React types (() => void)
   @Input() setInitialFocus?: IHoverCardProps['setInitialFocus'];
-  @Input() set expandingCardOptions(value: IExpandingCardOptions) {
+  @Input()
+  set expandingCardOptions(value: IExpandingCardOptions) {
     this._expandingCardOptions = value;
     if (value) {
       this.transformedExpandingCardProps = this._transformExpandingCardOptionsToProps(value);
@@ -75,8 +85,16 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
     return Object.assign(
       {},
       sharedProperties,
-      compactCardRenderer && { onRenderCompactCard: data => compactCardRenderer({ data }) } as Pick<IExpandingCardProps, 'onRenderCompactCard'>,
-      expandedCardRenderer && { onRenderExpandedCard: data => expandedCardRenderer({ data }) } as Pick<IExpandingCardProps, 'onRenderExpandedCard'>,
+      compactCardRenderer &&
+        ({ onRenderCompactCard: data => compactCardRenderer({ data }) } as Pick<
+          IExpandingCardProps,
+          'onRenderCompactCard'
+        >),
+      expandedCardRenderer &&
+        ({ onRenderExpandedCard: data => expandedCardRenderer({ data }) } as Pick<
+          IExpandingCardProps,
+          'onRenderExpandedCard'
+        >)
     );
   }
 }
@@ -84,7 +102,25 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
 /**
  * Counterpart of `IExpandingCardProps`, with Angular adjustments.
  */
-export interface IExpandingCardOptions extends Pick<IExpandingCardProps, 'componentRef' | 'renderData' | 'targetElement' | 'onEnter' | 'onLeave' | 'compactCardHeight' | 'expandedCardHeight' | 'mode' | 'theme' | 'directionalHint' | 'gapSpace' | 'styles' | 'directionalHintFixed' | 'trapFocus' | 'firstFocus'> {
+export interface IExpandingCardOptions
+  extends Pick<
+      IExpandingCardProps,
+      | 'componentRef'
+      | 'renderData'
+      | 'targetElement'
+      | 'onEnter'
+      | 'onLeave'
+      | 'compactCardHeight'
+      | 'expandedCardHeight'
+      | 'mode'
+      | 'theme'
+      | 'directionalHint'
+      | 'gapSpace'
+      | 'styles'
+      | 'directionalHintFixed'
+      | 'trapFocus'
+      | 'firstFocus'
+    > {
   readonly renderCompactCard?: InputRendererOptions<RenderCardContext>;
   readonly renderExpandedCard?: InputRendererOptions<RenderCardContext>;
 }
@@ -92,4 +128,3 @@ export interface IExpandingCardOptions extends Pick<IExpandingCardProps, 'compon
 export interface RenderCardContext<T = any> {
   readonly data: T;
 }
-

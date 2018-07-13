@@ -4,23 +4,18 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Shimmer, ShimmerElementsGroup } from 'office-ui-fabric-react/lib/Shimmer';
 import { FabShimmerComponent, FabShimmerElementsGroupComponent } from './shimmer.component';
 
-const components = [
-  FabShimmerComponent,
-  FabShimmerElementsGroupComponent,
-];
+const components = [FabShimmerComponent, FabShimmerElementsGroupComponent];
 
 @NgModule({
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabShimmerModule {
-
   constructor() {
     // Add any React elements to the registry (used by the renderer).
     registerElement('Shimmer', () => Shimmer);
     registerElement('ShimmerElementsGroup', () => ShimmerElementsGroup);
   }
-
 }
