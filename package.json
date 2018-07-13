@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "bootstrap": "npm-recursive-install",
     "start": "ng serve",
     "start:demo": "ng serve --app demo",
     "start:docs": "ng serve --app docs",
@@ -105,6 +106,7 @@
     "tsickle": "^0.27.5",
     "tslib": "^1.9.0",
     "tslint": "~5.10.0",
-    "typescript": "2.6.2"
+    "typescript": "2.6.2",
+    "recursive-install": "^1.3.0"
   }
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "0.2.0-6",
+  "version": "0.2.0",
   "ngPackage": {
     "lib": {
       "languageLevel": [
@@ -14,15 +14,10 @@
       "entryFile": "public-api.ts",
       "umdModuleIds": {
         "react": "React",
-        "react-dom": "ReactDOM",
-        "css-to-style": "toStyle"
+        "react-dom": "ReactDOM"
       },
       "comments": "none"
     },
-    "whitelistedNonPeerDependencies": [
-      "tslib",
-      "css-to-style"
-    ],
     "dest": "../../@angular-react/core"
   },
   "description": "Use React components inside Angular",
@@ -50,11 +45,9 @@
     "react-dom": "^16.3.1",
     "react": "^16.3.1"
   },
-  "dependencies": {
-    "css-to-style": "^1.2.0"
-  },
   "devDependencies": {
     "@types/react-dom": "^16.0.4",
-    "@types/react": "^16.3.4"
+    "@types/react": "^16.3.4",
+    "css-to-style": "^1.2.0"
   }
 }
