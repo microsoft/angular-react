@@ -1,16 +1,24 @@
-import { AfterViewInit, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, TemplateRef, Type } from "@angular/core";
+import { AfterViewInit, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, TemplateRef, Type, ChangeDetectorRef, OnChanges, SimpleChanges, HostBinding, Input } from "@angular/core";
 import { isReactNode } from "../renderer/react-node";
 import { renderComponent, renderFunc, renderTemplate } from "../renderer/renderprop-helpers";
 import { unreachable } from "../utils/types/unreachable";
+import toStyle from 'css-to-style';
 
-const blacklistedAttributesAsProps = [
-  'class',
-  'style'
+type PropMapper = (value: any) => [string, any];
+
+type AttributeNameAlternative = [string, string | undefined];
+
+const forbiddenAttributesAsProps: ReadonlyArray<AttributeNameAlternative> = [
+  ['key', null],
+  ['class', 'rClass'],
+  ['style', 'rStyle'],
 ];
 
-const blacklistedAttributeMatchers = [
+const ignoredAttributeMatchers = [
   /^_?ng-?.*/
 ];
+
+const ngClassRegExp = /^ng-/;
 
 export interface RenderComponentOptions<TContext extends object> {
   readonly componentType: Type<TContext>;
@@ -31,16 +39,30 @@ export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
  * Simplifies some of the handling around passing down props and setting CSS on the host component.
  */
 // NOTE: TProps is not used at the moment, but a preparation for a potential future change.
-export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit {
+export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit, OnChanges {
 
   protected abstract reactNodeRef: ElementRef;
+
+  @Input() set rClass(value: string) {
+    if (isReactNode(this.reactNodeRef.nativeElement)) {
+      this.reactNodeRef.nativeElement.setProperty('className', value);
+      this.changeDetectorRef.detectChanges();
+    }
+  }
+
+  @Input() set rStyle(value: string) {
+    if (isReactNode(this.reactNodeRef.nativeElement)) {
+      this.reactNodeRef.nativeElement.setProperty('style', toStyle(value));
+      this.changeDetectorRef.detectChanges();
+    }
+  }
 
   /**
    * Creates an instance of ReactWrapperComponent.
    * @param elementRef The host element.
    * @param setHostDisplay Whether the host's `display` should be set to the root child node's `display`. defaults to `false`
    */
-  constructor(public readonly elementRef: ElementRef, private readonly setHostDisplay: boolean = false) { }
+  constructor(public readonly elementRef: ElementRef, private readonly changeDetectorRef: ChangeDetectorRef, private readonly setHostDisplay: boolean = false) { }
 
   ngAfterViewInit() {
     this._passAttributesAsProps();
@@ -48,6 +70,18 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     if (this.setHostDisplay) {
       this._setHostDisplay();
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this._passAttributesAsProps();
+  }
+
+  protected detectChanges() {
+    if (isReactNode(this.reactNodeRef.nativeElement)) {
+      this.reactNodeRef.nativeElement.setRenderPending();
+    }
+
+    this.changeDetectorRef.markForCheck();
   }
 
   /**
@@ -104,15 +138,19 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       (this.elementRef.nativeElement as HTMLElement).attributes
     );
 
-    const whitelistedHostAttributes = hostAttributes.filter(attr => !this._isBlacklistedAttribute(attr));
-    if (!whitelistedHostAttributes || whitelistedHostAttributes.length === 0) {
-      return;
-    }
-
     if (!this.reactNodeRef || !isReactNode(this.reactNodeRef.nativeElement)) {
       throw new Error('reactNodeRef must hold a reference to a ReactNode');
     }
 
+    // Ensure there are no blacklisted props. Suggest alternative as error if there is any
+    hostAttributes.forEach(attr => {
+      const [forbidden, alternativeAttrName] = this._isForbiddenAttribute(attr);
+      if (forbidden) {
+        throw new Error(`[${(this.elementRef.nativeElement as HTMLElement).tagName.toLowerCase()}] React wrapper components cannot have the '${attr.name}' attribute set. Use the following alternative: ${alternativeAttrName || ''}`);
+      }
+    });
+
+    const whitelistedHostAttributes = hostAttributes.filter(attr => !this._isIgnoredAttribute(attr));
     const props = whitelistedHostAttributes.reduce((acc, attr) => ({
       ...acc,
       [attr.name]: attr.value,
@@ -124,7 +162,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   private _setHostDisplay() {
     const nativeElement: HTMLElement = this.elementRef.nativeElement;
 
-    // setTimeout since we want to wait until child elements are rendered
+    // We want to wait until child elements are rendered
     setTimeout(() => {
       if (nativeElement.firstElementChild) {
         const rootChildDisplay = getComputedStyle(nativeElement.firstElementChild).display;
@@ -133,11 +171,23 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     });
   }
 
-  private _isBlacklistedAttribute(attr: Attr) {
-    if (blacklistedAttributesAsProps.includes(attr.name)) {
-      return true;
+  private _isIgnoredAttribute(attr: Attr) {
+    return ignoredAttributeMatchers.some(regExp => regExp.test(attr.name));
+  }
+
+  private _isForbiddenAttribute(attr: Attr): [boolean, string | undefined] {
+    const { name, value } = attr;
+
+    if (name === 'key') return [true, undefined];
+    if (name === 'class' && value.split(' ').some(className => !ngClassRegExp.test(className))) return [true, 'rClass'];
+    if (name === 'style') {
+      const style = toStyle(value);
+      // Only allowing style if it's something that changes the display - setting anything else should be done on the child component directly (via the `styles` attribute in fabric for example)
+      if (Object.entries(style).filter(([key, value]) => value || key !== 'display').length > 0) {
+        return [true, 'rStyle'];
+      }
     }
 
-    return blacklistedAttributeMatchers.some(regExp => regExp.test(attr.name));
+    return [false, undefined];
   }
 }

@@ -12,7 +12,12 @@ export function registerElement(
   resolver: ComponentResolver
 ): void {
   if (elementMap.has(elementName)) {
-    throw new Error(`Element for ${elementName} already registered.`);
+     // Ignore multiple register attempts for the same component.
+     // Angular doesn't allow sharing whole NgModule instances (in this case, an @NgModule for React-wrapped components) with lazy-loaded @NgModules (in the app),
+     // To keep the API simple, allow multiple calls to `registerElement`.
+     // Disadvantage is that you can't replace (React) component implementations at runtime. This sounds far-fetched, but solvable with a `static forRoot()` pattern for every
+     // React-wrapper components' @NgModule, ensuring that `registerElement` is only called once.
+    return;
   } else {
     const entry = { resolver: resolver };
     elementMap.set(elementName, entry);
