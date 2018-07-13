@@ -11,9 +11,9 @@ import omit from "../../utils/omit";
     <CommandBar
       #reactNode
       [componentRef]="componentRef"
-      [items]="transformedItems"
-      [farItems]="transformedFarItems"
-      [overflowItems]="transformedOverflowItems"
+      [items]="transformedItems_"
+      [farItems]="transformedFarItems_"
+      [overflowItems]="transformedOverflowItems_"
       [overflowButtonProps]="overflowButtonProps"
       [overflowButtonAs]="overflowButtonAs"
       [overflowMenuProps]="overflowMenuProps"
@@ -56,9 +56,12 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   @Output() readonly onDataReduced = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
   @Output() readonly onDataGrown = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
 
-  transformedItems: ReadonlyArray<ICommandBarItemProps>;
-  transformedFarItems: ReadonlyArray<ICommandBarItemProps>;
-  transformedOverflowItems: ReadonlyArray<ICommandBarItemProps>;
+  /** @internal */
+  transformedItems_: ReadonlyArray<ICommandBarItemProps>;
+  /** @internal */
+  transformedFarItems_: ReadonlyArray<ICommandBarItemProps>;
+  /** @internal */
+  transformedOverflowItems_: ReadonlyArray<ICommandBarItemProps>;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef, true);
@@ -69,19 +72,19 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     if (changes['farItems'] && changes['farItems'].previousValue !== changes['farItems'].currentValue && changes['farItems'].currentValue) this._createTransformedFarItems(changes['farItems'].currentValue);
     if (changes['overflowItems'] && changes['overflowItems'].previousValue !== changes['overflowItems'].currentValue && changes['overflowItems'].currentValue) this._createTransformedOverflowItems(changes['overflowItems'].currentValue);
 
-    this.detectChanges();
+    super.ngOnChanges(changes);
   }
 
   private _createTransformedItems(newItems: ReadonlyArray<ICommandBarItemOptions>) {
-    this.transformedItems = newItems.map(item => this._transformCommandBarItemOptionsToProps(item));
+    this.transformedItems_ = newItems.map(item => this._transformCommandBarItemOptionsToProps(item));
   }
 
   private _createTransformedFarItems(newItems: ReadonlyArray<ICommandBarItemOptions>) {
-    this.transformedFarItems = newItems.map(item => this._transformCommandBarItemOptionsToProps(item));
+    this.transformedFarItems_ = newItems.map(item => this._transformCommandBarItemOptionsToProps(item));
   }
 
   private _createTransformedOverflowItems(newItems: ReadonlyArray<ICommandBarItemOptions>) {
-    this.transformedOverflowItems = newItems.map(item => this._transformCommandBarItemOptionsToProps(item));
+    this.transformedOverflowItems_ = newItems.map(item => this._transformCommandBarItemOptionsToProps(item));
   }
 
   private _transformCommandBarItemOptionsToProps(itemOptions: ICommandBarItemOptions): ICommandBarItemProps {
