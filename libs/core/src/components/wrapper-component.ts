@@ -74,6 +74,8 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
 
   ngOnChanges(changes: SimpleChanges) {
     this._passAttributesAsProps();
+
+    this.detectChanges();
   }
 
   protected detectChanges() {
@@ -183,7 +185,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     if (name === 'style') {
       const style = toStyle(value);
       // Only allowing style if it's something that changes the display - setting anything else should be done on the child component directly (via the `styles` attribute in fabric for example)
-      if (Object.entries(style).filter(([key, value]) => value || key !== 'display').length > 0) {
+      if (Object.entries(style).filter(([key, value]) => value && key !== 'display').length > 0) {
         return [true, 'rStyle'];
       }
     }
