@@ -10,7 +10,7 @@ import {
   OnChanges,
   SimpleChanges,
   HostBinding,
-  Input
+  Input,
 } from '@angular/core';
 import toStyle from 'css-to-style';
 
@@ -26,7 +26,8 @@ const forbiddenAttributesAsProps: ReadonlyArray<AttributeNameAlternative> = [
   ['style', 'rStyle'],
 ];
 
-const ignoredAttributeMatchers = [/^_?ng-?.*/];
+// Forbidden attributes are still ignored, since they may be set from the wrapper components themselves (forbidden is only applied for users of the wrapper components)
+const ignoredAttributeMatchers = [/^_?ng-?.*/, /^style$/, /^class$/];
 
 const ngClassRegExp = /^ng-/;
 
@@ -102,7 +103,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     public readonly elementRef: ElementRef,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly setHostDisplay: boolean = false
-  ) { }
+  ) {}
 
   ngAfterViewInit() {
     this._passAttributesAsProps();
@@ -197,7 +198,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
         throw new Error(
           `[${(this.elementRef
             .nativeElement as HTMLElement).tagName.toLowerCase()}] React wrapper components cannot have the '${
-          attr.name
+            attr.name
           }' attribute set. Use the following alternative: ${alternativeAttrName || ''}`
         );
       }
