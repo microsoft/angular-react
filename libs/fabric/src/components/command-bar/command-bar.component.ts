@@ -171,7 +171,16 @@ export interface ICommandBarItemOptions<TData = any>
       | 'inactive'
     > {
   readonly [propertyName: string]: any;
-  readonly renderIcon?: InputRendererOptions<{ contextualMenuItemProps: IContextualMenuItemProps }>;
-  readonly render?: InputRendererOptions<{ item: any; dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
+  readonly renderIcon?: InputRendererOptions<ICommandBarItemOptionsRenderIconContext>;
+  readonly render?: InputRendererOptions<ICommandBarItemOptionsRenderContext>;
   readonly data?: TData;
+}
+
+export interface ICommandBarItemOptionsRenderContext {
+  readonly item: any;
+  readonly dismissMenu: (ev?: any, dismissAll?: boolean) => void;
+}
+
+export interface ICommandBarItemOptionsRenderIconContext {
+  readonly contextualMenuItemProps: IContextualMenuItemProps;
 }
