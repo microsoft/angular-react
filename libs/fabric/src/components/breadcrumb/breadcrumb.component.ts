@@ -26,7 +26,7 @@ import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react/lib/Br
       [overflowIndex]="overflowIndex"
       [styles]="styles"
       [theme]="theme"
-      [RenderItem]="item && onRenderItem"
+      [RenderItem]="renderItem && onRenderItem"
       [ReduceData]="onReduceData"
       >
     </Breadcrumb>
@@ -48,26 +48,16 @@ export class FabBreadcrumbComponent extends ReactWrapperComponent<IBreadcrumbPro
   @Input() styles?: IBreadcrumbProps['styles'];
   @Input() theme?: IBreadcrumbProps['theme'];
 
-  @Input() item?: InputRendererOptions<IBreadcrumbItem>;
-  @Input() onReduceData?: IBreadcrumbProps['onReduceData'];
+  @Input() renderItem?: InputRendererOptions<IBreadcrumbItem>;
+  @Input('reduceData') onReduceData?: IBreadcrumbProps['onReduceData'];
 
-  private _renderItem: JsxRenderFunc<IBreadcrumbItem>;
+  onRenderItem: (props?: IBreadcrumbItem, defaultRender?: JsxRenderFunc<IBreadcrumbItem>) => JSX.Element;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);
-
-    this.onRenderItem = this.onRenderItem.bind(this);
   }
 
   ngOnInit() {
-    this._renderItem = this.createInputJsxRenderer(this.item);
-  }
-
-  onRenderItem(props?: IBreadcrumbItem, defaultRender?: JsxRenderFunc<IBreadcrumbItem>): JSX.Element {
-    if (!this.item) {
-      return typeof defaultRender === 'function' ? defaultRender(props) : null;
-    }
-
-    return this._renderItem(props);
+    this.onRenderItem = this.createRenderPropHandler(this.renderItem);
   }
 }
