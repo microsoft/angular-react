@@ -23,7 +23,7 @@ import { CommandBarItemsDirectiveBase } from './directives/command-bar-items-bas
 import { TypedChanges, OnChanges } from '../../types/angular/typed-changes';
 import {
   CommandBarItemDirective,
-  CommandBarItemPropertiesChangedPayload,
+  CommandBarItemChangedPayload,
 } from '@angular-react/fabric/src/components/command-bar/directives/command-bar-item.directive';
 import { Subscription } from 'rxjs';
 
@@ -58,7 +58,8 @@ import { Subscription } from 'rxjs';
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>
   implements OnChanges<FabCommandBarComponent>, AfterContentInit, OnDestroy {
   @ContentChild(CommandBarItemsDirective) readonly itemsDirective: CommandBarItemsDirective;
-  @ContentChild(CommandBarFarItemsDirective) readonly farItemsDirective: CommandBarItemsDirective;
+  @ContentChild(CommandBarFarItemsDirective) readonly farItemsDirective: CommandBarFarItemsDirective;
+  @ContentChild(CommandBarOverflowItemsDirective) readonly overflowItemsDirective: CommandBarOverflowItemsDirective;
 
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
@@ -121,6 +122,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   ngAfterContentInit() {
     if (this.itemsDirective) this._initDirective(this.itemsDirective, 'items');
     if (this.farItemsDirective) this._initDirective(this.farItemsDirective, 'farItems');
+    if (this.overflowItemsDirective) this._initDirective(this.overflowItemsDirective, 'overflowItems');
   }
 
   ngOnDestroy() {
@@ -165,7 +167,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
 
     // Subscribe for existing items changes
     this._subscriptions.push(
-      directive.onItemChanged.subscribe(({ key, changes }: CommandBarItemPropertiesChangedPayload) => {
+      directive.onItemChanged.subscribe(({ key, changes }: CommandBarItemChangedPayload) => {
         setItems(items => items.map(item => (item.key === key ? mergeItemChanges(item, changes) : item)));
         this.detectChanges();
       })

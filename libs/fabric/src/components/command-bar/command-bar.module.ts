@@ -8,6 +8,7 @@ import { CommandBarItemDirective } from './directives/command-bar-item.directive
 import { CommandBarItemsDirective } from './directives/command-bar-items.directive';
 import { CommandBarFarItemsDirective } from './directives/command-bar-far-items.directive';
 import { CommandBarOverflowItemsDirective } from './directives/command-bar-overflow-items.directive';
+import { FabContextualMenuModule } from '../contextual-menu/contextual-menu.module';
 
 const components = [
   FabCommandBarComponent,
@@ -18,9 +19,9 @@ const components = [
 ];
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, FabContextualMenuModule],
   declarations: components,
-  exports: components,
+  exports: [...components, FabContextualMenuModule],
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabCommandBarModule {

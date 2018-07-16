@@ -26,6 +26,7 @@ import {
   Button,
   MessageBarType,
   ShimmerElementType,
+  IContextualMenuProps,
 } from 'office-ui-fabric-react';
 import { IExpandingCardOptions } from '@angular-react/fabric/src/components/hover-card';
 import { ICommandBarItemOptions, FabCommandBarComponent } from '@angular-react/fabric/src/components/command-bar';
@@ -50,9 +51,22 @@ export class AppComponent {
     console.log('Copy clicked');
   }
 
+  onSaveAsClicked() {
+    console.log('Save as clicked');
+  }
+
+  onSaveAsFirstClicked() {
+    console.log('Save as 1 clicked');
+  }
+
+  onSaveAsSecondClicked() {
+    console.log('Save as 2 clicked');
+  }
+
   // FIXME: Allow declarative syntax too
-  saveSubMenuProps = {
-    items: [
+  saveSubMenuProps: Partial<IContextualMenuProps> = {
+    gapSpace: 10,
+    /*     items: [
       {
         key: 'save',
         text: 'Save',
@@ -78,7 +92,7 @@ export class AppComponent {
           ],
         },
       },
-    ],
+    ], */
   };
 
   /*   commandBarItems: ReadonlyArray<ICommandBarItemOptions> = [

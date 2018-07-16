@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { CommandBarItemDirective, CommandBarItemPropertiesChangedPayload } from './command-bar-item.directive';
+import { CommandBarItemDirective, CommandBarItemChangedPayload } from './command-bar-item.directive';
 import { ICommandBarItemOptions } from '../command-bar.component';
 import { Subscription } from 'rxjs';
 
@@ -16,19 +16,15 @@ export abstract class CommandBarItemsDirectiveBase implements AfterContentInit, 
 
   abstract readonly directiveItems: QueryList<CommandBarItemDirective>;
 
-  @Output() readonly onItemChanged = new EventEmitter<CommandBarItemPropertiesChangedPayload>();
+  @Output() readonly onItemChanged = new EventEmitter<CommandBarItemChangedPayload>();
 
   get items() {
     return (
       this.directiveItems &&
       this.directiveItems.map<ICommandBarItemOptions>(directiveItem => ({
-        key: directiveItem.key,
-        text: directiveItem.text,
-        iconProps: directiveItem.iconProps,
-        iconOnly: directiveItem.iconOnly,
-        disabled: directiveItem.disabled,
+        ...directiveItem,
         onClick: (ev, item) => {
-          directiveItem.onClick.emit({
+          directiveItem.click.emit({
             ev: ev && ev.nativeEvent,
             item: item,
           });
@@ -40,6 +36,7 @@ export abstract class CommandBarItemsDirectiveBase implements AfterContentInit, 
   ngAfterContentInit() {
     this._subscriptions.push(
       ...this.directiveItems.map(directiveItem =>
+        // Propagate the change to the parent CommandBarComponent
         directiveItem.onItemChanged.subscribe(changes => this.onItemChangedHandler(changes))
       )
     );
@@ -49,7 +46,7 @@ export abstract class CommandBarItemsDirectiveBase implements AfterContentInit, 
     this._subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  private onItemChangedHandler(payload: CommandBarItemPropertiesChangedPayload) {
+  private onItemChangedHandler(payload: CommandBarItemChangedPayload) {
     this.onItemChanged.emit(payload);
   }
 }
