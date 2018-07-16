@@ -9,11 +9,23 @@ import {
   ViewChild,
   ChangeDetectorRef,
   SimpleChanges,
-  OnChanges,
+  ContentChild,
+  AfterContentInit,
+  OnDestroy,
 } from '@angular/core';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 import omit from '../../utils/omit';
+import { CommandBarItemsDirective } from './directives/command-bar-items.directive';
+import { CommandBarFarItemsDirective } from './directives/command-bar-far-items.directive';
+import { CommandBarOverflowItemsDirective } from './directives/command-bar-overflow-items.directive';
+import { CommandBarItemsDirectiveBase } from './directives/command-bar-items-base.directive';
+import { TypedChanges, OnChanges } from '../../types/angular/typed-changes';
+import {
+  CommandBarItemDirective,
+  CommandBarItemPropertiesChangedPayload,
+} from '@angular-react/fabric/src/components/command-bar/directives/command-bar-item.directive';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'fab-command-bar',
@@ -43,7 +55,11 @@ import omit from '../../utils/omit';
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps> implements OnChanges {
+export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>
+  implements OnChanges<FabCommandBarComponent>, AfterContentInit, OnDestroy {
+  @ContentChild(CommandBarItemsDirective) readonly itemsDirective: CommandBarItemsDirective;
+  @ContentChild(CommandBarFarItemsDirective) readonly farItemsDirective: CommandBarItemsDirective;
+
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ICommandBarProps['componentRef'];
@@ -73,11 +89,13 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   /** @internal */
   transformedOverflowItems_: ReadonlyArray<ICommandBarItemProps>;
 
+  private readonly _subscriptions: Subscription[] = [];
+
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef, true);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: TypedChanges<this>) {
     if (
       changes['items'] &&
       changes['items'].previousValue !== changes['items'].currentValue &&
@@ -98,6 +116,60 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
       this._createTransformedOverflowItems(changes['overflowItems'].currentValue);
 
     super.ngOnChanges(changes);
+  }
+
+  ngAfterContentInit() {
+    if (this.itemsDirective) this._initDirective(this.itemsDirective, 'items');
+    if (this.farItemsDirective) this._initDirective(this.farItemsDirective, 'farItems');
+  }
+
+  ngOnDestroy() {
+    this._subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  private _initDirective<TCommandBarItemsDirective extends CommandBarItemsDirectiveBase>(
+    directive: TCommandBarItemsDirective,
+    itemsPropertyKey: 'items' | 'farItems' | 'overflowItems'
+  ) {
+    const transformItemsFunc =
+      (directive instanceof CommandBarItemsDirective && (newItems => this._createTransformedItems(newItems))) ||
+      (directive instanceof CommandBarFarItemsDirective && (newItems => this._createTransformedFarItems(newItems))) ||
+      (directive instanceof CommandBarOverflowItemsDirective &&
+        (newItems => this._createTransformedOverflowItems(newItems)));
+    null;
+
+    if (!transformItemsFunc) {
+      throw new Error('Invalid directive given');
+    }
+
+    const setItems = (
+      mapper: (items: ReadonlyArray<ICommandBarItemOptions>) => ReadonlyArray<ICommandBarItemOptions>
+    ) => {
+      this[itemsPropertyKey] = mapper(this[itemsPropertyKey]);
+      transformItemsFunc(this[itemsPropertyKey]);
+    };
+
+    const mergeItemChanges = (item: ICommandBarItemOptions, changes: TypedChanges<ICommandBarItemOptions>) => {
+      const itemChangesOverrides = Object.entries(changes).reduce<Partial<ICommandBarItemOptions>>(
+        (acc, [propertyKey, change]) => ({
+          [propertyKey]: change.currentValue,
+        }),
+        {}
+      );
+
+      return Object.assign({}, item, itemChangesOverrides);
+    };
+
+    // Initial items
+    setItems(() => directive.items);
+
+    // Subscribe for existing items changes
+    this._subscriptions.push(
+      directive.onItemChanged.subscribe(({ key, changes }: CommandBarItemPropertiesChangedPayload) => {
+        setItems(items => items.map(item => (item.key === key ? mergeItemChanges(item, changes) : item)));
+        this.detectChanges();
+      })
+    );
   }
 
   private _createTransformedItems(newItems: ReadonlyArray<ICommandBarItemOptions>) {

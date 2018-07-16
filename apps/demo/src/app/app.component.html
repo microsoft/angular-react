@@ -16,7 +16,18 @@
 </div>
 
 <div>
-  <fab-command-bar #commandBar [items]="commandBarItems" [farItems]="commandBarFarItems">
+  <fab-command-bar>
+    <items>
+      <fab-command-bar-item key="run" text="Run" [iconProps]="{ iconName: 'CaretRight' }" [disabled]="runDisabled"></fab-command-bar-item>
+      <fab-command-bar-item key="new" text="New" [iconProps]="{ iconName: 'Add' }" (onClick)="onNewClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="save" text="Save" [iconProps]="{ iconName: 'Save' }" [subMenuProps]="saveSubMenuProps"></fab-command-bar-item>
+      <fab-command-bar-item key="copy" text="Copy" [iconProps]="{ iconName: 'Copy' }" (onClick)="onCopyClicked()"></fab-command-bar-item>
+    </items>
+
+    <far-items>
+      <fab-command-bar-item key="help" text="Help" [iconProps]="{ iconName: 'Help' }"></fab-command-bar-item>
+      <fab-command-bar-item key="full-screen" [iconOnly]="true" [iconProps]="{ iconName: fullScreenIcon }" (onClick)="toggleFullScreen()"></fab-command-bar-item>
+    </far-items>
   </fab-command-bar>
 
   <fab-default-button (onClick)="toggleRun()" text="Toggle run"></fab-default-button>
