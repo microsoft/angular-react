@@ -69,16 +69,14 @@ export class ContextualMenuItemDirective
   }
 
   ngAfterContentInit() {
-    // Currently @ContentChildren selects host component as well.
-    // Relevant Github issue: https://github.com/angular/angular/issues/10098
+    // @ContentChildren selects host component as well.
+    // Relevant GitHub issue: https://github.com/angular/angular/issues/10098
     const nonSelfMenuItemsDirectives = this.menuItemsDirectives.filter(directive => directive !== this);
     if (nonSelfMenuItemsDirectives.length === 0) {
       return;
     }
 
-    const items = nonSelfMenuItemsDirectives.map<IContextualMenuItem>(
-      ContextualMenuItemDirective.directiveToContextualMenuItem
-    );
+    const items = nonSelfMenuItemsDirectives.map(directive => this._directiveToContextualMenuItem(directive));
     if (!this.subMenuProps) {
       this.subMenuProps = { items: items };
     } else {
@@ -93,7 +91,7 @@ export class ContextualMenuItemDirective
             subMenuProps: {
               currentValue: {
                 ...this.subMenuProps,
-                items: newValue.map(ContextualMenuItemDirective.directiveToContextualMenuItem),
+                items: newValue.map(directive => this._directiveToContextualMenuItem(directive)),
               },
             },
           },
@@ -106,7 +104,7 @@ export class ContextualMenuItemDirective
     this._subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  static directiveToContextualMenuItem(directive: ContextualMenuItemDirective): IContextualMenuItem {
+  private _directiveToContextualMenuItem(directive: ContextualMenuItemDirective): IContextualMenuItem {
     return {
       ...directive,
       onClick: (ev, item) => {
