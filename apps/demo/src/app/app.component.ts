@@ -28,8 +28,6 @@ import {
   ShimmerElementType,
   IContextualMenuProps,
 } from 'office-ui-fabric-react';
-import { IExpandingCardOptions } from '@angular-react/fabric/src/components/hover-card';
-import { ICommandBarItemOptions, FabCommandBarComponent } from '@angular-react/fabric/src/components/command-bar';
 
 @Component({
   selector: 'app-root',
