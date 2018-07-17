@@ -189,7 +189,8 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   private _transformCommandBarItemOptionsToProps(itemOptions: ICommandBarItemOptions): ICommandBarItemProps {
     const sharedProperties = omit(itemOptions, 'renderIcon', 'render');
 
-    const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon);
+    // Legacy render mode is used for the icon because otherwise the icon is to the right of the text (instead of the usual left)
+    const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon, { legacyRenderMode: true });
     const renderer = this.createInputJsxRenderer(itemOptions.render);
 
     return Object.assign(
