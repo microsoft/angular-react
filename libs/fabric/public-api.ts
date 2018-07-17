@@ -2,6 +2,7 @@ export * from './src/components/breadcrumb/public-api';
 export * from './src/components/button/public-api';
 export * from './src/components/callout/public-api';
 export * from './src/components/checkbox/public-api';
+export * from './src/components/contextual-menu/public-api';
 export * from './src/components/choice-group/public-api';
 export * from './src/components/combo-box/public-api';
 export * from './src/components/command-bar/public-api';
