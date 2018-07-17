@@ -12,20 +12,22 @@ import {
   ContentChild,
   AfterContentInit,
   OnDestroy,
+  QueryList,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
+
 import omit from '../../utils/omit';
-import { CommandBarItemsDirective } from './directives/command-bar-items.directive';
-import { CommandBarFarItemsDirective } from './directives/command-bar-far-items.directive';
-import { CommandBarOverflowItemsDirective } from './directives/command-bar-overflow-items.directive';
-import { CommandBarItemsDirectiveBase } from './directives/command-bar-items-base.directive';
 import { TypedChanges, OnChanges } from '../../types/angular/typed-changes';
 import {
-  CommandBarItemDirective,
-  CommandBarItemChangedPayload,
-} from '@angular-react/fabric/src/components/command-bar/directives/command-bar-item.directive';
-import { Subscription } from 'rxjs';
+  CommandBarItemsDirective,
+  CommandBarFarItemsDirective,
+  CommandBarOverflowItemsDirective,
+  CommandBarItemsDirectiveBase,
+} from './directives/command-bar-items.directives';
+import { CommandBarItemChangedPayload, CommandBarItemDirective } from './directives/command-bar-item.directives';
+import { ItemChanges, mergeItemChanges } from '../core/declarative/item-changed';
 
 @Component({
   selector: 'fab-command-bar',
@@ -151,19 +153,15 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
       transformItemsFunc(this[itemsPropertyKey]);
     };
 
-    const mergeItemChanges = (item: ICommandBarItemOptions, changes: TypedChanges<ICommandBarItemOptions>) => {
-      const itemChangesOverrides = Object.entries(changes).reduce<Partial<ICommandBarItemOptions>>(
-        (acc, [propertyKey, change]) => ({
-          [propertyKey]: change.currentValue,
-        }),
-        {}
-      );
-
-      return Object.assign({}, item, itemChangesOverrides);
-    };
-
     // Initial items
     setItems(() => directive.items);
+
+    // Subscribe to adding/removing items
+    this._subscriptions.push(
+      directive.onItemsChanged.subscribe((newItems: QueryList<CommandBarItemDirective>) => {
+        setItems(() => newItems.map<ICommandBarItemOptions>(directive => directive));
+      })
+    );
 
     // Subscribe for existing items changes
     this._subscriptions.push(

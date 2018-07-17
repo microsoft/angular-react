@@ -1,6 +1,10 @@
-import { TypedChanges } from '../../../types/angular/typed-changes';
+export interface PropertyChange<TValue> {
+  readonly currentValue: TValue;
+}
+
+export type ItemChanges<TItem> = { [P in keyof TItem]?: PropertyChange<TItem[P]> };
 
 export interface ItemChangedPayload<TKey extends string, TItem> {
   readonly key: TKey;
-  readonly changes: TypedChanges<TItem>;
+  readonly changes: ItemChanges<TItem>;
 }

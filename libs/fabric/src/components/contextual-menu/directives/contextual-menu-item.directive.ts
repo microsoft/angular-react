@@ -1,13 +1,23 @@
-import { Directive, Input, EventEmitter, Output, QueryList, ContentChildren, AfterContentInit } from '@angular/core';
+import {
+  Directive,
+  Input,
+  EventEmitter,
+  Output,
+  QueryList,
+  ContentChildren,
+  AfterContentInit,
+  OnDestroy,
+} from '@angular/core';
 import { IContextualMenuItem } from 'office-ui-fabric-react';
 import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
 import { OnChanges, TypedChanges } from '../../../types/angular/typed-changes';
+import { Subscription } from 'rxjs';
 
 export type ContextualMenuItemChangedPayload = ItemChangedPayload<IContextualMenuItem['key'], IContextualMenuItem>;
 
 @Directive({ selector: 'contextual-menu-item' })
 export class ContextualMenuItemDirective
-  implements IContextualMenuItem, OnChanges<ContextualMenuItemDirective>, AfterContentInit {
+  implements IContextualMenuItem, OnChanges<ContextualMenuItemDirective>, AfterContentInit, OnDestroy {
   @ContentChildren(ContextualMenuItemDirective) readonly menuItemsDirectives: QueryList<ContextualMenuItemDirective>;
 
   @Input() key: IContextualMenuItem['key'];
@@ -49,6 +59,8 @@ export class ContextualMenuItemDirective
   // Directive properties
   @Output() readonly onItemChanged = new EventEmitter<ContextualMenuItemChangedPayload>();
 
+  private readonly _subscriptions: Subscription[] = [];
+
   ngOnChanges(changes: TypedChanges<this>) {
     this.onItemChanged.emit({
       key: this.key,
@@ -64,20 +76,42 @@ export class ContextualMenuItemDirective
       return;
     }
 
-    const items = nonSelfMenuItemsDirectives.map<IContextualMenuItem>(directiveItem => ({
-      ...directiveItem,
-      onClick: (ev, item) => {
-        directiveItem.click.emit({
-          ev: ev && ev.nativeEvent,
-          item: item,
-        });
-      },
-    }));
-
+    const items = nonSelfMenuItemsDirectives.map<IContextualMenuItem>(
+      ContextualMenuItemDirective.directiveToContextualMenuItem
+    );
     if (!this.subMenuProps) {
       this.subMenuProps = { items: items };
     } else {
       this.subMenuProps.items = items;
     }
+
+    this._subscriptions.push(
+      this.menuItemsDirectives.changes.subscribe((newValue: this['menuItemsDirectives']) => {
+        this.onItemChanged.emit({
+          key: this.key,
+          changes: {
+            subMenuProps: {
+              currentValue: {
+                ...this.subMenuProps,
+                items: newValue.map(ContextualMenuItemDirective.directiveToContextualMenuItem),
+              },
+            },
+          },
+        });
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this._subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  static directiveToContextualMenuItem(directive: ContextualMenuItemDirective): IContextualMenuItem {
+    return {
+      ...directive,
+      onClick: (ev, item) => {
+        directive.click.emit({ ev: ev && ev.nativeEvent, item: item });
+      },
+    };
   }
 }

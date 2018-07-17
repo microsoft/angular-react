@@ -63,6 +63,16 @@ export class AppComponent {
     console.log('Save as 2 clicked');
   }
 
+  onCustomItemClick(item: any) {
+    this.customItemCount++;
+    console.log('custom item clicked', item);
+    this.cd.detectChanges();
+  }
+
+  constructor(private readonly cd: ChangeDetectorRef) {}
+
+  customItemCount = 1;
+
   // FIXME: Allow declarative syntax too
   saveSubMenuProps: Partial<IContextualMenuProps> = {
     gapSpace: 10,
