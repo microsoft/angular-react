@@ -73,6 +73,7 @@ Switched to a new branch 'pr/999'
 To get latest changes to the PR:
 
 ```
+$ git checkout pr/1000
 $ git pull --tags origin refs/pull/1000/head
 From https://github.com/benfeely/angular-react
  * branch            refs/pull/1000/head -> FETCH_HEAD
