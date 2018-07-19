@@ -30,17 +30,17 @@
       </fab-command-bar-item>
       <fab-command-bar-item key="copy" text="Copy" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
       <fab-command-bar-item key="custom" text="custom text" (click)="onCopyClicked()">
-        <!--  <render>
+        <render>
           <ng-template let-item="item">
-            <div>Custom render</div>
+            <counter></counter>
           </ng-template>
-        </render> -->
+        </render>
 
-        <render-icon>
+        <!-- <render-icon>
           <ng-template let-contextualMenuItemProps="contextualMenuItemProps">
             <div>custom icon</div>
           </ng-template>
-        </render-icon>
+        </render-icon> -->
       </fab-command-bar-item>
       <fab-command-bar-item *ngIf="runDisabled" key="sometimesVisible" text="woosh"></fab-command-bar-item>
     </items>

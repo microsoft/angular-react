@@ -64,7 +64,6 @@ export class AppComponent {
   onCustomItemClick(item: any) {
     this.customItemCount++;
     console.log('custom item clicked', item);
-    this.cd.detectChanges();
   }
 
   constructor(private readonly cd: ChangeDetectorRef) {}
