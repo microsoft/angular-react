@@ -175,7 +175,7 @@ export class ReactNode {
         }
         // It is expected that the element will be recreated and re-rendered with each attribute change.
         // See: https://reactjs.org/docs/rendering-elements.html
-        ReactDOM.render(this.renderRecursive() as any, this._parent);
+        ReactDOM.render(this.renderRecursive() as React.ReactElement<{}>, this._parent);
         this.isRenderPending = false;
       }
     }

@@ -1,5 +1,3 @@
-// tslint:disable:no-bitwise
-
 import { Injectable, Renderer2, RendererStyleFlags2, RendererType2 } from '@angular/core';
 import { EventManager, ɵDomRendererFactory2, ɵDomSharedStylesHost } from '@angular/platform-browser';
 import * as ReactDOM from 'react-dom';
@@ -78,7 +76,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
 }
 
 class ReactRenderer implements Renderer2 {
-  readonly data: { [key: string]: any } = Object.create(null);
+  readonly data: StringMap<any> = Object.create(null);
 
   constructor(private rootRenderer: AngularReactRendererFactory) {}
 
