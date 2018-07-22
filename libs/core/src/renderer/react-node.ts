@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 
 import removeUndefinedProperties from '../utils/object/remove-undefined-properties';
 import { CHILDREN_TO_APPEND_PROP } from './react-content';
-import { getComponentClass } from "./registry";
+import { getComponentClass } from './registry';
 
 const DEBUG = false;
 
@@ -35,6 +35,10 @@ export class ReactNode {
   set parent(parent: HTMLElement | ReactNode) {
     this._parent = parent;
     this.setRenderPending();
+  }
+
+  get parent(): HTMLElement | ReactNode {
+    return this._parent;
   }
 
   private isNotRenderable: boolean;
@@ -80,13 +84,15 @@ export class ReactNode {
       // If type is still a string, then no React Element matches this string.
       this.typeIsReactElementClass = typeof this.type !== 'string';
 
-      if (DEBUG) { console.log('ReactNode > tryResolveTypeIsReactElementClass > type:', this.typeName); }
+      if (DEBUG) {
+        console.log('ReactNode > tryResolveTypeIsReactElementClass > type:', this.typeName);
+      }
     }
   }
 
   setAttribute(name: string, value: any) {
     this.setAttributes({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -96,7 +102,7 @@ export class ReactNode {
 
   setProperty(name: string, value: any) {
     this.setProperties({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -156,13 +162,17 @@ export class ReactNode {
     // parent.
     if (!isReactNode(this._parent)) {
       if (this.isDestroyPending && this._parent) {
-        if (DEBUG) { console.log('ReactNode > render > destroy > node:', this.toString(), 'parent:', this.parent); }
+        if (DEBUG) {
+          console.log('ReactNode > render > destroy > node:', this.toString(), 'parent:', this.parent);
+        }
         ReactDOM.unmountComponentAtNode(this._parent);
         return this;
       }
 
       if (this.isRenderPending) {
-        if (DEBUG) { console.log('ReactNode > render > node:', this.toString(), 'parent:', this.parent); }
+        if (DEBUG) {
+          console.log('ReactNode > render > node:', this.toString(), 'parent:', this.parent);
+        }
         // It is expected that the element will be recreated and re-rendered with each attribute change.
         // See: https://reactjs.org/docs/rendering-elements.html
         ReactDOM.render(this.renderRecursive() as any, this._parent);
@@ -174,10 +184,7 @@ export class ReactNode {
   }
 
   private renderRecursive(key?: string): React.ReactElement<{}> | string {
-    const children =
-      this.children
-        ? this.children.map((child, index) => child.renderRecursive(index.toString()))
-        : [];
+    const children = this.children ? this.children.map((child, index) => child.renderRecursive(index.toString())) : [];
 
     if (this.text) {
       return this.text;
@@ -187,11 +194,11 @@ export class ReactNode {
 
     if (key) this.props['key'] = key;
 
-    const clearedProps = this.transformProps(
-      removeUndefinedProperties(this.props)
-    );
+    const clearedProps = this.transformProps(removeUndefinedProperties(this.props));
 
-    if (DEBUG) { console.warn('ReactNode > renderRecursive > type:', this.toString(), 'props:', this.props, 'children:', children); }
+    if (DEBUG) {
+      console.warn('ReactNode > renderRecursive > type:', this.toString(), 'props:', this.props, 'children:', children);
+    }
     return React.createElement(this.type, clearedProps, children.length > 0 ? children : undefined);
   }
 
@@ -220,7 +227,14 @@ export class ReactNode {
 
   // This is called by Angular core when projected content is being added.
   appendChild(projectedContent: HTMLElement) {
-    if (DEBUG) { console.error('ReactNode > appendChild > node:', this.toString(), 'projectedContent:', projectedContent.toString().trim()); }
+    if (DEBUG) {
+      console.error(
+        'ReactNode > appendChild > node:',
+        this.toString(),
+        'projectedContent:',
+        projectedContent.toString().trim()
+      );
+    }
     this.childrenToAppend.push(projectedContent);
   }
 
@@ -239,5 +253,4 @@ export class ReactNode {
 
     return '[undefined ReactNode]';
   }
-
 }

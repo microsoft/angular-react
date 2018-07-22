@@ -2,6 +2,7 @@
 
 import { Injectable, Renderer2, RendererStyleFlags2, RendererType2 } from '@angular/core';
 import { EventManager, ɵDomRendererFactory2, ɵDomSharedStylesHost } from '@angular/platform-browser';
+import * as ReactDOM from 'react-dom';
 
 import { isReactNode, ReactNode } from './react-node';
 
@@ -25,7 +26,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   // renders are flushed.
   public setRenderPendingCallback = () => {
     this.isRenderPending = true;
-  }
+  };
 
   constructor(eventManager: EventManager, sharedStylesHost: ɵDomSharedStylesHost) {
     super(eventManager, sharedStylesHost);
@@ -41,13 +42,33 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
     return super.createRenderer(element, type);
   }
 
-  begin() { }
+  begin() {}
 
   end() {
-    if (DEBUG) { console.log('RootRenderer > end > isRenderPending:', this.isRenderPending, 'reactRootNodes:', this.reactRootNodes); }
+    if (DEBUG) {
+      console.log(
+        'RootRenderer > end > isRenderPending:',
+        this.isRenderPending,
+        'reactRootNodes:',
+        this.reactRootNodes
+      );
+    }
     // Flush any pending React element render updates.  This cannot be done
     // earlier (as is done for DOM elements) because React element props
     // are ReadOnly.
+
+    // Workaround for ReactNodes inside ReactContent being added to the root of the VDOM and not removed from the VDOM when unmounted from the DOM.
+    for (let i = 0; i < this.reactRootNodes.length; i++) {
+      const node = this.reactRootNodes[i];
+      if (
+        !isReactNode(node.parent) &&
+        !document.contains(node.parent) &&
+        ReactDOM.unmountComponentAtNode(node.parent)
+      ) {
+        this.reactRootNodes.splice(i--, 1);
+      }
+    }
+
     if (this.isRenderPending) {
       // Remove root nodes that are pending destroy after render.
       this.reactRootNodes = this.reactRootNodes.filter(node => !node.render().destroyPending);
@@ -59,27 +80,35 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
 class ReactRenderer implements Renderer2 {
   readonly data: { [key: string]: any } = Object.create(null);
 
-  constructor(private rootRenderer: AngularReactRendererFactory) { }
+  constructor(private rootRenderer: AngularReactRendererFactory) {}
 
-  destroy(): void { }
+  destroy(): void {}
 
   destroyNode(node: ReactNode): void {
-    if (DEBUG) { console.error('Renderer > destroyNode > node:', node.toString()); }
+    if (DEBUG) {
+      console.error('Renderer > destroyNode > node:', node.toString());
+    }
     node.destroyNode();
   }
 
   createElement(name: string, namespace?: string): ReactNode {
-    if (DEBUG) { console.error('Renderer > createElement > name:', name, namespace ? 'namespace:' : '', namespace); }
+    if (DEBUG) {
+      console.error('Renderer > createElement > name:', name, namespace ? 'namespace:' : '', namespace);
+    }
     return new ReactNode(name);
   }
 
   createComment(value: string): ReactNode {
-    if (DEBUG) { console.error('Renderer > createComment > value:', value.trim()); }
+    if (DEBUG) {
+      console.error('Renderer > createComment > value:', value.trim());
+    }
     return new ReactNode().asComment(value);
   }
 
   createText(value: string): ReactNode {
-    if (DEBUG) { console.error('Renderer > createText > value:', value.trim()); }
+    if (DEBUG) {
+      console.error('Renderer > createText > value:', value.trim());
+    }
     return new ReactNode().asText(value);
   }
 
@@ -97,14 +126,18 @@ class ReactRenderer implements Renderer2 {
     // Provide a parent element reference to the ReactNode.  This will be used later
     // once the ReactNode is fully defined and it is subsequently rendered.
     if (!isReactNode(parent)) {
-      if (DEBUG) { console.warn('Renderer > appendChild > asDOM > parent:', parent.toString(), 'node:', node.toString()); }
+      if (DEBUG) {
+        console.warn('Renderer > appendChild > asDOM > parent:', parent.toString(), 'node:', node.toString());
+      }
       node.setRenderPendingCallback = this.rootRenderer.setRenderPendingCallback;
       this.rootRenderer.reactRootNodes.push(node);
       node.parent = parent;
       return;
     }
 
-    if (DEBUG) { console.warn('Renderer > appendChild > asReact > parent:', parent.toString(), 'node:', node.toString()); }
+    if (DEBUG) {
+      console.warn('Renderer > appendChild > asReact > parent:', parent.toString(), 'node:', node.toString());
+    }
     node.setRenderPendingCallback = () => parent.setRenderPending();
     parent.addChild(node);
     node.parent = parent;
@@ -120,7 +153,16 @@ class ReactRenderer implements Renderer2 {
     // once the ReactNode is fully defined and it is subsequently rendered.  In this
     // case, React cannot "insertBefore".  Instead, we have to create a target element
     // where the ReactNode can be rendered later.
-    if (DEBUG) { console.warn('Renderer > insertBefore > asDOM > parent:', parent.toString(), 'node:', node.toString(), 'refChild:', refChild.toString()); }
+    if (DEBUG) {
+      console.warn(
+        'Renderer > insertBefore > asDOM > parent:',
+        parent.toString(),
+        'node:',
+        node.toString(),
+        'refChild:',
+        refChild.toString()
+      );
+    }
     const target = document.createElement('div');
     parent.insertBefore(target, refChild);
     node.parent = target;
@@ -136,39 +178,71 @@ class ReactRenderer implements Renderer2 {
     // Remove a parent element reference from the ReactNode.  This will be later
     // result in the ReactNode unloading itself.
     if (!isReactNode(parent)) {
-      if (DEBUG) { console.warn('Renderer > removeChild > asDOM > parent:', parent.toString(), 'node:', node.toString()); }
+      if (DEBUG) {
+        console.warn('Renderer > removeChild > asDOM > parent:', parent.toString(), 'node:', node.toString());
+      }
       node.parent = null;
       return;
     }
 
-    if (DEBUG) { console.warn('Renderer > removeChild > asReact > parent:', parent.toString(), 'node:', node.toString()); }
+    if (DEBUG) {
+      console.warn('Renderer > removeChild > asReact > parent:', parent.toString(), 'node:', node.toString());
+    }
     parent.removeChild(node);
   }
 
   selectRootElement(selectorOrNode: string | any): any {
-    if (DEBUG) { console.log('NOT IMPLEMENTED - Renderer > selectRootElement > selectorOrNode:', selectorOrNode); }
+    if (DEBUG) {
+      console.log('NOT IMPLEMENTED - Renderer > selectRootElement > selectorOrNode:', selectorOrNode);
+    }
   }
 
   parentNode(node: ReactNode): any {
-    if (DEBUG) { console.log('NOT IMPLEMENTED - Renderer > parentNode > node:', node.toString()); }
+    if (DEBUG) {
+      console.log('NOT IMPLEMENTED - Renderer > parentNode > node:', node.toString());
+    }
   }
 
   nextSibling(node: any): any {
-    if (DEBUG) { console.log('NOT IMPLEMENTED - Renderer > nextSibling > node:', node.toString()); }
+    if (DEBUG) {
+      console.log('NOT IMPLEMENTED - Renderer > nextSibling > node:', node.toString());
+    }
   }
 
   setAttribute(node: ReactNode, name: string, value: string, namespace?: string): void {
-    if (DEBUG) { console.log('Renderer > setAttribute > node:', node.toString(), 'name:', name, 'value:', value, namespace ? 'namespace:' : '', namespace); }
+    if (DEBUG) {
+      console.log(
+        'Renderer > setAttribute > node:',
+        node.toString(),
+        'name:',
+        name,
+        'value:',
+        value,
+        namespace ? 'namespace:' : '',
+        namespace
+      );
+    }
     node.setProperty(name, value);
   }
 
   removeAttribute(node: ReactNode, name: string, namespace?: string): void {
-    if (DEBUG) { console.log('Renderer > removeAttribute > node:', node.toString(), 'name:', name, namespace ? 'namespace:' : '', namespace); }
+    if (DEBUG) {
+      console.log(
+        'Renderer > removeAttribute > node:',
+        node.toString(),
+        'name:',
+        name,
+        namespace ? 'namespace:' : '',
+        namespace
+      );
+    }
     node.removeProperty(name);
   }
 
   addClass(node: ReactNode, name: string): void {
-    if (DEBUG) { console.log('Renderer > addClass > node:', node.toString(), 'name:', name); }
+    if (DEBUG) {
+      console.log('Renderer > addClass > node:', node.toString(), 'name:', name);
+    }
 
     // Update the virtual node.
     // TODO: This may only support a single class name, but might work if property name is a single
@@ -177,7 +251,9 @@ class ReactRenderer implements Renderer2 {
   }
 
   removeClass(node: ReactNode, name: string): void {
-    if (DEBUG) { console.log('Renderer > removeClass > node:', node.toString(), 'name:', name); }
+    if (DEBUG) {
+      console.log('Renderer > removeClass > node:', node.toString(), 'name:', name);
+    }
 
     // Update the virtual node.
     // TODO: This may not work correctly to remove a single name from a comma-delimited list.
@@ -194,31 +270,37 @@ class ReactRenderer implements Renderer2 {
   }
 
   removeStyle(node: ReactNode, style: string, flags: RendererStyleFlags2): void {
-    if (DEBUG) { console.log('Renderer > removeStyle > node:', node.toString(), 'style:', style, 'flags:', flags); }
+    if (DEBUG) {
+      console.log('Renderer > removeStyle > node:', node.toString(), 'style:', style, 'flags:', flags);
+    }
     node.removeProperty('style', style);
   }
 
   setProperty(node: ReactNode, name: string, value: any): void {
-    if (DEBUG) { console.log('Renderer > setProperty > node:', node.toString(), 'name:', name, 'value:', value); }
+    if (DEBUG) {
+      console.log('Renderer > setProperty > node:', node.toString(), 'name:', name, 'value:', value);
+    }
     node.setProperty(name, value);
   }
 
   setValue(node: ReactNode, value: string): void {
-    if (DEBUG) { console.log('Renderer > setValue > node:', node.toString(), 'value:', value); }
+    if (DEBUG) {
+      console.log('Renderer > setValue > node:', node.toString(), 'value:', value);
+    }
     node.setProperty('value', value);
   }
 
   listen(target: ReactNode, event: string, callback: (event: any) => boolean): () => void {
-    if (DEBUG) { console.log('Renderer > listen > target:', target, 'event:', event); }
+    if (DEBUG) {
+      console.log('Renderer > listen > target:', target, 'event:', event);
+    }
     target.setProperty(event, callback);
 
     // NEEDS WORK: Implement prevent default callback behavior.
     // return <() => void>this.eventManager.addEventListener(
     //            target, event, decoratePreventDefault(callback)) as() => void;
 
-
     // tslint:disable-next-line:no-unused-expression
     return () => null;
   }
-
 }

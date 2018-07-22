@@ -6,6 +6,7 @@
     "Packagr",
     "Renderable",
     "Selectable",
+    "VDOM",
     "borderless",
     "checkmark",
     "commandbar",
