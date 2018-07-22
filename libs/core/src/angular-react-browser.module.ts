@@ -1,10 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, RootRenderer } from '@angular/core';
-import { ɵDomRendererFactory2 } from '@angular/platform-browser';
-import { ElementSchemaRegistry } from '@angular/compiler';
+import { NgModule } from '@angular/core';
+import { BrowserModule, ɵDomRendererFactory2 } from '@angular/platform-browser';
 
 import { AngularReactRendererFactory } from './renderer/renderer';
-
 
 @NgModule({
   imports: [BrowserModule],
@@ -13,4 +10,4 @@ import { AngularReactRendererFactory } from './renderer/renderer';
     { provide: ɵDomRendererFactory2, useClass: AngularReactRendererFactory }
   ]
 })
-export class AngularReactBrowserModule {}
+export class AngularReactBrowserModule { }

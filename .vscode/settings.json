@@ -1,0 +1,26 @@
+{
+  "cSpell.words": [
+    "Callout",
+    "Focusable",
+    "Injectable",
+    "Packagr",
+    "Renderable",
+    "Selectable",
+    "VDOM",
+    "borderless",
+    "checkmark",
+    "commandbar",
+    "dismissable",
+    "dropdown",
+    "keytip",
+    "messagebar",
+    "nrwl",
+    "renderprop",
+    "submenu",
+    "uifabric",
+    "unmount",
+    "whitelisted"
+  ],
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

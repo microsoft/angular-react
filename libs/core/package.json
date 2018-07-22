@@ -1,9 +1,16 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "0.1.12",
+  "version": "0.2.3",
   "ngPackage": {
     "lib": {
+      "languageLevel": [
+        "dom",
+        "es2017"
+      ],
+      "embedded": [
+        "css-to-style"
+      ],
       "entryFile": "public-api.ts",
       "umdModuleIds": {
         "react": "React",
@@ -35,9 +42,12 @@
     "@angular/core": "^5.2.7",
     "@angular/platform-browser-dynamic": "^5.2.7",
     "@angular/platform-browser": "^5.2.7",
-    "@types/react-dom": "^16.0.4",
-    "@types/react": "^16.3.4",
     "react-dom": "^16.3.1",
     "react": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^16.0.4",
+    "@types/react": "^16.3.4",
+    "css-to-style": "^1.2.0"
   }
 }

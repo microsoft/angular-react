@@ -4,9 +4,8 @@
 // tslint:disable:use-host-property-decorator
 // tslint:disable:no-output-on-prefix
 
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { IButtonProps, DefaultButton } from 'office-ui-fabric-react/lib/Button';
 
 
 @Component({
@@ -36,6 +35,6 @@ export class SemButtonComponent {
   @Input() loading = false;
   @Input('label') content = '';
 
-  @Output() onClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
+  @Output() readonly onClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
 }
