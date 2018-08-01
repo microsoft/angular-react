@@ -10,7 +10,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
-import { IContextualMenuProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { ISearchBoxProps } from 'office-ui-fabric-react/lib/SearchBox';
 import { Omit } from '../../declarations/omit';
 import omit from '../../utils/omit';
@@ -129,8 +128,7 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
       'renderDescription',
       'renderAriaDescription',
       'renderChildren',
-      'renderMenuIcon',
-      'renderMenu'
+      'renderMenuIcon'
     );
 
     const iconRenderer = this.createInputJsxRenderer(options.renderIcon);
@@ -139,7 +137,6 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
     const ariaDescriptionRenderer = this.createInputJsxRenderer(options.renderAriaDescription);
     const childrenRenderer = this.createInputJsxRenderer(options.renderChildren);
     const menuIconRenderer = this.createInputJsxRenderer(options.renderMenuIcon);
-    const menuRenderer = this.createInputJsxRenderer(options.renderMenu);
 
     return Object.assign(
       {},
@@ -156,8 +153,7 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
       childrenRenderer &&
         ({ onRenderChildren: props => childrenRenderer(props) } as Pick<IButtonProps, 'onRenderChildren'>),
       menuIconRenderer &&
-        ({ onRenderMenuIcon: props => menuIconRenderer(props) } as Pick<IButtonProps, 'onRenderMenuIcon'>),
-      menuRenderer && ({ onRenderMenu: props => menuRenderer(props) } as Pick<IButtonProps, 'onRenderMenu'>)
+        ({ onRenderMenuIcon: props => menuIconRenderer(props) } as Pick<IButtonProps, 'onRenderMenuIcon'>)
     );
   }
 }
@@ -171,7 +167,6 @@ export interface IButtonOptions
       | 'onRenderAriaDescription'
       | 'onRenderChildren'
       | 'onRenderMenuIcon'
-      | 'onRenderMenu'
     > {
   readonly renderIcon: InputRendererOptions<IButtonProps>;
   readonly renderText: InputRendererOptions<IButtonProps>;
@@ -179,5 +174,4 @@ export interface IButtonOptions
   readonly renderAriaDescription: InputRendererOptions<IButtonProps>;
   readonly renderChildren: InputRendererOptions<IButtonProps>;
   readonly renderMenuIcon: InputRendererOptions<IButtonProps>;
-  readonly renderMenu: InputRendererOptions<IContextualMenuProps>;
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { FabBaseButtonComponent } from './base-button.component';
 
 @Component({
@@ -26,6 +26,7 @@ import { FabBaseButtonComponent } from './base-button.component';
       [split]="split"
       [menuIconProps]="menuIconProps"
       [splitButtonAriaLabel]="splitButtonAriaLabel"
+      [menuAs]="menuAs"
       [secondaryText]="secondaryText"
       [toggled]="toggled"
       [data]="data"
@@ -40,7 +41,6 @@ import { FabBaseButtonComponent } from './base-button.component';
       [RenderAriaDescription]="renderAriaDescription && onRenderAriaDescription"
       [RenderChildren]="renderChildren && onRenderChildren"
       [RenderMenuIcon]="renderMenuIcon && onRenderMenuIcon"
-      [RenderMenu]="renderMenu && onRenderMenu"
       [MenuClick]="onMenuClickHandler"
       (onAfterMenuDismiss)="onAfterMenuDismiss.emit($event)"
       (onClick)="onClickHandler($event)">
@@ -51,7 +51,8 @@ import { FabBaseButtonComponent } from './base-button.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDefaultButtonComponent extends FabBaseButtonComponent {
-  @ViewChild('reactNode') reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);

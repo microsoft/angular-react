@@ -1,15 +1,16 @@
-import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
+import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
 import {
-  EventEmitter,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
-  ViewChild,
   Output,
-  ChangeDetectorRef,
+  ViewChild,
 } from '@angular/core';
-import { IHoverCardProps, IExpandingCardProps } from 'office-ui-fabric-react/lib/HoverCard';
+import { IExpandingCardProps, IHoverCardProps } from 'office-ui-fabric-react/lib/HoverCard';
+import { Omit } from '../../declarations/omit';
 import { omit } from '../../utils/omit';
 
 @Component({
@@ -31,6 +32,7 @@ import { omit } from '../../utils/omit';
       [trapFocus]="trapFocus"
       [shouldBlockHoverCard]="shouldBlockHoverCard"
       [setInitialFocus]="setInitialFocus"
+      [openHotKey]="openHotKey"
       (onCardVisible)="onCardVisible.emit()"
       (onCardHide)="onCardHide.emit()">
       <ReactContent><ng-content></ng-content></ReactContent>
@@ -40,20 +42,35 @@ import { omit } from '../../utils/omit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IHoverCardProps['componentRef'];
-  @Input() setAriaDescribedBy?: IHoverCardProps['setAriaDescribedBy'];
-  @Input() cardOpenDelay?: IHoverCardProps['cardOpenDelay'];
-  @Input() cardDismissDelay?: IHoverCardProps['cardDismissDelay'];
-  @Input() expandedCardOpenDelay?: IHoverCardProps['expandedCardOpenDelay'];
-  @Input() sticky?: IHoverCardProps['sticky'];
-  @Input() instantOpenOnClick?: IHoverCardProps['instantOpenOnClick'];
-  @Input() styles?: IHoverCardProps['styles'];
-  @Input() target?: IHoverCardProps['target'];
-  @Input() trapFocus?: IHoverCardProps['trapFocus'];
-  @Input() shouldBlockHoverCard?: () => boolean; // Workaround for bug in the Fabric React types (() => void)
-  @Input() setInitialFocus?: IHoverCardProps['setInitialFocus'];
+  @Input()
+  componentRef?: IHoverCardProps['componentRef'];
+  @Input()
+  setAriaDescribedBy?: IHoverCardProps['setAriaDescribedBy'];
+  @Input()
+  cardOpenDelay?: IHoverCardProps['cardOpenDelay'];
+  @Input()
+  cardDismissDelay?: IHoverCardProps['cardDismissDelay'];
+  @Input()
+  expandedCardOpenDelay?: IHoverCardProps['expandedCardOpenDelay'];
+  @Input()
+  sticky?: IHoverCardProps['sticky'];
+  @Input()
+  instantOpenOnClick?: IHoverCardProps['instantOpenOnClick'];
+  @Input()
+  styles?: IHoverCardProps['styles'];
+  @Input()
+  target?: IHoverCardProps['target'];
+  @Input()
+  trapFocus?: IHoverCardProps['trapFocus'];
+  @Input()
+  shouldBlockHoverCard?: () => boolean; // Workaround for bug in the Fabric React types (() => void)
+  @Input()
+  setInitialFocus?: IHoverCardProps['setInitialFocus'];
+  @Input()
+  openHotKey?: IHoverCardProps['openHotKey'];
   @Input()
   set expandingCardOptions(value: IExpandingCardOptions) {
     this._expandingCardOptions = value;
@@ -66,8 +83,10 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
     return this._expandingCardOptions;
   }
 
-  @Output() readonly onCardVisible = new EventEmitter<void>();
-  @Output() readonly onCardHide = new EventEmitter<void>();
+  @Output()
+  readonly onCardVisible = new EventEmitter<void>();
+  @Output()
+  readonly onCardHide = new EventEmitter<void>();
 
   transformedExpandingCardProps: IExpandingCardProps;
   private _expandingCardOptions: IExpandingCardOptions;
@@ -103,24 +122,7 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
  * Counterpart of `IExpandingCardProps`, with Angular adjustments.
  */
 export interface IExpandingCardOptions
-  extends Pick<
-      IExpandingCardProps,
-      | 'componentRef'
-      | 'renderData'
-      | 'targetElement'
-      | 'onEnter'
-      | 'onLeave'
-      | 'compactCardHeight'
-      | 'expandedCardHeight'
-      | 'mode'
-      | 'theme'
-      | 'directionalHint'
-      | 'gapSpace'
-      | 'styles'
-      | 'directionalHintFixed'
-      | 'trapFocus'
-      | 'firstFocus'
-    > {
+  extends Omit<IExpandingCardProps, 'onRenderCompactCard' | 'onRenderExpandedCard'> {
   readonly renderCompactCard?: InputRendererOptions<RenderCardContext>;
   readonly renderExpandedCard?: InputRendererOptions<RenderCardContext>;
 }
