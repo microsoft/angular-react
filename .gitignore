@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/docs
 
 # dependencies
 node_modules
@@ -51,3 +52,4 @@ yarn-error.log
 .ng_pkg_build/
 
 .nyc-output/
+
