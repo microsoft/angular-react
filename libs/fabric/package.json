@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/fabric",
-  "version": "0.3.0",
+  "version": "0.3.0-alpha1",
   "ngPackage": {
     "lib": {
       "entryFile": "public-api.ts",
@@ -70,7 +70,7 @@
   ],
   "private": false,
   "peerDependencies": {
-    "@angular-react/core": "^0.3.0",
+    "@angular-react/core": "^0.3.0-alpha1",
     "@angular/common": "^6.1.0",
     "@angular/core": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
