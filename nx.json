@@ -3,25 +3,7 @@
     "docs": {
       "tags": []
     },
-    "docs-e2e": {
-      "tags": []
-    },
-    "docs-from-packages": {
-      "tags": []
-    },
-    "docs-from-packages-e2e": {
-      "tags": []
-    },
     "demo": {
-      "tags": []
-    },
-    "demo-e2e": {
-      "tags": []
-    },
-    "demo-from-packages": {
-      "tags": []
-    },
-    "demo-from-packages-e2e": {
       "tags": []
     },
     "core": {
