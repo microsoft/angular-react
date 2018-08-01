@@ -8,9 +8,8 @@ describe('ReactDotComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReactDotComponent ]
-    })
-    .compileComponents();
+      declarations: [ReactDotComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

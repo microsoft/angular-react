@@ -34,21 +34,32 @@ import { IChoiceGroupOption, IChoiceGroupProps } from 'office-ui-fabric-react/li
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabChoiceGroupComponent extends ReactWrapperComponent<IChoiceGroupProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IChoiceGroupProps['componentRef'];
-  @Input() options?: IChoiceGroupProps['options'];
-  @Input() defaultSelectedKey?: IChoiceGroupProps['defaultSelectedKey'];
-  @Input() selectedKey?: IChoiceGroupProps['selectedKey'];
-  @Input() label?: IChoiceGroupProps['label'];
-  @Input() theme?: IChoiceGroupProps['theme'];
-  @Input() styles?: IChoiceGroupProps['styles'];
+  @Input()
+  componentRef?: IChoiceGroupProps['componentRef'];
+  @Input()
+  options?: IChoiceGroupProps['options'];
+  @Input()
+  defaultSelectedKey?: IChoiceGroupProps['defaultSelectedKey'];
+  @Input()
+  selectedKey?: IChoiceGroupProps['selectedKey'];
+  @Input()
+  label?: IChoiceGroupProps['label'];
+  @Input()
+  theme?: IChoiceGroupProps['theme'];
+  @Input()
+  styles?: IChoiceGroupProps['styles'];
 
   /** HTML Input props */
-  @Input() required?: IChoiceGroupProps['required'];
+  @Input()
+  required?: IChoiceGroupProps['required'];
 
-  @Output() readonly onChanged = new EventEmitter<{ option: IChoiceGroupOption; evt?: Event }>();
-  @Output() readonly onChange = new EventEmitter<{ ev?: Event; option?: IChoiceGroupOption }>();
+  @Output()
+  readonly onChanged = new EventEmitter<{ option: IChoiceGroupOption; evt?: Event }>();
+  @Output()
+  readonly onChange = new EventEmitter<{ ev?: Event; option?: IChoiceGroupOption }>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);

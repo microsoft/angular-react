@@ -37,7 +37,8 @@ import * as React from 'react';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
   @passProp()
   @Input()
@@ -120,23 +121,37 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
   readonly PivotType = Pivot;
   readonly PivotItemType = PivotItem;
 
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @ContentChildren(FabPivotItemComponent) pivotItems: QueryList<FabPivotItemComponent>;
+  @ContentChildren(FabPivotItemComponent)
+  pivotItems: QueryList<FabPivotItemComponent>;
 
-  @Input() componentRef?: IPivotProps['componentRef'];
-  @Input() styles?: IPivotProps['styles'];
-  @Input() theme?: IPivotProps['theme'];
-  @Input() className?: IPivotProps['className'];
-  @Input() initialSelectedIndex?: IPivotProps['initialSelectedIndex'];
-  @Input() initialSelectedKey?: IPivotProps['initialSelectedKey'];
-  @Input() selectedKey?: IPivotProps['selectedKey'];
-  @Input() linkSize?: IPivotProps['linkSize'];
-  @Input() linkFormat?: IPivotProps['linkFormat'];
-  @Input() headersOnly?: IPivotProps['headersOnly'];
-  @Input() getTabId?: IPivotProps['getTabId'];
+  @Input()
+  componentRef?: IPivotProps['componentRef'];
+  @Input()
+  styles?: IPivotProps['styles'];
+  @Input()
+  theme?: IPivotProps['theme'];
+  @Input()
+  className?: IPivotProps['className'];
+  @Input()
+  initialSelectedIndex?: IPivotProps['initialSelectedIndex'];
+  @Input()
+  initialSelectedKey?: IPivotProps['initialSelectedKey'];
+  @Input()
+  selectedKey?: IPivotProps['selectedKey'];
+  @Input()
+  linkSize?: IPivotProps['linkSize'];
+  @Input()
+  linkFormat?: IPivotProps['linkFormat'];
+  @Input()
+  headersOnly?: IPivotProps['headersOnly'];
+  @Input()
+  getTabId?: IPivotProps['getTabId'];
 
-  @Output() readonly onLinkClick = new EventEmitter<{ item?: PivotItem; ev?: MouseEvent }>();
+  @Output()
+  readonly onLinkClick = new EventEmitter<{ item?: PivotItem; ev?: MouseEvent }>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef, true);

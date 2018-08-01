@@ -6,12 +6,13 @@ import { SubNavService } from '../../shared/sub-nav.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('primary', { read: ElementRef }) primaryNav: ElementRef;
-  @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
+  @ViewChild('primary', { read: ElementRef })
+  primaryNav: ElementRef;
+  @ViewChild('container', { read: ViewContainerRef })
+  container: ViewContainerRef;
 
   collapseSecondaryNav = false;
 
@@ -25,9 +26,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     fromEvent(window, 'scroll')
       // .pipe(throttleTime(1))
       .subscribe(e => {
-        this.collapseSecondaryNav = window.pageYOffset >
-          this.primaryNav.nativeElement.offsetHeight / 4;
+        this.collapseSecondaryNav = window.pageYOffset > this.primaryNav.nativeElement.offsetHeight / 4;
       });
   }
-
 }

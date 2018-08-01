@@ -20,16 +20,24 @@ import { ReactWrapperComponent } from '@angular-react/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabIconComponent extends ReactWrapperComponent<IIconProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IIconProps['componentRef'];
+  @Input()
+  componentRef?: IIconProps['componentRef'];
 
-  @Input() iconName?: IIconProps['iconName'];
-  @Input() ariaLabel?: IIconProps['ariaLabel'];
-  @Input() iconType?: IIconProps['iconType'];
-  @Input() imageProps?: IIconProps['imageProps'];
-  @Input() imageErrorAs?: IIconProps['imageErrorAs'];
-  @Input() styles?: IIconProps['styles'];
+  @Input()
+  iconName?: IIconProps['iconName'];
+  @Input()
+  ariaLabel?: IIconProps['ariaLabel'];
+  @Input()
+  iconType?: IIconProps['iconType'];
+  @Input()
+  imageProps?: IIconProps['imageProps'];
+  @Input()
+  imageErrorAs?: IIconProps['imageErrorAs'];
+  @Input()
+  styles?: IIconProps['styles'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef, true);

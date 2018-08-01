@@ -44,33 +44,54 @@ import { FormEvent } from 'react';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCheckboxComponent extends ReactWrapperComponent<ICheckboxProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: ICheckboxProps['componentRef'];
-  @Input() className?: ICheckboxProps['className'];
-  @Input() checked?: ICheckboxProps['checked'];
-  @Input() defaultChecked?: ICheckboxProps['defaultChecked'];
-  @Input() label?: ICheckboxProps['label'];
-  @Input() disabled?: ICheckboxProps['disabled'];
-  @Input() inputProps?: React.ButtonHTMLAttributes<HTMLElement | HTMLButtonElement>;
-  @Input() boxSide?: ICheckboxProps['boxSide'];
-  @Input() theme?: ICheckboxProps['theme'];
-  @Input() ariaLabel?: ICheckboxProps['ariaLabel'];
-  @Input() ariaLabelledBy?: ICheckboxProps['ariaLabelledBy'];
-  @Input() ariaDescribedBy?: ICheckboxProps['ariaDescribedBy'];
-  @Input() ariaPositionInSet?: ICheckboxProps['ariaPositionInSet'];
-  @Input() ariaSetSize?: ICheckboxProps['ariaSetSize'];
-  @Input() checkmarkIconProps?: ICheckboxProps['checkmarkIconProps'];
-  @Input() keytipProps?: ICheckboxProps['keytipProps'];
-  @Input() styles?: ICheckboxProps['styles'];
+  @Input()
+  componentRef?: ICheckboxProps['componentRef'];
+  @Input()
+  className?: ICheckboxProps['className'];
+  @Input()
+  checked?: ICheckboxProps['checked'];
+  @Input()
+  defaultChecked?: ICheckboxProps['defaultChecked'];
+  @Input()
+  label?: ICheckboxProps['label'];
+  @Input()
+  disabled?: ICheckboxProps['disabled'];
+  @Input()
+  inputProps?: React.ButtonHTMLAttributes<HTMLElement | HTMLButtonElement>;
+  @Input()
+  boxSide?: ICheckboxProps['boxSide'];
+  @Input()
+  theme?: ICheckboxProps['theme'];
+  @Input()
+  ariaLabel?: ICheckboxProps['ariaLabel'];
+  @Input()
+  ariaLabelledBy?: ICheckboxProps['ariaLabelledBy'];
+  @Input()
+  ariaDescribedBy?: ICheckboxProps['ariaDescribedBy'];
+  @Input()
+  ariaPositionInSet?: ICheckboxProps['ariaPositionInSet'];
+  @Input()
+  ariaSetSize?: ICheckboxProps['ariaSetSize'];
+  @Input()
+  checkmarkIconProps?: ICheckboxProps['checkmarkIconProps'];
+  @Input()
+  keytipProps?: ICheckboxProps['keytipProps'];
+  @Input()
+  styles?: ICheckboxProps['styles'];
 
-  @Input() renderLabel?: InputRendererOptions<ICheckboxProps>;
+  @Input()
+  renderLabel?: InputRendererOptions<ICheckboxProps>;
 
-  @Output() readonly onChange = new EventEmitter<{ ev?: Event; checked?: boolean }>();
+  @Output()
+  readonly onChange = new EventEmitter<{ ev?: Event; checked?: boolean }>();
 
   /* Non-React props, more native support for Angular */
   // support for two-way data binding for `@Input() checked`.
-  @Output() readonly checkedChange = new EventEmitter<boolean>();
+  @Output()
+  readonly checkedChange = new EventEmitter<boolean>();
 
   onRenderLabel: (props?: ICheckboxProps, defaultRender?: JsxRenderFunc<ICheckboxProps>) => JSX.Element;
 

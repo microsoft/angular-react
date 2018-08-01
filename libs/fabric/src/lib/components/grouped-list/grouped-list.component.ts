@@ -42,26 +42,43 @@ import { IListProps } from 'office-ui-fabric-react/lib/List';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IGroupedListProps['componentRef'];
-  @Input() className?: IGroupedListProps['className'];
-  @Input() dragDropEvents?: IGroupedListProps['dragDropEvents'];
-  @Input() dragDropHelper?: IGroupedListProps['dragDropHelper'];
-  @Input() eventsToRegister?: IGroupedListProps['eventsToRegister'];
-  @Input() groups?: IGroupedListProps['groups'];
-  @Input() items: IGroupedListProps['items'];
-  @Input() listProps?: IGroupedListProps['listProps'];
-  @Input() selection?: IGroupedListProps['selection'];
-  @Input() selectionMode?: IGroupedListProps['selectionMode'];
-  @Input() viewport?: IGroupedListProps['viewport'];
-  @Input() usePageCache?: IGroupedListProps['usePageCache'];
-  @Input() shouldVirtualize?: (props: IListProps) => boolean;
-  @Input() groupProps?: IGroupRenderProps;
+  @Input()
+  componentRef?: IGroupedListProps['componentRef'];
+  @Input()
+  className?: IGroupedListProps['className'];
+  @Input()
+  dragDropEvents?: IGroupedListProps['dragDropEvents'];
+  @Input()
+  dragDropHelper?: IGroupedListProps['dragDropHelper'];
+  @Input()
+  eventsToRegister?: IGroupedListProps['eventsToRegister'];
+  @Input()
+  groups?: IGroupedListProps['groups'];
+  @Input()
+  items: IGroupedListProps['items'];
+  @Input()
+  listProps?: IGroupedListProps['listProps'];
+  @Input()
+  selection?: IGroupedListProps['selection'];
+  @Input()
+  selectionMode?: IGroupedListProps['selectionMode'];
+  @Input()
+  viewport?: IGroupedListProps['viewport'];
+  @Input()
+  usePageCache?: IGroupedListProps['usePageCache'];
+  @Input()
+  shouldVirtualize?: (props: IListProps) => boolean;
+  @Input()
+  groupProps?: IGroupRenderProps;
 
-  @Input() renderCell: InputRendererOptions<ICellRenderContext>;
+  @Input()
+  renderCell: InputRendererOptions<ICellRenderContext>;
 
-  @Output() readonly onGroupExpandStateChanged = new EventEmitter<{ isSomeGroupExpanded: boolean }>();
+  @Output()
+  readonly onGroupExpandStateChanged = new EventEmitter<{ isSomeGroupExpanded: boolean }>();
 
   private _renderCell: JsxRenderFunc<ICellRenderContext>;
 

@@ -38,25 +38,40 @@ import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() responsiveMode?: IDialogProps['responsiveMode'];
+  @Input()
+  responsiveMode?: IDialogProps['responsiveMode'];
 
-  @Input() elementToFocusOnDismiss?: IDialogProps['elementToFocusOnDismiss'];
-  @Input() ignoreExternalFocusing?: IDialogProps['ignoreExternalFocusing'];
-  @Input() forceFocusInsideTrap?: IDialogProps['forceFocusInsideTrap'];
-  @Input() firstFocusableSelector?: IDialogProps['firstFocusableSelector'];
-  @Input() closeButtonAriaLabel?: IDialogProps['closeButtonAriaLabel'];
-  @Input() isClickableOutsideFocusTrap?: IDialogProps['isClickableOutsideFocusTrap'];
+  @Input()
+  elementToFocusOnDismiss?: IDialogProps['elementToFocusOnDismiss'];
+  @Input()
+  ignoreExternalFocusing?: IDialogProps['ignoreExternalFocusing'];
+  @Input()
+  forceFocusInsideTrap?: IDialogProps['forceFocusInsideTrap'];
+  @Input()
+  firstFocusableSelector?: IDialogProps['firstFocusableSelector'];
+  @Input()
+  closeButtonAriaLabel?: IDialogProps['closeButtonAriaLabel'];
+  @Input()
+  isClickableOutsideFocusTrap?: IDialogProps['isClickableOutsideFocusTrap'];
 
-  @Input() componentRef?: IDialogProps['componentRef'];
-  @Input() styles?: IDialogProps['styles'];
-  @Input() theme?: IDialogProps['theme'];
-  @Input() dialogContentProps?: IDialogProps['dialogContentProps'];
-  @Input() hidden?: IDialogProps['hidden'];
-  @Input() modalProps?: IDialogProps['modalProps'];
+  @Input()
+  componentRef?: IDialogProps['componentRef'];
+  @Input()
+  styles?: IDialogProps['styles'];
+  @Input()
+  theme?: IDialogProps['theme'];
+  @Input()
+  dialogContentProps?: IDialogProps['dialogContentProps'];
+  @Input()
+  hidden?: IDialogProps['hidden'];
+  @Input()
+  modalProps?: IDialogProps['modalProps'];
 
-  @Output() readonly onDismiss = new EventEmitter<MouseEvent>();
+  @Output()
+  readonly onDismiss = new EventEmitter<MouseEvent>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);
@@ -86,12 +101,17 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFooterProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IDialogFooterProps['componentRef'];
-  @Input() styles?: IDialogFooterProps['styles'];
-  @Input() theme?: IDialogFooterProps['theme'];
-  @Input() className?: IDialogFooterProps['className'];
+  @Input()
+  componentRef?: IDialogFooterProps['componentRef'];
+  @Input()
+  styles?: IDialogFooterProps['styles'];
+  @Input()
+  theme?: IDialogFooterProps['theme'];
+  @Input()
+  className?: IDialogFooterProps['className'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);
@@ -126,24 +146,40 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogContentComponent extends ReactWrapperComponent<IDialogContentProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IDialogContentProps['componentRef'];
-  @Input() styles?: IDialogContentProps['styles'];
-  @Input() theme?: IDialogContentProps['theme'];
-  @Input() isMultiline?: IDialogContentProps['isMultiline'];
-  @Input() showCloseButton?: IDialogContentProps['showCloseButton'];
-  @Input() topButtonsProps?: IDialogContentProps['topButtonsProps'];
-  @Input() className?: IDialogContentProps['className'];
-  @Input() subTextId?: IDialogContentProps['subTextId'];
-  @Input() subText?: IDialogContentProps['subText'];
-  @Input() titleId?: IDialogContentProps['titleId'];
-  @Input() title?: IDialogContentProps['title'];
-  @Input() responsiveMode?: IDialogContentProps['responsiveMode'];
-  @Input() closeButtonAriaLabel?: IDialogContentProps['closeButtonAriaLabel'];
-  @Input() type?: IDialogContentProps['type'];
+  @Input()
+  componentRef?: IDialogContentProps['componentRef'];
+  @Input()
+  styles?: IDialogContentProps['styles'];
+  @Input()
+  theme?: IDialogContentProps['theme'];
+  @Input()
+  isMultiline?: IDialogContentProps['isMultiline'];
+  @Input()
+  showCloseButton?: IDialogContentProps['showCloseButton'];
+  @Input()
+  topButtonsProps?: IDialogContentProps['topButtonsProps'];
+  @Input()
+  className?: IDialogContentProps['className'];
+  @Input()
+  subTextId?: IDialogContentProps['subTextId'];
+  @Input()
+  subText?: IDialogContentProps['subText'];
+  @Input()
+  titleId?: IDialogContentProps['titleId'];
+  @Input()
+  title?: IDialogContentProps['title'];
+  @Input()
+  responsiveMode?: IDialogContentProps['responsiveMode'];
+  @Input()
+  closeButtonAriaLabel?: IDialogContentProps['closeButtonAriaLabel'];
+  @Input()
+  type?: IDialogContentProps['type'];
 
-  @Output() readonly onDismiss = new EventEmitter<MouseEvent>();
+  @Output()
+  readonly onDismiss = new EventEmitter<MouseEvent>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);

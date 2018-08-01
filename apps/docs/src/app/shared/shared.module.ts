@@ -4,22 +4,14 @@ import { CommonModule } from '@angular/common';
 import { SubNavService } from './sub-nav.service';
 import { SubNavDirective } from './sub-nav.directive';
 
-
-const components = [
-  SubNavDirective
-]
+const components = [SubNavDirective];
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: components,
   providers: [SubNavService],
-  exports: components
+  exports: components,
 })
-export class SharedModule { }
+export class SharedModule {}
 
-export {
-  SubNavDirective,
-  SubNavService,
-}
+export { SubNavDirective, SubNavService };

@@ -17,10 +17,13 @@ import { IFabricProps } from 'office-ui-fabric-react/lib/Fabric';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabFabricComponent extends ReactWrapperComponent<IFabricProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IFabricProps['componentRef'];
-  @Input() theme?: IFabricProps['theme'];
+  @Input()
+  componentRef?: IFabricProps['componentRef'];
+  @Input()
+  theme?: IFabricProps['theme'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);

@@ -11,9 +11,8 @@ describe('DotComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DotComponent ]
-    })
-    .compileComponents();
+      declarations: [DotComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

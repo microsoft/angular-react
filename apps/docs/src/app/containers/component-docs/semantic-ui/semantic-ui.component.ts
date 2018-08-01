@@ -3,10 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-semantic-ui',
   templateUrl: './semantic-ui.component.html',
-  styleUrls: ['./semantic-ui.component.scss']
+  styleUrls: ['./semantic-ui.component.scss'],
 })
 export class SemanticUiComponent {
-
   sampleContentCounter = 0;
 
   get sampleContent() {
@@ -16,5 +15,4 @@ export class SemanticUiComponent {
   onClick(ev: MouseEvent) {
     this.sampleContentCounter += 1;
   }
-
 }

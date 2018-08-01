@@ -36,33 +36,48 @@ import { IToggleProps } from 'office-ui-fabric-react/lib/Toggle';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() as?: IToggleProps['as'];
-  @Input() componentRef?: IToggleProps['componentRef'];
-  @Input() label?: IToggleProps['label'];
+  @Input()
+  as?: IToggleProps['as'];
+  @Input()
+  componentRef?: IToggleProps['componentRef'];
+  @Input()
+  label?: IToggleProps['label'];
 
   /**
    * Counterpart of `IToggleProps['onText']`.
    * Angular doesn't allow Inputs to be prefixed with "on", so this is misspelled as "onn".
    */
-  @Input('onnText') onText?: IToggleProps['onText'];
-  @Input() offText?: IToggleProps['offText'];
+  @Input('onnText')
+  onText?: IToggleProps['onText'];
+  @Input()
+  offText?: IToggleProps['offText'];
 
   /**
    * Counterpart of `IToggleProps['onAriaLabel']`.
    * Angular doesn't allow Inputs to be prefixed with "on", so this is misspelled as "onn".
    */
-  @Input('onnAriaLabel') onAriaLabel?: IToggleProps['onAriaLabel'];
-  @Input() offAriaLabel?: IToggleProps['offAriaLabel'];
-  @Input() checked?: IToggleProps['checked'];
-  @Input() defaultChecked?: IToggleProps['defaultChecked'];
-  @Input() disabled?: IToggleProps['disabled'];
-  @Input() theme?: IToggleProps['theme'];
-  @Input() styles?: IToggleProps['styles'];
-  @Input() keytipProps?: IToggleProps['keytipProps'];
+  @Input('onnAriaLabel')
+  onAriaLabel?: IToggleProps['onAriaLabel'];
+  @Input()
+  offAriaLabel?: IToggleProps['offAriaLabel'];
+  @Input()
+  checked?: IToggleProps['checked'];
+  @Input()
+  defaultChecked?: IToggleProps['defaultChecked'];
+  @Input()
+  disabled?: IToggleProps['disabled'];
+  @Input()
+  theme?: IToggleProps['theme'];
+  @Input()
+  styles?: IToggleProps['styles'];
+  @Input()
+  keytipProps?: IToggleProps['keytipProps'];
 
-  @Output() readonly onChanged = new EventEmitter<boolean>();
+  @Output()
+  readonly onChanged = new EventEmitter<boolean>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);

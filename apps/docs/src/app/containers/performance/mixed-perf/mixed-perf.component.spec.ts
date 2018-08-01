@@ -8,9 +8,8 @@ describe('MixedPerfComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MixedPerfComponent ]
-    })
-    .compileComponents();
+      declarations: [MixedPerfComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

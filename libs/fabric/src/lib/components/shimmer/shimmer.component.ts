@@ -33,16 +33,25 @@ import { IShimmerElementsGroupProps } from 'office-ui-fabric-react/lib/component
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IShimmerProps['componentRef'];
-  @Input() width?: IShimmerProps['width'];
-  @Input() isDataLoaded?: IShimmerProps['isDataLoaded'];
-  @Input() shimmerElements?: IShimmerProps['shimmerElements'];
-  @Input() ariaLabel?: IShimmerProps['ariaLabel'];
-  @Input() styles?: IShimmerProps['styles'];
-  @Input() className?: IShimmerProps['className'];
-  @Input() theme?: IShimmerProps['theme'];
+  @Input()
+  componentRef?: IShimmerProps['componentRef'];
+  @Input()
+  width?: IShimmerProps['width'];
+  @Input()
+  isDataLoaded?: IShimmerProps['isDataLoaded'];
+  @Input()
+  shimmerElements?: IShimmerProps['shimmerElements'];
+  @Input()
+  ariaLabel?: IShimmerProps['ariaLabel'];
+  @Input()
+  styles?: IShimmerProps['styles'];
+  @Input()
+  className?: IShimmerProps['className'];
+  @Input()
+  theme?: IShimmerProps['theme'];
 
   @Input()
   set renderCustomElementsGroup(value: InputRendererOptions<{}>) {
@@ -86,15 +95,23 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabShimmerElementsGroupComponent extends ReactWrapperComponent<IShimmerElementsGroupProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IShimmerElementsGroupProps['componentRef'];
-  @Input() rowHeight?: IShimmerElementsGroupProps['rowHeight'];
-  @Input() shimmerElements?: IShimmerElementsGroupProps['shimmerElements'];
-  @Input() flexWrap?: IShimmerElementsGroupProps['flexWrap'];
-  @Input() width?: IShimmerElementsGroupProps['width'];
-  @Input() theme?: IShimmerElementsGroupProps['theme'];
-  @Input() styles?: IShimmerElementsGroupProps['styles'];
+  @Input()
+  componentRef?: IShimmerElementsGroupProps['componentRef'];
+  @Input()
+  rowHeight?: IShimmerElementsGroupProps['rowHeight'];
+  @Input()
+  shimmerElements?: IShimmerElementsGroupProps['shimmerElements'];
+  @Input()
+  flexWrap?: IShimmerElementsGroupProps['flexWrap'];
+  @Input()
+  width?: IShimmerElementsGroupProps['width'];
+  @Input()
+  theme?: IShimmerElementsGroupProps['theme'];
+  @Input()
+  styles?: IShimmerElementsGroupProps['styles'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef, true);

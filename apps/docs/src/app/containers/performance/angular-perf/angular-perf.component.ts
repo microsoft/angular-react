@@ -3,16 +3,16 @@ import { MatSliderChange } from '@angular/material';
 
 import { TriangleComponent, DEFAULT_DOT_SIZE } from '../../../components/triangle/triangle.component';
 
-
 @Component({
   selector: 'app-angular-perf',
   templateUrl: './angular-perf.component.html',
-  styleUrls: ['./angular-perf.component.scss']
+  styleUrls: ['./angular-perf.component.scss'],
 })
 export class AngularPerfComponent {
   DEFAULT_DOT_SIZE = DEFAULT_DOT_SIZE;
 
-  @ViewChild(TriangleComponent) triangle: TriangleComponent;
+  @ViewChild(TriangleComponent)
+  triangle: TriangleComponent;
 
   get toggleTriangleLabel() {
     return this.triangle.isActive ? 'Stop' : 'Restart';
@@ -25,5 +25,4 @@ export class AngularPerfComponent {
   dotSizeChanged(ev: MatSliderChange) {
     this.triangle.start({ dotSize: ev.value, redraw: true });
   }
-
 }

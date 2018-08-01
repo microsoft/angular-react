@@ -23,17 +23,27 @@ import { ISpinnerProps } from 'office-ui-fabric-react/lib/Spinner';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: ISpinnerProps['componentRef'];
-  @Input() type?: ISpinnerProps['type'];
-  @Input() size?: ISpinnerProps['size'];
-  @Input() label?: ISpinnerProps['label'];
-  @Input() className?: ISpinnerProps['className'];
-  @Input() ariaLive?: ISpinnerProps['ariaLive'];
-  @Input() ariaLabel?: ISpinnerProps['ariaLabel'];
-  @Input() theme?: ISpinnerProps['theme'];
-  @Input() styles?: ISpinnerProps['styles'];
+  @Input()
+  componentRef?: ISpinnerProps['componentRef'];
+  @Input()
+  type?: ISpinnerProps['type'];
+  @Input()
+  size?: ISpinnerProps['size'];
+  @Input()
+  label?: ISpinnerProps['label'];
+  @Input()
+  className?: ISpinnerProps['className'];
+  @Input()
+  ariaLive?: ISpinnerProps['ariaLive'];
+  @Input()
+  ariaLabel?: ISpinnerProps['ariaLabel'];
+  @Input()
+  theme?: ISpinnerProps['theme'];
+  @Input()
+  styles?: ISpinnerProps['styles'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);

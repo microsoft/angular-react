@@ -8,9 +8,8 @@ describe('SubNavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubNavComponent ]
-    })
-    .compileComponents();
+      declarations: [SubNavComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -13,13 +13,7 @@ import { PerformanceComponent } from './performance.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { FabricModule } from '../../fabric.module';
 
-
-const components = [
-  AngularPerfComponent,
-  MixedPerfComponent,
-  PerformanceComponent,
-  ProfilesComponent,
-];
+const components = [AngularPerfComponent, MixedPerfComponent, PerformanceComponent, ProfilesComponent];
 
 @NgModule({
   imports: [
@@ -35,11 +29,6 @@ const components = [
   declarations: components,
   exports: components,
 })
-export class PerformanceModule { }
+export class PerformanceModule {}
 
-export {
-  AngularPerfComponent,
-  MixedPerfComponent,
-  PerformanceComponent,
-  ProfilesComponent,
-}
+export { AngularPerfComponent, MixedPerfComponent, PerformanceComponent, ProfilesComponent };

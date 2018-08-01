@@ -37,7 +37,8 @@ import { FabBaseComboBoxComponent } from './base-combo-box.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabVirtualizedComboBoxComponent extends FabBaseComboBoxComponent {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef);

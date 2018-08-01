@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 import { FabricModule } from './fabric.module';
 import { SemanticModule } from './semantic.module';
 
-
 @NgModule({
   imports: [
     AngularReactBrowserModule,
@@ -35,6 +34,6 @@ import { SemanticModule } from './semantic.module';
   ],
   declarations: [AppComponent, LandingComponent],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

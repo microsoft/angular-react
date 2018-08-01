@@ -8,9 +8,8 @@ describe('AngularPerfComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AngularPerfComponent ]
-    })
-    .compileComponents();
+      declarations: [AngularPerfComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

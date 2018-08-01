@@ -38,25 +38,39 @@ import { BaseButton, Button } from 'office-ui-fabric-react/lib/Button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMessageBarComponent extends ReactWrapperComponent<IMessageBarProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IMessageBarProps['componentRef'];
-  @Input() messageBarType?: IMessageBarProps['messageBarType'];
-  @Input() ariaLabel?: IMessageBarProps['ariaLabel'];
-  @Input() isMultiline?: IMessageBarProps['isMultiline'];
-  @Input() dismissButtonAriaLabel?: IMessageBarProps['dismissButtonAriaLabel'];
-  @Input() truncated?: IMessageBarProps['truncated'];
-  @Input() overflowButtonAriaLabel?: IMessageBarProps['overflowButtonAriaLabel'];
-  @Input() className?: IMessageBarProps['className'];
-  @Input() theme?: IMessageBarProps['theme'];
-  @Input() styles?: IMessageBarProps['styles'];
+  @Input()
+  componentRef?: IMessageBarProps['componentRef'];
+  @Input()
+  messageBarType?: IMessageBarProps['messageBarType'];
+  @Input()
+  ariaLabel?: IMessageBarProps['ariaLabel'];
+  @Input()
+  isMultiline?: IMessageBarProps['isMultiline'];
+  @Input()
+  dismissButtonAriaLabel?: IMessageBarProps['dismissButtonAriaLabel'];
+  @Input()
+  truncated?: IMessageBarProps['truncated'];
+  @Input()
+  overflowButtonAriaLabel?: IMessageBarProps['overflowButtonAriaLabel'];
+  @Input()
+  className?: IMessageBarProps['className'];
+  @Input()
+  theme?: IMessageBarProps['theme'];
+  @Input()
+  styles?: IMessageBarProps['styles'];
 
-  @Input() renderActions?: InputRendererOptions<{}>;
+  @Input()
+  renderActions?: InputRendererOptions<{}>;
 
   // Non-React prop, used together with onDismiss to allow it to be an Output EventEmitter.
-  @Input() dismissable?: boolean = null;
+  @Input()
+  dismissable?: boolean = null;
 
-  @Output() readonly onDismiss = new EventEmitter<MouseEvent>();
+  @Output()
+  readonly onDismiss = new EventEmitter<MouseEvent>();
 
   actions: JSX.Element;
 
