@@ -1,8 +1,5 @@
-import { ChangeDetectorRef, ViewEncapsulation, Component, ComponentFactoryResolver, Injector, Input, ComponentRef, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
-import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType, ShimmerElementType } from 'office-ui-fabric-react';
-import { IExpandingCardOptions } from '@angular-react/fabric/src/components/hover-card';
-import { ICommandBarItemOptions, FabCommandBarComponent } from '@angular-react/fabric/src/components/command-bar';
-
+import { FabCommandBarComponent, ICommandBarItemOptions } from '@angular-react/fabric';
+import { Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +8,10 @@ import { ICommandBarItemOptions, FabCommandBarComponent } from '@angular-react/f
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
-
-  @ViewChild(FabCommandBarComponent) commandBar: FabCommandBarComponent;
-  @ViewChild('customRange') customRangeTemplate: TemplateRef<{ item: any, dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
+  @ViewChild(FabCommandBarComponent)
+  commandBar: FabCommandBarComponent;
+  @ViewChild('customRange')
+  customRangeTemplate: TemplateRef<{ item: any; dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
 
   commandBarItems: ReadonlyArray<ICommandBarItemOptions> = [
     {
@@ -36,7 +34,7 @@ export class AppComponent {
       key: 'save',
       text: 'Save',
       iconProps: {
-        iconName: 'Save'
+        iconName: 'Save',
       },
       subMenuProps: {
         items: [
@@ -50,7 +48,7 @@ export class AppComponent {
             text: 'Save as',
             subMenuProps: {
               onItemClick: (ev, item) => {
-                console.log(`${item.text} clicked`)
+                console.log(`${item.text} clicked`);
                 return true;
               },
               items: [
@@ -72,7 +70,7 @@ export class AppComponent {
       key: 'copy',
       text: 'Copy',
       iconProps: {
-        iconName: 'Copy'
+        iconName: 'Copy',
       },
       onClick: () => console.log('Copy clicked'),
     },
@@ -93,7 +91,6 @@ export class AppComponent {
           {
             key: '24h',
             text: 'Last 24 hours',
-
           },
           {
             key: '7d',
@@ -117,24 +114,24 @@ export class AppComponent {
                   render: this.customRangeTemplate,
                   onClick: () => {
                     debugger;
-                  }
+                  },
                 },
               ];
             },
           },
-        ]
-      }
+        ],
+      },
     },
     {
       key: 'schedule-monitor',
       text: 'Schedule a monitor',
       iconProps: {
-        iconName: 'ScheduleEventAction'
+        iconName: 'ScheduleEventAction',
       },
       onClick: () => {
         this.isPanelOpen = true;
         console.log('Schedule a monitor clicked');
-      }
+      },
     },
   ];
 
@@ -143,7 +140,7 @@ export class AppComponent {
       key: 'help',
       text: 'Help',
       iconProps: {
-        iconName: 'Help'
+        iconName: 'Help',
       },
       onClick: () => console.log('Help clicked'),
     },
@@ -151,20 +148,17 @@ export class AppComponent {
       key: 'full-screen',
       iconOnly: true,
       iconProps: {
-        iconName: 'MiniExpand'
+        iconName: 'MiniExpand',
       },
       onClick: () => console.log('Expand clicked'),
-    }
+    },
   ];
 
   isPanelOpen = false;
 
   toggleRun() {
-    this.commandBarItems = this.commandBarItems.map(item =>
-      item.key === 'run'
-        ? { ...item, disabled: !item.disabled }
-        : item
+    this.commandBarItems = this.commandBarItems.map(
+      item => (item.key === 'run' ? { ...item, disabled: !item.disabled } : item)
     );
   }
-
 }

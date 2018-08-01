@@ -7,22 +7,15 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@angular-react/*": [
-        "libs/*"
-      ]
+      "@angular-react/*": ["libs/*"],
+      "@angular-react/core": ["libs/core/src/index.ts"],
+      "@angular-react/fabric": ["libs/fabric/src/index.ts"],
+      "@angular-react/semantic-ui": ["libs/semantic-ui/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }
