@@ -1,5 +1,3 @@
-export * from './lib/declarations/public-api.d.ts';
-
 export * from './lib/components/breadcrumb/public-api';
 export * from './lib/components/button/public-api';
 export * from './lib/components/callout/public-api';
@@ -27,6 +25,7 @@ export * from './lib/components/slider/public-api';
 export * from './lib/components/spinner/public-api';
 export * from './lib/components/toggle/public-api';
 export * from './lib/components/tooltip/public-api';
+export * from './lib/declarations/public-api';
 
 // Pickers had some warnings at runtime. Leaving out of public API for now
 // export * from './lib/components/pickers/public-api';
