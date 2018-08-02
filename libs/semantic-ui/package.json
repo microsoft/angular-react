@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/semantic-ui",
-  "version": "0.1.0",
+  "version": "0.3.0-alpha1",
   "ngPackage": {
     "lib": {
       "entryFile": "public-api.ts",
@@ -34,17 +34,13 @@
   ],
   "private": false,
   "peerDependencies": {
-    "@angular-react/core": "^0.1.0",
-    "@angular/common": "^5.2.7",
-    "@angular/core": "^5.2.7",
-    "@angular/platform-browser-dynamic": "^5.2.7",
-    "@angular/platform-browser": "^5.2.7",
+    "@angular-react/core": "^0.3.0-alpha1",
+    "@angular/common": "^6.1.0",
+    "@angular/core": "^6.1.0",
+    "@angular/platform-browser-dynamic": "^6.1.0",
+    "@angular/platform-browser": "^6.1.0",
     "semantic-ui-react": "^0.79.1",
-    "react-dom": "^16.3.1",
-    "react": "^16.3.1"
-  },
-  "devDependencies": {
-    "@types/react-dom": "^16.0.4",
-    "@types/react": "^16.3.4"
+    "react-dom": "^16.4.1",
+    "react": "^16.4.1"
   }
 }

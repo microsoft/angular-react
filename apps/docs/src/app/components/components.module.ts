@@ -14,7 +14,6 @@ import { SharedModule } from '../shared';
 import { FabricModule } from '../fabric.module';
 import { PageHeaderComponent } from './page-header/page-header.component';
 
-
 const components = [
   DotComponent,
   IconsComponent,
@@ -25,24 +24,10 @@ const components = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    FabricModule,
-    ReactComponentsModule,
-    MaterialModule,
-    SharedModule,
-  ],
+  imports: [CommonModule, RouterModule, FabricModule, ReactComponentsModule, MaterialModule, SharedModule],
   declarations: components,
   exports: components,
 })
-export class ComponentsModule { }
+export class ComponentsModule {}
 
-export {
-  DotComponent,
-  IconsComponent,
-  NavbarComponent,
-  PageHeaderComponent,
-  SubNavComponent,
-  TriangleComponent,
-}
+export { DotComponent, IconsComponent, NavbarComponent, PageHeaderComponent, SubNavComponent, TriangleComponent };

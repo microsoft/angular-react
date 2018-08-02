@@ -12,12 +12,7 @@ import { FabricModule } from '../../fabric.module';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { WrappersComponent } from './wrappers/wrappers.component';
 
-
-const components = [
-  DocsComponent,
-  GettingStartedComponent,
-  WrappersComponent,
-];
+const components = [DocsComponent, GettingStartedComponent, WrappersComponent];
 
 @NgModule({
   imports: [
@@ -33,10 +28,6 @@ const components = [
   declarations: components,
   exports: components,
 })
-export class DocsModule { }
+export class DocsModule {}
 
-export {
-  DocsComponent,
-  GettingStartedComponent,
-  WrappersComponent,
-}
+export { DocsComponent, GettingStartedComponent, WrappersComponent };

@@ -1,15 +1,17 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "0.2.4",
+  "version": "0.3.0-alpha3",
   "ngPackage": {
+    "deleteDestPath": true,
+    "whitelistedNonPeerDependencies": [
+      "tslib",
+      "css-to-style"
+    ],
     "lib": {
       "languageLevel": [
         "dom",
         "es2017"
-      ],
-      "embedded": [
-        "css-to-style"
       ],
       "entryFile": "public-api.ts",
       "umdModuleIds": {
@@ -21,7 +23,15 @@
     "dest": "../../@angular-react/core"
   },
   "description": "Use React components inside Angular",
-  "author": "Ben Feely <http://benfeely.com>",
+  "author": {
+    "name": "Ben Feely",
+    "url": "http://benfeely.com"
+  },
+  "contributors": [
+    {
+      "name": "Ben Grynhaus"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/benfeely/angular-react/issues"
@@ -38,15 +48,17 @@
   ],
   "private": false,
   "peerDependencies": {
-    "@angular/compiler": "^5.2.7",
-    "@angular/core": "^5.2.7",
-    "@angular/platform-browser-dynamic": "^5.2.7",
-    "@angular/platform-browser": "^5.2.7",
-    "react-dom": "^16.3.1",
-    "react": "^16.3.1"
+    "@angular/compiler": "^6.1.0",
+    "@angular/core": "^6.1.0",
+    "@angular/platform-browser-dynamic": "^6.1.0",
+    "@angular/platform-browser": "^6.1.0",
+    "react-dom": "^16.4.1",
+    "react": "^16.4.1"
   },
-  "devDependencies": {
-    "@types/react-dom": "^16.0.4",
-    "@types/react": "^16.3.4"
-  }
+  "dependencies": {
+    "css-to-style": "^1.2.0"
+  },
+  "bundledDependencies": [
+    "css-to-style"
+  ]
 }

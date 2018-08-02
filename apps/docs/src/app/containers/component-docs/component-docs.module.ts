@@ -13,12 +13,7 @@ import { MaterialModule } from '../../material.module';
 import { FabricModule } from '../../fabric.module';
 import { SemanticModule } from '../../semantic.module';
 
-
-const components = [
-  ComponentDocsComponent,
-  FabricComponent,
-  SemanticUiComponent,
-];
+const components = [ComponentDocsComponent, FabricComponent, SemanticUiComponent];
 
 @NgModule({
   imports: [
@@ -35,10 +30,6 @@ const components = [
   declarations: components,
   exports: components,
 })
-export class ComponentDocsModule { }
+export class ComponentDocsModule {}
 
-export {
-  ComponentDocsComponent,
-  FabricComponent,
-  SemanticUiComponent,
-};
+export { ComponentDocsComponent, FabricComponent, SemanticUiComponent };

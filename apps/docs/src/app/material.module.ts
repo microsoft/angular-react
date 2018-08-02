@@ -21,9 +21,9 @@ const componentModules = [
   MatSlideToggleModule,
   MatSliderModule,
   MatButtonToggleModule,
-]
+];
 @NgModule({
   imports: componentModules,
   exports: componentModules,
 })
-export class MaterialModule { }
+export class MaterialModule {}

@@ -1,19 +1,19 @@
 <h1>Microsoft Fabric [React] Components</h1>
 
 <h2>Button</h2>
-<fab-button label="Toggle Disabled" (onClick)="toggle()"></fab-button>
-<fab-button [disabled]="disabled" (onClick)="click()" label="Primary Button{{ disabled ? ' (0)' : ' (2)' }}"></fab-button>
-<fab-button [primary]="false" (onClick)="click()" label="Secondary Button"></fab-button>
+<fab-default-button text="Toggle Disabled" (onClick)="toggle()"></fab-default-button>
+<fab-default-button [disabled]="disabled" (onClick)="click()" text="Primary Button{{ disabled ? ' (0)' : ' (2)' }}"></fab-default-button>
+<fab-default-button [primary]="false" (onClick)="click()" text="Secondary Button"></fab-default-button>
 <h3 class="button-height">{{ sampleContent }}</h3>
 
 <hr />
 
 <h2>Dialog</h2>
-<fab-button label="Toggle Dialog" (onClick)="toggleDialog()"></fab-button>
-<fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" key="d2" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!" [type]="DialogType.largeHeader">
+<fab-default-button text="Toggle Dialog" (onClick)="toggleDialog()"></fab-default-button>
+<fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!">
   {{ sampleContent2 }} {{ sampleContent3 }}
-  <fab-dialog-footer key="d3">
-    <fab-button (onClick)="clickSave()" label='Save' style="margin-right:10px;"></fab-button>
-    <fab-button (onClick)="toggleDialog()" label='Cancel'></fab-button>
+  <fab-dialog-footer>
+    <fab-default-button (onClick)="clickSave()" text='Save' contentStyle="margin-right: 10px;"></fab-default-button>
+    <fab-default-button (onClick)="toggleDialog()" text='Cancel'></fab-default-button>
   </fab-dialog-footer>
 </fab-dialog>

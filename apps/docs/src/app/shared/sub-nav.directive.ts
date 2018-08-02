@@ -2,18 +2,14 @@ import { Directive, ViewRef, TemplateRef, OnDestroy, OnInit } from '@angular/cor
 
 import { SubNavService } from './sub-nav.service';
 
-
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: '[subnav]'
+  selector: '[subnav]',
 })
 export class SubNavDirective implements OnInit, OnDestroy {
+  private _viewRef: ViewRef;
 
-  private _viewRef : ViewRef;
-
-  constructor( private subNavService: SubNavService,
-               public tpl: TemplateRef<any> ) {
-  }
+  constructor(private subNavService: SubNavService, public tpl: TemplateRef<any>) {}
 
   ngOnInit() {
     this._viewRef = this.subNavService.vcr.createEmbeddedView(this.tpl);
@@ -22,5 +18,4 @@ export class SubNavDirective implements OnInit, OnDestroy {
   ngOnDestroy() {
     this._viewRef.destroy();
   }
-
 }

@@ -11,9 +11,8 @@ describe('TriangleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TriangleComponent ]
-    })
-    .compileComponents();
+      declarations: [TriangleComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

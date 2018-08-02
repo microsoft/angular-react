@@ -2,11 +2,10 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { SubNavService } from './sub-nav.service';
 
-
 describe('SubNavService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SubNavService]
+      providers: [SubNavService],
     });
   });
 

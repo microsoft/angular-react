@@ -6,7 +6,6 @@ import { Component, HostBinding } from '@angular/core';
   styleUrls: ['./performance.component.scss'],
 })
 export class PerformanceComponent {
-
-  @HostBinding('class.page') page = true;
-
+  @HostBinding('class.page')
+  page = true;
 }

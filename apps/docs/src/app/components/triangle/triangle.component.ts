@@ -1,10 +1,21 @@
 // tslint:disable:no-input-rename
 
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, OnInit, ViewEncapsulation, ContentChild, TemplateRef, ElementRef, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  OnInit,
+  ViewEncapsulation,
+  ContentChild,
+  TemplateRef,
+  ElementRef,
+  OnDestroy,
+} from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
-
-export const COLORS = { default: { text: '#222', bg: '#ddd' }, hover: { text: '#fff', bg: '#0078D4' } }
+export const COLORS = { default: { text: '#222', bg: '#ddd' }, hover: { text: '#fff', bg: '#0078D4' } };
 export const DEFAULT_DOT_SIZE = 25;
 export const DEFAULT_INTERVAL = 1000;
 
@@ -20,22 +31,22 @@ export interface TriangleConfig {
   styleUrls: ['./triangle.component.scss'],
 })
 export class TriangleComponent implements OnInit, OnDestroy {
-
-  @ContentChild(TemplateRef) dotTemplate;
+  @ContentChild(TemplateRef)
+  dotTemplate;
 
   // These are initially undefined and default CONST is used unless another
   // value is provided in hte config.  Whether default of config value are used,
   // the last used value is stored to allow start/stop operations.
-  private interval: number;           // Number of milliseconds between counter updates.
-  private dotSize: number;            // Pixel size for each dot.
-  private triangleSize: number;       // In pixels, largest triangle size (height and width).
+  private interval: number; // Number of milliseconds between counter updates.
+  private dotSize: number; // Pixel size for each dot.
+  private triangleSize: number; // In pixels, largest triangle size (height and width).
 
-  private startTime: number;          // In milliseconds
-  private counter = 0;                // Revolving counter, 0-9 and back again.
-  private _scale: number;              // Moves from 1 to 1.5 and back to 1 at a set rate based on time elapsed.
-  private timer: NodeJS.Timer;        // Repeating timer that updates the counter once per second.
+  private startTime: number; // In milliseconds
+  private counter = 0; // Revolving counter, 0-9 and back again.
+  private _scale: number; // Moves from 1 to 1.5 and back to 1 at a set rate based on time elapsed.
+  private timer: NodeJS.Timer; // Repeating timer that updates the counter once per second.
   private _dots: Array<SierpinskiTriangleDot>; // Collection of dot objects, rendered by the dotTemplate.
-  public isActive: boolean;           // Used to indicate active looping and to prevent further looping (stop).
+  public isActive: boolean; // Used to indicate active looping and to prevent further looping (stop).
 
   get scale() {
     return this._scale;
@@ -55,7 +66,9 @@ export class TriangleComponent implements OnInit, OnDestroy {
     // Note: This delay is necessary as the calculated size is wrong when
     //       evaluated without a delay (flex layout of this element has
     //       not yet happened?).
-    setTimeout(() => { this.start() }, 0);
+    setTimeout(() => {
+      this.start();
+    }, 0);
   }
 
   ngOnDestroy() {
@@ -72,14 +85,16 @@ export class TriangleComponent implements OnInit, OnDestroy {
       // using the last calculated value.  This allows for recalculating
       // after window size changes by simply restarting the triangle.
       this.triangleSize = Math.min(
-        (this.el.nativeElement.parentNode.offsetHeight * 1.3) - 40,
-        this.el.nativeElement.parentNode.offsetWidth * 0.7);
+        this.el.nativeElement.parentNode.offsetHeight * 1.3 - 40,
+        this.el.nativeElement.parentNode.offsetWidth * 0.7
+      );
 
-      this._dots = (new SierpinskiTriangle({
-        x: 0, y: 0,
+      this._dots = new SierpinskiTriangle({
+        x: 0,
+        y: 0,
         size: this.triangleSize,
-        targetSize: this.dotSize
-      })).getDots();
+        targetSize: this.dotSize,
+      }).getDots();
     }
 
     // 2 separate actions here.  The first is the update to the counter.
@@ -113,7 +128,7 @@ export class TriangleComponent implements OnInit, OnDestroy {
       if (this.isActive) {
         requestAnimationFrame(callback);
       }
-    }
+    };
     callback();
   }
 
@@ -136,7 +151,6 @@ export class TriangleComponent implements OnInit, OnDestroy {
     const scale = 1 + (t > 5 ? 10 - t : t) / 10;
     this._scale = scale / 2.1;
   }
-
 }
 
 interface SierpinskiTriangleConfig {
@@ -147,39 +161,32 @@ interface SierpinskiTriangleConfig {
 }
 
 class SierpinskiTriangle {
-
   triangles: Array<SierpinskiTriangle> | any = [];
   dot: SierpinskiTriangleDot;
 
   constructor({ x, y, size, targetSize }: SierpinskiTriangleConfig) {
     if (size <= targetSize) {
-      this.dot = new SierpinskiTriangleDot(
-        x - (targetSize / 2),
-        y - (targetSize / 2),
-        targetSize
-      );
+      this.dot = new SierpinskiTriangleDot(x - targetSize / 2, y - targetSize / 2, targetSize);
     } else {
       const newSize = size / 2;
       size /= 2;
       this.triangles = [
-        new SierpinskiTriangle({x, y: y - (size / 2), size, targetSize }),
-        new SierpinskiTriangle({x: x - size, y: y + (size / 2), size, targetSize }),
-        new SierpinskiTriangle({x: x + size, y: y + (size / 2), size, targetSize })
+        new SierpinskiTriangle({ x, y: y - size / 2, size, targetSize }),
+        new SierpinskiTriangle({ x: x - size, y: y + size / 2, size, targetSize }),
+        new SierpinskiTriangle({ x: x + size, y: y + size / 2, size, targetSize }),
       ];
     }
   }
 
   getDots() {
-    return this.triangles.reduce( (acc, t) => [...acc, ...t.getDots(), ...(t.dot || [])], []);
+    return this.triangles.reduce((acc, t) => [...acc, ...t.getDots(), ...(t.dot || [])], []);
   }
-
 }
 
 class SierpinskiTriangleDot {
-
   hover = false;
 
-  constructor(private _x, private _y, private _size) { }
+  constructor(private _x, private _y, private _size) {}
 
   get x() {
     return this._x + 'px';
@@ -204,5 +211,4 @@ class SierpinskiTriangleDot {
   get textOverride() {
     return this.hover ? '-' : '';
   }
-
 }

@@ -8,9 +8,8 @@ describe('SemanticUiComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SemanticUiComponent ]
-    })
-    .compileComponents();
+      declarations: [SemanticUiComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

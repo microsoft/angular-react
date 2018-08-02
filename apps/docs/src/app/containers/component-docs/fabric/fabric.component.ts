@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
-import { DialogType } from 'office-ui-fabric-react/lib/Dialog';
 
 @Component({
   selector: 'app-fabric',
   templateUrl: './fabric.component.html',
-  styleUrls: ['./fabric.component.scss']
+  styleUrls: ['./fabric.component.scss'],
 })
 export class FabricComponent {
-  DialogType = DialogType;
-
   disabled = true;
   dialogHidden = true;
   sampleContentCounter = 0;
@@ -23,7 +20,7 @@ export class FabricComponent {
   constructor() {
     const i = setInterval(() => {
       this.secondsCounter += 1;
-      this.sampleContent2 = `${this.secondsCounter} Seconds Passed`
+      this.sampleContent2 = `${this.secondsCounter} Seconds Passed`;
     }, 1000);
 
     setTimeout(() => {
@@ -47,5 +44,4 @@ export class FabricComponent {
   clickSave() {
     this.sampleContent3 = 'Saved...';
   }
-
 }
