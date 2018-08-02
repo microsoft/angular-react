@@ -1,34 +1,31 @@
-import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
+import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
 import {
+  AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ContentChild,
   ElementRef,
   EventEmitter,
   Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-  ViewChild,
-  ContentChild,
-  AfterContentInit,
   OnDestroy,
+  Output,
   QueryList,
+  ViewChild,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
-import { Omit } from '../../declarations/omit';
+import { Subscription } from 'rxjs';
+import { OnChanges, TypedChanges } from '../../declarations/angular/typed-changes';
 import omit from '../../utils/omit';
-import { TypedChanges, OnChanges } from '../../types/angular/typed-changes';
-import {
-  CommandBarItemsDirective,
-  CommandBarFarItemsDirective,
-  CommandBarOverflowItemsDirective,
-  CommandBarItemsDirectiveBase,
-} from './directives/command-bar-items.directives';
+import { mergeItemChanges } from '../core/declarative/item-changed';
 import { CommandBarItemChangedPayload, CommandBarItemDirective } from './directives/command-bar-item.directives';
-import { ItemChanges, mergeItemChanges } from '../core/declarative/item-changed';
+import {
+  CommandBarFarItemsDirective,
+  CommandBarItemsDirective,
+  CommandBarItemsDirectiveBase,
+  CommandBarOverflowItemsDirective,
+} from './directives/command-bar-items.directives';
 
 @Component({
   selector: 'fab-command-bar',
@@ -59,11 +56,15 @@ import { ItemChanges, mergeItemChanges } from '../core/declarative/item-changed'
 })
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>
   implements OnChanges<FabCommandBarComponent>, AfterContentInit, OnDestroy {
-  @ContentChild(CommandBarItemsDirective) readonly itemsDirective: CommandBarItemsDirective;
-  @ContentChild(CommandBarFarItemsDirective) readonly farItemsDirective: CommandBarFarItemsDirective;
-  @ContentChild(CommandBarOverflowItemsDirective) readonly overflowItemsDirective: CommandBarOverflowItemsDirective;
+  @ContentChild(CommandBarItemsDirective)
+  readonly itemsDirective: CommandBarItemsDirective;
+  @ContentChild(CommandBarFarItemsDirective)
+  readonly farItemsDirective: CommandBarFarItemsDirective;
+  @ContentChild(CommandBarOverflowItemsDirective)
+  readonly overflowItemsDirective: CommandBarOverflowItemsDirective;
 
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
   @Input()
   componentRef?: ICommandBarProps['componentRef'];

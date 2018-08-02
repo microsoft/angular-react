@@ -4,12 +4,11 @@
  * Does **not** modify the original object.
  * @returns A clone of `obj`, with all `undefined` properties removed
  */
-const clearUndefinedProperties = <T extends object>(obj: T): Partial<T> => {
-  return Object.keys(obj).reduce((acc, key) => {
-    const _acc = acc;
-    if (obj[key] !== undefined) _acc[key] = obj[key];
-    return _acc;
+const removeUndefinedProperties = <T extends object>(obj: T): Partial<T> => {
+  return Object.entries(obj).reduce((acc, [key, value]) => {
+    if (value === undefined) return acc;
+    return Object.assign(acc, { [key]: value });
   }, {});
 };
 
-export default clearUndefinedProperties;
+export default removeUndefinedProperties;

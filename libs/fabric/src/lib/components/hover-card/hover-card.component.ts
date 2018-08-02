@@ -1,4 +1,4 @@
-import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
+import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -10,7 +10,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IExpandingCardProps, IHoverCardProps } from 'office-ui-fabric-react/lib/HoverCard';
-import { Omit } from '../../declarations/omit';
 import { omit } from '../../utils/omit';
 
 @Component({

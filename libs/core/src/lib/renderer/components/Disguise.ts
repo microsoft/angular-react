@@ -1,10 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
 import { ReactWrapperComponent } from '../../components/wrapper-component';
-import { passPropsSymbol, getPassProps, PassProp } from '../../renderer/pass-prop-decorator';
-import { ReactContent } from '../react-content';
+import { getPassProps } from '../../renderer/pass-prop-decorator';
 import removeUndefinedProperties from '../../utils/object/remove-undefined-properties';
+import { ReactContent } from '../react-content';
 
 /**
  * Props for `Disguise` component.

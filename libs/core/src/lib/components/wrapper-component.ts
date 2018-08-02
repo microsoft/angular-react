@@ -1,31 +1,21 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   ComponentFactoryResolver,
   ComponentRef,
   ElementRef,
   Injector,
-  TemplateRef,
-  Type,
-  ChangeDetectorRef,
+  Input,
   OnChanges,
   SimpleChanges,
-  HostBinding,
-  Input,
+  TemplateRef,
+  Type,
 } from '@angular/core';
 import toStyle from 'css-to-style';
-
+import { ReactContentProps } from '../renderer/react-content';
 import { isReactNode } from '../renderer/react-node';
 import { renderComponent, renderFunc, renderTemplate } from '../renderer/renderprop-helpers';
-import { ExternalReactContentProps } from '../renderer/react-content';
 import { unreachable } from '../utils/types/unreachable';
-
-type AttributeNameAlternative = [string, string | undefined];
-
-const forbiddenAttributesAsProps: ReadonlyArray<AttributeNameAlternative> = [
-  ['key', null],
-  ['class', 'rClass'],
-  ['style', 'rStyle'],
-];
 
 // Forbidden attributes are still ignored, since they may be set from the wrapper components themselves (forbidden is only applied for users of the wrapper components)
 const ignoredAttributeMatchers = [/^_?ng-?.*/, /^style$/, /^class$/];
@@ -52,47 +42,47 @@ export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
  */
 // NOTE: TProps is not used at the moment, but a preparation for a potential future change.
 export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit, OnChanges {
-  private _rClass: string;
-  private _rStyle: string;
+  private _contentClass: string;
+  private _contentStyle: string;
 
-  protected abstract reactNodeRef: ElementRef;
+  protected abstract reactNodeRef: ElementRef<HTMLElement>;
 
   /**
    * Alternative to `class` using the same syntax.
    *
    * @description Since this is a wrapper component, sticking to the virtual DOM concept, this should have any styling of its own.
-   * Any value passes to `rClass` will be passed to the root component's class.
+   * Any value passes to `contentClass` will be passed to the root component's class.
    */
   @Input()
-  set rClass(value: string) {
-    this._rClass = value;
+  set contentClass(value: string) {
+    this._contentClass = value;
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       this.reactNodeRef.nativeElement.setProperty('className', value);
       this.changeDetectorRef.detectChanges();
     }
   }
 
-  get rClass(): string {
-    return this._rClass;
+  get contentClass(): string {
+    return this._contentClass;
   }
 
   /**
    * Alternative to `style` using the same syntax.
    *
    * @description Since this is a wrapper component, sticking to the virtual DOM concept, this should have any styling of its own.
-   * Any value passes to `rStyle` will be passed to the root component's style.
+   * Any value passes to `contentStyle` will be passed to the root component's style.
    */
   @Input()
-  set rStyle(value: string) {
-    this._rStyle = value;
+  set contentStyle(value: string) {
+    this._contentStyle = value;
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       this.reactNodeRef.nativeElement.setProperty('style', toStyle(value));
       this.changeDetectorRef.detectChanges();
     }
   }
 
-  get rStyle(): string {
-    return this._rStyle;
+  get contentStyle(): string {
+    return this._contentStyle;
   }
 
   /**
@@ -138,7 +128,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
    */
   protected createInputJsxRenderer<TContext extends object>(
     input: InputRendererOptions<TContext>,
-    additionalProps?: ExternalReactContentProps
+    additionalProps?: ReactContentProps
   ): JsxRenderFunc<TContext> | undefined {
     if (input === undefined) {
       return undefined;
@@ -176,7 +166,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   protected createRenderPropHandler<TProps extends object>(
     renderInputValue: InputRendererOptions<TProps>,
     jsxRenderer?: JsxRenderFunc<TProps>,
-    additionalProps?: ExternalReactContentProps
+    additionalProps?: ReactContentProps
   ): (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => JSX.Element | null {
     const renderer = jsxRenderer || this.createInputJsxRenderer(renderInputValue, additionalProps);
 
@@ -241,12 +231,13 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     const { name, value } = attr;
 
     if (name === 'key') return [true, undefined];
-    if (name === 'class' && value.split(' ').some(className => !ngClassRegExp.test(className))) return [true, 'rClass'];
+    if (name === 'class' && value.split(' ').some(className => !ngClassRegExp.test(className)))
+      return [true, 'contentClass'];
     if (name === 'style') {
       const style = toStyle(value);
       // Only allowing style if it's something that changes the display - setting anything else should be done on the child component directly (via the `styles` attribute in fabric for example)
       if (Object.entries(style).filter(([key, value]) => value && key !== 'display').length > 0) {
-        return [true, 'rStyle'];
+        return [true, 'contentStyle'];
       }
     }
 

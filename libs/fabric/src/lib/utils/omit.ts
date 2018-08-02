@@ -1,4 +1,4 @@
-import { Omit } from '../declarations/omit';
+import { Omit } from '@angular-react/core';
 
 /**
  * Omit a a set of properties from an object.

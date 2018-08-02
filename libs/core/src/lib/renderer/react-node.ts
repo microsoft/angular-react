@@ -1,8 +1,6 @@
-/// <reference path="../types/StringMap.d.ts" />
-
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
+import { StringMap } from '../declarations/StringMap';
 import removeUndefinedProperties from '../utils/object/remove-undefined-properties';
 import { CHILDREN_TO_APPEND_PROP } from './react-content';
 import { getComponentClass } from './registry';
@@ -202,13 +200,10 @@ export class ReactNode {
     return React.createElement(this.type, clearedProps, children.length > 0 ? children : undefined);
   }
 
-  private transformProps(props: object) {
+  private transformProps<TProps extends object>(props: TProps) {
     return Object.entries(props).reduce((acc, [key, value]) => {
-      const [transformKey, transformValue] = this.transformProp(key, value);
-      return {
-        ...acc,
-        [transformKey]: transformValue,
-      };
+      const [newKey, newValue] = typeof key !== 'string' ? [key, value] : this.transformProp(key, value);
+      return Object.assign(acc, { [newKey]: newValue });
     }, {});
   }
 

@@ -1,13 +1,13 @@
 import { ReactWrapperComponent } from '@angular-react/core';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   Input,
   Output,
   ViewChild,
-  ChangeDetectorRef,
 } from '@angular/core';
 import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
 
@@ -31,7 +31,7 @@ import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui
       [hidden]="hidden"
       [modalProps]="modalProps"
       (onDismiss)="onDismissHandler($event)">
-      <ReactContent><ng-content></ng-content></ReactContent> <!-- FIXME: Need ReactContent to ideally have display:contents (unsupported by all browsers, need to get it's style from the outside container, sometimes only?) -->
+      <ReactContent><ng-content></ng-content></ReactContent>
     </Dialog>
   `,
   styles: ['react-renderer'],
@@ -43,7 +43,6 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
 
   @Input()
   responsiveMode?: IDialogProps['responsiveMode'];
-
   @Input()
   elementToFocusOnDismiss?: IDialogProps['elementToFocusOnDismiss'];
   @Input()
@@ -56,7 +55,6 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
   closeButtonAriaLabel?: IDialogProps['closeButtonAriaLabel'];
   @Input()
   isClickableOutsideFocusTrap?: IDialogProps['isClickableOutsideFocusTrap'];
-
   @Input()
   componentRef?: IDialogProps['componentRef'];
   @Input()

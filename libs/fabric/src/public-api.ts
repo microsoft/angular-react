@@ -5,6 +5,7 @@ export * from './lib/components/checkbox/public-api';
 export * from './lib/components/choice-group/public-api';
 export * from './lib/components/combo-box/public-api';
 export * from './lib/components/command-bar/public-api';
+export * from './lib/components/contextual-menu/public-api';
 export * from './lib/components/date-picker/public-api';
 export * from './lib/components/dialog/public-api';
 export * from './lib/components/divider/public-api';
@@ -25,7 +26,6 @@ export * from './lib/components/slider/public-api';
 export * from './lib/components/spinner/public-api';
 export * from './lib/components/toggle/public-api';
 export * from './lib/components/tooltip/public-api';
-export * from './lib/declarations/public-api';
 
 // Pickers had some warnings at runtime. Leaving out of public API for now
 // export * from './lib/components/pickers/public-api';

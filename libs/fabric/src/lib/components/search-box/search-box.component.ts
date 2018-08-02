@@ -1,4 +1,4 @@
-import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
+import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { ISearchBoxProps } from 'office-ui-fabric-react/lib/SearchBox';
-import { Omit } from '../../declarations/omit';
 import omit from '../../utils/omit';
 
 @Component({

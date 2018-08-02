@@ -1,7 +1,7 @@
 import { Injectable, Renderer2, RendererStyleFlags2, RendererType2 } from '@angular/core';
 import { EventManager, ɵDomRendererFactory2, ɵDomSharedStylesHost } from '@angular/platform-browser';
 import * as ReactDOM from 'react-dom';
-
+import { StringMap } from '../declarations/StringMap';
 import { isReactNode, ReactNode } from './react-node';
 
 const DEBUG = false;

@@ -1,9 +1,8 @@
 import { ComponentRef, TemplateRef } from '@angular/core';
 import * as React from 'react';
+import { CHILDREN_TO_APPEND_PROP, ReactContent, ReactContentProps } from '../renderer/react-content';
 
-import { CHILDREN_TO_APPEND_PROP, ReactContent, ExternalReactContentProps } from '../renderer/react-content';
-
-function renderReactContent(rootNodes: HTMLElement[], additionalProps?: ExternalReactContentProps): JSX.Element {
+function renderReactContent(rootNodes: HTMLElement[], additionalProps?: ReactContentProps): JSX.Element {
   return React.createElement(ReactContent, {
     ...additionalProps,
     [CHILDREN_TO_APPEND_PROP]: rootNodes,
@@ -20,7 +19,7 @@ function renderReactContent(rootNodes: HTMLElement[], additionalProps?: External
 export function renderTemplate<TContext extends object>(
   templateRef: TemplateRef<TContext>,
   context?: TContext,
-  additionalProps?: ExternalReactContentProps
+  additionalProps?: ReactContentProps
 ): JSX.Element {
   const viewRef = templateRef.createEmbeddedView(context);
   viewRef.detectChanges();
@@ -38,7 +37,7 @@ export function renderTemplate<TContext extends object>(
 export function renderFunc<TContext extends object>(
   htmlRenderFunc: (context: TContext) => HTMLElement,
   context?: TContext,
-  additionalProps?: ExternalReactContentProps
+  additionalProps?: ReactContentProps
 ): JSX.Element {
   const rootHtmlElement = htmlRenderFunc(context);
 
@@ -55,7 +54,7 @@ export function renderFunc<TContext extends object>(
 export function renderComponent<TContext extends object>(
   componentRef: ComponentRef<TContext>,
   context?: TContext,
-  additionalProps?: ExternalReactContentProps
+  additionalProps?: ReactContentProps
 ): JSX.Element {
   Object.assign(componentRef.instance, context);
   componentRef.changeDetectorRef.detectChanges();

@@ -1,15 +1,17 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "0.3.0-alpha1",
+  "version": "0.3.0-alpha3",
   "ngPackage": {
+    "deleteDestPath": true,
+    "whitelistedNonPeerDependencies": [
+      "tslib",
+      "css-to-style"
+    ],
     "lib": {
       "languageLevel": [
         "dom",
         "es2017"
-      ],
-      "embedded": [
-        "css-to-style"
       ],
       "entryFile": "public-api.ts",
       "umdModuleIds": {
@@ -52,5 +54,11 @@
     "@angular/platform-browser": "^6.1.0",
     "react-dom": "^16.4.1",
     "react": "^16.4.1"
-  }
+  },
+  "dependencies": {
+    "css-to-style": "^1.2.0"
+  },
+  "bundledDependencies": [
+    "css-to-style"
+  ]
 }
