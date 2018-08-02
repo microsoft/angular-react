@@ -1,17 +1,16 @@
-import { ReactWrapperComponent, InputRendererOptions, JsxRenderFunc } from '@angular-react/core';
+import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
-  Input,
-  ViewChild,
-  OnInit,
   EventEmitter,
+  Input,
   Output,
-  ChangeDetectorRef,
+  ViewChild,
 } from '@angular/core';
-import { ITooltipHostProps } from 'office-ui-fabric-react/lib/Tooltip';
-import { ITooltipProps } from 'office-ui-fabric-react/lib/Tooltip';
+import { ITooltipHostProps, ITooltipProps } from 'office-ui-fabric-react/lib/Tooltip';
+import { Omit } from '../../declarations/omit';
 import { omit } from '../../utils/omit';
 
 @Component({
@@ -40,18 +39,29 @@ import { omit } from '../../utils/omit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: ITooltipHostProps['componentRef'];
-  @Input() calloutProps?: ITooltipHostProps['calloutProps'];
-  @Input() setAriaDescribedBy?: ITooltipHostProps['setAriaDescribedBy'];
-  @Input() delay?: ITooltipHostProps['delay'];
-  @Input() content?: ITooltipHostProps['content'];
-  @Input() directionalHint?: ITooltipHostProps['directionalHint'];
-  @Input() directionalHintForRTL?: ITooltipHostProps['directionalHintForRTL'];
-  @Input() overflowMode?: ITooltipHostProps['overflowMode'];
-  @Input() hostClassName?: ITooltipHostProps['hostClassName'];
-  @Input() closeDelay?: ITooltipHostProps['closeDelay'];
+  @Input()
+  componentRef?: ITooltipHostProps['componentRef'];
+  @Input()
+  calloutProps?: ITooltipHostProps['calloutProps'];
+  @Input()
+  setAriaDescribedBy?: ITooltipHostProps['setAriaDescribedBy'];
+  @Input()
+  delay?: ITooltipHostProps['delay'];
+  @Input()
+  content?: ITooltipHostProps['content'];
+  @Input()
+  directionalHint?: ITooltipHostProps['directionalHint'];
+  @Input()
+  directionalHintForRTL?: ITooltipHostProps['directionalHintForRTL'];
+  @Input()
+  overflowMode?: ITooltipHostProps['overflowMode'];
+  @Input()
+  hostClassName?: ITooltipHostProps['hostClassName'];
+  @Input()
+  closeDelay?: ITooltipHostProps['closeDelay'];
 
   @Input()
   set tooltipOptions(value: ITooltipOptions) {
@@ -65,7 +75,8 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
     return this._tooltipOptions;
   }
 
-  @Output() readonly onTooltipToggle = new EventEmitter<{ isTooltipVisible: boolean }>();
+  @Output()
+  readonly onTooltipToggle = new EventEmitter<{ isTooltipVisible: boolean }>();
 
   transformedTooltipProps: ITooltipHostProps['tooltipProps'];
   private _tooltipOptions: ITooltipOptions;
@@ -96,19 +107,6 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
 /**
  * Counterpart of `ITooltipProps`, with Angular adjustments.
  */
-export interface ITooltipOptions
-  extends Pick<
-      ITooltipProps,
-      | 'componentRef'
-      | 'calloutProps'
-      | 'content'
-      | 'delay'
-      | 'maxWidth'
-      | 'targetElement'
-      | 'directionalHint'
-      | 'directionalHintForRTL'
-      | 'theme'
-      | 'styles'
-    > {
+export interface ITooltipOptions extends Omit<ITooltipProps, 'onRenderContent'> {
   readonly renderContent?: InputRendererOptions<ITooltipProps>;
 }

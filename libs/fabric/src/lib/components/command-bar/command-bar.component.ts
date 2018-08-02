@@ -18,7 +18,7 @@ import {
 import { Subscription } from 'rxjs';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
-
+import { Omit } from '../../declarations/omit';
 import omit from '../../utils/omit';
 import { TypedChanges, OnChanges } from '../../types/angular/typed-changes';
 import {
@@ -220,44 +220,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   }
 }
 
-export interface ICommandBarItemOptions<TData = any>
-  extends Pick<
-      ICommandBarItemProps,
-      | 'iconOnly'
-      | 'buttonStyles'
-      | 'cacheKey'
-      | 'renderedInOverflow'
-      | 'componentRef'
-      | 'key'
-      | 'text'
-      | 'secondaryText'
-      | 'iconProps'
-      | 'submenuIconProps'
-      | 'disabled'
-      | 'primaryDisabled'
-      | 'shortCut'
-      | 'canCheck'
-      | 'checked'
-      | 'split'
-      | 'data'
-      | 'onClick'
-      | 'href'
-      | 'target'
-      | 'rel'
-      | 'subMenuProps'
-      | 'getItemClassNames'
-      | 'getSplitButtonVerticalDividerClassNames'
-      | 'sectionProps'
-      | 'className'
-      | 'style'
-      | 'ariaLabel'
-      | 'title'
-      | 'onMouseDown'
-      | 'role'
-      | 'customOnRenderListLength'
-      | 'keytipProps'
-      | 'inactive'
-    > {
+export interface ICommandBarItemOptions<TData = any> extends Omit<ICommandBarItemProps, 'onRender' | 'onRenderIcon'> {
   readonly [propertyName: string]: any;
   readonly renderIcon?: InputRendererOptions<ICommandBarItemOptionsRenderIconContext>;
   readonly render?: InputRendererOptions<ICommandBarItemOptionsRenderContext>;

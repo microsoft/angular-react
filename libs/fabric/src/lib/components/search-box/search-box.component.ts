@@ -1,18 +1,18 @@
-import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
+import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   Input,
   Output,
   ViewChild,
-  OnInit,
-  ChangeDetectorRef,
 } from '@angular/core';
-import { ISearchBoxProps } from 'office-ui-fabric-react/lib/SearchBox';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { IContextualMenuProps } from 'office-ui-fabric-react/lib/ContextualMenu';
+import { ISearchBoxProps } from 'office-ui-fabric-react/lib/SearchBox';
+import { Omit } from '../../declarations/omit';
 import omit from '../../utils/omit';
 
 @Component({
@@ -23,9 +23,7 @@ import omit from '../../utils/omit';
       #reactNode
       [componentRef]="componentRef"
       [placeholder]="placeholder"
-      [labelText]="labelText"
       [value]="value"
-      [defaultValue]="defaultValue"
       [className]="className"
       [ariaLabel]="ariaLabel"
       [clearButtonProps]="clearButtonProps"
@@ -36,27 +34,34 @@ import omit from '../../utils/omit';
       [Change]="onChangeHandler"
       [Search]="onSearchHandler"
       [Clear]="onClearHandler"
-      [Escape]="onEscapeHandler"
-      [Changed]="onChangedHandler">
+      [Escape]="onEscapeHandler">
     </SearchBox>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode')
+  protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: ISearchBoxProps['componentRef'];
-  @Input() placeholder?: ISearchBoxProps['placeholder'];
-  @Input() labelText?: ISearchBoxProps['labelText'];
-  @Input() value?: ISearchBoxProps['value'];
-  @Input() defaultValue?: ISearchBoxProps['defaultValue'];
-  @Input() className?: ISearchBoxProps['className'];
-  @Input() ariaLabel?: ISearchBoxProps['ariaLabel'];
-  @Input() underlined?: ISearchBoxProps['underlined'];
-  @Input() theme?: ISearchBoxProps['theme'];
-  @Input() styles?: ISearchBoxProps['styles'];
-  @Input() disableAnimation?: ISearchBoxProps['disableAnimation'];
+  @Input()
+  componentRef?: ISearchBoxProps['componentRef'];
+  @Input()
+  placeholder?: ISearchBoxProps['placeholder'];
+  @Input()
+  value?: ISearchBoxProps['value'];
+  @Input()
+  className?: ISearchBoxProps['className'];
+  @Input()
+  ariaLabel?: ISearchBoxProps['ariaLabel'];
+  @Input()
+  underlined?: ISearchBoxProps['underlined'];
+  @Input()
+  theme?: ISearchBoxProps['theme'];
+  @Input()
+  styles?: ISearchBoxProps['styles'];
+  @Input()
+  disableAnimation?: ISearchBoxProps['disableAnimation'];
   @Input()
   set clearButtonOptions(value: IButtonOptions) {
     this._clearButtonOptions = value;
@@ -70,11 +75,14 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
     return this._clearButtonOptions;
   }
 
-  @Output() readonly onChange = new EventEmitter<{ newValue: any }>();
-  @Output() readonly onSearch = new EventEmitter<{ newValue: any }>();
-  @Output() readonly onClear = new EventEmitter<{ ev?: any }>();
-  @Output() readonly onEscape = new EventEmitter<{ ev?: any }>();
-  @Output() readonly onChanged = new EventEmitter<{ newValue: any }>();
+  @Output()
+  readonly onChange = new EventEmitter<{ newValue: any }>();
+  @Output()
+  readonly onSearch = new EventEmitter<{ newValue: any }>();
+  @Output()
+  readonly onClear = new EventEmitter<{ ev?: any }>();
+  @Output()
+  readonly onEscape = new EventEmitter<{ ev?: any }>();
 
   clearButtonProps: IButtonProps;
 
@@ -87,7 +95,6 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
     this.onSearchHandler = this.onSearchHandler.bind(this);
     this.onClearHandler = this.onClearHandler.bind(this);
     this.onEscapeHandler = this.onEscapeHandler.bind(this);
-    this.onChangedHandler = this.onChangedHandler.bind(this);
   }
 
   onChangeHandler(newValue: any) {
@@ -95,24 +102,22 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
       newValue,
     });
   }
+
   onSearchHandler(newValue: any) {
     this.onSearch.emit({
       newValue,
     });
   }
+
   onClearHandler(ev?: any) {
     this.onClear.emit({
       ev: (ev && ev.nativeElement) || ev,
     });
   }
+
   onEscapeHandler(ev?: any) {
     this.onEscape.emit({
       ev: (ev && ev.nativeElement) || ev,
-    });
-  }
-  onChangedHandler(newValue: any) {
-    this.onChange.emit({
-      newValue,
     });
   }
 
@@ -158,38 +163,15 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
 }
 
 export interface IButtonOptions
-  extends Pick<
+  extends Omit<
       IButtonProps,
-      | 'componentRef'
-      | 'href'
-      | 'primary'
-      | 'uniqueId'
-      | 'disabled'
-      | 'allowDisabledFocus'
-      | 'primaryDisabled'
-      | 'styles'
-      | 'theme'
-      | 'checked'
-      | 'className'
-      | 'ariaLabel'
-      | 'ariaDescription'
-      | 'ariaHidden'
-      | 'text'
-      | 'iconProps'
-      | 'menuProps'
-      | 'onAfterMenuDismiss'
-      | 'split'
-      | 'menuIconProps'
-      | 'splitButtonAriaLabel'
-      | 'onMenuClick'
-      | 'secondaryText'
-      | 'toggled'
-      | 'data'
-      | 'getClassNames'
-      | 'getSplitButtonClassNames'
-      | 'menuTriggerKeyCode'
-      | 'keytipProps'
-      | 'persistMenu'
+      | 'onRenderIcon'
+      | 'onRenderText'
+      | 'onRenderDescription'
+      | 'onRenderAriaDescription'
+      | 'onRenderChildren'
+      | 'onRenderMenuIcon'
+      | 'onRenderMenu'
     > {
   readonly renderIcon: InputRendererOptions<IButtonProps>;
   readonly renderText: InputRendererOptions<IButtonProps>;

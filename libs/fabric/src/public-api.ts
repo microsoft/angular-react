@@ -1,3 +1,5 @@
+export * from './lib/declarations/public-api.d.ts';
+
 export * from './lib/components/breadcrumb/public-api';
 export * from './lib/components/button/public-api';
 export * from './lib/components/callout/public-api';
