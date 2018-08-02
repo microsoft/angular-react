@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 const DEBUG = false;
-export const CHILDREN_TO_APPEND_PROP = 'children-to-append'; // TODO: Change to Symbol('children-to-append') after upgrade to TS 2.7.
+export const CHILDREN_TO_APPEND_PROP = Symbol('children-to-append');
 
 /**
  * Props that can be passed to `ReactContent` from users.
@@ -19,7 +19,7 @@ export interface ExternalReactContentProps {
 // NOTE: Separated into `ExternalReactContentProps` since We only want a subset of props to be exposed to external users.
 // With Omit type (TS 2.8) we can simply have `type ExternalReactContentProps = Omit<ReactContentProps, 'children-to-append'>`
 export interface ReactContentProps extends ExternalReactContentProps {
-  readonly 'children-to-append': HTMLElement[]; // TODO: use CHILDREN_TO_APPEND_PROP after upgrade to TS 2.7.
+    readonly [CHILDREN_TO_APPEND_PROP]: HTMLElement[];
 }
 
 /**
