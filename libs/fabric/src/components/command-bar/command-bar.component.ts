@@ -9,11 +9,25 @@ import {
   ViewChild,
   ChangeDetectorRef,
   SimpleChanges,
-  OnChanges,
+  ContentChild,
+  AfterContentInit,
+  OnDestroy,
+  QueryList,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
+
 import omit from '../../utils/omit';
+import { TypedChanges, OnChanges } from '../../types/angular/typed-changes';
+import {
+  CommandBarItemsDirective,
+  CommandBarFarItemsDirective,
+  CommandBarOverflowItemsDirective,
+  CommandBarItemsDirectiveBase,
+} from './directives/command-bar-items.directives';
+import { CommandBarItemChangedPayload, CommandBarItemDirective } from './directives/command-bar-item.directives';
+import { ItemChanges, mergeItemChanges } from '../core/declarative/item-changed';
 
 @Component({
   selector: 'fab-command-bar',
@@ -43,7 +57,12 @@ import omit from '../../utils/omit';
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps> implements OnChanges {
+export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>
+  implements OnChanges<FabCommandBarComponent>, AfterContentInit, OnDestroy {
+  @ContentChild(CommandBarItemsDirective) readonly itemsDirective: CommandBarItemsDirective;
+  @ContentChild(CommandBarFarItemsDirective) readonly farItemsDirective: CommandBarFarItemsDirective;
+  @ContentChild(CommandBarOverflowItemsDirective) readonly overflowItemsDirective: CommandBarOverflowItemsDirective;
+
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ICommandBarProps['componentRef'];
@@ -73,11 +92,13 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   /** @internal */
   transformedOverflowItems_: ReadonlyArray<ICommandBarItemProps>;
 
+  private readonly _subscriptions: Subscription[] = [];
+
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
     super(elementRef, changeDetectorRef, true);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: TypedChanges<this>) {
     if (
       changes['items'] &&
       changes['items'].previousValue !== changes['items'].currentValue &&
@@ -100,6 +121,57 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     super.ngOnChanges(changes);
   }
 
+  ngAfterContentInit() {
+    if (this.itemsDirective) this._initDirective(this.itemsDirective, 'items');
+    if (this.farItemsDirective) this._initDirective(this.farItemsDirective, 'farItems');
+    if (this.overflowItemsDirective) this._initDirective(this.overflowItemsDirective, 'overflowItems');
+  }
+
+  ngOnDestroy() {
+    this._subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  private _initDirective<TCommandBarItemsDirective extends CommandBarItemsDirectiveBase>(
+    directive: TCommandBarItemsDirective,
+    itemsPropertyKey: 'items' | 'farItems' | 'overflowItems'
+  ) {
+    const transformItemsFunc =
+      (directive instanceof CommandBarItemsDirective && (newItems => this._createTransformedItems(newItems))) ||
+      (directive instanceof CommandBarFarItemsDirective && (newItems => this._createTransformedFarItems(newItems))) ||
+      (directive instanceof CommandBarOverflowItemsDirective &&
+        (newItems => this._createTransformedOverflowItems(newItems)));
+    null;
+
+    if (!transformItemsFunc) {
+      throw new Error('Invalid directive given');
+    }
+
+    const setItems = (
+      mapper: (items: ReadonlyArray<ICommandBarItemOptions>) => ReadonlyArray<ICommandBarItemOptions>
+    ) => {
+      this[itemsPropertyKey] = mapper(this[itemsPropertyKey]);
+      transformItemsFunc(this[itemsPropertyKey]);
+    };
+
+    // Initial items
+    setItems(() => directive.items);
+
+    // Subscribe to adding/removing items
+    this._subscriptions.push(
+      directive.onItemsChanged.subscribe((newItems: QueryList<CommandBarItemDirective>) => {
+        setItems(() => newItems.map<ICommandBarItemOptions>(directive => directive));
+      })
+    );
+
+    // Subscribe for existing items changes
+    this._subscriptions.push(
+      directive.onItemChanged.subscribe(({ key, changes }: CommandBarItemChangedPayload) => {
+        setItems(items => items.map(item => (item.key === key ? mergeItemChanges(item, changes) : item)));
+        this.detectChanges();
+      })
+    );
+  }
+
   private _createTransformedItems(newItems: ReadonlyArray<ICommandBarItemOptions>) {
     this.transformedItems_ = newItems.map(item => this._transformCommandBarItemOptionsToProps(item));
   }
@@ -115,7 +187,8 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   private _transformCommandBarItemOptionsToProps(itemOptions: ICommandBarItemOptions): ICommandBarItemProps {
     const sharedProperties = omit(itemOptions, 'renderIcon', 'render');
 
-    const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon);
+    // Legacy render mode is used for the icon because otherwise the icon is to the right of the text (instead of the usual left)
+    const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon, { legacyRenderMode: true });
     const renderer = this.createInputJsxRenderer(itemOptions.render);
 
     return Object.assign(

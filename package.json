@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "bootstrap": "npm-recursive-install",
     "start": "ng serve",
     "start:demo": "ng serve --app demo",
     "start:docs": "ng serve --app docs",
@@ -84,15 +83,15 @@
     "@angular/language-service": "5.2.7",
     "@ngrx/schematics": "5.2.0",
     "@nrwl/schematics": "0.10.0",
+    "@types/css-to-style": "^1.2.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~10.3.6",
     "@types/react": "^16.3.4",
     "@types/react-dom": "^16.0.4",
-    "@types/css-to-style": "^1.2.0",
-    "css-to-style": "^1.2.0",
     "codelyzer": "^4.0.1",
     "copyfiles": "^2.0.0",
+    "css-to-style": "^1.2.0",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
@@ -108,7 +107,6 @@
     "tsickle": "^0.27.5",
     "tslib": "^1.9.0",
     "tslint": "~5.10.0",
-    "typescript": "2.6.2",
-    "recursive-install": "^1.3.0"
+    "typescript": "2.6.2"
   }
 }

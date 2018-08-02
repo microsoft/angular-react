@@ -1,9 +1,38 @@
 import { AngularReactBrowserModule } from '@angular-react/core';
-import { FabBreadcrumbModule, FabButtonModule, FabCalloutModule, FabModalModule, FabCheckboxModule, FabChoiceGroupModule, FabComboBoxModule, FabCommandBarModule, FabDatePickerModule, FabDialogModule, FabDividerModule, FabFabricModule, FabGroupedListModule, FabIconModule, FabImageModule, FabPanelModule, FabPersonaModule, FabSpinnerModule, FabMessageBarModule, FabLinkModule, FabToggleModule, FabPivotModule, FabHoverCardModule, FabTooltipModule, FabShimmerModule, FabSliderModule, FabSearchBoxModule } from '@angular-react/fabric';
+import {
+  FabBreadcrumbModule,
+  FabButtonModule,
+  FabCalloutModule,
+  FabModalModule,
+  FabCheckboxModule,
+  FabChoiceGroupModule,
+  FabComboBoxModule,
+  FabCommandBarModule,
+  FabDatePickerModule,
+  FabDialogModule,
+  FabDividerModule,
+  FabFabricModule,
+  FabGroupedListModule,
+  FabIconModule,
+  FabImageModule,
+  FabPanelModule,
+  FabPersonaModule,
+  FabSpinnerModule,
+  FabMessageBarModule,
+  FabLinkModule,
+  FabToggleModule,
+  FabPivotModule,
+  FabHoverCardModule,
+  FabTooltipModule,
+  FabShimmerModule,
+  FabSliderModule,
+  FabSearchBoxModule,
+} from '@angular-react/fabric';
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
 import { AppComponent } from './app.component';
+import { CounterComponent } from './counter/counter.component';
 
 @NgModule({
   imports: [
@@ -37,7 +66,7 @@ import { AppComponent } from './app.component';
     FabSliderModule,
     FabSearchBoxModule,
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, CounterComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {

@@ -16,7 +16,39 @@
 </div>
 
 <div>
-  <fab-command-bar #commandBar [items]="commandBarItems" [farItems]="commandBarFarItems">
+  <fab-command-bar>
+    <items>
+      <fab-command-bar-item key="run" text="Run" [iconProps]="{ iconName: 'CaretRight' }" [disabled]="runDisabled"></fab-command-bar-item>
+      <fab-command-bar-item key="new" text="New" [iconProps]="{ iconName: 'Add' }" (click)="onNewClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="save" text="Save" [iconProps]="{ iconName: 'Save' }" [subMenuProps]="saveSubMenuProps">
+        <contextual-menu-item *ngIf="runDisabled" key="sometimesVisible" text="woosh"></contextual-menu-item>
+        <contextual-menu-item key="save" text="Save"></contextual-menu-item>
+        <contextual-menu-item key="save-as" text="Save As" (click)="onSaveAsClicked()">
+          <contextual-menu-item key="save-as-1" text="Save As 1" (click)="onSaveAsFirstClicked()"></contextual-menu-item>
+          <contextual-menu-item key="save-as-2" text="Save As 2" (click)="onSaveAsSecondClicked()"></contextual-menu-item>
+        </contextual-menu-item>
+      </fab-command-bar-item>
+      <fab-command-bar-item key="copy" text="Copy" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="custom" text="custom text" (click)="onCopyClicked()">
+        <render>
+          <ng-template let-item="item">
+            <counter></counter>
+          </ng-template>
+        </render>
+
+        <!-- <render-icon>
+          <ng-template let-contextualMenuItemProps="contextualMenuItemProps">
+            <div>custom icon</div>
+          </ng-template>
+        </render-icon> -->
+      </fab-command-bar-item>
+      <fab-command-bar-item *ngIf="runDisabled" key="sometimesVisible" text="woosh"></fab-command-bar-item>
+    </items>
+
+    <far-items>
+      <fab-command-bar-item key="help" text="Help" [iconProps]="{ iconName: 'Help' }"></fab-command-bar-item>
+      <fab-command-bar-item key="full-screen" [iconOnly]="true" [iconProps]="{ iconName: fullScreenIcon }" (click)="toggleFullScreen()"></fab-command-bar-item>
+    </far-items>
   </fab-command-bar>
 
   <fab-default-button (onClick)="toggleRun()" text="Toggle run"></fab-default-button>

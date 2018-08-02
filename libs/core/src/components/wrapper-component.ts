@@ -16,6 +16,7 @@ import toStyle from 'css-to-style';
 
 import { isReactNode } from '../renderer/react-node';
 import { renderComponent, renderFunc, renderTemplate } from '../renderer/renderprop-helpers';
+import { ExternalReactContentProps } from '../renderer/react-content';
 import { unreachable } from '../utils/types/unreachable';
 
 type AttributeNameAlternative = [string, string | undefined];
@@ -133,24 +134,26 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   /**
    * Create an JSX renderer for an `@Input` property.
    * @param input The input property
+   * @param additionalProps optional additional props to pass to the `ReactContent` object that will render the content.
    */
   protected createInputJsxRenderer<TContext extends object>(
-    input: InputRendererOptions<TContext>
+    input: InputRendererOptions<TContext>,
+    additionalProps?: ExternalReactContentProps
   ): JsxRenderFunc<TContext> | undefined {
     if (input === undefined) {
       return undefined;
     }
 
     if (input instanceof TemplateRef) {
-      return (context: TContext) => renderTemplate(input, context);
+      return (context: TContext) => renderTemplate(input, context, additionalProps);
     }
 
     if (input instanceof ComponentRef) {
-      return (context: TContext) => renderComponent(input, context);
+      return (context: TContext) => renderComponent(input, context, additionalProps);
     }
 
     if (input instanceof Function) {
-      return (context: TContext) => renderFunc(input, context);
+      return (context: TContext) => renderFunc(input, context, additionalProps);
     }
 
     if (typeof input === 'object') {
@@ -158,7 +161,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       const componentFactory = factoryResolver.resolveComponentFactory(componentType);
       const componentRef = componentFactory.create(injector);
 
-      return (context: TContext) => renderComponent(componentRef, context);
+      return (context: TContext) => renderComponent(componentRef, context, additionalProps);
     }
 
     unreachable(input);
@@ -168,12 +171,14 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
    * Create an event handler for a render prop
    * @param renderInputValue the value of the render `@Input` property.
    * @param jsxRenderer an optional renderer to use.
+   * @param additionalProps optional additional props to pass to the `ReactContent` object that will render the content.
    */
   protected createRenderPropHandler<TProps extends object>(
     renderInputValue: InputRendererOptions<TProps>,
-    jsxRenderer?: JsxRenderFunc<TProps>
+    jsxRenderer?: JsxRenderFunc<TProps>,
+    additionalProps?: ExternalReactContentProps
   ): (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => JSX.Element | null {
-    const renderer = jsxRenderer || this.createInputJsxRenderer(renderInputValue);
+    const renderer = jsxRenderer || this.createInputJsxRenderer(renderInputValue, additionalProps);
 
     return (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => {
       if (!renderInputValue) {

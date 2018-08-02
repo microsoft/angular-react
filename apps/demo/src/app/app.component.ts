@@ -1,8 +1,33 @@
-import { ChangeDetectorRef, ViewEncapsulation, Component, ComponentFactoryResolver, Injector, Input, ComponentRef, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
-import { DialogType, ITheme, IChoiceGroupProps, SpinnerSize, PersonaSize, PersonaPresence, PivotLinkSize, SelectableOptionMenuItemType, PanelType, ICommandBarItemProps, IBreadcrumbItem, IButtonProps, Button, MessageBarType, ShimmerElementType } from 'office-ui-fabric-react';
-import { IExpandingCardOptions } from '@angular-react/fabric/src/components/hover-card';
-import { ICommandBarItemOptions, FabCommandBarComponent } from '@angular-react/fabric/src/components/command-bar';
-
+import {
+  ChangeDetectorRef,
+  ViewEncapsulation,
+  Component,
+  ComponentFactoryResolver,
+  Injector,
+  Input,
+  ComponentRef,
+  TemplateRef,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
+import {
+  DialogType,
+  ITheme,
+  IChoiceGroupProps,
+  SpinnerSize,
+  PersonaSize,
+  PersonaPresence,
+  PivotLinkSize,
+  SelectableOptionMenuItemType,
+  PanelType,
+  ICommandBarItemProps,
+  IBreadcrumbItem,
+  IButtonProps,
+  Button,
+  MessageBarType,
+  ShimmerElementType,
+  IContextualMenuProps,
+} from 'office-ui-fabric-react';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +36,73 @@ import { ICommandBarItemOptions, FabCommandBarComponent } from '@angular-react/f
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
+  @ViewChild('customRange')
+  customRangeTemplate: TemplateRef<{ item: any; dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
 
-  @ViewChild(FabCommandBarComponent) commandBar: FabCommandBarComponent;
-  @ViewChild('customRange') customRangeTemplate: TemplateRef<{ item: any, dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
+  runDisabled: boolean;
 
-  commandBarItems: ReadonlyArray<ICommandBarItemOptions> = [
+  onNewClicked() {
+    console.log('New clicked');
+  }
+
+  onCopyClicked() {
+    console.log('Copy clicked');
+  }
+
+  onSaveAsClicked() {
+    console.log('Save as clicked');
+  }
+
+  onSaveAsFirstClicked() {
+    console.log('Save as 1 clicked');
+  }
+
+  onSaveAsSecondClicked() {
+    console.log('Save as 2 clicked');
+  }
+
+  onCustomItemClick(item: any) {
+    this.customItemCount++;
+    console.log('custom item clicked', item);
+  }
+
+  constructor(private readonly cd: ChangeDetectorRef) {}
+
+  customItemCount = 1;
+
+  // FIXME: Allow declarative syntax too
+  saveSubMenuProps: Partial<IContextualMenuProps> = {
+    gapSpace: 10,
+    /*     items: [
+      {
+        key: 'save',
+        text: 'Save',
+        onClick: () => console.log('Save clicked'),
+      },
+      {
+        key: 'save-as',
+        text: 'Save as',
+        subMenuProps: {
+          onItemClick: (ev, item) => {
+            console.log(`${item.text} clicked`);
+            return true;
+          },
+          items: [
+            {
+              key: 'save-as-1',
+              text: 'Save as 1',
+            },
+            {
+              key: 'save-as-2',
+              text: 'Save as 2',
+            },
+          ],
+        },
+      },
+    ], */
+  };
+
+  /*   commandBarItems: ReadonlyArray<ICommandBarItemOptions> = [
     {
       key: 'run',
       text: 'Run',
@@ -155,16 +242,17 @@ export class AppComponent {
       },
       onClick: () => console.log('Expand clicked'),
     }
-  ];
+  ]; */
 
   isPanelOpen = false;
 
   toggleRun() {
-    this.commandBarItems = this.commandBarItems.map(item =>
-      item.key === 'run'
-        ? { ...item, disabled: !item.disabled }
-        : item
-    );
+    this.runDisabled = !this.runDisabled;
   }
 
+  toggleFullScreen() {
+    this.fullScreenIcon = this.fullScreenIcon === 'BackToWindow' ? 'MiniExpand' : 'BackToWindow';
+  }
+
+  fullScreenIcon = 'MiniExpand';
 }

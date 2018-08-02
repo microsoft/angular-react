@@ -1,10 +1,11 @@
 import { ComponentRef, TemplateRef } from '@angular/core';
 import * as React from 'react';
 
-import { CHILDREN_TO_APPEND_PROP, ReactContent } from '../renderer/react-content';
+import { CHILDREN_TO_APPEND_PROP, ReactContent, ExternalReactContentProps } from '../renderer/react-content';
 
-function renderReactContent(rootNodes: HTMLElement[]): JSX.Element {
+function renderReactContent(rootNodes: HTMLElement[], additionalProps?: ExternalReactContentProps): JSX.Element {
   return React.createElement(ReactContent, {
+    ...additionalProps,
     [CHILDREN_TO_APPEND_PROP]: rootNodes,
   });
 }
@@ -14,15 +15,17 @@ function renderReactContent(rootNodes: HTMLElement[]): JSX.Element {
  *
  * @param templateRef The template to wrap
  * @param context The context to pass to the template
+ * @param additionalProps optional additional props to pass to the `ReactContent` object that will render the content.
  */
 export function renderTemplate<TContext extends object>(
   templateRef: TemplateRef<TContext>,
-  context?: TContext
+  context?: TContext,
+  additionalProps?: ExternalReactContentProps
 ): JSX.Element {
   const viewRef = templateRef.createEmbeddedView(context);
   viewRef.detectChanges();
 
-  return renderReactContent(viewRef.rootNodes);
+  return renderReactContent(viewRef.rootNodes, additionalProps);
 }
 
 /**
@@ -30,14 +33,16 @@ export function renderTemplate<TContext extends object>(
  *
  * @param htmlRenderFunc The function to wrap
  * @param context The context to pass to the function
+ * @param additionalProps optional additional props to pass to the `ReactContent` object that will render the content.
  */
 export function renderFunc<TContext extends object>(
   htmlRenderFunc: (context: TContext) => HTMLElement,
-  context?: TContext
+  context?: TContext,
+  additionalProps?: ExternalReactContentProps
 ): JSX.Element {
   const rootHtmlElement = htmlRenderFunc(context);
 
-  return renderReactContent([rootHtmlElement]);
+  return renderReactContent([rootHtmlElement], additionalProps);
 }
 
 /**
@@ -45,13 +50,15 @@ export function renderFunc<TContext extends object>(
  *
  * @param htmlRenderFunc The component reference to wrap
  * @param context The context to pass to the component as `@Input`
+ * @param additionalProps optional additional props to pass to the `ReactContent` object that will render the content.
  */
 export function renderComponent<TContext extends object>(
   componentRef: ComponentRef<TContext>,
-  context?: TContext
+  context?: TContext,
+  additionalProps?: ExternalReactContentProps
 ): JSX.Element {
   Object.assign(componentRef.instance, context);
   componentRef.changeDetectorRef.detectChanges();
 
-  return renderReactContent([componentRef.location.nativeElement]);
+  return renderReactContent([componentRef.location.nativeElement], additionalProps);
 }
