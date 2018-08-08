@@ -60,7 +60,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
       const node = this.reactRootNodes[i];
       if (
         !isReactNode(node.parent) &&
-        !document.contains(node.parent) &&
+        !document.body.contains(node.parent) &&
         ReactDOM.unmountComponentAtNode(node.parent)
       ) {
         this.reactRootNodes.splice(i--, 1);
