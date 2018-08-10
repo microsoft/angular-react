@@ -10,7 +10,7 @@ Use of Angular-React allows consuming any React elements, but specifically Offic
 [@angular-react/fabric](https://www.npmjs.com/package/@angular-react/fabric) |
 [Documentation, quick start, and guides][ard] |
 [Demo][ard-demo] |
-[Contributing](https://github.com/benfeely/angular-react/blob/master/CONTRIBUTING.md) |
+[Contributing](https://github.com/microsoft/angular-react/blob/master/CONTRIBUTING.md) |
 [StackBlitz Template](https://stackblitz.com/edit/angular-react) |
 [Office UI Fabric](https://developer.microsoft.com/en-us/fabric)
 
@@ -26,9 +26,9 @@ if you're building your first project with Angular-React.
 If you'd like to contribute, you must follow our [contributing guidelines](https://github.com/angular/material2/blob/master/CONTRIBUTING.md).
 You can look through the issues (which should be up-to-date on who is working on which features and which pieces are blocked) and make a comment.
 
-[ard]: https://benfeely.github.io/angular-react
-[ard-demo]: https://benfeely.github.io/angular-react/demo
-[getting-started]: https://benfeely.github.io/angular-react/docs/getting-started
+[ard]: https://microsoft.github.io/angular-react
+[ard-demo]: https://microsoft.github.io/angular-react/demo
+[getting-started]: https://microsoft.github.io/angular-react/docs/getting-started
 [fab]: https://developer.microsoft.com/en-us/fabric
 
 ## Contributing
@@ -89,7 +89,7 @@ To get latest changes to the PR:
 ```
 $ git checkout pr/1000
 $ git pull --tags origin refs/pull/1000/head
-From https://github.com/benfeely/angular-react
+From https://github.com/microsoft/angular-react
  * branch            refs/pull/1000/head -> FETCH_HEAD
 Updating aab92e2..2896b73
 Fast-forward

@@ -10,7 +10,7 @@ Use of Angular-React allows consuming any React elements, but specifically Offic
 [@angular-react/core](https://www.npmjs.com/package/@angular-react/core) |
 [Documentation, quick start, and guides][ard] |
 [Demo][ard-demo] |
-[Contributing](https://github.com/benfeely/angular-react/blob/master/CONTRIBUTING.md) |
+[Contributing](https://github.com/microsoft/angular-react/blob/master/CONTRIBUTING.md) |
 [StackBlitz Template](https://stackblitz.com/edit/angular-react) |
 [Office Fabric](https://developer.microsoft.com/en-us/fabric)
 
@@ -47,12 +47,12 @@ High level stuff planned for Q2 2018 (April - June):
 | bottom-nav       |            Not started, not planned |           -  |   [TBD][0] |
 
 
-[0]: https://benfeely.github.io/angular-react/docs/fabric
-[1]: https://benfeely.github.io/angular-react/docs/fabric
+[0]: https://microsoft.github.io/angular-react/docs/fabric
+[1]: https://microsoft.github.io/angular-react/docs/fabric
 
-[ard]: https://benfeely.github.io/angular-react
-[ard-demo]: https://benfeely.github.io/angular-react/demo
-[getting-started]: https://benfeely.github.io/angular-react/docs/getting-started
+[ard]: https://microsoft.github.io/angular-react
+[ard-demo]: https://microsoft.github.io/angular-react/demo
+[getting-started]: https://microsoft.github.io/angular-react/docs/getting-started
 [fab]: https://developer.microsoft.com/en-us/fabric
 
 ## The goal of Angular React
