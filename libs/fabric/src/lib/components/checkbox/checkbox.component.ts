@@ -1,15 +1,5 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { ICheckboxProps } from 'office-ui-fabric-react/lib/Checkbox';
 import { FormEvent } from 'react';
 
@@ -95,8 +85,8 @@ export class FabCheckboxComponent extends ReactWrapperComponent<ICheckboxProps> 
 
   onRenderLabel: (props?: ICheckboxProps, defaultRender?: JsxRenderFunc<ICheckboxProps>) => JSX.Element;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer);
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onChangeHandler = this.onChangeHandler.bind(this);

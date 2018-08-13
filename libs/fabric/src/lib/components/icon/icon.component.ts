@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { IIconProps } from 'office-ui-fabric-react/lib/Icon';
 import { ReactWrapperComponent } from '@angular-react/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import { IIconProps } from 'office-ui-fabric-react/lib/Icon';
 
 @Component({
   selector: 'fab-icon',
@@ -39,7 +39,7 @@ export class FabIconComponent extends ReactWrapperComponent<IIconProps> {
   @Input()
   styles?: IIconProps['styles'];
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer, true);
   }
 }

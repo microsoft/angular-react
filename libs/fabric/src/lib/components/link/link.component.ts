@@ -1,5 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
 import { ILinkProps, Link } from 'office-ui-fabric-react/lib/Link';
 
 @Component({
@@ -91,7 +91,7 @@ export class FabLinkComponent extends ReactWrapperComponent<ILinkProps> {
   @Input()
   keytipProps?: ILinkProps['keytipProps'];
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer);
   }
 }

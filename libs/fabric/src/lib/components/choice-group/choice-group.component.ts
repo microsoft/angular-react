@@ -1,14 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { IChoiceGroupOption, IChoiceGroupProps } from 'office-ui-fabric-react/lib/ChoiceGroup';
 
 @Component({
@@ -61,8 +52,8 @@ export class FabChoiceGroupComponent extends ReactWrapperComponent<IChoiceGroupP
   @Output()
   readonly onChange = new EventEmitter<{ ev?: Event; option?: IChoiceGroupOption }>();
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer);
 
     this.onChangedHandler = this.onChangedHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);

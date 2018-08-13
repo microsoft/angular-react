@@ -1,16 +1,7 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  Input,
-  ViewChild,
-  EventEmitter,
-  ChangeDetectorRef,
-  Output,
-} from '@angular/core';
-import { IModalProps } from 'office-ui-fabric-react/lib/Modal';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { IAccessiblePopupProps } from 'office-ui-fabric-react/lib/common/IAccessiblePopupProps';
+import { IModalProps } from 'office-ui-fabric-react/lib/Modal';
 import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode';
 
 @Component({
@@ -91,8 +82,8 @@ export class FabModalComponent extends ReactWrapperComponent<IModalProps>
   @Output()
   readonly onDismissed = new EventEmitter<void>();
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer);
 
     this.onDismissHandler = this.onDismissHandler.bind(this);
   }

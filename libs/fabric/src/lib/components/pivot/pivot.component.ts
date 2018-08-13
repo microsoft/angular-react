@@ -1,17 +1,5 @@
-import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent, passProp } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChildren,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  QueryList,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { InputRendererOptions, JsxRenderFunc, passProp, ReactWrapperComponent } from '@angular-react/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, Renderer2, ViewChild } from '@angular/core';
 import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
 import * as React from 'react';
 
@@ -78,8 +66,8 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
 
   onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer, true);
   }
 
   ngOnInit() {
@@ -153,8 +141,8 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
   @Output()
   readonly onLinkClick = new EventEmitter<{ item?: PivotItem; ev?: MouseEvent }>();
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer, true);
 
     this.onLinkClickHandler = this.onLinkClickHandler.bind(this);
   }
