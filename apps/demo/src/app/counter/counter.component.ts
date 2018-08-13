@@ -1,10 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 
 @Component({
   selector: 'counter',
   template: `
-    <div>{{ count }}</div>
-    <button (click)="onClick()">+</button>
+    <fab-default-button [text]="count + '+'" (onClick)="onClick()"></fab-default-button>
     `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

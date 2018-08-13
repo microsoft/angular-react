@@ -1,20 +1,10 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  ComponentFactoryResolver,
-  ComponentRef,
-  ElementRef,
-  Injector,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  TemplateRef,
-  Type,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, Input, OnChanges, Renderer2, SimpleChanges, TemplateRef, Type } from '@angular/core';
 import toStyle from 'css-to-style';
 import { ReactContentProps } from '../renderer/react-content';
 import { isReactNode } from '../renderer/react-node';
+import { isReactRendererData } from '../renderer/renderer';
 import { renderComponent, renderFunc, renderTemplate } from '../renderer/renderprop-helpers';
+import { afterRenderFinished } from '../utils/render/render-delay';
 import { unreachable } from '../utils/types/unreachable';
 
 // Forbidden attributes are still ignored, since they may be set from the wrapper components themselves (forbidden is only applied for users of the wrapper components)
@@ -93,6 +83,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   constructor(
     public readonly elementRef: ElementRef,
     private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly renderer: Renderer2,
     private readonly setHostDisplay: boolean = false
   ) {}
 
@@ -101,6 +92,16 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
 
     if (this.setHostDisplay) {
       this._setHostDisplay();
+    }
+
+    const rendererData = this.renderer.data;
+    if (isReactRendererData(rendererData)) {
+      afterRenderFinished(() => {
+        const nativeElement = this.reactNodeRef.nativeElement;
+        if (isReactNode(nativeElement)) {
+          rendererData.addRootNode(nativeElement);
+        }
+      });
     }
   }
 
@@ -165,10 +166,14 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
    */
   protected createRenderPropHandler<TProps extends object>(
     renderInputValue: InputRendererOptions<TProps>,
-    jsxRenderer?: JsxRenderFunc<TProps>,
-    additionalProps?: ReactContentProps
+    options?: {
+      jsxRenderer?: JsxRenderFunc<TProps>;
+      additionalProps?: ReactContentProps;
+    }
   ): (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => JSX.Element | null {
-    const renderer = jsxRenderer || this.createInputJsxRenderer(renderInputValue, additionalProps);
+    const renderer =
+      (options && options.jsxRenderer) ||
+      this.createInputJsxRenderer(renderInputValue, options && options.additionalProps);
 
     return (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => {
       if (!renderInputValue) {

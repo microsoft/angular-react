@@ -1,14 +1,5 @@
 import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { IExpandingCardProps, IHoverCardProps } from 'office-ui-fabric-react/lib/HoverCard';
 import { omit } from '../../utils/omit';
 
@@ -90,8 +81,8 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
   transformedExpandingCardProps: IExpandingCardProps;
   private _expandingCardOptions: IExpandingCardOptions;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer);
   }
 
   private _transformExpandingCardOptionsToProps(options: IExpandingCardOptions): IExpandingCardProps {

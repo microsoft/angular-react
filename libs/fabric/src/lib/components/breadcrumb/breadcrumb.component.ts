@@ -1,13 +1,5 @@
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react/lib/Breadcrumb';
 
 @Component({
@@ -66,8 +58,8 @@ export class FabBreadcrumbComponent extends ReactWrapperComponent<IBreadcrumbPro
 
   onRenderItem: (props?: IBreadcrumbItem, defaultRender?: JsxRenderFunc<IBreadcrumbItem>) => JSX.Element;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer);
   }
 
   ngOnInit() {

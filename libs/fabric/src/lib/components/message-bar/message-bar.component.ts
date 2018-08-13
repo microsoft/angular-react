@@ -1,17 +1,6 @@
-import { ReactWrapperComponent, InputRendererOptions } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-  OnInit,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { IMessageBarProps } from 'office-ui-fabric-react/lib/MessageBar';
-import { BaseButton, Button } from 'office-ui-fabric-react/lib/Button';
 
 @Component({
   selector: 'fab-message-bar',
@@ -74,8 +63,8 @@ export class FabMessageBarComponent extends ReactWrapperComponent<IMessageBarPro
 
   actions: JSX.Element;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer);
   }
 
   ngOnInit() {

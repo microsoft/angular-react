@@ -16,7 +16,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   // React elements cannot be "inserted" and later have their props
   // updated, so the "insert", or React.Render, can only be done once the
   // element has been fully defined.  Only the topmost [root] nodes are added here.
-  public reactRootNodes: Array<ReactNode> = [];
+  public reactRootNodes: Set<ReactNode> = new Set();
 
   private isRenderPending: boolean;
   // This flag can only be set to true from outside.  It can only be reset
@@ -56,29 +56,39 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
     // are ReadOnly.
 
     // Workaround for ReactNodes inside ReactContent being added to the root of the VDOM and not removed from the VDOM when unmounted from the DOM.
-    for (let i = 0; i < this.reactRootNodes.length; i++) {
-      const node = this.reactRootNodes[i];
+    this.reactRootNodes.forEach(node => {
       if (
         !isReactNode(node.parent) &&
         !document.body.contains(node.parent) &&
         ReactDOM.unmountComponentAtNode(node.parent)
       ) {
-        this.reactRootNodes.splice(i--, 1);
+        this.reactRootNodes.delete(node);
       }
-    }
+    });
 
     if (this.isRenderPending) {
       // Remove root nodes that are pending destroy after render.
-      this.reactRootNodes = this.reactRootNodes.filter(node => !node.render().destroyPending);
+      this.reactRootNodes = new Set(Array.from(this.reactRootNodes).filter(node => !node.render().destroyPending));
       this.isRenderPending = false;
     }
   }
 }
 
-class ReactRenderer implements Renderer2 {
-  readonly data: StringMap<any> = Object.create(null);
+export const isReactRendererData = (data: StringMap): data is ReactRendererData =>
+  data && typeof (data as ReactRendererData).addRootNode === 'function';
 
-  constructor(private rootRenderer: AngularReactRendererFactory) {}
+export interface ReactRendererData {
+  readonly addRootNode: (node: ReactNode) => void;
+}
+
+export class ReactRenderer implements Renderer2 {
+  readonly data: ReactRendererData = {
+    addRootNode: (node: ReactNode) => {
+      this.rootRenderer.reactRootNodes.add(node);
+    },
+  };
+
+  constructor(public readonly rootRenderer: AngularReactRendererFactory) {}
 
   destroy(): void {}
 
@@ -128,7 +138,8 @@ class ReactRenderer implements Renderer2 {
         console.warn('Renderer > appendChild > asDOM > parent:', parent.toString(), 'node:', node.toString());
       }
       node.setRenderPendingCallback = this.rootRenderer.setRenderPendingCallback;
-      this.rootRenderer.reactRootNodes.push(node);
+
+      this.rootRenderer.reactRootNodes.add(node);
       node.parent = parent;
       return;
     }

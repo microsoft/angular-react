@@ -1,14 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { ICalloutProps } from 'office-ui-fabric-react/lib/Callout';
 import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/positioning/positioning.types';
 
@@ -126,7 +117,7 @@ export class FabCalloutComponent extends ReactWrapperComponent<ICalloutProps> {
   @Output()
   readonly onScroll = new EventEmitter<void>();
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer);
   }
 }

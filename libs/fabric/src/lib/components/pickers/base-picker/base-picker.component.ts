@@ -1,12 +1,7 @@
 import { InputRendererOptions, JsxRenderFunc, Omit, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectorRef, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPersonaProps } from 'office-ui-fabric-react/lib/Persona';
-import {
-  BaseAutoFill,
-  IBasePickerProps,
-  IBasePickerSuggestionsProps,
-  IPickerItemProps,
-} from 'office-ui-fabric-react/lib/Pickers';
+import { BaseAutoFill, IBasePickerProps, IBasePickerSuggestionsProps, IPickerItemProps } from 'office-ui-fabric-react/lib/Pickers';
 import omit from '../../../utils/omit';
 
 export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<T>>
@@ -89,7 +84,7 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
 
   private _pickerSuggestionsOptions: IBasePickerSuggestionsOptions;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, true);
 
     this.onChangeHandler = this.onChangeHandler.bind(this);

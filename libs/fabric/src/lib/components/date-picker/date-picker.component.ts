@@ -1,14 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { IDatePickerProps } from 'office-ui-fabric-react/lib/DatePicker';
 
 @Component({
@@ -121,8 +112,8 @@ export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerPro
   @Output()
   readonly onAfterMenuDismiss = new EventEmitter<void>();
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer);
 
     this.onSelectDateHandler = this.onSelectDateHandler.bind(this);
   }

@@ -1,14 +1,5 @@
 import { ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { IToggleProps } from 'office-ui-fabric-react/lib/Toggle';
 
 @Component({
@@ -79,7 +70,7 @@ export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {
   @Output()
   readonly onChanged = new EventEmitter<boolean>();
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer);
   }
 }

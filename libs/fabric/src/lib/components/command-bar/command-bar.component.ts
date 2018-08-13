@@ -1,18 +1,5 @@
 import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ContentChild,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output,
-  QueryList,
-  ViewChild,
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ElementRef, EventEmitter, Input, OnDestroy, Output, QueryList, Renderer2, ViewChild } from '@angular/core';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItemProps } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { Subscription } from 'rxjs';
@@ -20,12 +7,7 @@ import { OnChanges, TypedChanges } from '../../declarations/angular/typed-change
 import omit from '../../utils/omit';
 import { mergeItemChanges } from '../core/declarative/item-changed';
 import { CommandBarItemChangedPayload, CommandBarItemDirective } from './directives/command-bar-item.directives';
-import {
-  CommandBarFarItemsDirective,
-  CommandBarItemsDirective,
-  CommandBarItemsDirectiveBase,
-  CommandBarOverflowItemsDirective,
-} from './directives/command-bar-items.directives';
+import { CommandBarFarItemsDirective, CommandBarItemsDirective, CommandBarItemsDirectiveBase, CommandBarOverflowItemsDirective } from './directives/command-bar-items.directives';
 
 @Component({
   selector: 'fab-command-bar',
@@ -110,8 +92,8 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
 
   private readonly _subscriptions: Subscription[] = [];
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef) {
-    super(elementRef, changeDetectorRef, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
+    super(elementRef, changeDetectorRef, renderer, true);
   }
 
   ngOnChanges(changes: TypedChanges<this>) {
