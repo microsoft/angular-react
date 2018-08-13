@@ -10,7 +10,7 @@ Use of Angular-React allows consuming any React elements, but specifically Offic
 [@angular-react/fabric](https://www.npmjs.com/package/@angular-react/fabric) |
 [Documentation, quick start, and guides][ard] |
 [Demo][ard-demo] |
-[Contributing](https://github.com/benfeely/angular-react/blob/master/CONTRIBUTING.md) |
+[Contributing](https://github.com/microsoft/angular-react/blob/master/CONTRIBUTING.md) |
 [StackBlitz Template](https://stackblitz.com/edit/angular-react) |
 [Office UI Fabric](https://developer.microsoft.com/en-us/fabric)
 
@@ -26,10 +26,24 @@ if you're building your first project with Angular-React.
 If you'd like to contribute, you must follow our [contributing guidelines](https://github.com/angular/material2/blob/master/CONTRIBUTING.md).
 You can look through the issues (which should be up-to-date on who is working on which features and which pieces are blocked) and make a comment.
 
-[ard]: https://benfeely.github.io/angular-react
-[ard-demo]: https://benfeely.github.io/angular-react/demo
-[getting-started]: https://benfeely.github.io/angular-react/docs/getting-started
+[ard]: https://microsoft.github.io/angular-react
+[ard-demo]: https://microsoft.github.io/angular-react/demo
+[getting-started]: https://microsoft.github.io/angular-react/docs/getting-started
 [fab]: https://developer.microsoft.com/en-us/fabric
+
+## Contributing
+
+This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+the rights to use your contribution. For details, visit https://cla.microsoft.com.
+
+When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
+a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
+provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ### Pull Requests
 See: https://gist.github.com/piscisaureus/3342247
@@ -75,7 +89,7 @@ To get latest changes to the PR:
 ```
 $ git checkout pr/1000
 $ git pull --tags origin refs/pull/1000/head
-From https://github.com/benfeely/angular-react
+From https://github.com/microsoft/angular-react
  * branch            refs/pull/1000/head -> FETCH_HEAD
 Updating aab92e2..2896b73
 Fast-forward

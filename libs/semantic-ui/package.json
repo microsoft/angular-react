@@ -19,12 +19,12 @@
   "author": "Ben Feely <http://benfeely.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/benfeely/angular-react/issues"
+    "url": "https://github.com/microsoft/angular-react/issues"
   },
-  "homepage": "https://github.com/benfeely/angular-react#readme",
+  "homepage": "https://github.com/microsoft/angular-react#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/benfeely/angular-react.git"
+    "url": "git+https://github.com/microsoft/angular-react.git"
   },
   "keywords": [
     "angular",
