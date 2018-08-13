@@ -94,6 +94,9 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       this._setHostDisplay();
     }
 
+    // NOTE: Workaround/fix for Issue #5 (https://github.com/Microsoft/angular-react/issues/5).
+    // The wrapper component isn't added to the root react nodes list when it's inside a `ReactContent` node, we manually add it (note that the root nodes list is a `Set`, so it won't duplicate nodes if already exist).
+    // There's potentially a better solution instead of this
     const rendererData = this.renderer.data;
     if (isReactRendererData(rendererData)) {
       afterRenderFinished(() => {
