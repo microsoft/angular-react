@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { AfterContentInit, ContentChild, Directive, Input, TemplateRef } from '@angular/core';
 import { ContextualMenuItemDirective } from '../../contextual-menu';
 import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';

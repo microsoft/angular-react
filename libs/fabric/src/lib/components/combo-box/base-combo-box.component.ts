@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectorRef, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
 import { IComboBoxOption, IComboBoxProps } from 'office-ui-fabric-react/lib/ComboBox';

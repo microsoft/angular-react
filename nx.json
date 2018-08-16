@@ -1,4 +1,5 @@
 {
+  "npmScope": "angular-react",
   "projects": {
     "docs": {
       "tags": []

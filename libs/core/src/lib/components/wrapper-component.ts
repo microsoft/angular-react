@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, Input, OnChanges, Renderer2, SimpleChanges, TemplateRef, Type } from '@angular/core';
 import toStyle from 'css-to-style';
 import { ReactContentProps } from '../renderer/react-content';

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 // tslint:disable:component-selector
 // tslint:disable:no-input-rename
 // tslint:disable:no-output-rename

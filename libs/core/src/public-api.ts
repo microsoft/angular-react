@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 export { AngularReactBrowserModule } from './lib/angular-react-browser.module';
 export * from './lib/components/wrapper-component';
 export * from './lib/declarations/public-api';

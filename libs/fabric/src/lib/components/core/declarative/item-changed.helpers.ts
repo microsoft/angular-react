@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { ItemChanges, PropertyChange } from './item-changed.payload';
 
 export function mergeItemChanges<T extends object>(target: T, changes: ItemChanges<T>): T {

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 export * from './action-button.component';
 export * from './button.module';
 export * from './command-bar-button.component';

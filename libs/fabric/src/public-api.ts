@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 export * from './lib/components/breadcrumb/public-api';
 export * from './lib/components/button/public-api';
 export * from './lib/components/callout/public-api';
