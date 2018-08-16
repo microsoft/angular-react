@@ -37,8 +37,33 @@ High level stuff planned for Q2 2018 (April - June):
 
 | Feature          | Notes                                                  | Docs         |
 |------------------|--------------------------------------------------------|--------------|
-| button           |                           More features coming in 2018 |   [Docs][0]  |
-| dialog           |                           More features coming in 2018 |   [Docs][1]  |
+| breadcrumb       |                                                   Beta |   [Docs][0]  |
+| button           |                                                   Beta |   [Docs][0]  |
+| callout          |                                                   Beta |   [Docs][0]  |
+| choice-group     |                                                   Beta |   [Docs][0]  |
+| combo-box        |                                                   Beta |   [Docs][0]  |
+| command-bar      |                Heavily tested, most scenarios covered. |   [Docs][0]  |
+| contextual-menu  |                                                   Beta |   [Docs][0]  |
+| date-picker      |                                                   Beta |   [Docs][0]  |
+| dialog           |                                                   Beta |   [Docs][1]  |
+| divider          |                                                   Beta |   [Docs][0]  |
+| grouped-list     |                                                   Beta |   [Docs][0]  |
+| hover-card       |                                                   Beta |   [Docs][0]  |
+| icon             |                                                   Beta |   [Docs][0]  |
+| image            |                                                   Beta |   [Docs][0]  |
+| link             |                                                   Beta |   [Docs][0]  |
+| message-bar      |                                                   Beta |   [Docs][0]  |
+| modal            |                                                   Beta |   [Docs][0]  |
+| panel            |                                                   Beta |   [Docs][0]  |
+| persona          |                                                   Beta |   [Docs][0]  |
+| pickers          |                                                   Beta |   [Docs][0]  |
+| pivot            |                                                   Beta |   [Docs][0]  |
+| search-box       |                                                   Beta |   [Docs][0]  |
+| shimmer          |                                                   Beta |   [Docs][0]  |
+| slider           |                                                   Beta |   [Docs][0]  |
+| spinner          |                                                   Beta |   [Docs][0]  |
+| toggle           |                                                   Beta |   [Docs][0]  |
+| tooltip          |                                                   Beta |   [Docs][0]  |
 
 #### In progress, planned, and non-planned Fabric features
 
