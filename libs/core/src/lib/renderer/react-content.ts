@@ -46,7 +46,11 @@ export class ReactContent extends React.PureComponent<AllReactContentProps> {
       }
 
       const hostElement = this.props.legacyRenderMode ? element : element.parentElement;
-      this.props[CHILDREN_TO_APPEND_PROP].forEach(child => hostElement.appendChild(child));
+
+      // Only add children not already in the DOM
+      this.props[CHILDREN_TO_APPEND_PROP].filter(child => !child.isConnected).forEach(child =>
+        hostElement.appendChild(child)
+      );
     }
   }
 
