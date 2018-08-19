@@ -67,16 +67,24 @@ export function createHtmlRenderer<TContext extends object>(
  * Wrap a `ComponentRef` with a `JSX.Element`.
  *
  * @param htmlRenderFunc The component reference to wrap
- * @param context The context to pass to the component as `@Input`
  * @param additionalProps optional additional props to pass to the `ReactContent` object that will render the content.
  */
-export function renderComponent<TContext extends object>(
+export function createComponentRenderer<TContext extends object>(
   componentRef: ComponentRef<TContext>,
-  context?: TContext,
   additionalProps?: ReactContentProps
-): JSX.Element {
-  Object.assign(componentRef.instance, context);
-  componentRef.changeDetectorRef.detectChanges();
+): RenderPropContext<TContext> {
+  let renderedJsx: JSX.Element | null = null;
 
-  return renderReactContent([componentRef.location.nativeElement], additionalProps);
+  return {
+    render: context => {
+      if (!renderedJsx) {
+        renderedJsx = renderReactContent([componentRef.location.nativeElement], additionalProps);
+      }
+
+      Object.assign(componentRef.instance, context);
+      componentRef.changeDetectorRef.detectChanges();
+
+      return renderedJsx;
+    },
+  };
 }

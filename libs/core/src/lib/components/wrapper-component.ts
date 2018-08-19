@@ -19,7 +19,7 @@ import toStyle from 'css-to-style';
 import { ReactContentProps } from '../renderer/react-content';
 import { isReactNode } from '../renderer/react-node';
 import { isReactRendererData } from '../renderer/renderer';
-import { createHtmlRenderer, createTemplateRenderer, renderComponent } from '../renderer/renderprop-helpers';
+import { createComponentRenderer, createHtmlRenderer, createTemplateRenderer } from '../renderer/renderprop-helpers';
 import { afterRenderFinished } from '../utils/render/render-delay';
 import { unreachable } from '../utils/types/unreachable';
 
@@ -160,7 +160,8 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     }
 
     if (input instanceof ComponentRef) {
-      return (context: TContext) => renderComponent(input, context, additionalProps);
+      const componentRenderer = createComponentRenderer(input, additionalProps);
+      return (context: TContext) => componentRenderer.render(context);
     }
 
     if (input instanceof Function) {
