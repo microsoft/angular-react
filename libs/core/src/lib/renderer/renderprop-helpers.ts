@@ -6,7 +6,7 @@ import * as React from 'react';
 import { CHILDREN_TO_APPEND_PROP, ReactContent, ReactContentProps } from '../renderer/react-content';
 
 export interface RenderPropContext<TContext extends object> {
-  render: (context: TContext) => JSX.Element;
+  readonly render: (context: TContext) => JSX.Element;
 }
 
 function renderReactContent(rootNodes: HTMLElement[], additionalProps?: ReactContentProps): JSX.Element {
@@ -53,14 +53,16 @@ export function createTemplateRenderer<TContext extends object>(
  * @param context The context to pass to the function
  * @param additionalProps optional additional props to pass to the `ReactContent` object that will render the content.
  */
-export function renderFunc<TContext extends object>(
+export function createHtmlRenderer<TContext extends object>(
   htmlRenderFunc: (context: TContext) => HTMLElement,
-  context?: TContext,
   additionalProps?: ReactContentProps
-): JSX.Element {
-  const rootHtmlElement = htmlRenderFunc(context);
-
-  return renderReactContent([rootHtmlElement], additionalProps);
+): RenderPropContext<TContext> {
+  return {
+    render: context => {
+      const rootHtmlElement = htmlRenderFunc(context);
+      return renderReactContent([rootHtmlElement], additionalProps);
+    },
+  };
 }
 
 /**
