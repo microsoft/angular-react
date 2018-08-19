@@ -1,12 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, Input, OnChanges, Renderer2, SimpleChanges, TemplateRef, Type } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  ElementRef,
+  Injector,
+  Input,
+  OnChanges,
+  Renderer2,
+  SimpleChanges,
+  TemplateRef,
+  Type,
+} from '@angular/core';
 import toStyle from 'css-to-style';
 import { ReactContentProps } from '../renderer/react-content';
 import { isReactNode } from '../renderer/react-node';
 import { isReactRendererData } from '../renderer/renderer';
-import { renderComponent, renderFunc, renderTemplate } from '../renderer/renderprop-helpers';
+import { createComponentRenderer, createHtmlRenderer, createTemplateRenderer } from '../renderer/renderprop-helpers';
 import { afterRenderFinished } from '../utils/render/render-delay';
 import { unreachable } from '../utils/types/unreachable';
 
@@ -142,15 +155,18 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     }
 
     if (input instanceof TemplateRef) {
-      return (context: TContext) => renderTemplate(input, context, additionalProps);
+      const templateRenderer = createTemplateRenderer(input, additionalProps);
+      return (context: TContext) => templateRenderer.render(context);
     }
 
     if (input instanceof ComponentRef) {
-      return (context: TContext) => renderComponent(input, context, additionalProps);
+      const componentRenderer = createComponentRenderer(input, additionalProps);
+      return (context: TContext) => componentRenderer.render(context);
     }
 
     if (input instanceof Function) {
-      return (context: TContext) => renderFunc(input, context, additionalProps);
+      const htmlRenderer = createHtmlRenderer(input, additionalProps);
+      return (context: TContext) => htmlRenderer.render(context);
     }
 
     if (typeof input === 'object') {
@@ -158,7 +174,8 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       const componentFactory = factoryResolver.resolveComponentFactory(componentType);
       const componentRef = componentFactory.create(injector);
 
-      return (context: TContext) => renderComponent(componentRef, context, additionalProps);
+      // Call the function again with the created ComponentRef<TContext>
+      return this.createInputJsxRenderer(componentRef, additionalProps);
     }
 
     unreachable(input);
