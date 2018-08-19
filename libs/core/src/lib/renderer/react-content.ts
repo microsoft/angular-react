@@ -4,6 +4,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Omit } from '../declarations/omit';
+import * as dom from '../utils/dom';
 
 const DEBUG = false;
 export const CHILDREN_TO_APPEND_PROP = 'children-to-append';
@@ -48,7 +49,7 @@ export class ReactContent extends React.PureComponent<AllReactContentProps> {
       const hostElement = this.props.legacyRenderMode ? element : element.parentElement;
 
       // Only add children not already in the DOM
-      this.props[CHILDREN_TO_APPEND_PROP].filter(child => !child.isConnected).forEach(child =>
+      this.props[CHILDREN_TO_APPEND_PROP].filter(child => !dom.isNodeInDOM(child)).forEach(child =>
         hostElement.appendChild(child)
       );
     }
