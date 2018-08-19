@@ -20,7 +20,6 @@ function renderReactContent(rootNodes: HTMLElement[], additionalProps?: ReactCon
  * Wrap a `TemplateRef` with a `JSX.Element`.
  *
  * @param templateRef The template to wrap
- * @param context The context to pass to the template
  * @param additionalProps optional additional props to pass to the `ReactContent` object that will render the content.
  */
 export function createTemplateRenderer<TContext extends object>(
