@@ -2,7 +2,21 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
-import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ElementRef, EventEmitter, Input, OnDestroy, Output, QueryList, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  QueryList,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { Subscription } from 'rxjs';
@@ -10,7 +24,12 @@ import { OnChanges, TypedChanges } from '../../declarations/angular/typed-change
 import omit from '../../utils/omit';
 import { mergeItemChanges } from '../core/declarative/item-changed';
 import { CommandBarItemChangedPayload, CommandBarItemDirective } from './directives/command-bar-item.directives';
-import { CommandBarFarItemsDirective, CommandBarItemsDirective, CommandBarItemsDirectiveBase, CommandBarOverflowItemsDirective } from './directives/command-bar-items.directives';
+import {
+  CommandBarFarItemsDirective,
+  CommandBarItemsDirective,
+  CommandBarItemsDirectiveBase,
+  CommandBarOverflowItemsDirective,
+} from './directives/command-bar-items.directives';
 
 @Component({
   selector: 'fab-command-bar',
@@ -97,6 +116,8 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer, true);
+
+    window['counter'].increase('fab-command-bar');
   }
 
   ngOnChanges(changes: TypedChanges<this>) {
@@ -192,14 +213,28 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon, { legacyRenderMode: true });
     const renderer = this.createInputJsxRenderer(itemOptions.render);
 
+    let renderCache: Record<'renderer' | 'iconRenderer', JSX.Element | null> = {
+      renderer: null,
+      iconRenderer: null,
+    };
+
     return Object.assign(
       {},
       sharedProperties,
-      iconRenderer && {
-        onRenderIcon: (item: IContextualMenuItem) => iconRenderer({ contextualMenuItem: item }),
-      } as any /* NOTE: Fix for wrong typings of `onRenderIcon` in office-ui-fabric-react */,
+      iconRenderer &&
+        ({
+          onRenderIcon: (item: IContextualMenuItem) => iconRenderer({ contextualMenuItem: item }),
+        } as any) /* NOTE: Fix for wrong typings of `onRenderIcon` in office-ui-fabric-react */,
       renderer &&
-        ({ onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>)
+        ({
+          onRender: (item, dismissMenu) => {
+            if (!renderCache.renderer) {
+              renderCache.renderer = renderer({ item, dismissMenu });
+            }
+
+            return renderCache.renderer;
+          },
+        } as Pick<ICommandBarItemProps, 'onRender'>)
     ) as ICommandBarItemProps;
   }
 }

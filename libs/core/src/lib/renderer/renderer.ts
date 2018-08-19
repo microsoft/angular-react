@@ -3,7 +3,6 @@
 
 import { Injectable, Renderer2, RendererStyleFlags2, RendererType2 } from '@angular/core';
 import { EventManager, ɵDomRendererFactory2, ɵDomSharedStylesHost } from '@angular/platform-browser';
-import * as ReactDOM from 'react-dom';
 import { StringMap } from '../declarations/StringMap';
 import { isReactNode, ReactNode } from './react-node';
 
@@ -59,15 +58,11 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
     // are ReadOnly.
 
     // Workaround for ReactNodes inside ReactContent being added to the root of the VDOM and not removed from the VDOM when unmounted from the DOM.
-    this.reactRootNodes.forEach(node => {
-      if (
-        !isReactNode(node.parent) &&
-        !document.body.contains(node.parent) &&
-        ReactDOM.unmountComponentAtNode(node.parent)
-      ) {
+    /* this.reactRootNodes.forEach(node => {
+      if (!isReactNode(node.parent) && !node.parent.isConnected && ReactDOM.unmountComponentAtNode(node.parent)) {
         this.reactRootNodes.delete(node);
       }
-    });
+    }); */
 
     if (this.isRenderPending) {
       // Remove root nodes that are pending destroy after render.

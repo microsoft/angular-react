@@ -1,33 +1,5 @@
-import {
-  ChangeDetectorRef,
-  ViewEncapsulation,
-  Component,
-  ComponentFactoryResolver,
-  Injector,
-  Input,
-  ComponentRef,
-  TemplateRef,
-  ViewChild,
-  AfterViewInit,
-} from '@angular/core';
-import {
-  DialogType,
-  ITheme,
-  IChoiceGroupProps,
-  SpinnerSize,
-  PersonaSize,
-  PersonaPresence,
-  PivotLinkSize,
-  SelectableOptionMenuItemType,
-  PanelType,
-  ICommandBarItemProps,
-  IBreadcrumbItem,
-  IButtonProps,
-  Button,
-  MessageBarType,
-  ShimmerElementType,
-  IContextualMenuProps,
-} from 'office-ui-fabric-react';
+import { ChangeDetectorRef, Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { IContextualMenuProps } from 'office-ui-fabric-react';
 
 @Component({
   selector: 'app-root',
@@ -36,6 +8,8 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
+  componentCounter = window['componentCounter'];
+
   @ViewChild('customRange')
   customRangeTemplate: TemplateRef<{ item: any; dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
 

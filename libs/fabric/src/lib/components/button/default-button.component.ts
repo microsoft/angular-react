@@ -59,5 +59,7 @@ export class FabDefaultButtonComponent extends FabBaseButtonComponent {
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);
+
+    window['counter'].increase('fab-default-button');
   }
 }
