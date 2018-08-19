@@ -16,19 +16,31 @@
 </div>
 
 <div>
+  <fab-pivot>
+    <fab-pivot-item headerText="Tab 1">
+      <div>Tab 1's content</div>
+    </fab-pivot-item>
+    <fab-pivot-item headerText="Tab 2">
+      <div>Tab 2's content</div>
+    </fab-pivot-item>
+    <fab-pivot-item headerText="Tab 3">
+      <div>Tab 3's content</div>
+    </fab-pivot-item>
+  </fab-pivot>
+
   <fab-command-bar>
     <items>
       <fab-command-bar-item key="run" text="Run" [iconProps]="{ iconName: 'CaretRight' }" [disabled]="runDisabled"></fab-command-bar-item>
       <fab-command-bar-item key="new" text="New" [iconProps]="{ iconName: 'Add' }" (click)="onNewClicked()"></fab-command-bar-item>
-      <fab-command-bar-item key="save" text="Save" [iconProps]="{ iconName: 'Save' }" [subMenuProps]="saveSubMenuProps">
-        <contextual-menu-item *ngIf="runDisabled" key="sometimesVisible" text="woosh"></contextual-menu-item>
-        <contextual-menu-item key="save" text="Save"></contextual-menu-item>
-        <contextual-menu-item key="save-as" text="Save As" (click)="onSaveAsClicked()">
-          <contextual-menu-item key="save-as-1" text="Save As 1" (click)="onSaveAsFirstClicked()"></contextual-menu-item>
-          <contextual-menu-item key="save-as-2" text="Save As 2" (click)="onSaveAsSecondClicked()"></contextual-menu-item>
-        </contextual-menu-item>
-      </fab-command-bar-item>
-      <fab-command-bar-item key="copy" text="Copy" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="copy1" text="Copy1" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="copy2" text="Copy2" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="copy3" text="Copy3" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="copy4" text="Copy4" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="copy5" text="Copy5" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="copy6" text="Copy6" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="copy7" text="Copy7" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="copy8" text="Copy8" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
+      <fab-command-bar-item key="copy9" text="Copy9" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()"></fab-command-bar-item>
       <fab-command-bar-item key="custom" text="custom text" (click)="onCopyClicked()">
         <render>
           <ng-template let-item="item">
@@ -37,10 +49,10 @@
         </render>
 
         <!-- <render-icon>
-          <ng-template let-contextualMenuItemProps="contextualMenuItemProps">
-            <div>custom icon</div>
-          </ng-template>
-        </render-icon> -->
+            <ng-template let-contextualMenuItemProps="contextualMenuItemProps">
+              <div>custom icon</div>
+            </ng-template>
+          </render-icon> -->
       </fab-command-bar-item>
       <fab-command-bar-item *ngIf="runDisabled" key="sometimesVisible" text="woosh"></fab-command-bar-item>
     </items>
@@ -50,9 +62,4 @@
       <fab-command-bar-item key="full-screen" [iconOnly]="true" [iconProps]="{ iconName: fullScreenIcon }" (click)="toggleFullScreen()"></fab-command-bar-item>
     </far-items>
   </fab-command-bar>
-
-  <fab-default-button (onClick)="toggleRun()" text="Toggle run"></fab-default-button>
-
-  <fab-panel [isOpen]="isPanelOpen" (onDismiss)="isPanelOpen = false">
-  </fab-panel>
 </div>
