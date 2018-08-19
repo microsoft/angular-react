@@ -49,7 +49,6 @@ export function createTemplateRenderer<TContext extends object>(
  * Wrap a function resolving to an `HTMLElement` with a `JSX.Element`.
  *
  * @param htmlRenderFunc The function to wrap
- * @param context The context to pass to the function
  * @param additionalProps optional additional props to pass to the `ReactContent` object that will render the content.
  */
 export function createHtmlRenderer<TContext extends object>(
