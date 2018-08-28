@@ -4,9 +4,13 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import * as TooltipHostCss from 'office-ui-fabric-react/lib-amd/components/Tooltip/TooltipHost.scss';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
+import { noop } from '../../utils/noop';
 import { FabTooltipHostComponent } from './tooltip-host.component';
 
+// Dummy action to force TooltipHostCss to load and not be tree-shaken away.
+noop(TooltipHostCss);
 const components = [FabTooltipHostComponent];
 
 @NgModule({
