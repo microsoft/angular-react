@@ -1,0 +1,90 @@
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: Install dependencies
+          command: npm ci
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: build libs/core (@angular-react/core)
+          command: npm run build:libs:core
+
+      - run:
+          name: build libs/fabric (@angular-react/fabric)
+          command: npm run build:libs:fabric
+
+      - run:
+          name: build libs/semantic-ui (@angular-react/semantic-ui)
+          command: npm run build:libs:semantic-ui
+
+      - run:
+          name: build apps/demo
+          command: npm run build:demo
+
+  publish-docs:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: Install dependencies
+          command: npm ci
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: build docs (@angular-react/core)
+          command: npm run build:demo:github
+
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git add -A && git commit -m 'Deploy to GitHub pages [ci]' && git push
+            fi
+workflows:
+  version: 2
+  build_and_publish-docs:
+    jobs:
+      - build
+      - publish-docs:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
