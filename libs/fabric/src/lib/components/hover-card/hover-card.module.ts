@@ -4,8 +4,13 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { HoverCard, ExpandingCard } from 'office-ui-fabric-react/lib/HoverCard';
+import * as HoverCardCss from 'office-ui-fabric-react/lib-amd/components/HoverCard/HoverCardPage.global.scss';
+import { ExpandingCard, HoverCard } from 'office-ui-fabric-react/lib/HoverCard';
+import { noop } from '../../utils/noop';
 import { FabHoverCardComponent } from './hover-card.component';
+
+// Dummy action to force HoverCardCss to load and not be tree-shaken away.
+noop(HoverCardCss);
 
 const components = [
   FabHoverCardComponent,
