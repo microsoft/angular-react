@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/fabric",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "ngPackage": {
     "lib": {
       "entryFile": "public-api.ts",
