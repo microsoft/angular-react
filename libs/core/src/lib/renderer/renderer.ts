@@ -4,7 +4,10 @@
 import { Injectable, Renderer2, RendererStyleFlags2, RendererType2 } from '@angular/core';
 import { EventManager, ɵDomRendererFactory2, ɵDomSharedStylesHost } from '@angular/platform-browser';
 import { StringMap } from '../declarations/StringMap';
+import { Disguise } from './components/Disguise';
+import { ReactContent } from './react-content';
 import { isReactNode, ReactNode } from './react-node';
+import { registerElement } from './registry';
 
 const DEBUG = false;
 
@@ -79,7 +82,11 @@ export class ReactRenderer implements Renderer2 {
     },
   };
 
-  constructor(public readonly rootRenderer: AngularReactRendererFactory) {}
+  constructor(public readonly rootRenderer: AngularReactRendererFactory) {
+    // These two elements are essential for the whole experience to be smooth for the user - register them from the get-go.
+    registerElement('ReactContent', () => ReactContent);
+    registerElement('Disguise', () => Disguise);
+  }
 
   destroy(): void {}
 

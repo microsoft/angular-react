@@ -3,9 +3,6 @@
 
 import * as React from 'react';
 
-import { Disguise } from './components/Disguise';
-import { ReactContent } from './react-content';
-
 export type ComponentResolver = () => React.ReactType;
 
 const elementMap = new Map<string, { resolver: ComponentResolver }>();
@@ -49,6 +46,3 @@ export function getComponentClass(elementName: string): React.ReactType {
     throw new TypeError(`Could not load component for: ${elementName}.${e}`);
   }
 }
-
-registerElement('ReactContent', () => ReactContent);
-registerElement('Disguise', () => Disguise);
