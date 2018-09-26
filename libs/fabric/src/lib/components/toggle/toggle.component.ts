@@ -2,7 +2,17 @@
 // Licensed under the MIT License.
 
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { IToggleProps } from 'office-ui-fabric-react/lib/Toggle';
 
 @Component({
@@ -15,15 +25,14 @@ import { IToggleProps } from 'office-ui-fabric-react/lib/Toggle';
       [label]="label"
       [Text]="onText"
       [offText]="offText"
-      [AriaLabel]="onAriaLabel"
-      [offAriaLabel]="offAriaLabel"
+      [ariaLabel]="ariaLabel"
       [checked]="checked"
       [defaultChecked]="defaultChecked"
       [disabled]="disabled"
       [theme]="theme"
       [styles]="styles"
       [keytipProps]="keytipProps"
-      (onChanged)="onChanged.emit($event)">
+      [Change]="onChangeHandler">
     </Toggle>
   `,
   styles: ['react-renderer'],
@@ -48,15 +57,9 @@ export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {
   onText?: IToggleProps['onText'];
   @Input()
   offText?: IToggleProps['offText'];
-
-  /**
-   * Counterpart of `IToggleProps['onAriaLabel']`.
-   * Angular doesn't allow Inputs to be prefixed with "on", so this is misspelled as "onn".
-   */
-  @Input('onnAriaLabel')
-  onAriaLabel?: IToggleProps['onAriaLabel'];
   @Input()
-  offAriaLabel?: IToggleProps['offAriaLabel'];
+  ariaLabel?: IToggleProps['ariaLabel'];
+
   @Input()
   checked?: IToggleProps['checked'];
   @Input()
@@ -71,9 +74,18 @@ export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {
   keytipProps?: IToggleProps['keytipProps'];
 
   @Output()
-  readonly onChanged = new EventEmitter<boolean>();
+  readonly onChange = new EventEmitter<{ event: MouseEvent; checked?: boolean }>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);
+
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+  }
+
+  onChangeHandler(event: React.MouseEvent<HTMLElement>, checked?: boolean) {
+    this.onChange.emit({
+      event: event && event.nativeEvent,
+      checked,
+    });
   }
 }

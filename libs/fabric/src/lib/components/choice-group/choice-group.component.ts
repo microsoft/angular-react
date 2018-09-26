@@ -2,7 +2,17 @@
 // Licensed under the MIT License.
 
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { IChoiceGroupOption, IChoiceGroupProps } from 'office-ui-fabric-react/lib/ChoiceGroup';
 
 @Component({
@@ -19,6 +29,7 @@ import { IChoiceGroupOption, IChoiceGroupProps } from 'office-ui-fabric-react/li
       [required]="required"
       [theme]="theme"
       [styles]="styles"
+      [ariaLabelledBy]="ariaLabelledBy"
       [Changed]="onChangedHandler"
       [Change]="onChangeHandler"
       >
@@ -45,6 +56,8 @@ export class FabChoiceGroupComponent extends ReactWrapperComponent<IChoiceGroupP
   theme?: IChoiceGroupProps['theme'];
   @Input()
   styles?: IChoiceGroupProps['styles'];
+  @Input()
+  ariaLabelledBy?: IChoiceGroupProps['ariaLabelledBy'];
 
   /** HTML Input props */
   @Input()

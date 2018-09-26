@@ -2,7 +2,18 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Panel';
 
 @Component({
@@ -19,6 +30,8 @@ import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Pa
       [isBlocking]="isBlocking"
       [isFooterAtBottom]="isFooterAtBottom"
       [headerText]="headerText"
+      [styles]="styles"
+      [theme]="theme"
       [className]="className"
       [type]="type"
       [customWidth]="customWidth"
@@ -36,7 +49,7 @@ import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Pa
       [RenderBody]="renderBody && onRenderBody"
       [RenderFooter]="renderFooter && onRenderFooter"
       [RenderFooterContent]="renderFooterContent && onRenderFooterContent"
-      (onDismiss)="onDismiss.emit($event)"
+      [Dismiss]="onDismissHandler"
       (onDismissed)="onDismissed.emit($event)"
       (onLightDismissClick)="onLightDismissClick.emit($event)">
         <ReactContent><ng-content></ng-content></ReactContent>
@@ -65,6 +78,10 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
   isFooterAtBottom?: IPanelProps['isFooterAtBottom'];
   @Input()
   headerText?: IPanelProps['headerText'];
+  @Input()
+  styles?: IPanelProps['styles'];
+  @Input()
+  theme?: IPanelProps['theme'];
   @Input()
   className?: IPanelProps['className'];
   @Input()
@@ -104,7 +121,7 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
   @Output()
   readonly onLightDismissClick = new EventEmitter<void>();
   @Output()
-  readonly onDismiss = new EventEmitter<void>();
+  readonly onDismiss = new EventEmitter<{ ev?: Event }>();
   @Output()
   readonly onDismissed = new EventEmitter<void>();
 
@@ -119,6 +136,7 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onRenderHeader = this.onRenderHeader.bind(this);
+    this.onDismissHandler = this.onDismissHandler.bind(this);
   }
 
   ngOnInit() {
@@ -139,6 +157,12 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
     }
 
     return this._renderHeader({ props, headerTextId });
+  }
+
+  onDismissHandler(ev?: React.SyntheticEvent<HTMLElement>) {
+    this.onDismiss.emit({
+      ev: ev && ev.nativeEvent,
+    });
   }
 }
 

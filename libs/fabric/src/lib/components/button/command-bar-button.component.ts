@@ -31,7 +31,7 @@ import { FabBaseButtonComponent } from './base-button.component';
       [splitButtonAriaLabel]="splitButtonAriaLabel"
       [menuAs]="menuAs"
       [secondaryText]="secondaryText"
-      [toggled]="toggled"
+      [toggle]="toggle"
       [data]="data"
       [getClassNames]="getClassNames"
       [getSplitButtonClassNames]="getSplitButtonClassNames"
