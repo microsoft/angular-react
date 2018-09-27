@@ -2,7 +2,17 @@
 // Licensed under the MIT License.
 
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ISliderProps } from 'office-ui-fabric-react/lib/Slider';
 
 @Component({
@@ -27,6 +37,7 @@ import { ISliderProps } from 'office-ui-fabric-react/lib/Slider';
       [disabled]="disabled"
       [className]="className"
       [buttonProps]="buttonProps"
+      [Changed]="onChangedHandler"
       (onChange)="onChange.emit($event)">
     </Slider>
   `,
@@ -72,8 +83,19 @@ export class FabSliderComponent extends ReactWrapperComponent<ISliderProps> {
 
   @Output()
   readonly onChange = new EventEmitter<number>();
+  @Output()
+  readonly onChanged = new EventEmitter<{ event: MouseEvent | TouchEvent; value: number }>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);
+
+    this.onChangedHandler = this.onChangedHandler.bind(this);
+  }
+
+  onChangedHandler(event: MouseEvent | TouchEvent, value: number) {
+    this.onChanged.emit({
+      event,
+      value,
+    });
   }
 }

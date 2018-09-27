@@ -27,6 +27,7 @@ import { IDatePickerProps } from 'office-ui-fabric-react';
       [isRequired]="isRequired"
       [disabled]="disabled"
       [ariaLabel]="ariaLabel"
+      [underlined]="underlined"
       [pickerAriaLabel]="pickerAriaLabel"
       [isMonthPickerVisible]="isMonthPickerVisible"
       [showMonthPickerAsOverlay]="showMonthPickerAsOverlay"
@@ -50,6 +51,8 @@ import { IDatePickerProps } from 'office-ui-fabric-react';
       [minDate]="minDate"
       [maxDate]="maxDate"
       [initialPickerDate]="initialPickerDate"
+      [allFocusable]="allFocusable"
+      [showCloseButton]="showCloseButton"
       [SelectDate]="onSelectDateHandler"
       (onAfterMenuDismiss)="onAfterMenuDismiss.emit()">
     </DatePicker>
@@ -73,6 +76,8 @@ export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerPro
   disabled?: IDatePickerProps['disabled'];
   @Input()
   ariaLabel?: IDatePickerProps['ariaLabel'];
+  @Input()
+  underlined?: IDatePickerProps['underlined'];
   @Input()
   pickerAriaLabel?: IDatePickerProps['pickerAriaLabel'];
   @Input()
@@ -119,6 +124,10 @@ export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerPro
   maxDate?: IDatePickerProps['maxDate'];
   @Input()
   initialPickerDate?: IDatePickerProps['initialPickerDate'];
+  @Input()
+  allFocusable?: IDatePickerProps['allFocusable'];
+  @Input()
+  showCloseButton?: IDatePickerProps['showCloseButton'];
 
   @Output()
   readonly onSelectDate = new EventEmitter<{ date: Date | null | undefined }>();

@@ -2,7 +2,17 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { ISearchBoxProps } from 'office-ui-fabric-react/lib/SearchBox';
 import omit from '../../utils/omit';
@@ -19,6 +29,7 @@ import omit from '../../utils/omit';
       [className]="className"
       [ariaLabel]="ariaLabel"
       [clearButtonProps]="clearButtonProps"
+      [iconProps]="iconProps"
       [underlined]="underlined"
       [theme]="theme"
       [styles]="styles"
@@ -66,6 +77,9 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
   get clearButtonOptions(): IButtonOptions {
     return this._clearButtonOptions;
   }
+
+  @Input()
+  iconProps?: ISearchBoxProps['iconProps'];
 
   @Output()
   readonly onChange = new EventEmitter<{ newValue: any }>();

@@ -3,7 +3,7 @@
 
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectorRef, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
-import { IComboBoxOption, IComboBoxProps } from 'office-ui-fabric-react/lib/ComboBox';
+import { IComboBox, IComboBoxOption, IComboBoxProps } from 'office-ui-fabric-react/lib/ComboBox';
 
 export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<IComboBoxProps> implements OnInit {
   @Input()
@@ -47,11 +47,11 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
   renderLowerContent?: InputRendererOptions<IComboBoxProps>;
 
   @Output()
-  readonly onChanged = new EventEmitter<{
+  readonly onChange = new EventEmitter<{
+    event: Event;
     option?: IComboBoxOption;
     index?: number;
     value?: string;
-    submitPendingValueEvent?: any;
   }>();
   @Output()
   readonly onPendingValueChanged = new EventEmitter<{ option?: IComboBoxOption; index?: number; value?: string }>();
@@ -68,7 +68,7 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
     super(elementRef, changeDetectorRef, renderer);
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
-    this.onChangedHandler = this.onChangedHandler.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onPendingValueChangedHandler = this.onPendingValueChangedHandler.bind(this);
     this.onScrollToItemHandler = this.onScrollToItemHandler.bind(this);
   }
@@ -77,12 +77,12 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
     this.onRenderLowerContent = this.createRenderPropHandler(this.renderLowerContent);
   }
 
-  onChangedHandler(option?: IComboBoxOption, index?: number, value?: string, submitPendingValueEvent?: any) {
-    this.onChanged.emit({
+  onChangeHandler(event: React.FormEvent<IComboBox>, option?: IComboBoxOption, index?: number, value?: string) {
+    this.onChange.emit({
+      event: event.nativeEvent,
       option,
       index,
       value,
-      submitPendingValueEvent,
     });
   }
 

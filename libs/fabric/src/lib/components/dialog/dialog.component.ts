@@ -2,7 +2,17 @@
 // Licensed under the MIT License.
 
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
 
 @Component({
@@ -24,6 +34,8 @@ import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui
       [dialogContentProps]="dialogContentProps"
       [hidden]="hidden"
       [modalProps]="modalProps"
+      [minWidth]="minWidth"
+      [maxWidth]="maxWidth"
       (onDismiss)="onDismissHandler($event)">
       <ReactContent><ng-content></ng-content></ReactContent>
     </Dialog>
@@ -61,6 +73,10 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
   hidden?: IDialogProps['hidden'];
   @Input()
   modalProps?: IDialogProps['modalProps'];
+  @Input()
+  minWidth?: IDialogProps['minWidth'];
+  @Input()
+  maxWidth?: IDialogProps['maxWidth'];
 
   @Output()
   readonly onDismiss = new EventEmitter<MouseEvent>();
