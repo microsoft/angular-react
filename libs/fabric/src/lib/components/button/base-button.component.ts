@@ -49,7 +49,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
   @Input()
   secondaryText?: IButtonProps['secondaryText'];
   @Input()
-  toggled?: IButtonProps['toggle'];
+  toggle?: IButtonProps['toggle'];
   @Input()
   data?: IButtonProps['data'];
   @Input()
