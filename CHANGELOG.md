@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.4"></a>
+
+# [0.4.4](https://github.com/Microsoft/angular-react/compare/v0.4.3...v0.4.4) (2018-10-02)
+
+### Breaking changes
+
+- **fabric:** Fix 'toggled'->'toggle' @Input typo in base-button ([#19](https://github.com/Microsoft/angular-react/pull/19)) ([cbd1f82](https://github.com/Microsoft/angular-react/commit/cbd1f82))
+
 <a name="0.4.3"></a>
 
 # [0.4.3](https://github.com/Microsoft/angular-react/compare/v0.4.2...v0.4.3) (2018-09-27)
