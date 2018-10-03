@@ -32,7 +32,7 @@ In the coming months we will continue to refine the component implementations as
 See our [Getting Started Guide][getting-started]
 if you're building your first project with Angular-React.
 
-If you'd like to contribute, you must follow our [contributing guidelines](https://github.com/angular/material2/blob/master/CONTRIBUTING.md).
+If you'd like to contribute, you must follow our [contributing guidelines](https://github.com/microsoft/angular-react/blob/master/CONTRIBUTING.md).
 You can look through the issues (which should be up-to-date on who is working on which features and which pieces are blocked) and make a comment.
 
 [ard]: https://microsoft.github.io/angular-react
