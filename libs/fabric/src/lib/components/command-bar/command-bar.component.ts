@@ -2,7 +2,21 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
-import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ElementRef, EventEmitter, Input, OnDestroy, Output, QueryList, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  QueryList,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { Subscription } from 'rxjs';
@@ -10,7 +24,12 @@ import { OnChanges, TypedChanges } from '../../declarations/angular/typed-change
 import omit from '../../utils/omit';
 import { mergeItemChanges } from '../core/declarative/item-changed';
 import { CommandBarItemChangedPayload, CommandBarItemDirective } from './directives/command-bar-item.directives';
-import { CommandBarFarItemsDirective, CommandBarItemsDirective, CommandBarItemsDirectiveBase, CommandBarOverflowItemsDirective } from './directives/command-bar-items.directives';
+import {
+  CommandBarFarItemsDirective,
+  CommandBarItemsDirective,
+  CommandBarItemsDirectiveBase,
+  CommandBarOverflowItemsDirective,
+} from './directives/command-bar-items.directives';
 
 @Component({
   selector: 'fab-command-bar',
@@ -195,9 +214,10 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     return Object.assign(
       {},
       sharedProperties,
-      iconRenderer && {
-        onRenderIcon: (item: IContextualMenuItem) => iconRenderer({ contextualMenuItem: item }),
-      } as any /* NOTE: Fix for wrong typings of `onRenderIcon` in office-ui-fabric-react */,
+      iconRenderer &&
+        ({
+          onRenderIcon: (item: IContextualMenuItem) => iconRenderer({ contextualMenuItem: item }),
+        } as any) /* NOTE: Fix for wrong typings of `onRenderIcon` in office-ui-fabric-react */,
       renderer &&
         ({ onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>)
     ) as ICommandBarItemProps;
@@ -205,7 +225,6 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
 }
 
 export interface ICommandBarItemOptions<TData = any> extends Omit<ICommandBarItemProps, 'onRender' | 'onRenderIcon'> {
-  readonly [propertyName: string]: any;
   readonly renderIcon?: InputRendererOptions<ICommandBarItemOptionsRenderIconContext>;
   readonly render?: InputRendererOptions<ICommandBarItemOptionsRenderContext>;
   readonly data?: TData;
