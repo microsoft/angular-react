@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.5"></a>
+
+# [0.4.4](https://github.com/Microsoft/angular-react/compare/v0.4.4...v0.4.5) (2018-10-16)
+
+### Bug fixes
+
+- **fabric:** Fix wrong intellisense for `ICommandBarItem` ([#21](https://github.com/Microsoft/angular-react/pull/21)) ([ed15a3c](https://github.com/Microsoft/angular-react/commit/ed15a3c2bfbeb28b8b2def33b1098ac5b13c42fe))
+
 <a name="0.4.4"></a>
 
 # [0.4.4](https://github.com/Microsoft/angular-react/compare/v0.4.3...v0.4.4) (2018-10-02)
