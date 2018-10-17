@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
+import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -224,7 +224,10 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   }
 }
 
-export interface ICommandBarItemOptions<TData = any> extends Omit<ICommandBarItemProps, 'onRender' | 'onRenderIcon'> {
+// Not using `Omit` here since it confused the TypeScript compiler and it just showed the properties listed here (`renderIcon`, `render` and `data`).
+// The type here is just `Omit` without the generics though.
+export interface ICommandBarItemOptions<TData = any>
+  extends Pick<ICommandBarItemProps, Exclude<KnownKeys<ICommandBarItemProps>, 'onRender' | 'onRenderIcon'>> {
   readonly renderIcon?: InputRendererOptions<ICommandBarItemOptionsRenderIconContext>;
   readonly render?: InputRendererOptions<ICommandBarItemOptionsRenderContext>;
   readonly data?: TData;
