@@ -99,7 +99,7 @@ export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListP
 }
 
 export interface ICellRenderContext {
-  readonly nestingDepth?: number;
-  readonly item?: any;
-  readonly index?: number;
+  nestingDepth?: number;
+  item?: any;
+  index?: number;
 }
