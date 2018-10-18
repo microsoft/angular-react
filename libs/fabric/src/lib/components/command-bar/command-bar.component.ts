@@ -172,6 +172,8 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     ) => {
       this[itemsPropertyKey] = mapper(this[itemsPropertyKey]);
       transformItemsFunc(this[itemsPropertyKey]);
+
+      this.detectChanges();
     };
 
     // Initial items
