@@ -2,7 +2,15 @@
 // Licensed under the MIT License.
 
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { IIconProps } from 'office-ui-fabric-react/lib/Icon';
 
 @Component({
@@ -43,6 +51,6 @@ export class FabIconComponent extends ReactWrapperComponent<IIconProps> {
   styles?: IIconProps['styles'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
   }
 }

@@ -2,7 +2,16 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  NgZone,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { IShimmerElementsGroupProps } from 'office-ui-fabric-react/lib/components/Shimmer/ShimmerElementsGroup/ShimmerElementsGroup.types';
 import { IShimmerProps } from 'office-ui-fabric-react/lib/Shimmer';
 
@@ -65,8 +74,8 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
 
   private _renderCustomElementsGroup?: InputRendererOptions<{}>;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
   }
 }
 
@@ -109,6 +118,6 @@ export class FabShimmerElementsGroupComponent extends ReactWrapperComponent<IShi
   styles?: IShimmerElementsGroupProps['styles'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
   }
 }

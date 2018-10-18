@@ -1,7 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  NgZone,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { FabBaseButtonComponent } from './base-button.component';
 
 @Component({
@@ -57,7 +65,7 @@ export class FabCommandBarButtonComponent extends FabBaseButtonComponent {
   @ViewChild('reactNode')
   reactNodeRef: ElementRef;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, ngZone);
   }
 }

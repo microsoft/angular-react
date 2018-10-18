@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectorRef, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2 } from '@angular/core';
 import { IComboBox, IComboBoxOption, IComboBoxProps } from 'office-ui-fabric-react/lib/ComboBox';
 
 export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<IComboBoxProps> implements OnInit {
@@ -64,8 +64,8 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
 
   onRenderLowerContent: (props?: IComboBoxProps, defaultRender?: JsxRenderFunc<IComboBoxProps>) => JSX.Element;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { ngZone });
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onChangeHandler = this.onChangeHandler.bind(this);

@@ -2,7 +2,19 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { IMessageBarProps } from 'office-ui-fabric-react/lib/MessageBar';
 
 @Component({
@@ -66,8 +78,8 @@ export class FabMessageBarComponent extends ReactWrapperComponent<IMessageBarPro
 
   actions: JSX.Element;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { ngZone });
   }
 
   ngOnInit() {

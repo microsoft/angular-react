@@ -9,6 +9,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  NgZone,
   OnInit,
   Output,
   Renderer2,
@@ -131,8 +132,8 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
   onRenderFooter: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
   onRenderFooterContent: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { ngZone });
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onRenderHeader = this.onRenderHeader.bind(this);
