@@ -171,6 +171,6 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
  * Counterpart of `IPanelHeaderRenderer`.
  */
 export interface IPanelHeaderRenderContext {
-  readonly props?: IPanelProps;
-  readonly headerTextId?: string | undefined;
+  props?: IPanelProps;
+  headerTextId?: string | undefined;
 }
