@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ComponentRef, EmbeddedViewRef, TemplateRef } from '@angular/core';
+import { ComponentRef, NgZone, TemplateRef } from '@angular/core';
 import * as React from 'react';
 import { CHILDREN_TO_APPEND_PROP, ReactContent, ReactContentProps } from '../renderer/react-content';
+import { ReactTemplate } from './react-template';
 
 export interface RenderPropContext<TContext extends object> {
   readonly render: (context: TContext) => JSX.Element;
@@ -20,27 +21,22 @@ function renderReactContent(rootNodes: HTMLElement[], additionalProps?: ReactCon
  * Wrap a `TemplateRef` with a `JSX.Element`.
  *
  * @param templateRef The template to wrap
+ * @param ngZone The NgZone - used to tracking & triggering updates to the template
  * @param additionalProps optional additional props to pass to the `ReactContent` object that will render the content.
  */
 export function createTemplateRenderer<TContext extends object>(
   templateRef: TemplateRef<TContext>,
+  ngZone: NgZone,
   additionalProps?: ReactContentProps
 ): RenderPropContext<TContext> {
-  let viewRef: EmbeddedViewRef<TContext> | null = null;
-  let renderedJsx: JSX.Element | null = null;
-
   return {
     render: (context: TContext) => {
-      if (!viewRef) {
-        viewRef = templateRef.createEmbeddedView(context);
-        renderedJsx = renderReactContent(viewRef.rootNodes, additionalProps);
-      } else {
-        // Mutate the template's context
-        Object.assign(viewRef.context, context);
-      }
-      viewRef.detectChanges();
-
-      return renderedJsx;
+      return React.createElement(ReactTemplate, {
+        ngZone,
+        templateRef,
+        context,
+        ...additionalProps,
+      });
     },
   };
 }

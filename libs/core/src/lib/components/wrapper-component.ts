@@ -9,6 +9,7 @@ import {
   ElementRef,
   Injector,
   Input,
+  NgZone,
   OnChanges,
   Renderer2,
   SimpleChanges,
@@ -42,6 +43,15 @@ export type InputRendererOptions<TContext extends object> =
 
 export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 
+export interface WrapperComponentOptions {
+  readonly setHostDisplay?: boolean;
+  readonly ngZone?: NgZone;
+}
+
+const defaultWrapperComponentOptions: WrapperComponentOptions = {
+  setHostDisplay: false,
+};
+
 /**
  * Base class for Angular @Components wrapping React Components.
  * Simplifies some of the handling around passing down props and setting CSS on the host component.
@@ -50,6 +60,9 @@ export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit, OnChanges {
   private _contentClass: string;
   private _contentStyle: string;
+
+  private ngZone: NgZone;
+  private setHostDisplay: boolean;
 
   protected abstract reactNodeRef: ElementRef<HTMLElement>;
 
@@ -100,8 +113,11 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     public readonly elementRef: ElementRef,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly renderer: Renderer2,
-    private readonly setHostDisplay: boolean = false
-  ) {}
+    { setHostDisplay, ngZone }: WrapperComponentOptions = defaultWrapperComponentOptions
+  ) {
+    this.ngZone = ngZone;
+    this.setHostDisplay = setHostDisplay;
+  }
 
   ngAfterViewInit() {
     this._passAttributesAsProps();
@@ -154,8 +170,12 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       return undefined;
     }
 
+    if (!this.ngZone) {
+      throw new Error('To create an input JSX renderer you must pass an NgZone to the constructor.');
+    }
+
     if (input instanceof TemplateRef) {
-      const templateRenderer = createTemplateRenderer(input, additionalProps);
+      const templateRenderer = createTemplateRenderer(input, this.ngZone, additionalProps);
       return (context: TContext) => templateRenderer.render(context);
     }
 
