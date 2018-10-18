@@ -3,7 +3,7 @@
 
 import { ComponentRef, NgZone, TemplateRef } from '@angular/core';
 import * as React from 'react';
-import { CHILDREN_TO_APPEND_PROP, ReactContent, ReactContentProps } from '../renderer/react-content';
+import { createReactContentElement, ReactContentProps } from '../renderer/react-content';
 import { ReactTemplate } from './react-template';
 
 export interface RenderPropContext<TContext extends object> {
@@ -11,10 +11,7 @@ export interface RenderPropContext<TContext extends object> {
 }
 
 function renderReactContent(rootNodes: HTMLElement[], additionalProps?: ReactContentProps): JSX.Element {
-  return React.createElement(ReactContent, {
-    ...additionalProps,
-    [CHILDREN_TO_APPEND_PROP]: rootNodes,
-  });
+  return createReactContentElement(rootNodes, additionalProps);
 }
 
 /**
