@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 /**
  * Get the known keys (i.e. no index signature) of T.
  *
@@ -15,8 +18,6 @@ type KnownKeysOfOptions = KnownKeys<Options>; // 'key' | 'title';
 
  * Taken from https://stackoverflow.com/questions/51465182/typescript-remove-index-signature-using-mapped-types
  */
-export type KnownKeys<T> = { [K in keyof T]: string extends K ? never : number extends K ? never : K } extends {
-  [_ in keyof T]: infer U
-}
-  ? U
-  : never;
+export type KnownKeys<T> = {
+  [K in keyof T]: string extends K ? never : number extends K ? never : K
+} extends { [_ in keyof T]: infer U } ?U: never;
