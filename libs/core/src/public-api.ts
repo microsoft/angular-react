@@ -6,5 +6,6 @@ export * from './lib/components/wrapper-component';
 export * from './lib/declarations/public-api';
 export * from './lib/renderer/components/Disguise';
 export { getPassProps, passProp, PassProp } from './lib/renderer/pass-prop-decorator';
-export { ReactContent } from './lib/renderer/react-content';
+export { createReactContentElement, ReactContent, ReactContentProps } from './lib/renderer/react-content';
+export * from './lib/renderer/react-template';
 export { registerElement } from './lib/renderer/registry';

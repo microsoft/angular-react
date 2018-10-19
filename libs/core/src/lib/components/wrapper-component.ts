@@ -192,8 +192,12 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       return undefined;
     }
 
+    if (!this._ngZone) {
+      throw new Error('To create an input JSX renderer you must pass an NgZone to the constructor.');
+    }
+
     if (input instanceof TemplateRef) {
-      const templateRenderer = createTemplateRenderer(input, additionalProps);
+      const templateRenderer = createTemplateRenderer(input, this._ngZone, additionalProps);
       return (context: TContext) => templateRenderer.render(context);
     }
 

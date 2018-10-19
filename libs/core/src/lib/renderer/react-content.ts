@@ -23,8 +23,7 @@ export interface ReactContentProps {
 /**
  * Creates a new `ReactContent` element.
  * @param children The children to append to the `ReactContent` element.
- * @param additionalProps _Optional_. @see `ReactContentProps`
- * @returns
+ * @param additionalProps _Optional_. @see `ReactContentProps`.
  */
 export function createReactContentElement(children: ReadonlyArray<HTMLElement>, additionalProps?: ReactContentProps) {
   return React.createElement(ReactContent, {
@@ -36,12 +35,12 @@ export function createReactContentElement(children: ReadonlyArray<HTMLElement>, 
 /**
  * @internal
  */
-export interface InternalReactContentProps extends ReactContentProps {
+interface InternalReactContentProps extends ReactContentProps {
   readonly [CHILDREN_TO_APPEND_PROP]: ReadonlyArray<HTMLElement>;
 }
 
 /**
- * Render any `HTMLElement`s (including Angular components) as a child of React components.
+ * Render any `HTMLElement`s as a child of React components.
  * Supports two rendering modes:
  *  1. `legacy` - append `<react-content>` as the root, and nest the `children-to-append` underneath it.
  *  2. `new` (**default**) - append the `children-to-append` to the parent of this component, and hide the `<react-content>` element.
