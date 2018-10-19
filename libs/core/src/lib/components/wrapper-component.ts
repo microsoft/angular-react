@@ -48,6 +48,14 @@ export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 export type ContentClassValue = string[] | Set<string> | { [klass: string]: any };
 export type ContentStyleValue = string | StyleObject;
 
+export interface WrapperComponentOptions {
+  readonly setHostDisplay?: boolean;
+}
+
+const defaultWrapperComponentOptions: WrapperComponentOptions = {
+  setHostDisplay: false,
+};
+
 /**
  * Base class for Angular @Components wrapping React Components.
  * Simplifies some of the handling around passing down props and CSS styling on the host component.
@@ -56,6 +64,8 @@ export type ContentStyleValue = string | StyleObject;
 export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit, OnChanges {
   private _contentClass: Many<ContentClassValue>;
   private _contentStyle: ContentStyleValue;
+
+  private _shouldSetHostDisplay: boolean;
 
   protected abstract reactNodeRef: ElementRef<HTMLElement>;
 
@@ -109,13 +119,15 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     public readonly elementRef: ElementRef<HTMLElement>,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly renderer: Renderer2,
-    private readonly setHostDisplay: boolean = false
-  ) {}
+    { setHostDisplay }: WrapperComponentOptions = defaultWrapperComponentOptions
+  ) {
+    this._shouldSetHostDisplay = setHostDisplay;
+  }
 
   ngAfterViewInit() {
     this._passAttributesAsProps();
 
-    if (this.setHostDisplay) {
+    if (this._shouldSetHostDisplay) {
       this._setHostDisplay();
     }
 

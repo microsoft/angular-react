@@ -75,7 +75,7 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
   private _tooltipOptions: ITooltipOptions;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
 
     this.onTooltipToggleHandler = this.onTooltipToggleHandler.bind(this);
   }

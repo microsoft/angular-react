@@ -22,8 +22,7 @@ import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react/lib/Br
       [styles]="styles"
       [theme]="theme"
       [RenderItem]="renderItem && onRenderItem"
-      [ReduceData]="onReduceData"
-      >
+      [ReduceData]="onReduceData">
     </Breadcrumb>
   `,
   styles: ['react-renderer'],

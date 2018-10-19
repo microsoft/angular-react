@@ -66,7 +66,7 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
   private _renderCustomElementsGroup?: InputRendererOptions<{}>;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
   }
 }
 
@@ -109,6 +109,6 @@ export class FabShimmerElementsGroupComponent extends ReactWrapperComponent<IShi
   styles?: IShimmerElementsGroupProps['styles'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
   }
 }

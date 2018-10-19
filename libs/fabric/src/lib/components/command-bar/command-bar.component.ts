@@ -115,7 +115,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   private readonly _subscriptions: Subscription[] = [];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
   }
 
   ngOnChanges(changes: TypedChanges<this>) {

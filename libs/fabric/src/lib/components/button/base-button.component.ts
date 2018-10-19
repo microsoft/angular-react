@@ -91,7 +91,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
   onRenderMenuIcon: (props?: IButtonProps, defaultRender?: JsxRenderFunc<IButtonProps>) => JSX.Element;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onMenuClickHandler = this.onMenuClickHandler.bind(this);

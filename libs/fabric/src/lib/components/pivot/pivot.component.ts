@@ -69,8 +69,8 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
 
   onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
   }
 
   ngOnInit() {
@@ -145,7 +145,7 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
   readonly onLinkClick = new EventEmitter<{ item?: PivotItem; ev?: MouseEvent }>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
 
     this.onLinkClickHandler = this.onLinkClickHandler.bind(this);
   }

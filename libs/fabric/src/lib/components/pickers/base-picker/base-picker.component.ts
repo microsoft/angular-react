@@ -88,7 +88,7 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
   private _pickerSuggestionsOptions: IBasePickerSuggestionsOptions;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, true);
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onFocusHandler = this.onFocusHandler.bind(this);
