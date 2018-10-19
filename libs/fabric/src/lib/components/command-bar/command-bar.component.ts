@@ -187,7 +187,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     this._subscriptions.push(
       directive.onItemChanged.subscribe(({ key, changes }: CommandBarItemChangedPayload) => {
         setItems(items => items.map(item => (item.key === key ? mergeItemChanges(item, changes) : item)));
-        this.detectChanges();
+        this.markForCheck();
       })
     );
   }
