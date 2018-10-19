@@ -17,6 +17,7 @@ import {
 } from '@angular/core';
 import classnames from 'classnames';
 import toStyle from 'css-to-style';
+import stylenames, { StyleObject } from 'stylenames';
 import { Many } from '../declarations/many';
 import { ReactContentProps } from '../renderer/react-content';
 import { isReactNode } from '../renderer/react-node';
@@ -44,10 +45,28 @@ export type InputRendererOptions<TContext extends object> =
 
 export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 
+/**
+ * Optional options to pass to `ReactWrapperComponent`.
+ */
+/**
+ * Whether the host's `display` should be set to the root child node's`display`.
+ * @default `false`.
+ */
+
+/**
+ * The zone to use to track changes to inner (Angular) templates & components.
+ * @default `undefined`.
+ */
+/* export type _ReactWrapperComponentInternalView<TProps extends {} = {}> = ReactWrapperComponent<TProps> & {
+  readonly reactNodeRef: ElementRef<HTMLElement>;
+}; */
+
 export type ContentClassValue = string[] | Set<string> | { [klass: string]: any };
+export type ContentStyleValue = string | StyleObject;
+
 /**
  * Base class for Angular @Components wrapping React Components.
- * Simplifies some of the handling around passing down props and setting CSS on the host component.
+ * Simplifies some of the handling around passing down props and CSS styling on the host component.
  */
 // NOTE: TProps is not used at the moment, but a preparation for a potential future change.
 export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit, OnChanges {
@@ -76,21 +95,23 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   }
 
   /**
-   * Alternative to `style` using the same syntax.
+   * Alternative to `style` and `[ngStyle]` using (almost) the same syntax.
+   * All syntax supports by `ngStyle` is supported, with the exception of specifying units in the key (`{ 'width.px': 12 }`).
    *
    * @description Since this is a wrapper component, sticking to the virtual DOM concept, this should have any styling of its own.
    * Any value passes to `contentStyle` will be passed to the root component's style.
    */
   @Input()
-  set contentStyle(value: string) {
+  set contentStyle(value: ContentStyleValue) {
     this._contentStyle = value;
     if (isReactNode(this.reactNodeRef.nativeElement)) {
-      this.reactNodeRef.nativeElement.setProperty('style', toStyle(value));
+      const stringValue = typeof value === 'string' ? value : stylenames(value);
+      this.reactNodeRef.nativeElement.setProperty('style', toStyle(stringValue));
       this.changeDetectorRef.detectChanges();
     }
   }
 
-  get contentStyle(): string {
+  get contentStyle(): ContentStyleValue {
     return this._contentStyle;
   }
 
