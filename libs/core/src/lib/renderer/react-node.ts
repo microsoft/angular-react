@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { StringMap } from '../declarations/StringMap';
+import { StringMap } from '../declarations/string-map';
 import removeUndefinedProperties from '../utils/object/remove-undefined-properties';
 import { CHILDREN_TO_APPEND_PROP } from './react-content';
 import { getComponentClass } from './registry';

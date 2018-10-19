@@ -3,7 +3,7 @@
 
 import { Injectable, Renderer2, RendererStyleFlags2, RendererType2 } from '@angular/core';
 import { EventManager, ɵDomRendererFactory2, ɵDomSharedStylesHost } from '@angular/platform-browser';
-import { StringMap } from '../declarations/StringMap';
+import { StringMap } from '../declarations/string-map';
 import { Disguise } from './components/Disguise';
 import { ReactContent } from './react-content';
 import { isReactNode, ReactNode } from './react-node';
