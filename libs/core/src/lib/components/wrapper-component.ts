@@ -127,10 +127,6 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     private readonly setHostDisplay: boolean = false
   ) {}
 
-    /* // Mark this node as a react-wrapper node.
-    // Used for directives such as `ContentClass` and `ContentStyle`.
-    this.elementRef.nativeElement.setAttribute('data-react-wrapper', 'true'); */
-
   ngAfterViewInit() {
     this._passAttributesAsProps();
 
@@ -155,13 +151,13 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   ngOnChanges(changes: SimpleChanges) {
     this._passAttributesAsProps();
 
-    this.detectChanges();
+    this.markForCheck();
   }
 
   /**
-   * Trigger change detection on the component.
+   * Mark the component as one that needed re-rendering on the React side, and mark for change detection on the Angular side.
    */
-  protected detectChanges() {
+  protected markForCheck() {
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       this.reactNodeRef.nativeElement.setRenderPending();
     }

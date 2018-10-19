@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
+import { InputRendererOptions, ReactWrapperComponent, KnownKeys } from '@angular-react/core';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -172,7 +172,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
       this[itemsPropertyKey] = mapper(this[itemsPropertyKey]);
       transformItemsFunc(this[itemsPropertyKey]);
 
-      this.detectChanges();
+      this.markForCheck();
     };
 
     // Initial items
@@ -189,7 +189,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     this._subscriptions.push(
       directive.onItemChanged.subscribe(({ key, changes }: CommandBarItemChangedPayload) => {
         setItems(items => items.map(item => (item.key === key ? mergeItemChanges(item, changes) : item)));
-        this.detectChanges();
+        this.markForCheck();
       })
     );
   }

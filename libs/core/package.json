@@ -6,7 +6,9 @@
     "deleteDestPath": true,
     "whitelistedNonPeerDependencies": [
       "tslib",
-      "css-to-style"
+      "css-to-style",
+      "classnames",
+      "stylenames"
     ],
     "lib": {
       "languageLevel": [
