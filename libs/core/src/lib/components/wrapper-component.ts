@@ -15,7 +15,9 @@ import {
   TemplateRef,
   Type,
 } from '@angular/core';
+import classnames from 'classnames';
 import toStyle from 'css-to-style';
+import { Many } from '../declarations/many';
 import { ReactContentProps } from '../renderer/react-content';
 import { isReactNode } from '../renderer/react-node';
 import { isReactRendererData } from '../renderer/renderer';
@@ -42,33 +44,34 @@ export type InputRendererOptions<TContext extends object> =
 
 export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 
+export type ContentClassValue = string[] | Set<string> | { [klass: string]: any };
 /**
  * Base class for Angular @Components wrapping React Components.
  * Simplifies some of the handling around passing down props and setting CSS on the host component.
  */
 // NOTE: TProps is not used at the moment, but a preparation for a potential future change.
 export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit, OnChanges {
-  private _contentClass: string;
-  private _contentStyle: string;
+  private _contentClass: Many<ContentClassValue>;
+  private _contentStyle: ContentStyleValue;
 
   protected abstract reactNodeRef: ElementRef<HTMLElement>;
 
   /**
-   * Alternative to `class` using the same syntax.
+   * Alternative to `class` and `[ngClass]` using the same syntax.
    *
-   * @description Since this is a wrapper component, sticking to the virtual DOM concept, this should have any styling of its own.
-   * Any value passes to `contentClass` will be passed to the root component's class.
+   * @description Since this is a wrapper component, sticking to the virtual DOM concept, its DOM element shouldn't have any styling of its own.
+   * Instead, any value passes to `contentClass` will be passed to the root component's class as `className`.
    */
   @Input()
-  set contentClass(value: string) {
+  set contentClass(value: Many<ContentClassValue>) {
     this._contentClass = value;
     if (isReactNode(this.reactNodeRef.nativeElement)) {
-      this.reactNodeRef.nativeElement.setProperty('className', value);
+      this.reactNodeRef.nativeElement.setProperty('className', classnames(value));
       this.changeDetectorRef.detectChanges();
     }
   }
 
-  get contentClass(): string {
+  get contentClass(): Many<ContentClassValue> {
     return this._contentClass;
   }
 
