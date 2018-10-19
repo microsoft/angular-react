@@ -109,7 +109,7 @@ export class ReactNode {
 
   setProperties(properties: StringMap) {
     this.setRenderPending();
-    Object.assign(this.props, properties);
+    Object.assign(this._props, removeUndefinedProperties(properties));
   }
 
   removeProperty(name: string, childName?: string) {
