@@ -45,22 +45,6 @@ export type InputRendererOptions<TContext extends object> =
 
 export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 
-/**
- * Optional options to pass to `ReactWrapperComponent`.
- */
-/**
- * Whether the host's `display` should be set to the root child node's`display`.
- * @default `false`.
- */
-
-/**
- * The zone to use to track changes to inner (Angular) templates & components.
- * @default `undefined`.
- */
-/* export type _ReactWrapperComponentInternalView<TProps extends {} = {}> = ReactWrapperComponent<TProps> & {
-  readonly reactNodeRef: ElementRef<HTMLElement>;
-}; */
-
 export type ContentClassValue = string[] | Set<string> | { [klass: string]: any };
 export type ContentStyleValue = string | StyleObject;
 
