@@ -2,18 +2,14 @@
 // Licensed under the MIT License.
 
 import { ComponentRef, EmbeddedViewRef, TemplateRef } from '@angular/core';
-import * as React from 'react';
-import { CHILDREN_TO_APPEND_PROP, ReactContent, ReactContentProps } from '../renderer/react-content';
+import { createReactContentElement, ReactContentProps } from '../renderer/react-content';
 
 export interface RenderPropContext<TContext extends object> {
   readonly render: (context: TContext) => JSX.Element;
 }
 
 function renderReactContent(rootNodes: HTMLElement[], additionalProps?: ReactContentProps): JSX.Element {
-  return React.createElement(ReactContent, {
-    ...additionalProps,
-    [CHILDREN_TO_APPEND_PROP]: rootNodes,
-  });
+  return createReactContentElement(rootNodes, additionalProps);
 }
 
 /**
