@@ -89,7 +89,7 @@ jobs:
               git rm -rf .
               cd ..
 
-              npm run build
+              npm run build:demo:github
 
               cp -a build/. out/.
 
