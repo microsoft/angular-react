@@ -1,12 +1,12 @@
 version: 2
 jobs:
   build:
+    ignore:
+      - gh-pages
     docker:
       # specify the version you desire here
       - image: circleci/node:10-browsers
-
     working_directory: ~/repo
-
     steps:
       - checkout
 
@@ -46,9 +46,10 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:10-browsers
-
     working_directory: ~/repo
-
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: gh-pages
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -80,9 +81,26 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               git config user.name "CircleCI"
               git config user.email "circleci@users.noreply.github.com"
+
+              git clone $CIRCLE_REPOSITORY_URL out
+
+              cd out
+              git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+              git rm -rf .
+              cd ..
+
+              npm run build
+
+              cp -a build/. out/.
+
+              mkdir -p out/.circleci && cp -a .circleci/. out/.circleci/.
+              cd out
+
               git add -A
-              git commit -m 'Deploy to GitHub pages [ci]'
-              git push
+              git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+
+              git push origin $TARGET_BRANCH
+
             fi
 workflows:
   version: 2
