@@ -94,10 +94,11 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   /**
    * Creates an instance of ReactWrapperComponent.
    * @param elementRef The host element.
-   * @param setHostDisplay Whether the host's `display` should be set to the root child node's `display`. defaults to `false`
+   * @param changeDetectorRef The change detector for the component.
+   * @param renderer The Angular renderer.
    */
   constructor(
-    public readonly elementRef: ElementRef,
+    public readonly elementRef: ElementRef<HTMLElement>,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly renderer: Renderer2,
     private readonly setHostDisplay: boolean = false
@@ -127,13 +128,14 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   ngOnChanges(changes: SimpleChanges) {
     this._passAttributesAsProps();
 
-    this.detectChanges();
+    this.markForCheck();
   }
 
   /**
-   * Trigger change detection on the component.
+   * Mark the component as one that needed re-rendering on the React side,
+   * and mark for change detection on the Angular side.
    */
-  protected detectChanges() {
+  protected markForCheck() {
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       this.reactNodeRef.nativeElement.setRenderPending();
     }

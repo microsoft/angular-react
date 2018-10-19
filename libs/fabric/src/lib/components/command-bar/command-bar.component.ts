@@ -187,7 +187,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     this._subscriptions.push(
       directive.onItemChanged.subscribe(({ key, changes }: CommandBarItemChangedPayload) => {
         setItems(items => items.map(item => (item.key === key ? mergeItemChanges(item, changes) : item)));
-        this.detectChanges();
+        this.markForCheck();
       })
     );
   }
@@ -234,10 +234,10 @@ export interface ICommandBarItemOptions<TData = any>
 }
 
 export interface ICommandBarItemOptionsRenderContext {
-  readonly item: any;
-  readonly dismissMenu: (ev?: any, dismissAll?: boolean) => void;
+  item: any;
+  dismissMenu: (ev?: any, dismissAll?: boolean) => void;
 }
 
 export interface ICommandBarItemOptionsRenderIconContext {
-  readonly contextualMenuItem: IContextualMenuItem;
+  contextualMenuItem: IContextualMenuItem;
 }
