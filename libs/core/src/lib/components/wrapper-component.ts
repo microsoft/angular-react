@@ -15,7 +15,9 @@ import {
   TemplateRef,
   Type,
 } from '@angular/core';
+import classnames from 'classnames';
 import toStyle from 'css-to-style';
+import stylenames, { StyleObject } from 'stylenames';
 import { ReactContentProps } from '../renderer/react-content';
 import { isReactNode } from '../renderer/react-node';
 import { isReactRendererData } from '../renderer/renderer';
@@ -43,65 +45,91 @@ export type InputRendererOptions<TContext extends object> =
 export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 
 /**
+ * Optional options to pass to `ReactWrapperComponent`.
+ */
+  /**
+   * Whether the host's `display` should be set to the root child node's`display`.
+   * @default `false`.
+   */
+
+  /**
+   * The zone to use to track changes to inner (Angular) templates & components.
+   * @default `undefined`.
+   */
+/* export type _ReactWrapperComponentInternalView<TProps extends {} = {}> = ReactWrapperComponent<TProps> & {
+  readonly reactNodeRef: ElementRef<HTMLElement>;
+}; */
+
+export type ContentClassValue = string[] | Set<string> | { [klass: string]: any };
+export type ContentStyleValue = string | StyleObject;
+export type Many<T> = T | T[];
+
+/**
  * Base class for Angular @Components wrapping React Components.
- * Simplifies some of the handling around passing down props and setting CSS on the host component.
+ * Simplifies some of the handling around passing down props and CSS styling on the host component.
  */
 // NOTE: TProps is not used at the moment, but a preparation for a potential future change.
 export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit, OnChanges {
-  private _contentClass: string;
-  private _contentStyle: string;
+  private _contentClass: Many<ContentClassValue>;
+  private _contentStyle: ContentStyleValue;
 
   protected abstract reactNodeRef: ElementRef<HTMLElement>;
 
   /**
-   * Alternative to `class` using the same syntax.
+   * Alternative to `class` and `[ngClass]` using the same syntax.
    *
-   * @description Since this is a wrapper component, sticking to the virtual DOM concept, this should have any styling of its own.
-   * Any value passes to `contentClass` will be passed to the root component's class.
+   * @description Since this is a wrapper component, sticking to the virtual DOM concept, its DOM element shouldn't have any styling of its own.
+   * Instead, any value passes to `contentClass` will be passed to the root component's class as `className`.
    */
   @Input()
-  set contentClass(value: string) {
+  set contentClass(value: Many<ContentClassValue>) {
     this._contentClass = value;
     if (isReactNode(this.reactNodeRef.nativeElement)) {
-      this.reactNodeRef.nativeElement.setProperty('className', value);
+      this.reactNodeRef.nativeElement.setProperty('className', classnames(value));
       this.changeDetectorRef.detectChanges();
     }
   }
 
-  get contentClass(): string {
+  get contentClass(): Many<ContentClassValue> {
     return this._contentClass;
   }
 
   /**
-   * Alternative to `style` using the same syntax.
+   * Alternative to `style` and `[ngStyle]` using the same syntax.
    *
    * @description Since this is a wrapper component, sticking to the virtual DOM concept, this should have any styling of its own.
    * Any value passes to `contentStyle` will be passed to the root component's style.
    */
   @Input()
-  set contentStyle(value: string) {
+  set contentStyle(value: ContentStyleValue) {
     this._contentStyle = value;
     if (isReactNode(this.reactNodeRef.nativeElement)) {
-      this.reactNodeRef.nativeElement.setProperty('style', toStyle(value));
+      const stringValue = typeof value === 'string' ? value : stylenames(value);
+      this.reactNodeRef.nativeElement.setProperty('style', toStyle(stringValue));
       this.changeDetectorRef.detectChanges();
     }
   }
 
-  get contentStyle(): string {
+  get contentStyle(): ContentStyleValue {
     return this._contentStyle;
   }
 
   /**
    * Creates an instance of ReactWrapperComponent.
    * @param elementRef The host element.
-   * @param setHostDisplay Whether the host's `display` should be set to the root child node's `display`. defaults to `false`
+   * @param changeDetectorRef The change detector for the component.
+   * @param renderer The Angular renderer.
    */
   constructor(
-    public readonly elementRef: ElementRef,
+    public readonly elementRef: ElementRef<HTMLElement>,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly renderer: Renderer2,
     private readonly setHostDisplay: boolean = false
   ) {}
+
+    /* // Mark this node as a react-wrapper node.
+    // Used for directives such as `ContentClass` and `ContentStyle`.
+    this.elementRef.nativeElement.setAttribute('data-react-wrapper', 'true'); */
 
   ngAfterViewInit() {
     this._passAttributesAsProps();
