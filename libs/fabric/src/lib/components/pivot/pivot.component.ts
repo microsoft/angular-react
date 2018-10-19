@@ -2,7 +2,21 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, JsxRenderFunc, passProp, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnInit,
+  Output,
+  QueryList,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
 import * as React from 'react';
 
@@ -70,7 +84,7 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
-    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
+    super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
   }
 
   ngOnInit() {

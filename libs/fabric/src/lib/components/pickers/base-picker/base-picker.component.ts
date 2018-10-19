@@ -2,9 +2,14 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, JsxRenderFunc, Omit, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectorRef, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2 } from '@angular/core';
 import { IPersonaProps } from 'office-ui-fabric-react/lib/Persona';
-import { BaseAutoFill, IBasePickerProps, IBasePickerSuggestionsProps, IPickerItemProps } from 'office-ui-fabric-react/lib/Pickers';
+import {
+  BaseAutoFill,
+  IBasePickerProps,
+  IBasePickerSuggestionsProps,
+  IPickerItemProps,
+} from 'office-ui-fabric-react/lib/Pickers';
 import omit from '../../../utils/omit';
 
 export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<T>>
@@ -87,8 +92,8 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
 
   private _pickerSuggestionsOptions: IBasePickerSuggestionsOptions;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onFocusHandler = this.onFocusHandler.bind(this);

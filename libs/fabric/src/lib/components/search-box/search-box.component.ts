@@ -9,6 +9,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  NgZone,
   Output,
   Renderer2,
   ViewChild,
@@ -94,8 +95,8 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
 
   private _clearButtonOptions: IButtonOptions;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { ngZone });
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onSearchHandler = this.onSearchHandler.bind(this);

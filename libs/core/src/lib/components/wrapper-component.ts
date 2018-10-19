@@ -9,6 +9,7 @@ import {
   ElementRef,
   Injector,
   Input,
+  NgZone,
   OnChanges,
   Renderer2,
   SimpleChanges,
@@ -48,8 +49,21 @@ export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 export type ContentClassValue = string[] | Set<string> | { [klass: string]: any };
 export type ContentStyleValue = string | StyleObject;
 
+/**
+ * Optional options to pass to `ReactWrapperComponent`.
+ */
 export interface WrapperComponentOptions {
+  /**
+   * Whether the host's `display` should be set to the root child node's`display`.
+   * @default `false`.
+   */
   readonly setHostDisplay?: boolean;
+
+  /**
+   * The zone to use to track changes to inner (Angular) templates & components.
+   * @default `undefined`.
+   */
+  readonly ngZone?: NgZone;
 }
 
 const defaultWrapperComponentOptions: WrapperComponentOptions = {
@@ -65,6 +79,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
   private _contentClass: Many<ContentClassValue>;
   private _contentStyle: ContentStyleValue;
 
+  private _ngZone: NgZone;
   private _shouldSetHostDisplay: boolean;
 
   protected abstract reactNodeRef: ElementRef<HTMLElement>;
@@ -119,8 +134,9 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     public readonly elementRef: ElementRef<HTMLElement>,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly renderer: Renderer2,
-    { setHostDisplay }: WrapperComponentOptions = defaultWrapperComponentOptions
+    { setHostDisplay, ngZone }: WrapperComponentOptions = defaultWrapperComponentOptions
   ) {
+    this._ngZone = ngZone;
     this._shouldSetHostDisplay = setHostDisplay;
   }
 

@@ -2,7 +2,19 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ImageLoadState } from 'office-ui-fabric-react/lib/components/Image/Image.types';
 import { IPersonaCoinProps, IPersonaProps, IPersonaSharedProps } from 'office-ui-fabric-react/lib/Persona';
 
@@ -55,6 +67,10 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
 
   onRenderCoin: (props?: IPersonaSharedProps, defaultRender?: JsxRenderFunc<IPersonaSharedProps>) => JSX.Element;
   onRenderInitials: (props?: IPersonaSharedProps, defaultRender?: JsxRenderFunc<IPersonaSharedProps>) => JSX.Element;
+
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { ngZone });
+  }
 
   ngOnInit() {
     this.onRenderCoin = this.createRenderPropHandler(this.renderCoin);
@@ -129,8 +145,8 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
   onRenderTertiaryText: (props?: IPersonaProps, defaultRender?: JsxRenderFunc<IPersonaProps>) => JSX.Element;
   onRenderOptionalText: (props?: IPersonaProps, defaultRender?: JsxRenderFunc<IPersonaProps>) => JSX.Element;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, ngZone);
   }
 
   ngOnInit() {
@@ -189,7 +205,7 @@ export class FabPersonaCoinComponent extends FabPersonaBaseComponent<IPersonaCoi
   @Input()
   className?: IPersonaCoinProps['className'];
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, ngZone);
   }
 }

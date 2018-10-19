@@ -2,7 +2,18 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ITooltipHostProps, ITooltipProps } from 'office-ui-fabric-react/lib/Tooltip';
 import { omit } from '../../utils/omit';
 
@@ -74,8 +85,8 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
   transformedTooltipProps: ITooltipHostProps['tooltipProps'];
   private _tooltipOptions: ITooltipOptions;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
 
     this.onTooltipToggleHandler = this.onTooltipToggleHandler.bind(this);
   }
