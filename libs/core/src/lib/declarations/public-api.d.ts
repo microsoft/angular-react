@@ -4,4 +4,4 @@
 export * from './index-signature';
 export * from './known-keys';
 export * from './omit';
-export * from './StringMap';
+export * from './string-map';
