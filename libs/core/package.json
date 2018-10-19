@@ -6,7 +6,9 @@
     "deleteDestPath": true,
     "whitelistedNonPeerDependencies": [
       "tslib",
-      "css-to-style"
+      "css-to-style",
+      "classnames",
+      "stylenames"
     ],
     "lib": {
       "languageLevel": [
@@ -56,9 +58,13 @@
     "react": "^16.4.1"
   },
   "dependencies": {
-    "css-to-style": "^1.2.0"
+    "css-to-style": "^1.2.0",
+    "classnames": "^2.2.6",
+    "stylenames": "^1.1.6"
   },
   "bundledDependencies": [
-    "css-to-style"
+    "css-to-style",
+    "classnames",
+    "stylesnames"
   ]
 }
