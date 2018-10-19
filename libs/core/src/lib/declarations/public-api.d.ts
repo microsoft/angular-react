@@ -3,5 +3,6 @@
 
 export * from './index-signature';
 export * from './known-keys';
+export * from './many';
 export * from './omit';
 export * from './string-map';
