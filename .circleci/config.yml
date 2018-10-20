@@ -79,8 +79,8 @@ jobs:
       - deploy:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              git config user.name "CircleCI"
-              git config user.email "circleci@users.noreply.github.com"
+              git config --global user.name "CircleCI"
+              git config --global user.email "circleci@users.noreply.github.com"
 
               git clone $CIRCLE_REPOSITORY_URL out
 
