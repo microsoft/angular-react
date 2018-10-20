@@ -91,7 +91,7 @@ jobs:
 
               npm run build:demo:github
 
-              cp -a build/. out/.
+              cp -a docs/. out/.
 
               mkdir -p out/.circleci && cp -a .circleci/. out/.circleci/.
               cd out
