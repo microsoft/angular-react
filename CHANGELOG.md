@@ -3,9 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.6"></a>
+
+# [0.4.6](https://github.com/Microsoft/angular-react/compare/v0.4.5...v0.4.6) (2018-10-21)
+
+### Bug fixes
+
+- **core:** Content class and contentStyle refactor and enhancements ([#27](https://github.com/Microsoft/angular-react/pull/27)) ([04f537d](https://github.com/Microsoft/angular-react/commit/04f537d432370c0da4f9afa91b8b4172a8c6df3d))
+- **core:** Fix ng-templates rendered as render props not updating when internal bindings change ([#28](https://github.com/Microsoft/angular-react/pull/28)) ([626e9b8](https://github.com/Microsoft/angular-react/commit/626e9b8d7c84f049862cf6b26d9c1a8c334e732c))
+
+- **fabric:** Fix `ICommandBarItemOptions` type (again) ([#23](https://github.com/Microsoft/angular-react/pull/23)) ([0561e92](https://github.com/Microsoft/angular-react/commit/0561e921fb5c4bf40da9fd252973f87249da97fc))
+- **fabric:** Fix change detection on items change in command bar when using declarative syntax ([#26](https://github.com/Microsoft/angular-react/pull/26)) ([c1097d3](https://github.com/Microsoft/angular-react/commit/c1097d379017b310495935011899ea640d4d6d4e))
+
 <a name="0.4.5"></a>
 
-# [0.4.4](https://github.com/Microsoft/angular-react/compare/v0.4.4...v0.4.5) (2018-10-16)
+# [0.4.5](https://github.com/Microsoft/angular-react/compare/v0.4.4...v0.4.5) (2018-10-16)
 
 ### Bug fixes
 
