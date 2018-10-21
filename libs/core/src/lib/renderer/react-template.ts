@@ -5,8 +5,10 @@ import { EmbeddedViewRef, NgZone, TemplateRef } from '@angular/core';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Subscription } from 'rxjs';
+import { throttleTime } from 'rxjs/operators';
 
 const DEBUG = false;
+const TEMPLATE_DETECT_CHANGES_THROTTLE_MS = 250;
 
 /**
  * @internal
@@ -79,11 +81,16 @@ export class ReactTemplate<TContext extends object | void> extends React.Compone
 
     this._embeddedViewRef.rootNodes.forEach(child => hostElement.appendChild(child));
 
-    // Detect the first cycle's changes, and then subscribe for subsequent ones
+    // Detect the first cycle's changes, and then subscribe for subsequent ones.
     this._embeddedViewRef.detectChanges();
-    this._ngZoneSubscription = ngZone.onUnstable.subscribe(() => {
-      this._embeddedViewRef.detectChanges();
-    });
+
+    // Throttling the detect changes to an empirically selected value so we don't overload too much work.
+    // TODO: This needs some better solution to listen to changes to the binding sources of the template.
+    this._ngZoneSubscription = ngZone.onUnstable
+      .pipe(throttleTime(TEMPLATE_DETECT_CHANGES_THROTTLE_MS))
+      .subscribe(() => {
+        this._embeddedViewRef.markForCheck();
+      });
   }
 
   componentWillUnmount() {
