@@ -1,7 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  NgZone,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ITag, ITagPickerProps } from 'office-ui-fabric-react/lib/Pickers/TagPicker/TagPicker';
 import { FabBasePickerComponent } from '../base-picker/base-picker.component';
 
@@ -50,7 +58,7 @@ export class FabTagPickerComponent extends FabBasePickerComponent<ITag, ITagPick
   @ViewChild('reactNode')
   protected reactNodeRef: ElementRef;
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, ngZone);
   }
 }

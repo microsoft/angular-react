@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 
 import {
-  Directive,
-  ContentChildren,
-  QueryList,
-  OnDestroy,
   AfterContentInit,
-  Output,
+  ContentChildren,
+  Directive,
   EventEmitter,
+  OnDestroy,
+  Output,
+  QueryList,
 } from '@angular/core';
-import { ICommandBarItemOptions } from '../command-bar.component';
 import { Subscription } from 'rxjs';
-import { CommandBarItemDirective, CommandBarItemChangedPayload } from './command-bar-item.directives';
+import { ICommandBarItemOptions } from '../command-bar.component';
+import { CommandBarItemChangedPayload, CommandBarItemDirective } from './command-bar-item.directives';
 
 export abstract class CommandBarItemsDirectiveBase implements AfterContentInit, OnDestroy {
   private readonly _subscriptions: Subscription[] = [];

@@ -11,6 +11,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  NgZone,
   OnDestroy,
   Output,
   QueryList,
@@ -114,8 +115,8 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
 
   private readonly _subscriptions: Subscription[] = [];
 
-  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer, true);
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
   }
 
   ngOnChanges(changes: TypedChanges<this>) {
