@@ -86,11 +86,9 @@ export class ReactTemplate<TContext extends object | void> extends React.Compone
 
     // Throttling the detect changes to an empirically selected value so we don't overload too much work.
     // TODO: This needs some better solution to listen to changes to the binding sources of the template.
-    this._ngZoneSubscription = ngZone.onUnstable
-      .pipe(throttleTime(TEMPLATE_DETECT_CHANGES_THROTTLE_MS))
-      .subscribe(() => {
-        this._embeddedViewRef.markForCheck();
-      });
+    this._ngZoneSubscription = ngZone.onStable.pipe(throttleTime(TEMPLATE_DETECT_CHANGES_THROTTLE_MS)).subscribe(() => {
+      this._embeddedViewRef.detectChanges();
+    });
   }
 
   componentWillUnmount() {
