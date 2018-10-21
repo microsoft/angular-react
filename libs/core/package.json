@@ -65,6 +65,6 @@
   "bundledDependencies": [
     "css-to-style",
     "classnames",
-    "stylesnames"
+    "stylenames"
   ]
 }
