@@ -1,33 +1,5 @@
-import {
-  ChangeDetectorRef,
-  ViewEncapsulation,
-  Component,
-  ComponentFactoryResolver,
-  Injector,
-  Input,
-  ComponentRef,
-  TemplateRef,
-  ViewChild,
-  AfterViewInit,
-} from '@angular/core';
-import {
-  DialogType,
-  ITheme,
-  IChoiceGroupProps,
-  SpinnerSize,
-  PersonaSize,
-  PersonaPresence,
-  PivotLinkSize,
-  SelectableOptionMenuItemType,
-  PanelType,
-  ICommandBarItemProps,
-  IBreadcrumbItem,
-  IButtonProps,
-  Button,
-  MessageBarType,
-  ShimmerElementType,
-  IContextualMenuProps,
-} from 'office-ui-fabric-react';
+import { ChangeDetectorRef, Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ICalendarStrings, IContextualMenuProps } from 'office-ui-fabric-react';
 
 @Component({
   selector: 'app-root',
@@ -40,6 +12,32 @@ export class AppComponent {
   customRangeTemplate: TemplateRef<{ item: any; dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
 
   runDisabled: boolean;
+
+  strings: ICalendarStrings = {
+    months: [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ],
+
+    shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+
+    days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+
+    shortDays: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+
+    goToToday: 'Go to today',
+    weekNumberFormatString: 'Week number {0}',
+  };
 
   onNewClicked() {
     console.log('New clicked');
@@ -64,6 +62,10 @@ export class AppComponent {
   onCustomItemClick(item: any) {
     this.customItemCount++;
     console.log('custom item clicked', item);
+  }
+
+  onSelectDate($event) {
+    console.log($event);
   }
 
   constructor(private readonly cd: ChangeDetectorRef) {}

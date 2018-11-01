@@ -62,4 +62,6 @@
       <fab-command-bar-item key="full-screen" [iconOnly]="true" [iconProps]="{ iconName: fullScreenIcon }" (click)="toggleFullScreen()"></fab-command-bar-item>
     </far-items>
   </fab-command-bar>
+
+  <fab-calendar [strings]="strings" (onSelectDate)="onSelectDate($event)"></fab-calendar>
 </div>

@@ -3,6 +3,7 @@
 
 export * from './lib/components/breadcrumb/public-api';
 export * from './lib/components/button/public-api';
+export * from './lib/components/calendar/public-api';
 export * from './lib/components/callout/public-api';
 export * from './lib/components/checkbox/public-api';
 export * from './lib/components/choice-group/public-api';
