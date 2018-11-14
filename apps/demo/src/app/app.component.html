@@ -91,7 +91,7 @@
     </fab-details-list>
   </fab-marquee-selection>
   <div>{{ selection.count || 0 }} item(s) selected</div>
-  <fab-default-button (click)="marqueeEnabled = !marqueeEnabled">
-    Marque {{ marqueeEnabled === false ? 'Disabled' : 'Enabled' }}
+  <fab-default-button (onClick)="marqueeEnabled = !marqueeEnabled">
+    Marquee {{ marqueeEnabled === false ? 'Disabled' : 'Enabled' }}
   </fab-default-button>
 </div>

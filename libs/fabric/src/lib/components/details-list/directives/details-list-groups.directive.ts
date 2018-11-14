@@ -11,13 +11,11 @@ import { GroupItemDirective } from '../../group';
  * Wrapper directive for creating multiple DetailsList Groups
  */
 @Directive({ selector: 'fab-details-list > groups' })
-export class DetailsListGroupsDirective
-  extends ChangeableItemsDirective<IGroup> {
-
+export class DetailsListGroupsDirective extends ChangeableItemsDirective<IGroup> {
   @ContentChildren(GroupItemDirective)
   readonly directiveItems: QueryList<GroupItemDirective>;
 
   get items() {
-    return this && this.directiveItems.toArray();
+    return this.directiveItems.toArray();
   }
 }

@@ -42,12 +42,12 @@ export class AppComponent {
   };
 
   detailItems = [
-    { 'field1': 'f1content1', 'field2': 'f2content1' },
-    { 'field1': 'f1content2', 'field2': 'f2content2' },
-    { 'field1': 'f1content3', 'field2': 'f2content3' },
-    { 'field1': 'f1content4' },
-    { 'field2': 'f2content5' }
-  ]
+    { field1: 'f1content1', field2: 'f2content1' },
+    { field1: 'f1content2', field2: 'f2content2' },
+    { field1: 'f1content3', field2: 'f2content3' },
+    { field1: 'f1content4' },
+    { field2: 'f2content5' },
+  ];
 
   onNewClicked() {
     console.log('New clicked');

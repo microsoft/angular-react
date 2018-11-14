@@ -8,8 +8,10 @@ import { DetailsList } from 'office-ui-fabric-react/lib/DetailsList';
 
 import { FabGroupModule } from '../group';
 import { FabDetailsListComponent } from './details-list.component';
-import { DetailsListColumnDirective, DetailsListColumnRenderDirective }
-  from './directives/details-list-column.directive';
+import {
+  DetailsListColumnDirective,
+  DetailsListColumnRenderDirective,
+} from './directives/details-list-column.directive';
 import { DetailsListColumnsDirective } from './directives/details-list-columns.directive';
 import { DetailsListGroupsDirective } from './directives/details-list-groups.directive';
 
@@ -18,7 +20,7 @@ const components = [
   DetailsListColumnRenderDirective,
   DetailsListColumnsDirective,
   DetailsListGroupsDirective,
-  FabDetailsListComponent
+  FabDetailsListComponent,
 ];
 
 @NgModule({

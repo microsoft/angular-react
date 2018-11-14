@@ -12,20 +12,23 @@ import {
   QueryList,
 } from '@angular/core';
 import { IContextualMenuItem } from 'office-ui-fabric-react';
-import { Subscription } from 'rxjs';
-import { OnChanges, TypedChanges } from '../../../declarations/angular/typed-changes';
-import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
 
-export type ContextualMenuItemChangedPayload = ItemChangedPayload<IContextualMenuItem['key'], IContextualMenuItem>;
+import { OnChanges } from '../../../declarations/angular/typed-changes';
+import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
+import { ChangeableItemsHelper, IChangeableItemsContainer } from '../../core/shared/changeable-helper';
+import { ChangeableItemDirective } from '../../core/shared/changeable-item.directive';
 
 @Directive({ selector: 'contextual-menu-item' })
-export class ContextualMenuItemDirective
-  implements IContextualMenuItem, OnChanges<ContextualMenuItemDirective>, AfterContentInit, OnDestroy {
+export class ContextualMenuItemDirective extends ChangeableItemDirective<IContextualMenuItem>
+  implements
+    AfterContentInit,
+    IChangeableItemsContainer<IContextualMenuItem>,
+    IContextualMenuItem,
+    OnChanges<ContextualMenuItemDirective>,
+    OnDestroy {
   @ContentChildren(ContextualMenuItemDirective)
   readonly menuItemsDirectives: QueryList<ContextualMenuItemDirective>;
 
-  @Input()
-  key: IContextualMenuItem['key'];
   @Input()
   componentRef?: IContextualMenuItem['componentRef'];
   @Input()
@@ -94,53 +97,31 @@ export class ContextualMenuItemDirective
   @Output()
   readonly click = new EventEmitter<{ ev?: MouseEvent | KeyboardEvent; item?: IContextualMenuItem }>();
 
-  // Directive properties
   @Output()
-  readonly onItemChanged = new EventEmitter<ContextualMenuItemChangedPayload>();
-
-  private readonly _subscriptions: Subscription[] = [];
-
-  ngOnChanges(changes: TypedChanges<this>) {
-    this.onItemChanged.emit({
-      key: this.key,
-      changes,
-    });
+  get onChildItemChanged(): EventEmitter<ItemChangedPayload<string, IContextualMenuItem>> {
+    return this.changeableItemsHelper && this.changeableItemsHelper.onChildItemChanged;
+  }
+  @Input()
+  get onItemsChanged(): EventEmitter<QueryList<ChangeableItemDirective<IContextualMenuItem>>> {
+    return this.changeableItemsHelper && this.changeableItemsHelper.onItemsChanged;
   }
 
+  private changeableItemsHelper: ChangeableItemsHelper<IContextualMenuItem>;
+
   ngAfterContentInit() {
-    // @ContentChildren selects host component as well.
-    // Relevant GitHub issue: https://github.com/angular/angular/issues/10098
-    const nonSelfMenuItemsDirectives = this.menuItemsDirectives.filter(directive => directive !== this);
-    if (nonSelfMenuItemsDirectives.length === 0) {
-      return;
-    }
-
-    const items = nonSelfMenuItemsDirectives.map(directive => this._directiveToContextualMenuItem(directive));
-    if (!this.subMenuProps) {
-      this.subMenuProps = { items: items };
-    } else {
-      this.subMenuProps.items = items;
-    }
-
-    this._subscriptions.push(
-      this.menuItemsDirectives.changes.subscribe((newValue: this['menuItemsDirectives']) => {
-        this.onItemChanged.emit({
-          key: this.key,
-          changes: {
-            subMenuProps: {
-              currentValue: {
-                ...this.subMenuProps,
-                items: newValue.map(directive => this._directiveToContextualMenuItem(directive)),
-              },
-            },
-          },
-        });
-      })
-    );
+    this.changeableItemsHelper = new ChangeableItemsHelper(this.menuItemsDirectives, this, nonSelfDirective => {
+      const items = nonSelfDirective.map(directive => this._directiveToContextualMenuItem(directive as any));
+      if (!this.subMenuProps) {
+        this.subMenuProps = { items: items };
+      } else {
+        this.subMenuProps.items = items;
+      }
+    });
+    this.changeableItemsHelper.afterContentInit();
   }
 
   ngOnDestroy() {
-    this._subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.changeableItemsHelper.onDestroy();
   }
 
   private _directiveToContextualMenuItem(directive: ContextualMenuItemDirective): IContextualMenuItem {

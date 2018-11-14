@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -35,38 +36,30 @@ import { IMarqueeSelectionProps } from 'office-ui-fabric-react/lib/MarqueeSelect
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMarqueeSelectionComponent extends ReactWrapperComponent<IMarqueeSelectionProps> {
-  
   @ViewChild('reactNode')
   protected reactNodeRef: ElementRef;
 
   // Required members
   @Input()
-  selection: IMarqueeSelectionProps['selection'];
-
-  // Optional members
-  @Input()
-  className?: IMarqueeSelectionProps['className'];
-  @Input()
   componentRef?: IMarqueeSelectionProps['componentRef'];
   @Input()
-  isDraggingConstrainedToRoot?: IMarqueeSelectionProps['isDraggingConstrainedToRoot'];
-  @Input()
-  isEnabled?: IMarqueeSelectionProps['isEnabled'];
-  @Input()
-  onShouldStartSelection?: (ev: MouseEvent) => boolean;
+  selection: IMarqueeSelectionProps['selection'];
   @Input()
   rootProps?: IMarqueeSelectionProps['rootProps'];
   @Input()
-  styles?: IMarqueeSelectionProps['styles'];
+  onShouldStartSelection?: (ev: MouseEvent) => boolean;
+  @Input()
+  isEnabled?: IMarqueeSelectionProps['isEnabled'];
+  @Input()
+  isDraggingConstrainedToRoot?: IMarqueeSelectionProps['isDraggingConstrainedToRoot'];
+  @Input()
+  className?: IMarqueeSelectionProps['className'];
   @Input()
   theme?: IMarqueeSelectionProps['theme'];
+  @Input()
+  styles?: IMarqueeSelectionProps['styles'];
 
-  constructor(
-    elementRef: ElementRef,
-    changeDetectorRef: ChangeDetectorRef,
-    renderer: Renderer2,
-    ngZone: NgZone
-  ) {
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
   }
 }

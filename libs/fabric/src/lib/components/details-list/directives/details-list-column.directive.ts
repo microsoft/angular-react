@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AfterContentInit, ContentChild, Directive, EventEmitter, Input, Output, TemplateRef }
-  from '@angular/core';
+import { AfterContentInit, ContentChild, Directive, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { InputRendererOptions } from '@angular-react/core';
 import { IColumn } from 'office-ui-fabric-react';
 
@@ -23,69 +22,67 @@ export class DetailsListColumnRenderDirective {
 @Directive({ selector: 'fab-details-list-column' })
 export class DetailsListColumnDirective extends ChangeableItemDirective<IDetailsListColumnOptions>
   implements AfterContentInit {
-
   @ContentChild(DetailsListColumnRenderDirective)
   readonly renderDirective: DetailsListColumnRenderDirective;
 
-  // Required members
-  @Input()
-  minWidth: IColumn['minWidth'];
   @Input()
   name: IColumn['name'];
-
-  // Optional members
-  @Input()
-  ariaLabel?: IColumn['ariaLabel'];
-  @Input()
-  calculatedWidth?: IColumn['calculatedWidth'];
-  @Input()
-  columnActionsMode?: IColumn['columnActionsMode'];
-  @Input()
-  currentWidth?: IColumn['currentWidth'];
-  @Input()
-  data?: IColumn['data'];
   @Input()
   fieldName?: IColumn['fieldName'];
   @Input()
-  filterAriaLabel?: IColumn['filterAriaLabel'];
+  className?: IColumn['className'];
   @Input()
-  groupAriaLabel?: IColumn['groupAriaLabel'];
+  minWidth: IColumn['minWidth'];
   @Input()
-  headerClassName?: IColumn['headerClassName'];
+  ariaLabel?: IColumn['ariaLabel'];
   @Input()
-  iconClassName?: IColumn['iconClassName'];
+  isRowHeader?: IColumn['isRowHeader'];
+  @Input()
+  maxWidth?: IColumn['maxWidth'];
+  @Input()
+  columnActionsMode?: IColumn['columnActionsMode'];
   @Input()
   iconName?: IColumn['iconName'];
   @Input()
-  isCollapsable?: IColumn['isCollapsable'];
-  @Input()
-  isFiltered?: IColumn['isFiltered'];
-  @Input()
-  isGrouped?: IColumn['isGrouped'];
-  @Input()
   isIconOnly?: IColumn['isIconOnly'];
   @Input()
-  isMultiline?: IColumn['isMultiline'];
+  iconClassName?: IColumn['iconClassName'];
   @Input()
-  isPadded?: IColumn['isPadded'];
-  @Input()
-  isResizable?: IColumn['isResizable'];
-  @Input()
-  isRowHeader?: IColumn['isRowHeader'];
+  isCollapsable?: IColumn['isCollapsable'];
   @Input()
   isSorted?: IColumn['isSorted'];
   @Input()
   isSortedDescending?: IColumn['isSortedDescending'];
   @Input()
-  maxWidth?: IColumn['maxWidth'];
+  isResizable?: IColumn['isResizable'];
+  @Input()
+  isMultiline?: IColumn['isMultiline'];
   @Input()
   onRender?: IColumn['onRender'];
   @Input()
   onRenderDivider?: IColumn['onRenderDivider'];
   @Input()
+  isFiltered?: IColumn['isFiltered'];
+  @Input()
+  isGrouped?: IColumn['isGrouped'];
+  @Input()
+  data?: IColumn['data'];
+  @Input()
+  calculatedWidth?: IColumn['calculatedWidth'];
+  @Input()
+  currentWidth?: IColumn['currentWidth'];
+  @Input()
+  headerClassName?: IColumn['headerClassName'];
+  @Input()
+  isPadded?: IColumn['isPadded'];
+  @Input()
   sortAscendingAriaLabel?: IColumn['sortAscendingAriaLabel'];
   @Input()
   sortDescendingAriaLabel?: IColumn['sortDescendingAriaLabel'];
+  @Input()
+  groupAriaLabel?: IColumn['groupAriaLabel'];
+  @Input()
+  filterAriaLabel?: IColumn['filterAriaLabel'];
 
   // Render members
   @Input()
@@ -93,9 +90,9 @@ export class DetailsListColumnDirective extends ChangeableItemDirective<IDetails
 
   // Callback members
   @Output()
-  readonly onColumnClick = new EventEmitter<{ ev: Event, column: IColumn }>();
+  readonly onColumnClick = new EventEmitter<{ ev: Event; column: IColumn }>();
   @Output()
-  readonly onColumnContextMenu = new EventEmitter<{ column?: IColumn, ev?: Event }>();
+  readonly onColumnContextMenu = new EventEmitter<{ column?: IColumn; ev?: Event }>();
   @Output()
   readonly onColumnResize = new EventEmitter<{ width?: number }>();
 
@@ -106,8 +103,7 @@ export class DetailsListColumnDirective extends ChangeableItemDirective<IDetails
   }
 }
 
-export interface IDetailsListColumnOptions<TData = any>
-  extends Pick<IColumn, Exclude<KnownKeys<IColumn>, 'onRender'>> {
+export interface IDetailsListColumnOptions<TData = any> extends Pick<IColumn, Exclude<KnownKeys<IColumn>, 'onRender'>> {
   readonly render?: InputRendererOptions<IDetailsListColumnOptionsRenderContext>;
   readonly onColumnClick?: any;
   readonly onColumnContextMenu?: any;

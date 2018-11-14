@@ -8,9 +8,7 @@ import { MarqueeSelection } from 'office-ui-fabric-react/lib/MarqueeSelection';
 
 import { FabMarqueeSelectionComponent } from './marquee-selection.component';
 
-const components = [
-  FabMarqueeSelectionComponent
-];
+const components = [FabMarqueeSelectionComponent];
 
 @NgModule({
   imports: [CommonModule],

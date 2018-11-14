@@ -5,31 +5,28 @@ import { ContentChildren, Directive, QueryList } from '@angular/core';
 import { IColumn } from 'office-ui-fabric-react';
 
 import { ChangeableItemsDirective } from '../../core/shared/changeable-items.directive';
-import { DetailsListColumnDirective, IDetailsListColumnOptions }
-  from './details-list-column.directive';
+import { DetailsListColumnDirective, IDetailsListColumnOptions } from './details-list-column.directive';
 
 /**
  * Wrapper directive for creating multiple DetailsListColumns
  */
 @Directive({ selector: 'fab-details-list > columns' })
-export class DetailsListColumnsDirective
-  extends ChangeableItemsDirective<IDetailsListColumnOptions> {
-
+export class DetailsListColumnsDirective extends ChangeableItemsDirective<IDetailsListColumnOptions> {
   @ContentChildren(DetailsListColumnDirective)
   readonly directiveItems: QueryList<DetailsListColumnDirective>;
-  
+
   get items() {
-    return this && this.directiveItems.map<IDetailsListColumnOptions>(
-      (directiveItem: DetailsListColumnDirective) => ({
-        ...directiveItem,
-        onColumnClick: (ev: React.MouseEvent, column: IColumn) => {
-          directiveItem.onColumnClick.emit({ ev: ev && ev.nativeEvent, column })
-        }, onColumnContextMenu: (column?: IColumn, ev?: React.MouseEvent) => {
-          directiveItem.onColumnContextMenu.emit({ column, ev: ev && ev.nativeEvent })
-        }, onColumnResize: (width?: number) => {
-          directiveItem.onColumnResize.emit({ width });
-        }
-      })
-    );
+    return this.directiveItems.map<IDetailsListColumnOptions>(directiveItem => ({
+      ...directiveItem,
+      onColumnClick: (ev: React.MouseEvent, column: IColumn) => {
+        directiveItem.onColumnClick.emit({ ev: ev && ev.nativeEvent, column });
+      },
+      onColumnContextMenu: (column?: IColumn, ev?: React.MouseEvent) => {
+        directiveItem.onColumnContextMenu.emit({ column, ev: ev && ev.nativeEvent });
+      },
+      onColumnResize: (width?: number) => {
+        directiveItem.onColumnResize.emit({ width });
+      },
+    }));
   }
 }

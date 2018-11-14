@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
+
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -18,6 +18,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
 import {
   DetailsListBase,
   IColumn,
@@ -25,14 +26,14 @@ import {
   IDetailsHeaderProps,
   IDetailsListProps,
   IDetailsRowProps,
-  IGroup
+  IGroup,
 } from 'office-ui-fabric-react/lib/DetailsList';
 import { IListProps } from 'office-ui-fabric-react/lib/List';
 import { Subscription } from 'rxjs';
 
 import { OnChanges, TypedChanges } from '../../declarations/angular/typed-changes';
 import { omit } from '../../utils/omit';
-import { ItemChangedPayload, mergeItemChanges } from '../core/declarative/item-changed';
+import { mergeItemChanges } from '../core/declarative/item-changed';
 import { ChangeableItemsDirective } from '../core/shared/changeable-items.directive';
 import { IDetailsListColumnOptions } from './directives/details-list-column.directive';
 import { DetailsListColumnsDirective } from './directives/details-list-columns.directive';
@@ -83,7 +84,7 @@ import { DetailsListGroupsDirective } from './directives/details-list-groups.dir
       [selectionZoneProps]="selectionZoneProps"
       [setKey]="setKey"
       [shouldApplyApplicationRole]="shouldApplyApplicationRole"
-      [shouldVirtualize]="shouldVirtualize"
+      [skipViewportMeasures]="skipViewportMeasures"
       [styles]="styles"
       [theme]="theme"
       [usePageCache]="usePageCache"
@@ -101,7 +102,8 @@ import { DetailsListGroupsDirective } from './directives/details-list-groups.dir
       [ItemContextMenu]="onItemContextMenuHandler"
       [ItemInvoked]="onItemInvokedHandler"
       [RowDidMount]="onRowDidMountHandler"
-      [RowWillUnmount]="onRowWillUnmountHandler">
+      [RowWillUnmount]="onRowWillUnmountHandler"
+      [ShouldVirtualize]="onShouldVirtualize">
     </DetailsList>
   `,
   styles: ['react-renderer'],
@@ -109,81 +111,34 @@ import { DetailsListGroupsDirective } from './directives/details-list-groups.dir
 })
 export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListProps>
   implements AfterContentInit, OnChanges<FabDetailsListComponent>, OnDestroy, OnInit {
-
   @ContentChild(DetailsListColumnsDirective)
-  readonly columnsDirective: DetailsListColumnsDirective;
-
+  readonly columnsDirective?: DetailsListColumnsDirective;
   @ContentChild(DetailsListGroupsDirective)
-  readonly groupsDirective: DetailsListGroupsDirective;
-  
+  readonly groupsDirective?: DetailsListGroupsDirective;
+
   @ViewChild('reactNode')
   protected reactNodeRef: ElementRef;
 
-  // Required members
   @Input()
-  items: IDetailsListProps['items'];
-
-  // Optional members
+  theme?: IDetailsListProps['theme'];
   @Input()
-  ariaLabel?: IDetailsListProps['ariaLabel'];
-  @Input()
-  ariaLabelForGrid?: IDetailsListProps['ariaLabelForGrid'];
-  @Input()
-  ariaLabelForListHeader?: IDetailsListProps['ariaLabelForListHeader'];
-  @Input()
-  ariaLabelForSelectAllCheckbox?: IDetailsListProps['ariaLabelForSelectAllCheckbox'];
-  @Input()
-  ariaLabelForSelectionColumn?: IDetailsListProps['ariaLabelForSelectionColumn'];
-  @Input()
-  cellStyleProps?: IDetailsListProps['cellStyleProps'];
-  @Input()
-  checkButtonAriaLabel?: IDetailsListProps['checkButtonAriaLabel'];
-  @Input()
-  checkboxCellClassName?: IDetailsListProps['checkboxCellClassName'];
-  @Input()
-  checkboxVisibility?: IDetailsListProps['checkboxVisibility'];
-  @Input()
-  className?: IDetailsListProps['className'];
-  @Input()
-  columnReorderOptions?: IDetailsListProps['columnReorderOptions'];
-  @Input()
-  compact?: IDetailsListProps['compact'];
+  styles?: IDetailsListProps['styles'];
   @Input()
   componentRef?: IDetailsListProps['componentRef'];
   @Input()
-  constrainMode?: IDetailsListProps['constrainMode'];
+  setKey?: IDetailsListProps['setKey'];
   @Input()
-  disableSelectionZone?: IDetailsListProps['disableSelectionZone'];
+  items: IDetailsListProps['items'];
   @Input()
-  dragDropEvents?: IDetailsListProps['dragDropEvents'];
+  listProps?: IDetailsListProps['listProps'];
   @Input()
-  enableShimmer?: IDetailsListProps['enableShimmer'];
+  initialFocusedIndex?: IDetailsListProps['initialFocusedIndex'];
   @Input()
-  enterModalSelectionOnTouch?: IDetailsListProps['enterModalSelectionOnTouch'];
-  @Input()
-  getGroupHeight?: IDetailsListProps['getGroupHeight'];
-  @Input()
-  getKey?: IDetailsListProps['getKey'];
-  @Input()
-  getRowAriaDescribedBy?: IDetailsListProps['getRowAriaDescribedBy'];
-  @Input()
-  getRowAriaLabel?: IDetailsListProps['getRowAriaLabel'];
+  className?: IDetailsListProps['className'];
   @Input()
   groupProps?: IDetailsListProps['groupProps'];
   @Input()
   indentWidth?: IDetailsListProps['indentWidth'];
-  @Input()
-  initialFocusedIndex?: IDetailsListProps['initialFocusedIndex'];
-  @Input()
-  isHeaderVisible?: IDetailsListProps['isHeaderVisible'];
-  @Input()
-  layoutMode?: IDetailsListProps['layoutMode'];
-  @Input()
-  listProps?: IDetailsListProps['listProps'];
-  @Input()
-  minimumPixelsForDrag?: IDetailsListProps['minimumPixelsForDrag'];
-  @Input()
-  rowElementEventMap?: IDetailsListProps['rowElementEventMap'];
   @Input()
   selection?: IDetailsListProps['selection'];
   @Input()
@@ -193,31 +148,77 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
   @Input()
   selectionZoneProps?: IDetailsListProps['selectionZoneProps'];
   @Input()
-  setKey?: IDetailsListProps['setKey'];
+  layoutMode?: IDetailsListProps['layoutMode'];
+  @Input()
+  checkboxVisibility?: IDetailsListProps['checkboxVisibility'];
+  @Input()
+  isHeaderVisible?: IDetailsListProps['isHeaderVisible'];
+  @Input()
+  constrainMode?: IDetailsListProps['constrainMode'];
+  @Input()
+  rowElementEventMap?: IDetailsListProps['rowElementEventMap'];
+  @Input()
+  dragDropEvents?: IDetailsListProps['dragDropEvents'];
+  @Input()
+  enableShimmer?: IDetailsListProps['enableShimmer'];
+  @Input()
+  viewport?: IDetailsListProps['viewport'];
+  @Input()
+  ariaLabelForListHeader?: IDetailsListProps['ariaLabelForListHeader'];
+  @Input()
+  ariaLabelForSelectAllCheckbox?: IDetailsListProps['ariaLabelForSelectAllCheckbox'];
+  @Input()
+  ariaLabelForSelectionColumn?: IDetailsListProps['ariaLabelForSelectionColumn'];
+  @Input()
+  getRowAriaLabel?: IDetailsListProps['getRowAriaLabel'];
+  @Input()
+  getRowAriaDescribedBy?: IDetailsListProps['getRowAriaDescribedBy'];
+  @Input()
+  getKey?: IDetailsListProps['getKey'];
+  @Input()
+  ariaLabel?: IDetailsListProps['ariaLabel'];
+  @Input()
+  checkButtonAriaLabel?: IDetailsListProps['checkButtonAriaLabel'];
+  @Input()
+  ariaLabelForGrid?: IDetailsListProps['ariaLabelForGrid'];
   @Input()
   shouldApplyApplicationRole?: IDetailsListProps['shouldApplyApplicationRole'];
   @Input()
-  shouldVirtualize?: (props: IListProps) => boolean;
+  minimumPixelsForDrag?: IDetailsListProps['minimumPixelsForDrag'];
   @Input()
-  styles?: IDetailsListProps['styles'];
-  @Input()
-  theme?: IDetailsListProps['theme'];
+  compact?: IDetailsListProps['compact'];
   @Input()
   usePageCache?: IDetailsListProps['usePageCache'];
   @Input()
+  onShouldVirtualize?: (props: IListProps) => boolean;
+  @Input()
+  checkboxCellClassName?: IDetailsListProps['checkboxCellClassName'];
+  @Input()
+  enterModalSelectionOnTouch?: IDetailsListProps['enterModalSelectionOnTouch'];
+  @Input()
+  columnReorderOptions?: IDetailsListProps['columnReorderOptions'];
+  @Input()
+  getGroupHeight?: IDetailsListProps['getGroupHeight'];
+  @Input()
   useReducedRowRenderer?: IDetailsListProps['useReducedRowRenderer'];
   @Input()
-  viewport?: IDetailsListProps['viewport'];
+  cellStyleProps?: IDetailsListProps['cellStyleProps'];
+  @Input()
+  disableSelectionZone?: IDetailsListProps['disableSelectionZone'];
+
+  // Inherited members (IWithViewportProps)
+  @Input()
+  skipViewportMeasures?: IDetailsListProps['skipViewportMeasures'];
 
   // Render members
   @Input()
-  renderDetailsFooter?: InputRendererOptions<IDetailsFooterProps>
+  renderDetailsFooter?: InputRendererOptions<IDetailsFooterProps>;
   @Input()
-  renderDetailsHeader?: InputRendererOptions<IDetailsHeaderProps>
+  renderDetailsHeader?: InputRendererOptions<IDetailsHeaderProps>;
   @Input()
-  renderMissingItem?: InputRendererOptions<IMissingItemRenderContext>
+  renderMissingItem?: InputRendererOptions<IMissingItemRenderContext>;
   @Input()
-  renderRow?: InputRendererOptions<IDetailsRowProps>
+  renderRow?: InputRendererOptions<IDetailsRowProps>;
 
   // Callback members
   @Output()
@@ -225,7 +226,7 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
   @Output()
   readonly onColumnHeaderClick = new EventEmitter<{ ev?: Event; column?: IColumn }>();
   @Output()
-  readonly onColumnHeaderContextMenu = new EventEmitter<{ column?: IColumn; ev?: Event}>();
+  readonly onColumnHeaderContextMenu = new EventEmitter<{ column?: IColumn; ev?: Event }>();
   @Output()
   readonly onColumnResize = new EventEmitter<{ column?: IColumn; newWidth?: number; columnIndex?: number }>();
   @Output()
@@ -251,17 +252,18 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
 
   private readonly _subscriptions: Subscription[] = [];
 
-  onRenderDetailsFooter: (props?: IDetailsFooterProps, defaultRender?: JsxRenderFunc<IDetailsFooterProps>) => JSX.Element;
-  onRenderDetailsHeader: (props?: IDetailsHeaderProps, defaultRender?: JsxRenderFunc<IDetailsHeaderProps>) => JSX.Element;
+  onRenderDetailsFooter: (
+    props?: IDetailsFooterProps,
+    defaultRender?: JsxRenderFunc<IDetailsFooterProps>
+  ) => JSX.Element;
+  onRenderDetailsHeader: (
+    props?: IDetailsHeaderProps,
+    defaultRender?: JsxRenderFunc<IDetailsHeaderProps>
+  ) => JSX.Element;
   onRenderMissingItem: (index?: number, rowProps?: IDetailsRowProps) => JSX.Element;
   onRenderRow: (props?: IDetailsRowProps, defaultRender?: JsxRenderFunc<IDetailsRowProps>) => JSX.Element;
 
-  constructor(
-    elementRef: ElementRef,
-    changeDetectorRef: ChangeDetectorRef,
-    renderer: Renderer2,
-    ngZone: NgZone
-  ) {
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
 
     // Bind this to access Angular component properties
@@ -276,22 +278,28 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
     this.onRowWillUnmountHandler = this.onRowWillUnmountHandler.bind(this);
   }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.onRenderDetailsFooter = this.createRenderPropHandler(this.renderDetailsFooter);
     this.onRenderDetailsHeader = this.createRenderPropHandler(this.renderDetailsHeader);
     this.onRenderRow = this.createRenderPropHandler(this.renderRow);
-    
+
     const missingItemRenderer = this.createInputJsxRenderer(this.renderMissingItem);
-    this.onRenderMissingItem = (index?: number, rowProps?: IDetailsRowProps) =>
-      missingItemRenderer({ index, rowProps });
+    this.onRenderMissingItem = (index, rowProps) => missingItemRenderer({ index, rowProps });
   }
 
   ngOnChanges(changes: TypedChanges<this>) {
-    if (changes['columns'] && changes['columns'].currentValue &&
-      changes['columns'].previousValue !== changes['columns'].currentValue) {
+    if (
+      changes['columns'] &&
+      changes['columns'].currentValue &&
+      changes['columns'].previousValue !== changes['columns'].currentValue
+    ) {
       this._createTransformedColumns(changes['columns'].currentValue);
-    } else if (changes['groups'] && changes['groups'].currentValue &&
-      changes['groups'].previousValue !== changes['groups'].currentValue) {
+    }
+    if (
+      changes['groups'] &&
+      changes['groups'].currentValue &&
+      changes['groups'].previousValue !== changes['groups'].currentValue
+    ) {
       this._createTransformedGroups(changes['groups'].currentValue);
     }
     super.ngOnChanges(changes);
@@ -307,7 +315,7 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
   }
 
   ngOnDestroy() {
-    this._subscriptions.forEach((sub: Subscription) => sub.unsubscribe());
+    this._subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   onActiveItemChangedHandler(item?: any, index?: number, ev?: React.FocusEvent<HTMLElement>) {
@@ -346,10 +354,7 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
     this.onRowWillUnmount.emit({ item, index });
   }
 
-  private _initDirective(
-    directive: ChangeableItemsDirective<any>,
-    propertyKey: 'columns' | 'groups') {
-  
+  private _initDirective(directive: ChangeableItemsDirective<any>, propertyKey: 'columns' | 'groups') {
     const transformItemsFunc = this._transformItemsFunction(directive);
     const setItems = (mapper: (items: ReadonlyArray<any>) => ReadonlyArray<any>) => {
       this[propertyKey] = mapper(this[propertyKey]);
@@ -362,16 +367,14 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
     // Subscribe to adding/removing items
     this._subscriptions.push(
       directive.onItemsChanged.subscribe((newItems: QueryList<ChangeableItemsDirective<any>>) => {
-        setItems(() => newItems.map((directive: ChangeableItemsDirective<any>) => directive));
+        setItems(() => newItems.map(directive => directive));
       })
     );
 
     // Subscribe for existing item changes
     this._subscriptions.push(
-      directive.onItemChanged.subscribe(({ key, changes }: ItemChangedPayload<string, any>) => {
-        setItems((items: ReadonlyArray<any>) => items.map((item: any) =>
-          item.key === key ? mergeItemChanges(item, changes) : item
-        ));
+      directive.onChildItemChanged.subscribe(({ key, changes }) => {
+        setItems(items => items.map(item => (item.key === key ? mergeItemChanges(item, changes) : item)));
         this.markForCheck();
       })
     );
@@ -388,17 +391,18 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
   }
 
   private _createTransformedColumns(newColumns: ReadonlyArray<IDetailsListColumnOptions>) {
-    this.transformedColumns_ = newColumns.map((column: IDetailsListColumnOptions) =>
-      this._transformDetailsListColumnOptionsToProps(column));
+    this.transformedColumns_ = newColumns.map(column => this._transformDetailsListColumnOptionsToProps(column));
   }
 
   private _transformDetailsListColumnOptionsToProps(options: IDetailsListColumnOptions): IColumn {
     const renderer = this.createInputJsxRenderer(options.render);
-    return Object.assign({}, omit(options, 'render'),
-      renderer && ({
-        onRender: (item?: any, index?: number, column?: IColumn) =>
-          renderer({ item, index, column })
-      } as Pick<IColumn, 'onRender'>)
+    return Object.assign(
+      {},
+      omit(options, 'render'),
+      renderer &&
+        ({
+          onRender: (item?: any, index?: number, column?: IColumn) => renderer({ item, index, column }),
+        } as Pick<IColumn, 'onRender'>)
     ) as IColumn;
   }
 

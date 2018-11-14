@@ -1,47 +1,39 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AfterContentInit, ContentChildren, EventEmitter, OnDestroy, Output, QueryList }
-  from '@angular/core';
-import { Subscription } from 'rxjs';
+import { AfterContentInit, ContentChildren, EventEmitter, OnDestroy, Output, QueryList } from '@angular/core';
 
 import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
+import { ChangeableItemsHelper, IChangeableItemsContainer } from './changeable-helper';
 import { ChangeableItemDirective } from './changeable-item.directive';
 
 /**
  * Parent class for wrapper directive for multiple ChangeableItemDirectives
  */
-export abstract class ChangeableItemsDirective<TItem> implements AfterContentInit, OnDestroy {
-
+export abstract class ChangeableItemsDirective<TItem>
+  implements AfterContentInit, IChangeableItemsContainer<TItem>, OnDestroy {
   @ContentChildren(ChangeableItemDirective)
   readonly directiveItems: QueryList<ChangeableItemDirective<TItem>>;
 
   @Output()
-  readonly onItemChanged = new EventEmitter<ItemChangedPayload<string, TItem>>();
+  get onChildItemChanged(): EventEmitter<ItemChangedPayload<string, TItem>> {
+    return this.changeableItemsHelper && this.changeableItemsHelper.onChildItemChanged;
+  }
   @Output()
-  readonly onItemsChanged = new EventEmitter<QueryList<ChangeableItemDirective<TItem>>>();
+  get onItemsChanged(): EventEmitter<QueryList<ChangeableItemDirective<TItem>>> {
+    return this.changeableItemsHelper && this.changeableItemsHelper.onItemsChanged;
+  }
 
-  private readonly _subscriptions: Subscription[] = [];
+  private changeableItemsHelper: ChangeableItemsHelper<TItem>;
 
   abstract get items(): TItem[];
 
   ngAfterContentInit() {
-    this._subscriptions.push(
-      ...this.directiveItems.map((directiveItem: ChangeableItemDirective<TItem>) =>
-        directiveItem.onItemChanged.subscribe((changes: ItemChangedPayload<string, TItem>) =>
-          this.onItemChanged.emit(changes)
-        )
-      )
-    );
-  
-    this._subscriptions.push(
-      this.directiveItems.changes.subscribe((newValue: this['directiveItems']) => {
-        this.onItemsChanged.emit(newValue);
-      })
-    );
+    this.changeableItemsHelper = new ChangeableItemsHelper(this.directiveItems);
+    this.changeableItemsHelper.afterContentInit();
   }
-  
+
   ngOnDestroy() {
-    this._subscriptions.forEach((sub: Subscription) => sub.unsubscribe());
+    this.changeableItemsHelper.onDestroy();
   }
 }
