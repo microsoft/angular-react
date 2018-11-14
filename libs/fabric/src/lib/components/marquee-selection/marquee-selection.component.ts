@@ -39,7 +39,6 @@ export class FabMarqueeSelectionComponent extends ReactWrapperComponent<IMarquee
   @ViewChild('reactNode')
   protected reactNodeRef: ElementRef;
 
-  // Required members
   @Input()
   componentRef?: IMarqueeSelectionProps['componentRef'];
   @Input()
