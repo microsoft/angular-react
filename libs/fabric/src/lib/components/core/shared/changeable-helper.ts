@@ -16,7 +16,12 @@ export class ChangeableItemHelper<TItem> {
 
   constructor(private readonly key: string) {}
 
-  onChanges(changes: TypedChanges<TItem>) {
+  /**
+   * Action to be called by user of class when change is detected
+   * (Typically called in ngOnChanges)
+   * @param changes TypedChanges that are to be emitted
+   */
+  emitChanges(changes: TypedChanges<TItem>) {
     this.onItemChanged.emit({ key: this.key, changes });
   }
 }
@@ -31,13 +36,19 @@ export class ChangeableItemsHelper<TItem> {
   private readonly _subscriptionsMap: { [key: string]: Subscription } = {};
   private _changeSubscription: Subscription;
 
+  /**
+   * Initialize subscriptions to watch for changes to children ChangeableItemDirectives
+   * (Typically called in ngAfterContentInit after @ContentChildren are initialized)
+   * @param directiveItems List of children to watch for
+   * @param self Reference to component using this helper. This component gets filtered out in case
+   *  it appears in the list of children (i.e. when a component has children of its own type)
+   * @param nonSelfHandler Callback to handle filtered list of children when updated
+   */
   constructor(
     private directiveItems: QueryList<ChangeableItemDirective<TItem>>,
     private self?: IChangeableItemsContainer<TItem>,
     private nonSelfHandler?: (nonSelfDirectives: ChangeableItemDirective<TItem>[]) => void
-  ) {}
-
-  afterContentInit() {
+  ) {
     this._subscribeNewDirectives();
     this._changeSubscription = this.directiveItems.changes.subscribe(newValues => {
       this.onItemsChanged.emit(newValues);
@@ -45,8 +56,12 @@ export class ChangeableItemsHelper<TItem> {
     });
   }
 
-  onDestroy() {
-    Object.keys(this._subscriptionsMap).forEach(key => this._subscriptionsMap[key].unsubscribe());
+  /**
+   * Action to be called by user of class when directive/component is destroyed
+   * (Typically called in ngOnDestroy)
+   */
+  destroy() {
+    Object.values(this._subscriptionsMap).forEach(value => value.unsubscribe());
     this._changeSubscription.unsubscribe();
   }
 

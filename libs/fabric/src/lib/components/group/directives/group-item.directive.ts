@@ -19,7 +19,7 @@ import { ChangeableItemDirective } from '../../core/shared/changeable-item.direc
 
 @Directive({ selector: 'fab-group-item' })
 export class GroupItemDirective extends ChangeableItemDirective<IGroup>
-  implements AfterContentInit, IChangeableItemsContainer<IGroup>, OnDestroy {
+  implements AfterContentInit, IChangeableItemsContainer<IGroup>, IGroup, OnDestroy {
   @ContentChildren(GroupItemDirective)
   readonly groupItemsDirectives: QueryList<GroupItemDirective>;
 
@@ -61,10 +61,9 @@ export class GroupItemDirective extends ChangeableItemDirective<IGroup>
     this.changeableItemsHelper = new ChangeableItemsHelper(this.groupItemsDirectives, this, nonSelf => {
       this.children = nonSelf as any;
     });
-    this.changeableItemsHelper.afterContentInit();
   }
 
   ngOnDestroy() {
-    this.changeableItemsHelper.onDestroy();
+    this.changeableItemsHelper.destroy();
   }
 }

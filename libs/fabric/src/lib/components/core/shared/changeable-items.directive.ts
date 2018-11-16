@@ -30,10 +30,9 @@ export abstract class ChangeableItemsDirective<TItem>
 
   ngAfterContentInit() {
     this.changeableItemsHelper = new ChangeableItemsHelper(this.directiveItems);
-    this.changeableItemsHelper.afterContentInit();
   }
 
   ngOnDestroy() {
-    this.changeableItemsHelper.onDestroy();
+    this.changeableItemsHelper.destroy();
   }
 }

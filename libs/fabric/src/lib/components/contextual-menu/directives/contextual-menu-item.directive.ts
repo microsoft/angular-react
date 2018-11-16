@@ -117,11 +117,10 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
         this.subMenuProps.items = items;
       }
     });
-    this.changeableItemsHelper.afterContentInit();
   }
 
   ngOnDestroy() {
-    this.changeableItemsHelper.onDestroy();
+    this.changeableItemsHelper.destroy();
   }
 
   private _directiveToContextualMenuItem(directive: ContextualMenuItemDirective): IContextualMenuItem {
