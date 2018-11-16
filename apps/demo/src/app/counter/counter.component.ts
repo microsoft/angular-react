@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
   selector: 'counter',
   template: `
     <fab-default-button [text]="count + '+'" (onClick)="onClick()"></fab-default-button>
-    `,
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CounterComponent {

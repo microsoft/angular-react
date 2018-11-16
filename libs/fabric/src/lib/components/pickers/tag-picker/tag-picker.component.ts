@@ -19,7 +19,6 @@ import { FabBasePickerComponent } from '../base-picker/base-picker.component';
   template: `
     <TagPicker
       #reactNode
-
       [componentRef]="componentRef"
       [resolveDelay]="resolveDelay"
       [defaultSelectedItems]="defaultSelectedItems"
@@ -40,23 +39,21 @@ import { FabBasePickerComponent } from '../base-picker/base-picker.component';
       [ResolveSuggestions]="onResolveSuggestions"
       [GetMoreResults]="onGetMoreResults"
       [ValidateInput]="onValidateInput"
-
-      [RenderItem]="renderItem &&onRenderItem"
+      [RenderItem]="renderItem && onRenderItem"
       [RenderSuggestionsItem]="renderSuggestionsItem && onRenderSuggestionsItem"
-
       [Change]="onChangeHandler"
       [Focus]="onFocusHandler"
       [Blur]="onBlurHandler"
       [Dismiss]="onDismissHandler"
-      [RemoveSuggestion]="onRemoveSuggestionHandler">
+      [RemoveSuggestion]="onRemoveSuggestionHandler"
+    >
     </TagPicker>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTagPickerComponent extends FabBasePickerComponent<ITag, ITagPickerProps> {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, ngZone);

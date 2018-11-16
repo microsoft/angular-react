@@ -23,16 +23,13 @@ import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/d
   template: `
     <Modal
       #reactNode
-
       [responsiveMode]="responsiveMode"
-
       [elementToFocusOnDismiss]="elementToFocusOnDismiss"
       [ignoreExternalFocusing]="ignoreExternalFocusing"
       [forceFocusInsideTrap]="forceFocusInsideTrap"
       [firstFocusableSelector]="firstFocusableSelector"
       [closeButtonAriaLabel]="closeButtonAriaLabel"
       [isClickableOutsideFocusTrap]="isClickableOutsideFocusTrap"
-
       [componentRef]="componentRef"
       [isOpen]="isOpen"
       [isDarkOverlay]="isDarkOverlay"
@@ -44,7 +41,8 @@ import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/d
       [subtitleAriaId]="subtitleAriaId"
       [Dismiss]="onDismissHandler"
       (onLayerDidMount)="onLayerDidMount.emit()"
-      (onDismissed)="onDismissed.emit()">
+      (onDismissed)="onDismissed.emit()"
+    >
       <ReactContent><ng-content></ng-content></ReactContent>
     </Modal>
   `,
@@ -53,50 +51,30 @@ import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/d
 })
 export class FabModalComponent extends ReactWrapperComponent<IModalProps>
   implements IWithResponsiveModeState, IAccessiblePopupProps {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  responsiveMode?: IModalProps['responsiveMode'];
+  @Input() responsiveMode?: IModalProps['responsiveMode'];
 
-  @Input()
-  elementToFocusOnDismiss?: IModalProps['elementToFocusOnDismiss'];
-  @Input()
-  ignoreExternalFocusing?: IModalProps['ignoreExternalFocusing'];
-  @Input()
-  forceFocusInsideTrap?: IModalProps['forceFocusInsideTrap'];
-  @Input()
-  firstFocusableSelector?: IModalProps['firstFocusableSelector'];
-  @Input()
-  closeButtonAriaLabel?: IModalProps['closeButtonAriaLabel'];
-  @Input()
-  isClickableOutsideFocusTrap?: IModalProps['isClickableOutsideFocusTrap'];
+  @Input() elementToFocusOnDismiss?: IModalProps['elementToFocusOnDismiss'];
+  @Input() ignoreExternalFocusing?: IModalProps['ignoreExternalFocusing'];
+  @Input() forceFocusInsideTrap?: IModalProps['forceFocusInsideTrap'];
+  @Input() firstFocusableSelector?: IModalProps['firstFocusableSelector'];
+  @Input() closeButtonAriaLabel?: IModalProps['closeButtonAriaLabel'];
+  @Input() isClickableOutsideFocusTrap?: IModalProps['isClickableOutsideFocusTrap'];
 
-  @Input()
-  componentRef?: IModalProps['componentRef'];
-  @Input()
-  isOpen?: IModalProps['isOpen'];
-  @Input()
-  isDarkOverlay?: IModalProps['isDarkOverlay'];
-  @Input()
-  isBlocking?: IModalProps['isBlocking'];
-  @Input()
-  className?: IModalProps['className'];
-  @Input()
-  containerClassName?: IModalProps['containerClassName'];
-  @Input()
-  scrollableContentClassName?: IModalProps['scrollableContentClassName'];
-  @Input()
-  titleAriaId?: IModalProps['titleAriaId'];
-  @Input()
-  subtitleAriaId?: IModalProps['subtitleAriaId'];
+  @Input() componentRef?: IModalProps['componentRef'];
+  @Input() isOpen?: IModalProps['isOpen'];
+  @Input() isDarkOverlay?: IModalProps['isDarkOverlay'];
+  @Input() isBlocking?: IModalProps['isBlocking'];
+  @Input() className?: IModalProps['className'];
+  @Input() containerClassName?: IModalProps['containerClassName'];
+  @Input() scrollableContentClassName?: IModalProps['scrollableContentClassName'];
+  @Input() titleAriaId?: IModalProps['titleAriaId'];
+  @Input() subtitleAriaId?: IModalProps['subtitleAriaId'];
 
-  @Output()
-  readonly onLayerDidMount = new EventEmitter<void>();
-  @Output()
-  readonly onDismiss = new EventEmitter<MouseEvent>();
-  @Output()
-  readonly onDismissed = new EventEmitter<void>();
+  @Output() readonly onLayerDidMount = new EventEmitter<void>();
+  @Output() readonly onDismiss = new EventEmitter<MouseEvent>();
+  @Output() readonly onDismissed = new EventEmitter<void>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

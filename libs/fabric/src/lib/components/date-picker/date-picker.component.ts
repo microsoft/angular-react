@@ -54,85 +54,51 @@ import { IDatePickerProps } from 'office-ui-fabric-react';
       [allFocusable]="allFocusable"
       [showCloseButton]="showCloseButton"
       [SelectDate]="onSelectDateHandler"
-      (onAfterMenuDismiss)="onAfterMenuDismiss.emit()">
+      (onAfterMenuDismiss)="onAfterMenuDismiss.emit()"
+    >
     </DatePicker>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerProps> {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: IDatePickerProps['componentRef'];
-  @Input()
-  calendarProps?: IDatePickerProps['calendarProps'];
-  @Input()
-  label?: IDatePickerProps['label'];
-  @Input()
-  isRequired?: IDatePickerProps['isRequired'];
-  @Input()
-  disabled?: IDatePickerProps['disabled'];
-  @Input()
-  ariaLabel?: IDatePickerProps['ariaLabel'];
-  @Input()
-  underlined?: IDatePickerProps['underlined'];
-  @Input()
-  pickerAriaLabel?: IDatePickerProps['pickerAriaLabel'];
-  @Input()
-  isMonthPickerVisible?: IDatePickerProps['isMonthPickerVisible'];
-  @Input()
-  showMonthPickerAsOverlay?: IDatePickerProps['showMonthPickerAsOverlay'];
-  @Input()
-  allowTextInput?: IDatePickerProps['allowTextInput'];
-  @Input()
-  disableAutoFocus?: IDatePickerProps['disableAutoFocus'];
-  @Input()
-  placeholder?: IDatePickerProps['placeholder'];
-  @Input()
-  today?: IDatePickerProps['today'];
-  @Input()
-  value?: IDatePickerProps['value'];
-  @Input()
-  formatDate?: IDatePickerProps['formatDate'];
-  @Input()
-  parseDateFromString?: IDatePickerProps['parseDateFromString'];
-  @Input()
-  firstDayOfWeek?: IDatePickerProps['firstDayOfWeek'];
-  @Input()
-  strings?: IDatePickerProps['strings'];
-  @Input()
-  highlightCurrentMonth?: IDatePickerProps['highlightCurrentMonth'];
-  @Input()
-  highlightSelectedMonth?: IDatePickerProps['highlightSelectedMonth'];
-  @Input()
-  showWeekNumbers?: IDatePickerProps['showWeekNumbers'];
-  @Input()
-  firstWeekOfYear?: IDatePickerProps['firstWeekOfYear'];
-  @Input()
-  showGoToToday?: IDatePickerProps['showGoToToday'];
-  @Input()
-  borderless?: IDatePickerProps['borderless'];
-  @Input()
-  className?: IDatePickerProps['className'];
-  @Input()
-  dateTimeFormatter?: IDatePickerProps['dateTimeFormatter'];
-  @Input()
-  minDate?: IDatePickerProps['minDate'];
-  @Input()
-  maxDate?: IDatePickerProps['maxDate'];
-  @Input()
-  initialPickerDate?: IDatePickerProps['initialPickerDate'];
-  @Input()
-  allFocusable?: IDatePickerProps['allFocusable'];
-  @Input()
-  showCloseButton?: IDatePickerProps['showCloseButton'];
+  @Input() componentRef?: IDatePickerProps['componentRef'];
+  @Input() calendarProps?: IDatePickerProps['calendarProps'];
+  @Input() label?: IDatePickerProps['label'];
+  @Input() isRequired?: IDatePickerProps['isRequired'];
+  @Input() disabled?: IDatePickerProps['disabled'];
+  @Input() ariaLabel?: IDatePickerProps['ariaLabel'];
+  @Input() underlined?: IDatePickerProps['underlined'];
+  @Input() pickerAriaLabel?: IDatePickerProps['pickerAriaLabel'];
+  @Input() isMonthPickerVisible?: IDatePickerProps['isMonthPickerVisible'];
+  @Input() showMonthPickerAsOverlay?: IDatePickerProps['showMonthPickerAsOverlay'];
+  @Input() allowTextInput?: IDatePickerProps['allowTextInput'];
+  @Input() disableAutoFocus?: IDatePickerProps['disableAutoFocus'];
+  @Input() placeholder?: IDatePickerProps['placeholder'];
+  @Input() today?: IDatePickerProps['today'];
+  @Input() value?: IDatePickerProps['value'];
+  @Input() formatDate?: IDatePickerProps['formatDate'];
+  @Input() parseDateFromString?: IDatePickerProps['parseDateFromString'];
+  @Input() firstDayOfWeek?: IDatePickerProps['firstDayOfWeek'];
+  @Input() strings?: IDatePickerProps['strings'];
+  @Input() highlightCurrentMonth?: IDatePickerProps['highlightCurrentMonth'];
+  @Input() highlightSelectedMonth?: IDatePickerProps['highlightSelectedMonth'];
+  @Input() showWeekNumbers?: IDatePickerProps['showWeekNumbers'];
+  @Input() firstWeekOfYear?: IDatePickerProps['firstWeekOfYear'];
+  @Input() showGoToToday?: IDatePickerProps['showGoToToday'];
+  @Input() borderless?: IDatePickerProps['borderless'];
+  @Input() className?: IDatePickerProps['className'];
+  @Input() dateTimeFormatter?: IDatePickerProps['dateTimeFormatter'];
+  @Input() minDate?: IDatePickerProps['minDate'];
+  @Input() maxDate?: IDatePickerProps['maxDate'];
+  @Input() initialPickerDate?: IDatePickerProps['initialPickerDate'];
+  @Input() allFocusable?: IDatePickerProps['allFocusable'];
+  @Input() showCloseButton?: IDatePickerProps['showCloseButton'];
 
-  @Output()
-  readonly onSelectDate = new EventEmitter<{ date: Date | null | undefined }>();
-  @Output()
-  readonly onAfterMenuDismiss = new EventEmitter<void>();
+  @Output() readonly onSelectDate = new EventEmitter<{ date: Date | null | undefined }>();
+  @Output() readonly onAfterMenuDismiss = new EventEmitter<void>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

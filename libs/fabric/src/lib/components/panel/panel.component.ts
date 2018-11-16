@@ -52,79 +52,49 @@ import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Pa
       [RenderFooterContent]="renderFooterContent && onRenderFooterContent"
       [Dismiss]="onDismissHandler"
       (onDismissed)="onDismissed.emit($event)"
-      (onLightDismissClick)="onLightDismissClick.emit($event)">
-        <ReactContent><ng-content></ng-content></ReactContent>
+      (onLightDismissClick)="onLightDismissClick.emit($event)"
+    >
+      <ReactContent><ng-content></ng-content></ReactContent>
     </Panel>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implements OnInit {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: IPanelProps['componentRef'];
-  @Input()
-  isOpen?: IPanelProps['isOpen'];
-  @Input()
-  hasCloseButton?: IPanelProps['hasCloseButton'];
-  @Input()
-  isLightDismiss?: IPanelProps['isLightDismiss'];
-  @Input()
-  isHiddenOnDismiss?: IPanelProps['isHiddenOnDismiss'];
-  @Input()
-  isBlocking?: IPanelProps['isBlocking'];
-  @Input()
-  isFooterAtBottom?: IPanelProps['isFooterAtBottom'];
-  @Input()
-  headerText?: IPanelProps['headerText'];
-  @Input()
-  styles?: IPanelProps['styles'];
-  @Input()
-  theme?: IPanelProps['theme'];
-  @Input()
-  className?: IPanelProps['className'];
-  @Input()
-  type?: IPanelProps['type'];
-  @Input()
-  customWidth?: IPanelProps['customWidth'];
-  @Input()
-  closeButtonAriaLabel?: IPanelProps['closeButtonAriaLabel'];
-  @Input()
-  headerClassName?: IPanelProps['headerClassName'];
-  @Input()
-  elementToFocusOnDismiss?: IPanelProps['elementToFocusOnDismiss'];
-  @Input()
-  ignoreExternalFocusing?: IPanelProps['ignoreExternalFocusing'];
-  @Input()
-  forceFocusInsideTrap?: IPanelProps['forceFocusInsideTrap'];
-  @Input()
-  firstFocusableSelector?: IPanelProps['firstFocusableSelector'];
-  @Input()
-  focusTrapZoneProps?: IPanelProps['focusTrapZoneProps'];
-  @Input()
-  layerProps?: IPanelProps['layerProps'];
-  @Input()
-  componentId?: IPanelProps['componentId'];
+  @Input() componentRef?: IPanelProps['componentRef'];
+  @Input() isOpen?: IPanelProps['isOpen'];
+  @Input() hasCloseButton?: IPanelProps['hasCloseButton'];
+  @Input() isLightDismiss?: IPanelProps['isLightDismiss'];
+  @Input() isHiddenOnDismiss?: IPanelProps['isHiddenOnDismiss'];
+  @Input() isBlocking?: IPanelProps['isBlocking'];
+  @Input() isFooterAtBottom?: IPanelProps['isFooterAtBottom'];
+  @Input() headerText?: IPanelProps['headerText'];
+  @Input() styles?: IPanelProps['styles'];
+  @Input() theme?: IPanelProps['theme'];
+  @Input() className?: IPanelProps['className'];
+  @Input() type?: IPanelProps['type'];
+  @Input() customWidth?: IPanelProps['customWidth'];
+  @Input() closeButtonAriaLabel?: IPanelProps['closeButtonAriaLabel'];
+  @Input() headerClassName?: IPanelProps['headerClassName'];
+  @Input() elementToFocusOnDismiss?: IPanelProps['elementToFocusOnDismiss'];
+  @Input() ignoreExternalFocusing?: IPanelProps['ignoreExternalFocusing'];
+  @Input() forceFocusInsideTrap?: IPanelProps['forceFocusInsideTrap'];
+  @Input() firstFocusableSelector?: IPanelProps['firstFocusableSelector'];
+  @Input() focusTrapZoneProps?: IPanelProps['focusTrapZoneProps'];
+  @Input() layerProps?: IPanelProps['layerProps'];
+  @Input() componentId?: IPanelProps['componentId'];
 
-  @Input()
-  renderNavigation?: InputRendererOptions<IPanelProps>;
-  @Input()
-  renderHeader?: InputRendererOptions<IPanelHeaderRenderContext>;
-  @Input()
-  renderBody?: InputRendererOptions<IPanelProps>;
-  @Input()
-  renderFooter?: InputRendererOptions<IPanelProps>;
-  @Input()
-  renderFooterContent?: InputRendererOptions<IPanelProps>;
+  @Input() renderNavigation?: InputRendererOptions<IPanelProps>;
+  @Input() renderHeader?: InputRendererOptions<IPanelHeaderRenderContext>;
+  @Input() renderBody?: InputRendererOptions<IPanelProps>;
+  @Input() renderFooter?: InputRendererOptions<IPanelProps>;
+  @Input() renderFooterContent?: InputRendererOptions<IPanelProps>;
 
-  @Output()
-  readonly onLightDismissClick = new EventEmitter<void>();
-  @Output()
-  readonly onDismiss = new EventEmitter<{ ev?: Event }>();
-  @Output()
-  readonly onDismissed = new EventEmitter<void>();
+  @Output() readonly onLightDismissClick = new EventEmitter<void>();
+  @Output() readonly onDismiss = new EventEmitter<{ ev?: Event }>();
+  @Output() readonly onDismissed = new EventEmitter<void>();
 
   private _renderHeader: JsxRenderFunc<IPanelHeaderRenderContext>;
   onRenderNavigation: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;

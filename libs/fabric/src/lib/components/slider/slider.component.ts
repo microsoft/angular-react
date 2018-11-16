@@ -38,53 +38,35 @@ import { ISliderProps } from 'office-ui-fabric-react/lib/Slider';
       [className]="className"
       [buttonProps]="buttonProps"
       [Changed]="onChangedHandler"
-      (onChange)="onChange.emit($event)">
+      (onChange)="onChange.emit($event)"
+    >
     </Slider>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSliderComponent extends ReactWrapperComponent<ISliderProps> {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: ISliderProps['componentRef'];
-  @Input()
-  styles?: ISliderProps['styles'];
-  @Input()
-  theme?: ISliderProps['theme'];
-  @Input()
-  label?: ISliderProps['label'];
-  @Input()
-  defaultValue?: ISliderProps['defaultValue'];
-  @Input()
-  value?: ISliderProps['value'];
-  @Input()
-  min?: ISliderProps['min'];
-  @Input()
-  max?: ISliderProps['max'];
-  @Input()
-  step?: ISliderProps['step'];
-  @Input()
-  showValue?: ISliderProps['showValue'];
-  @Input()
-  ariaLabel?: ISliderProps['ariaLabel'];
-  @Input()
-  ariaValueText?: ISliderProps['ariaValueText'];
-  @Input()
-  vertical?: ISliderProps['vertical'];
-  @Input()
-  disabled?: ISliderProps['disabled'];
-  @Input()
-  className?: ISliderProps['className'];
-  @Input()
-  buttonProps?: ISliderProps['buttonProps'];
+  @Input() componentRef?: ISliderProps['componentRef'];
+  @Input() styles?: ISliderProps['styles'];
+  @Input() theme?: ISliderProps['theme'];
+  @Input() label?: ISliderProps['label'];
+  @Input() defaultValue?: ISliderProps['defaultValue'];
+  @Input() value?: ISliderProps['value'];
+  @Input() min?: ISliderProps['min'];
+  @Input() max?: ISliderProps['max'];
+  @Input() step?: ISliderProps['step'];
+  @Input() showValue?: ISliderProps['showValue'];
+  @Input() ariaLabel?: ISliderProps['ariaLabel'];
+  @Input() ariaValueText?: ISliderProps['ariaValueText'];
+  @Input() vertical?: ISliderProps['vertical'];
+  @Input() disabled?: ISliderProps['disabled'];
+  @Input() className?: ISliderProps['className'];
+  @Input() buttonProps?: ISliderProps['buttonProps'];
 
-  @Output()
-  readonly onChange = new EventEmitter<number>();
-  @Output()
-  readonly onChanged = new EventEmitter<{ event: MouseEvent | TouchEvent; value: number }>();
+  @Output() readonly onChange = new EventEmitter<number>();
+  @Output() readonly onChanged = new EventEmitter<{ event: MouseEvent | TouchEvent; value: number }>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

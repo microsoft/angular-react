@@ -35,7 +35,7 @@ import { omit } from '../../utils/omit';
       [closeDelay]="closeDelay"
       [tooltipProps]="transformedTooltipProps"
       [TooltipToggle]="onTooltipToggleHandler"
-      >
+    >
       <ReactContent><ng-content></ng-content></ReactContent>
     </TooltipHost>
   `,
@@ -43,29 +43,18 @@ import { omit } from '../../utils/omit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostProps> {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: ITooltipHostProps['componentRef'];
-  @Input()
-  calloutProps?: ITooltipHostProps['calloutProps'];
-  @Input()
-  setAriaDescribedBy?: ITooltipHostProps['setAriaDescribedBy'];
-  @Input()
-  delay?: ITooltipHostProps['delay'];
-  @Input()
-  content?: ITooltipHostProps['content'];
-  @Input()
-  directionalHint?: ITooltipHostProps['directionalHint'];
-  @Input()
-  directionalHintForRTL?: ITooltipHostProps['directionalHintForRTL'];
-  @Input()
-  overflowMode?: ITooltipHostProps['overflowMode'];
-  @Input()
-  hostClassName?: ITooltipHostProps['hostClassName'];
-  @Input()
-  closeDelay?: ITooltipHostProps['closeDelay'];
+  @Input() componentRef?: ITooltipHostProps['componentRef'];
+  @Input() calloutProps?: ITooltipHostProps['calloutProps'];
+  @Input() setAriaDescribedBy?: ITooltipHostProps['setAriaDescribedBy'];
+  @Input() delay?: ITooltipHostProps['delay'];
+  @Input() content?: ITooltipHostProps['content'];
+  @Input() directionalHint?: ITooltipHostProps['directionalHint'];
+  @Input() directionalHintForRTL?: ITooltipHostProps['directionalHintForRTL'];
+  @Input() overflowMode?: ITooltipHostProps['overflowMode'];
+  @Input() hostClassName?: ITooltipHostProps['hostClassName'];
+  @Input() closeDelay?: ITooltipHostProps['closeDelay'];
 
   @Input()
   set tooltipOptions(value: ITooltipOptions) {
@@ -79,8 +68,7 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
     return this._tooltipOptions;
   }
 
-  @Output()
-  readonly onTooltipToggle = new EventEmitter<{ isTooltipVisible: boolean }>();
+  @Output() readonly onTooltipToggle = new EventEmitter<{ isTooltipVisible: boolean }>();
 
   transformedTooltipProps: ITooltipHostProps['tooltipProps'];
   private _tooltipOptions: ITooltipOptions;

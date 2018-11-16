@@ -19,10 +19,8 @@ export abstract class CommandBarItemsDirectiveBase implements AfterContentInit, 
 
   abstract readonly directiveItems: QueryList<CommandBarItemDirective>;
 
-  @Output()
-  readonly onItemChanged = new EventEmitter<CommandBarItemChangedPayload>();
-  @Output()
-  readonly onItemsChanged = new EventEmitter<QueryList<CommandBarItemDirective>>();
+  @Output() readonly onItemChanged = new EventEmitter<CommandBarItemChangedPayload>();
+  @Output() readonly onItemsChanged = new EventEmitter<QueryList<CommandBarItemDirective>>();
 
   get items() {
     return (
@@ -65,18 +63,15 @@ export abstract class CommandBarItemsDirectiveBase implements AfterContentInit, 
 
 @Directive({ selector: 'fab-command-bar > items' })
 export class CommandBarItemsDirective extends CommandBarItemsDirectiveBase {
-  @ContentChildren(CommandBarItemDirective)
-  readonly directiveItems: QueryList<CommandBarItemDirective>;
+  @ContentChildren(CommandBarItemDirective) readonly directiveItems: QueryList<CommandBarItemDirective>;
 }
 
 @Directive({ selector: 'fab-command-bar > far-items' })
 export class CommandBarFarItemsDirective extends CommandBarItemsDirectiveBase {
-  @ContentChildren(CommandBarItemDirective)
-  readonly directiveItems: QueryList<CommandBarItemDirective>;
+  @ContentChildren(CommandBarItemDirective) readonly directiveItems: QueryList<CommandBarItemDirective>;
 }
 
 @Directive({ selector: 'fab-command-bar > overflow-items' })
 export class CommandBarOverflowItemsDirective extends CommandBarItemsDirectiveBase {
-  @ContentChildren(CommandBarItemDirective)
-  readonly directiveItems: QueryList<CommandBarItemDirective>;
+  @ContentChildren(CommandBarItemDirective) readonly directiveItems: QueryList<CommandBarItemDirective>;
 }

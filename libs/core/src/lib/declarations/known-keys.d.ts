@@ -1,3 +1,4 @@
+// prettier-ignore
 /**
  * Get the known keys (i.e. no index signature) of T.
  *
@@ -17,4 +18,4 @@ type KnownKeysOfOptions = KnownKeys<Options>; // 'key' | 'title';
  */
 type KnownKeys<T> = {
   [K in keyof T]: string extends K ? never : number extends K ? never : K
-} extends { [_ in keyof T]: infer U } ?U: never;
+} extends { [_ in keyof T]: infer U } ? U : never;

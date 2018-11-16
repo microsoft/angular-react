@@ -15,44 +15,25 @@ import omit from '../../../utils/omit';
 export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<T>>
   extends ReactWrapperComponent<TProps>
   implements OnInit {
-  @Input()
-  componentRef?: IBasePickerProps<T>['componentRef'];
-  @Input()
-  resolveDelay?: IBasePickerProps<T>['resolveDelay'];
-  @Input()
-  defaultSelectedItems?: IBasePickerProps<T>['defaultSelectedItems'];
-  @Input()
-  getTextFromItem?: IBasePickerProps<T>['getTextFromItem'];
-  @Input()
-  className?: IBasePickerProps<T>['className'];
-  @Input()
-  searchingText?: IBasePickerProps<T>['searchingText'];
-  @Input()
-  disabled?: IBasePickerProps<T>['disabled'];
-  @Input()
-  itemLimit?: IBasePickerProps<T>['itemLimit'];
-  @Input()
-  createGenericItem?: IBasePickerProps<T>['createGenericItem'];
-  @Input()
-  removeButtonAriaLabel?: IBasePickerProps<T>['removeButtonAriaLabel'];
-  @Input()
-  selectedItems?: IBasePickerProps<T>['selectedItems'];
-  @Input()
-  enableSelectedSuggestionAlert?: IBasePickerProps<T>['enableSelectedSuggestionAlert'];
-  @Input()
-  inputProps?: IBasePickerProps<T>['inputProps'];
-  @Input('itemSelected')
-  onItemSelected?: (selectedItem?: T) => T | PromiseLike<T> | null;
-  @Input('inputChange')
-  onInputChange?: (input: string) => string;
-  @Input('emptyInputFocus')
-  onEmptyInputFocus?: IBasePickerProps<T>['onEmptyInputFocus'];
-  @Input('resolveSuggestions')
-  onResolveSuggestions: IBasePickerProps<T>['onResolveSuggestions'];
-  @Input('getMoreResults')
-  onGetMoreResults?: IBasePickerProps<T>['onGetMoreResults'];
-  @Input('validateInput')
-  onValidateInput?: IBasePickerProps<T>['onValidateInput'];
+  @Input() componentRef?: IBasePickerProps<T>['componentRef'];
+  @Input() resolveDelay?: IBasePickerProps<T>['resolveDelay'];
+  @Input() defaultSelectedItems?: IBasePickerProps<T>['defaultSelectedItems'];
+  @Input() getTextFromItem?: IBasePickerProps<T>['getTextFromItem'];
+  @Input() className?: IBasePickerProps<T>['className'];
+  @Input() searchingText?: IBasePickerProps<T>['searchingText'];
+  @Input() disabled?: IBasePickerProps<T>['disabled'];
+  @Input() itemLimit?: IBasePickerProps<T>['itemLimit'];
+  @Input() createGenericItem?: IBasePickerProps<T>['createGenericItem'];
+  @Input() removeButtonAriaLabel?: IBasePickerProps<T>['removeButtonAriaLabel'];
+  @Input() selectedItems?: IBasePickerProps<T>['selectedItems'];
+  @Input() enableSelectedSuggestionAlert?: IBasePickerProps<T>['enableSelectedSuggestionAlert'];
+  @Input() inputProps?: IBasePickerProps<T>['inputProps'];
+  @Input('itemSelected') onItemSelected?: (selectedItem?: T) => T | PromiseLike<T> | null;
+  @Input('inputChange') onInputChange?: (input: string) => string;
+  @Input('emptyInputFocus') onEmptyInputFocus?: IBasePickerProps<T>['onEmptyInputFocus'];
+  @Input('resolveSuggestions') onResolveSuggestions: IBasePickerProps<T>['onResolveSuggestions'];
+  @Input('getMoreResults') onGetMoreResults?: IBasePickerProps<T>['onGetMoreResults'];
+  @Input('validateInput') onValidateInput?: IBasePickerProps<T>['onValidateInput'];
 
   @Input()
   set pickerSuggestionsOptions(value: IBasePickerSuggestionsOptions) {
@@ -67,21 +48,14 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
     return this._pickerSuggestionsOptions;
   }
 
-  @Input()
-  renderItem?: InputRendererOptions<IPickerItemProps<T>>;
-  @Input()
-  renderSuggestionsItem?: InputRendererOptions<IRenderSuggestionItemContext<T>>;
+  @Input() renderItem?: InputRendererOptions<IPickerItemProps<T>>;
+  @Input() renderSuggestionsItem?: InputRendererOptions<IRenderSuggestionItemContext<T>>;
 
-  @Output()
-  readonly onChange = new EventEmitter<{ items?: T[] }>();
-  @Output()
-  readonly onFocus = new EventEmitter<FocusEvent>();
-  @Output()
-  readonly onBlur = new EventEmitter<FocusEvent>();
-  @Output()
-  readonly onDismiss = new EventEmitter<{ ev?: any; selectedItem?: T }>();
-  @Output()
-  readonly onRemoveSuggestion = new EventEmitter<{ item: IPersonaProps }>();
+  @Output() readonly onChange = new EventEmitter<{ items?: T[] }>();
+  @Output() readonly onFocus = new EventEmitter<FocusEvent>();
+  @Output() readonly onBlur = new EventEmitter<FocusEvent>();
+  @Output() readonly onDismiss = new EventEmitter<{ ev?: any; selectedItem?: T }>();
+  @Output() readonly onRemoveSuggestion = new EventEmitter<{ item: IPersonaProps }>();
 
   pickerSuggestionsProps: IBasePickerSuggestionsProps;
   onRenderSuggestionsItem: (

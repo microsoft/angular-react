@@ -13,6 +13,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   selector: 'sem-button',
   exportAs: 'semButton',
   template: `
+    <!-- prettier-ignore -->
     <Button
       [primary]="primary"
       [secondary]="secondary"
