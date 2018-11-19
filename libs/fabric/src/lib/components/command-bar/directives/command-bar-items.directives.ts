@@ -1,26 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import {
-  AfterContentInit,
-  ContentChildren,
-  Directive,
-  EventEmitter,
-  OnDestroy,
-  Output,
-  QueryList,
-} from '@angular/core';
-import { Subscription } from 'rxjs';
+import { ContentChildren, Directive, QueryList } from '@angular/core';
+
+import { ChangeableItemsDirective } from '../../core/shared/changeable-items.directive';
 import { ICommandBarItemOptions } from '../command-bar.component';
-import { CommandBarItemChangedPayload, CommandBarItemDirective } from './command-bar-item.directives';
+import { CommandBarItemDirective } from './command-bar-item.directives';
 
-export abstract class CommandBarItemsDirectiveBase implements AfterContentInit, OnDestroy {
-  private readonly _subscriptions: Subscription[] = [];
-
+export abstract class CommandBarItemsDirectiveBase extends ChangeableItemsDirective<ICommandBarItemOptions> {
   abstract readonly directiveItems: QueryList<CommandBarItemDirective>;
-
-  @Output() readonly onItemChanged = new EventEmitter<CommandBarItemChangedPayload>();
-  @Output() readonly onItemsChanged = new EventEmitter<QueryList<CommandBarItemDirective>>();
 
   get items() {
     return (
@@ -36,42 +24,22 @@ export abstract class CommandBarItemsDirectiveBase implements AfterContentInit, 
       }))
     );
   }
-
-  ngAfterContentInit() {
-    this._subscriptions.push(
-      ...this.directiveItems.map(directiveItem =>
-        // Propagate the change to the parent CommandBarComponent
-        directiveItem.onItemChanged.subscribe(changes => this.onItemChangedHandler(changes))
-      )
-    );
-
-    this._subscriptions.push(
-      this.directiveItems.changes.subscribe((newValue: this['directiveItems']) => {
-        this.onItemsChanged.emit(newValue);
-      })
-    );
-  }
-
-  ngOnDestroy() {
-    this._subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
-  private onItemChangedHandler(payload: CommandBarItemChangedPayload) {
-    this.onItemChanged.emit(payload);
-  }
 }
 
 @Directive({ selector: 'fab-command-bar > items' })
 export class CommandBarItemsDirective extends CommandBarItemsDirectiveBase {
-  @ContentChildren(CommandBarItemDirective) readonly directiveItems: QueryList<CommandBarItemDirective>;
+  @ContentChildren(CommandBarItemDirective)
+  readonly directiveItems: QueryList<CommandBarItemDirective>;
 }
 
 @Directive({ selector: 'fab-command-bar > far-items' })
 export class CommandBarFarItemsDirective extends CommandBarItemsDirectiveBase {
-  @ContentChildren(CommandBarItemDirective) readonly directiveItems: QueryList<CommandBarItemDirective>;
+  @ContentChildren(CommandBarItemDirective)
+  readonly directiveItems: QueryList<CommandBarItemDirective>;
 }
 
 @Directive({ selector: 'fab-command-bar > overflow-items' })
 export class CommandBarOverflowItemsDirective extends CommandBarItemsDirectiveBase {
-  @ContentChildren(CommandBarItemDirective) readonly directiveItems: QueryList<CommandBarItemDirective>;
+  @ContentChildren(CommandBarItemDirective)
+  readonly directiveItems: QueryList<CommandBarItemDirective>;
 }
