@@ -72,6 +72,7 @@
     "@ngrx/store": "6.0.1",
     "@ngrx/store-devtools": "6.0.1",
     "core-js": "^2.5.4",
+    "geteventlisteners": "^1.0.6",
     "ngrx-store-freeze": "^0.2.1",
     "office-ui-fabric-react": "6.73.0",
     "react": "^16.4.1",

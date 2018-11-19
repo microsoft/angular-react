@@ -8,7 +8,8 @@
       "tslib",
       "css-to-style",
       "classnames",
-      "stylenames"
+      "stylenames",
+      "geteventlisteners"
     ],
     "lib": {
       "languageLevel": [
@@ -60,11 +61,13 @@
   "dependencies": {
     "css-to-style": "^1.2.0",
     "classnames": "^2.2.6",
-    "stylenames": "^1.1.6"
+    "stylenames": "^1.1.6",
+    "geteventlisteners": "^1.0.6"
   },
   "bundledDependencies": [
     "css-to-style",
     "classnames",
-    "stylenames"
+    "stylenames",
+    "geteventlisteners"
   ]
 }
