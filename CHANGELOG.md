@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.10"></a>
+
+# [0.4.10](https://github.com/Microsoft/angular-react/compare/v0.4.9...v0.4.10) (2018-12-01)
+
+### Features
+
+- **core:** Allow specifying arbitrary event handlers to any ReactWrapperComponent ([#39](https://github.com/Microsoft/angular-react/pull/39)) ([13ff801](https://github.com/Microsoft/angular-react/commit/13ff801cc780ff3350ded56cb696d365c51ea4ee))
+
+- **fabric:** Add DetailsList, GroupItem, and MarqueeSelection components ([#37](https://github.com/Microsoft/angular-react/pull/37)) ([000fa42](https://github.com/Microsoft/angular-react/commit/000fa4284fd1bbdd2c0c60d8d75b0fa1b3214ea4))
+
+<a name="0.4.9"></a>
+
+# [0.4.9](https://github.com/Microsoft/angular-react/compare/v0.4.8...v0.4.9) (2018-11-01)
+
+### Features
+
+- **fabric:** Add Calendar component ([#35](https://github.com/Microsoft/angular-react/pull/35)) ([e08298e](https://github.com/Microsoft/angular-react/commit/e08298eb5eae6bb3ededdc117c9ab4d280e20db4))
+
 <a name="0.4.8"></a>
 
 # [0.4.8](https://github.com/Microsoft/angular-react/compare/v0.4.7...v0.4.8) (2018-10-21)
