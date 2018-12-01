@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ICalendarStrings, IContextualMenuProps } from 'office-ui-fabric-react';
+import { ICalendarStrings, IContextualMenuProps, ISelection, Selection } from 'office-ui-fabric-react';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +19,9 @@ export class AppComponent {
     console.log('onMouseOver', { ev });
   }
 
+  marqueeEnabled: boolean;
   runDisabled: boolean;
+  selection: ISelection;
 
   strings: ICalendarStrings = {
     months: [
@@ -46,6 +48,14 @@ export class AppComponent {
     goToToday: 'Go to today',
     weekNumberFormatString: 'Week number {0}',
   };
+
+  detailItems = [
+    { field1: 'f1content1', field2: 'f2content1' },
+    { field1: 'f1content2', field2: 'f2content2' },
+    { field1: 'f1content3', field2: 'f2content3' },
+    { field1: 'f1content4' },
+    { field2: 'f2content5' },
+  ];
 
   onNewClicked() {
     console.log('New clicked');
@@ -76,7 +86,13 @@ export class AppComponent {
     console.log($event);
   }
 
-  constructor(private readonly cd: ChangeDetectorRef) {}
+  onColumnHeaderClicked(event: any) {
+    console.log('Column header clicked', event);
+  }
+
+  constructor(private readonly cd: ChangeDetectorRef) {
+    this.selection = new Selection();
+  }
 
   customItemCount = 1;
 

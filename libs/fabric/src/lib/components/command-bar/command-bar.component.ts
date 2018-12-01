@@ -62,11 +62,11 @@ import {
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>
   implements OnChanges<FabCommandBarComponent>, AfterContentInit, OnDestroy {
   @ContentChild(CommandBarItemsDirective)
-  readonly itemsDirective: CommandBarItemsDirective;
+  readonly itemsDirective?: CommandBarItemsDirective;
   @ContentChild(CommandBarFarItemsDirective)
-  readonly farItemsDirective: CommandBarFarItemsDirective;
+  readonly farItemsDirective?: CommandBarFarItemsDirective;
   @ContentChild(CommandBarOverflowItemsDirective)
-  readonly overflowItemsDirective: CommandBarOverflowItemsDirective;
+  readonly overflowItemsDirective?: CommandBarOverflowItemsDirective;
 
   @ViewChild('reactNode')
   protected reactNodeRef: ElementRef;
@@ -188,7 +188,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
 
     // Subscribe for existing items changes
     this._subscriptions.push(
-      directive.onItemChanged.subscribe(({ key, changes }: CommandBarItemChangedPayload) => {
+      directive.onChildItemChanged.subscribe(({ key, changes }: CommandBarItemChangedPayload) => {
         setItems(items => items.map(item => (item.key === key ? mergeItemChanges(item, changes) : item)));
         this.markForCheck();
       })
