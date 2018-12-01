@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+/// <reference path="../@types/geteventlisteners.d.ts" />
 
 import {
   AfterViewInit,
@@ -24,6 +25,7 @@ import { ReactContentProps } from '../renderer/react-content';
 import { isReactNode } from '../renderer/react-node';
 import { isReactRendererData } from '../renderer/renderer';
 import { createComponentRenderer, createHtmlRenderer, createTemplateRenderer } from '../renderer/renderprop-helpers';
+import { toObject } from '../utils/object/to-object';
 import { afterRenderFinished } from '../utils/render/render-delay';
 import { unreachable } from '../utils/types/unreachable';
 
@@ -278,7 +280,20 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       {}
     );
 
-    this.reactNodeRef.nativeElement.setProperties(props);
+    const eventListeners = this.elementRef.nativeElement.getEventListeners();
+    const eventHandlersProps =
+      eventListeners && Object.keys(eventListeners).length
+        ? toObject(
+            Object.values(eventListeners).map<[string, React.EventHandler<React.SyntheticEvent>]>(([eventListener]) => [
+              eventListener.type,
+              (ev: React.SyntheticEvent) => eventListener.listener(ev && ev.nativeEvent),
+            ])
+          )
+        : {};
+    {
+    }
+
+    this.reactNodeRef.nativeElement.setProperties({ ...props, ...eventHandlersProps });
   }
 
   private _setHostDisplay() {

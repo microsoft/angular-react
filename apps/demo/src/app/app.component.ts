@@ -11,6 +11,14 @@ export class AppComponent {
   @ViewChild('customRange')
   customRangeTemplate: TemplateRef<{ item: any; dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
 
+  onClickEventHandler(ev) {
+    console.log('onClick', { ev });
+  }
+
+  onMouseOverEventHandler(ev) {
+    console.log('onMouseOver', { ev });
+  }
+
   marqueeEnabled: boolean;
   runDisabled: boolean;
   selection: ISelection;
