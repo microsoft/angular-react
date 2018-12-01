@@ -3,7 +3,7 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule, ɵDomRendererFactory2 } from '@angular/platform-browser';
-
+import 'geteventlisteners';
 import { AngularReactRendererFactory } from './renderer/renderer';
 
 @NgModule({
