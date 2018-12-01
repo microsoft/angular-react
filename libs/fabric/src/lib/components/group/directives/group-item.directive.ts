@@ -20,31 +20,19 @@ import { ChangeableItemDirective } from '../../core/shared/changeable-item.direc
 @Directive({ selector: 'fab-group-item' })
 export class GroupItemDirective extends ChangeableItemDirective<IGroup>
   implements AfterContentInit, IChangeableItemsContainer<IGroup>, IGroup, OnDestroy {
-  @ContentChildren(GroupItemDirective)
-  readonly groupItemsDirectives: QueryList<GroupItemDirective>;
+  @ContentChildren(GroupItemDirective) readonly groupItemsDirectives: QueryList<GroupItemDirective>;
 
-  @Input()
-  name: IGroup['name'];
-  @Input()
-  startIndex: IGroup['startIndex'];
-  @Input()
-  count: IGroup['count'];
-  @Input()
-  children?: IGroup['children'];
-  @Input()
-  level?: IGroup['level'];
-  @Input()
-  isCollapsed?: IGroup['isCollapsed'];
-  @Input()
-  isShowingAll?: IGroup['isShowingAll'];
-  @Input()
-  isDropEnabled?: IGroup['isDropEnabled'];
-  @Input()
-  data?: IGroup['data'];
-  @Input()
-  ariaLabel?: IGroup['ariaLabel'];
-  @Input()
-  hasMoreData?: IGroup['hasMoreData'];
+  @Input() name: IGroup['name'];
+  @Input() startIndex: IGroup['startIndex'];
+  @Input() count: IGroup['count'];
+  @Input() children?: IGroup['children'];
+  @Input() level?: IGroup['level'];
+  @Input() isCollapsed?: IGroup['isCollapsed'];
+  @Input() isShowingAll?: IGroup['isShowingAll'];
+  @Input() isDropEnabled?: IGroup['isDropEnabled'];
+  @Input() data?: IGroup['data'];
+  @Input() ariaLabel?: IGroup['ariaLabel'];
+  @Input() hasMoreData?: IGroup['hasMoreData'];
 
   @Output()
   get onChildItemChanged(): EventEmitter<ItemChangedPayload<string, IGroup>> {

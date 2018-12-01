@@ -28,18 +28,15 @@ export abstract class CommandBarItemsDirectiveBase extends ChangeableItemsDirect
 
 @Directive({ selector: 'fab-command-bar > items' })
 export class CommandBarItemsDirective extends CommandBarItemsDirectiveBase {
-  @ContentChildren(CommandBarItemDirective)
-  readonly directiveItems: QueryList<CommandBarItemDirective>;
+  @ContentChildren(CommandBarItemDirective) readonly directiveItems: QueryList<CommandBarItemDirective>;
 }
 
 @Directive({ selector: 'fab-command-bar > far-items' })
 export class CommandBarFarItemsDirective extends CommandBarItemsDirectiveBase {
-  @ContentChildren(CommandBarItemDirective)
-  readonly directiveItems: QueryList<CommandBarItemDirective>;
+  @ContentChildren(CommandBarItemDirective) readonly directiveItems: QueryList<CommandBarItemDirective>;
 }
 
 @Directive({ selector: 'fab-command-bar > overflow-items' })
 export class CommandBarOverflowItemsDirective extends CommandBarItemsDirectiveBase {
-  @ContentChildren(CommandBarItemDirective)
-  readonly directiveItems: QueryList<CommandBarItemDirective>;
+  @ContentChildren(CommandBarItemDirective) readonly directiveItems: QueryList<CommandBarItemDirective>;
 }

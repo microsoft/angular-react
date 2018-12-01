@@ -8,8 +8,10 @@ import { ICalendarStrings, IContextualMenuProps, ISelection, Selection } from 'o
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
-  @ViewChild('customRange')
-  customRangeTemplate: TemplateRef<{ item: any; dismissMenu: (ev?: any, dismissAll?: boolean) => void }>;
+  @ViewChild('customRange') customRangeTemplate: TemplateRef<{
+    item: any;
+    dismissMenu: (ev?: any, dismissAll?: boolean) => void;
+  }>;
 
   onClickEventHandler(ev) {
     console.log('onClick', { ev });

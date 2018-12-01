@@ -14,6 +14,7 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## Pull Requests Reviews
+
 This is a simple guide to assist in reviewing Github pull requests locally within VS Code.
 
 See: https://gist.github.com/piscisaureus/3342247
@@ -66,4 +67,4 @@ Fast-forward
 ...
 ```
 
-Note: "git pull" did not work for me by itself for the PR branch...  Perhaps "git pull origin".
+Note: "git pull" did not work for me by itself for the PR branch... Perhaps "git pull origin".

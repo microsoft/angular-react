@@ -72,7 +72,7 @@ import { CounterComponent } from './counter/counter.component';
     FabCalendarModule,
     FabDetailsListModule,
     FabGroupModule,
-    FabMarqueeSelectionModule
+    FabMarqueeSelectionModule,
   ],
   declarations: [AppComponent, CounterComponent],
   bootstrap: [AppComponent],

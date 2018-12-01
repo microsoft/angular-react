@@ -12,8 +12,7 @@ import { ChangeableItemDirective } from '../../core/shared/changeable-item.direc
  */
 @Directive({ selector: 'fab-details-list-column > render' })
 export class DetailsListColumnRenderDirective {
-  @ContentChild(TemplateRef)
-  readonly templateRef: TemplateRef<IDetailsListColumnOptionsRenderContext>;
+  @ContentChild(TemplateRef) readonly templateRef: TemplateRef<IDetailsListColumnOptionsRenderContext>;
 }
 
 /**
@@ -22,79 +21,45 @@ export class DetailsListColumnRenderDirective {
 @Directive({ selector: 'fab-details-list-column' })
 export class DetailsListColumnDirective extends ChangeableItemDirective<IDetailsListColumnOptions>
   implements AfterContentInit {
-  @ContentChild(DetailsListColumnRenderDirective)
-  readonly renderDirective: DetailsListColumnRenderDirective;
+  @ContentChild(DetailsListColumnRenderDirective) readonly renderDirective: DetailsListColumnRenderDirective;
 
-  @Input()
-  name: IColumn['name'];
-  @Input()
-  fieldName?: IColumn['fieldName'];
-  @Input()
-  className?: IColumn['className'];
-  @Input()
-  minWidth: IColumn['minWidth'];
-  @Input()
-  ariaLabel?: IColumn['ariaLabel'];
-  @Input()
-  isRowHeader?: IColumn['isRowHeader'];
-  @Input()
-  maxWidth?: IColumn['maxWidth'];
-  @Input()
-  columnActionsMode?: IColumn['columnActionsMode'];
-  @Input()
-  iconName?: IColumn['iconName'];
-  @Input()
-  isIconOnly?: IColumn['isIconOnly'];
-  @Input()
-  iconClassName?: IColumn['iconClassName'];
-  @Input()
-  isCollapsable?: IColumn['isCollapsable'];
-  @Input()
-  isSorted?: IColumn['isSorted'];
-  @Input()
-  isSortedDescending?: IColumn['isSortedDescending'];
-  @Input()
-  isResizable?: IColumn['isResizable'];
-  @Input()
-  isMultiline?: IColumn['isMultiline'];
-  @Input()
-  onRender?: IColumn['onRender'];
-  @Input()
-  onRenderDivider?: IColumn['onRenderDivider'];
-  @Input()
-  isFiltered?: IColumn['isFiltered'];
-  @Input()
-  isGrouped?: IColumn['isGrouped'];
-  @Input()
-  data?: IColumn['data'];
-  @Input()
-  calculatedWidth?: IColumn['calculatedWidth'];
-  @Input()
-  currentWidth?: IColumn['currentWidth'];
-  @Input()
-  headerClassName?: IColumn['headerClassName'];
-  @Input()
-  isPadded?: IColumn['isPadded'];
-  @Input()
-  sortAscendingAriaLabel?: IColumn['sortAscendingAriaLabel'];
-  @Input()
-  sortDescendingAriaLabel?: IColumn['sortDescendingAriaLabel'];
-  @Input()
-  groupAriaLabel?: IColumn['groupAriaLabel'];
-  @Input()
-  filterAriaLabel?: IColumn['filterAriaLabel'];
+  @Input() name: IColumn['name'];
+  @Input() fieldName?: IColumn['fieldName'];
+  @Input() className?: IColumn['className'];
+  @Input() minWidth: IColumn['minWidth'];
+  @Input() ariaLabel?: IColumn['ariaLabel'];
+  @Input() isRowHeader?: IColumn['isRowHeader'];
+  @Input() maxWidth?: IColumn['maxWidth'];
+  @Input() columnActionsMode?: IColumn['columnActionsMode'];
+  @Input() iconName?: IColumn['iconName'];
+  @Input() isIconOnly?: IColumn['isIconOnly'];
+  @Input() iconClassName?: IColumn['iconClassName'];
+  @Input() isCollapsable?: IColumn['isCollapsable'];
+  @Input() isSorted?: IColumn['isSorted'];
+  @Input() isSortedDescending?: IColumn['isSortedDescending'];
+  @Input() isResizable?: IColumn['isResizable'];
+  @Input() isMultiline?: IColumn['isMultiline'];
+  @Input() onRender?: IColumn['onRender'];
+  @Input() onRenderDivider?: IColumn['onRenderDivider'];
+  @Input() isFiltered?: IColumn['isFiltered'];
+  @Input() isGrouped?: IColumn['isGrouped'];
+  @Input() data?: IColumn['data'];
+  @Input() calculatedWidth?: IColumn['calculatedWidth'];
+  @Input() currentWidth?: IColumn['currentWidth'];
+  @Input() headerClassName?: IColumn['headerClassName'];
+  @Input() isPadded?: IColumn['isPadded'];
+  @Input() sortAscendingAriaLabel?: IColumn['sortAscendingAriaLabel'];
+  @Input() sortDescendingAriaLabel?: IColumn['sortDescendingAriaLabel'];
+  @Input() groupAriaLabel?: IColumn['groupAriaLabel'];
+  @Input() filterAriaLabel?: IColumn['filterAriaLabel'];
 
   // Render members
-  @Input()
-  render: IDetailsListColumnOptions['render'];
+  @Input() render: IDetailsListColumnOptions['render'];
 
   // Callback members
-  @Output()
-  readonly onColumnClick = new EventEmitter<{ ev: Event; column: IColumn }>();
-  @Output()
-  readonly onColumnContextMenu = new EventEmitter<{ column?: IColumn; ev?: Event }>();
-  @Output()
-  readonly onColumnResize = new EventEmitter<{ width?: number }>();
+  @Output() readonly onColumnClick = new EventEmitter<{ ev: Event; column: IColumn }>();
+  @Output() readonly onColumnContextMenu = new EventEmitter<{ column?: IColumn; ev?: Event }>();
+  @Output() readonly onColumnResize = new EventEmitter<{ width?: number }>();
 
   ngAfterContentInit() {
     if (this.renderDirective && this.renderDirective.templateRef) {

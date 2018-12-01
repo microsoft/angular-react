@@ -28,7 +28,8 @@ import { IMarqueeSelectionProps } from 'office-ui-fabric-react/lib/MarqueeSelect
       [rootProps]="rootProps"
       [styles]="styles"
       [theme]="theme"
-      [ShouldStartSelection]="onShouldStartSelection">
+      [ShouldStartSelection]="onShouldStartSelection"
+    >
       <ReactContent><ng-content></ng-content></ReactContent>
     </MarqueeSelection>
   `,
@@ -36,27 +37,17 @@ import { IMarqueeSelectionProps } from 'office-ui-fabric-react/lib/MarqueeSelect
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMarqueeSelectionComponent extends ReactWrapperComponent<IMarqueeSelectionProps> {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: IMarqueeSelectionProps['componentRef'];
-  @Input()
-  selection: IMarqueeSelectionProps['selection'];
-  @Input()
-  rootProps?: IMarqueeSelectionProps['rootProps'];
-  @Input()
-  onShouldStartSelection?: (ev: MouseEvent) => boolean;
-  @Input()
-  isEnabled?: IMarqueeSelectionProps['isEnabled'];
-  @Input()
-  isDraggingConstrainedToRoot?: IMarqueeSelectionProps['isDraggingConstrainedToRoot'];
-  @Input()
-  className?: IMarqueeSelectionProps['className'];
-  @Input()
-  theme?: IMarqueeSelectionProps['theme'];
-  @Input()
-  styles?: IMarqueeSelectionProps['styles'];
+  @Input() componentRef?: IMarqueeSelectionProps['componentRef'];
+  @Input() selection: IMarqueeSelectionProps['selection'];
+  @Input() rootProps?: IMarqueeSelectionProps['rootProps'];
+  @Input() onShouldStartSelection?: (ev: MouseEvent) => boolean;
+  @Input() isEnabled?: IMarqueeSelectionProps['isEnabled'];
+  @Input() isDraggingConstrainedToRoot?: IMarqueeSelectionProps['isDraggingConstrainedToRoot'];
+  @Input() className?: IMarqueeSelectionProps['className'];
+  @Input() theme?: IMarqueeSelectionProps['theme'];
+  @Input() styles?: IMarqueeSelectionProps['styles'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });

@@ -8,24 +8,16 @@ import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DotComponent {
-  @Input()
-  x: string;
-  @Input()
-  y: string;
-  @Input()
-  size: string;
-  @Input()
-  color: string;
-  @Input()
-  backgroundColor: string;
-  @Input()
-  textOverride: string;
+  @Input() x: string;
+  @Input() y: string;
+  @Input() size: string;
+  @Input() color: string;
+  @Input() backgroundColor: string;
+  @Input() textOverride: string;
 
-  @Output('onMouseEnter')
-  mouseEnter: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
-  @Output('onMouseLeave')
-  mouseLeave: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
+  @Output('onMouseEnter') readonly mouseEnter = new EventEmitter<MouseEvent>();
+  @Output('onMouseLeave') readonly mouseLeave = new EventEmitter<MouseEvent>();
 
-  onMouseEnter = ev => this.mouseEnter.emit(ev as any);
-  onMouseLeave = ev => this.mouseLeave.emit(ev as any);
+  onMouseEnter = (ev: MouseEvent) => this.mouseEnter.emit(ev);
+  onMouseLeave = (ev: MouseEvent) => this.mouseLeave.emit(ev);
 }

@@ -12,8 +12,7 @@ import { ChangeableItemDirective } from './changeable-item.directive';
  */
 export abstract class ChangeableItemsDirective<TItem>
   implements AfterContentInit, IChangeableItemsContainer<TItem>, OnDestroy {
-  @ContentChildren(ChangeableItemDirective)
-  readonly directiveItems: QueryList<ChangeableItemDirective<TItem>>;
+  @ContentChildren(ChangeableItemDirective) readonly directiveItems: QueryList<ChangeableItemDirective<TItem>>;
 
   @Output()
   get onChildItemChanged(): EventEmitter<ItemChangedPayload<string, TItem>> {

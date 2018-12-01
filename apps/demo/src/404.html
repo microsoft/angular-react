@@ -1,27 +1,19 @@
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
 
-<head>
-  <meta charset="utf-8" />
+    <title>Angular-React Demo</title>
 
-  <title>Angular-React Demo</title>
+    <script>
+      // Store the URL the user was trying to access when receiving the 404.
+      sessionStorage.redirect = location.href;
+    </script>
 
-  <script>
-    // Store the URL the user was trying to access when receiving the 404.
-    sessionStorage.redirect = location.href;
-  </script>
+    <!-- Immediately redirect to the base URL so we can use the SPA routing. -->
+    <meta http-equiv="refresh" content="0;URL='https://microsoft.github.io/angular-react/demo/'" />
+  </head>
 
-  <!-- Immediately redirect to the base URL so we can use the SPA routing. -->
-  <meta http-equiv="refresh" content="0;URL='https://microsoft.github.io/angular-react/demo/'"></meta>
-</head>
-
-<body>
-<!-- IE required at least 512 bytes of data to show non-default 404. -->
-
-
-
-</body>
-
-
-</body>
-
+  <body>
+    <!-- IE required at least 512 bytes of data to show non-default 404. -->
+  </body>
 </html>

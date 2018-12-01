@@ -26,76 +26,42 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
     IContextualMenuItem,
     OnChanges<ContextualMenuItemDirective>,
     OnDestroy {
-  @ContentChildren(ContextualMenuItemDirective)
-  readonly menuItemsDirectives: QueryList<ContextualMenuItemDirective>;
+  @ContentChildren(ContextualMenuItemDirective) readonly menuItemsDirectives: QueryList<ContextualMenuItemDirective>;
 
-  @Input()
-  componentRef?: IContextualMenuItem['componentRef'];
-  @Input()
-  text?: IContextualMenuItem['text'];
-  @Input()
-  secondaryText?: IContextualMenuItem['secondaryText'];
-  @Input()
-  itemType?: IContextualMenuItem['itemType'];
-  @Input()
-  iconProps?: IContextualMenuItem['iconProps'];
-  @Input()
-  onRenderIcon?: IContextualMenuItem['onRenderIcon'];
-  @Input()
-  submenuIconProps?: IContextualMenuItem['submenuIconProps'];
-  @Input()
-  disabled?: IContextualMenuItem['disabled'];
-  @Input()
-  primaryDisabled?: IContextualMenuItem['primaryDisabled'];
-  @Input()
-  shortCut?: IContextualMenuItem['shortCut'];
-  @Input()
-  canCheck?: IContextualMenuItem['canCheck'];
-  @Input()
-  checked?: IContextualMenuItem['checked'];
-  @Input()
-  split?: IContextualMenuItem['split'];
-  @Input()
-  data?: IContextualMenuItem['data'];
-  @Input()
-  href?: IContextualMenuItem['href'];
-  @Input()
-  target?: IContextualMenuItem['target'];
-  @Input()
-  rel?: IContextualMenuItem['rel'];
-  @Input()
-  subMenuProps?: IContextualMenuItem['subMenuProps'];
-  @Input()
-  getItemClassNames?: IContextualMenuItem['getItemClassNames'];
-  @Input()
-  getSplitButtonVerticalDividerClassNames?: IContextualMenuItem['getSplitButtonVerticalDividerClassNames'];
-  @Input()
-  sectionProps?: IContextualMenuItem['sectionProps'];
-  @Input()
-  className?: IContextualMenuItem['className'];
-  @Input()
-  style?: IContextualMenuItem['style'];
-  @Input()
-  ariaLabel?: IContextualMenuItem['ariaLabel'];
-  @Input()
-  title?: IContextualMenuItem['title'];
-  @Input()
-  onRender?: IContextualMenuItem['onRender'];
-  @Input()
-  onMouseDown?: IContextualMenuItem['onMouseDown'];
-  @Input()
-  role?: IContextualMenuItem['role'];
-  @Input()
-  customOnRenderListLength?: IContextualMenuItem['customOnRenderListLength'];
-  @Input()
-  keytipProps?: IContextualMenuItem['keytipProps'];
-  @Input()
-  inactive?: IContextualMenuItem['inactive'];
-  @Input()
-  name?: IContextualMenuItem['name'];
+  @Input() componentRef?: IContextualMenuItem['componentRef'];
+  @Input() text?: IContextualMenuItem['text'];
+  @Input() secondaryText?: IContextualMenuItem['secondaryText'];
+  @Input() itemType?: IContextualMenuItem['itemType'];
+  @Input() iconProps?: IContextualMenuItem['iconProps'];
+  @Input() onRenderIcon?: IContextualMenuItem['onRenderIcon'];
+  @Input() submenuIconProps?: IContextualMenuItem['submenuIconProps'];
+  @Input() disabled?: IContextualMenuItem['disabled'];
+  @Input() primaryDisabled?: IContextualMenuItem['primaryDisabled'];
+  @Input() shortCut?: IContextualMenuItem['shortCut'];
+  @Input() canCheck?: IContextualMenuItem['canCheck'];
+  @Input() checked?: IContextualMenuItem['checked'];
+  @Input() split?: IContextualMenuItem['split'];
+  @Input() data?: IContextualMenuItem['data'];
+  @Input() href?: IContextualMenuItem['href'];
+  @Input() target?: IContextualMenuItem['target'];
+  @Input() rel?: IContextualMenuItem['rel'];
+  @Input() subMenuProps?: IContextualMenuItem['subMenuProps'];
+  @Input() getItemClassNames?: IContextualMenuItem['getItemClassNames'];
+  @Input() getSplitButtonVerticalDividerClassNames?: IContextualMenuItem['getSplitButtonVerticalDividerClassNames'];
+  @Input() sectionProps?: IContextualMenuItem['sectionProps'];
+  @Input() className?: IContextualMenuItem['className'];
+  @Input() style?: IContextualMenuItem['style'];
+  @Input() ariaLabel?: IContextualMenuItem['ariaLabel'];
+  @Input() title?: IContextualMenuItem['title'];
+  @Input() onRender?: IContextualMenuItem['onRender'];
+  @Input() onMouseDown?: IContextualMenuItem['onMouseDown'];
+  @Input() role?: IContextualMenuItem['role'];
+  @Input() customOnRenderListLength?: IContextualMenuItem['customOnRenderListLength'];
+  @Input() keytipProps?: IContextualMenuItem['keytipProps'];
+  @Input() inactive?: IContextualMenuItem['inactive'];
+  @Input() name?: IContextualMenuItem['name'];
 
-  @Output()
-  readonly click = new EventEmitter<{ ev?: MouseEvent | KeyboardEvent; item?: IContextualMenuItem }>();
+  @Output() readonly click = new EventEmitter<{ ev?: MouseEvent | KeyboardEvent; item?: IContextualMenuItem }>();
 
   @Output()
   get onChildItemChanged(): EventEmitter<ItemChangedPayload<string, IContextualMenuItem>> {
