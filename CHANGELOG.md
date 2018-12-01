@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+
+<a name="0.4.9"></a>
+
+# [0.4.9](https://github.com/Microsoft/angular-react/compare/v0.4.8...v0.4.9) (2018-11-01)
+
+### Features
+
+- **fabric:** Add Calendar component ([#35](https://github.com/Microsoft/angular-react/pull/35)) ([e08298e](https://github.com/Microsoft/angular-react/commit/e08298eb5eae6bb3ededdc117c9ab4d280e20db4))
+
 <a name="0.4.8"></a>
 
 # [0.4.8](https://github.com/Microsoft/angular-react/compare/v0.4.7...v0.4.8) (2018-10-21)
