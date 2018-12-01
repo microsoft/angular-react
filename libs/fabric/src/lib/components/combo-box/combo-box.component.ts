@@ -41,15 +41,15 @@ import { FabBaseComboBoxComponent } from './base-combo-box.component';
       [ResolveOptions]="resolveOptions"
       [ScrollToItem]="onScrollToItemHandler"
       (onMenuOpen)="onMenuOpen.emit()"
-      (onMenuDismissed)="onMenuDismissed.emit()">
+      (onMenuDismissed)="onMenuDismissed.emit()"
+    >
     </ComboBox>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabComboBoxComponent extends FabBaseComboBoxComponent {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, ngZone);

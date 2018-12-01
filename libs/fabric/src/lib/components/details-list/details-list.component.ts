@@ -103,7 +103,8 @@ import { DetailsListGroupsDirective } from './directives/details-list-groups.dir
       [ItemInvoked]="onItemInvokedHandler"
       [RowDidMount]="onRowDidMountHandler"
       [RowWillUnmount]="onRowWillUnmountHandler"
-      [ShouldVirtualize]="onShouldVirtualize">
+      [ShouldVirtualize]="onShouldVirtualize"
+    >
     </DetailsList>
   `,
   styles: ['react-renderer'],
@@ -111,140 +112,78 @@ import { DetailsListGroupsDirective } from './directives/details-list-groups.dir
 })
 export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListProps>
   implements AfterContentInit, OnChanges<FabDetailsListComponent>, OnDestroy, OnInit {
-  @ContentChild(DetailsListColumnsDirective)
-  readonly columnsDirective?: DetailsListColumnsDirective;
-  @ContentChild(DetailsListGroupsDirective)
-  readonly groupsDirective?: DetailsListGroupsDirective;
+  @ContentChild(DetailsListColumnsDirective) readonly columnsDirective?: DetailsListColumnsDirective;
+  @ContentChild(DetailsListGroupsDirective) readonly groupsDirective?: DetailsListGroupsDirective;
 
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  theme?: IDetailsListProps['theme'];
-  @Input()
-  styles?: IDetailsListProps['styles'];
-  @Input()
-  componentRef?: IDetailsListProps['componentRef'];
-  @Input()
-  setKey?: IDetailsListProps['setKey'];
-  @Input()
-  items: IDetailsListProps['items'];
-  @Input()
-  listProps?: IDetailsListProps['listProps'];
-  @Input()
-  initialFocusedIndex?: IDetailsListProps['initialFocusedIndex'];
-  @Input()
-  className?: IDetailsListProps['className'];
-  @Input()
-  groupProps?: IDetailsListProps['groupProps'];
-  @Input()
-  indentWidth?: IDetailsListProps['indentWidth'];
-  @Input()
-  selection?: IDetailsListProps['selection'];
-  @Input()
-  selectionMode?: IDetailsListProps['selectionMode'];
-  @Input()
-  selectionPreservedOnEmptyClick?: IDetailsListProps['selectionPreservedOnEmptyClick'];
-  @Input()
-  selectionZoneProps?: IDetailsListProps['selectionZoneProps'];
-  @Input()
-  layoutMode?: IDetailsListProps['layoutMode'];
-  @Input()
-  checkboxVisibility?: IDetailsListProps['checkboxVisibility'];
-  @Input()
-  isHeaderVisible?: IDetailsListProps['isHeaderVisible'];
-  @Input()
-  constrainMode?: IDetailsListProps['constrainMode'];
-  @Input()
-  rowElementEventMap?: IDetailsListProps['rowElementEventMap'];
-  @Input()
-  dragDropEvents?: IDetailsListProps['dragDropEvents'];
-  @Input()
-  enableShimmer?: IDetailsListProps['enableShimmer'];
-  @Input()
-  viewport?: IDetailsListProps['viewport'];
-  @Input()
-  ariaLabelForListHeader?: IDetailsListProps['ariaLabelForListHeader'];
-  @Input()
-  ariaLabelForSelectAllCheckbox?: IDetailsListProps['ariaLabelForSelectAllCheckbox'];
-  @Input()
-  ariaLabelForSelectionColumn?: IDetailsListProps['ariaLabelForSelectionColumn'];
-  @Input()
-  getRowAriaLabel?: IDetailsListProps['getRowAriaLabel'];
-  @Input()
-  getRowAriaDescribedBy?: IDetailsListProps['getRowAriaDescribedBy'];
-  @Input()
-  getKey?: IDetailsListProps['getKey'];
-  @Input()
-  ariaLabel?: IDetailsListProps['ariaLabel'];
-  @Input()
-  checkButtonAriaLabel?: IDetailsListProps['checkButtonAriaLabel'];
-  @Input()
-  ariaLabelForGrid?: IDetailsListProps['ariaLabelForGrid'];
-  @Input()
-  shouldApplyApplicationRole?: IDetailsListProps['shouldApplyApplicationRole'];
-  @Input()
-  minimumPixelsForDrag?: IDetailsListProps['minimumPixelsForDrag'];
-  @Input()
-  compact?: IDetailsListProps['compact'];
-  @Input()
-  usePageCache?: IDetailsListProps['usePageCache'];
-  @Input()
-  onShouldVirtualize?: (props: IListProps) => boolean;
-  @Input()
-  checkboxCellClassName?: IDetailsListProps['checkboxCellClassName'];
-  @Input()
-  enterModalSelectionOnTouch?: IDetailsListProps['enterModalSelectionOnTouch'];
-  @Input()
-  columnReorderOptions?: IDetailsListProps['columnReorderOptions'];
-  @Input()
-  getGroupHeight?: IDetailsListProps['getGroupHeight'];
-  @Input()
-  useReducedRowRenderer?: IDetailsListProps['useReducedRowRenderer'];
-  @Input()
-  cellStyleProps?: IDetailsListProps['cellStyleProps'];
-  @Input()
-  disableSelectionZone?: IDetailsListProps['disableSelectionZone'];
+  @Input() theme?: IDetailsListProps['theme'];
+  @Input() styles?: IDetailsListProps['styles'];
+  @Input() componentRef?: IDetailsListProps['componentRef'];
+  @Input() setKey?: IDetailsListProps['setKey'];
+  @Input() items: IDetailsListProps['items'];
+  @Input() listProps?: IDetailsListProps['listProps'];
+  @Input() initialFocusedIndex?: IDetailsListProps['initialFocusedIndex'];
+  @Input() className?: IDetailsListProps['className'];
+  @Input() groupProps?: IDetailsListProps['groupProps'];
+  @Input() indentWidth?: IDetailsListProps['indentWidth'];
+  @Input() selection?: IDetailsListProps['selection'];
+  @Input() selectionMode?: IDetailsListProps['selectionMode'];
+  @Input() selectionPreservedOnEmptyClick?: IDetailsListProps['selectionPreservedOnEmptyClick'];
+  @Input() selectionZoneProps?: IDetailsListProps['selectionZoneProps'];
+  @Input() layoutMode?: IDetailsListProps['layoutMode'];
+  @Input() checkboxVisibility?: IDetailsListProps['checkboxVisibility'];
+  @Input() isHeaderVisible?: IDetailsListProps['isHeaderVisible'];
+  @Input() constrainMode?: IDetailsListProps['constrainMode'];
+  @Input() rowElementEventMap?: IDetailsListProps['rowElementEventMap'];
+  @Input() dragDropEvents?: IDetailsListProps['dragDropEvents'];
+  @Input() enableShimmer?: IDetailsListProps['enableShimmer'];
+  @Input() viewport?: IDetailsListProps['viewport'];
+  @Input() ariaLabelForListHeader?: IDetailsListProps['ariaLabelForListHeader'];
+  @Input() ariaLabelForSelectAllCheckbox?: IDetailsListProps['ariaLabelForSelectAllCheckbox'];
+  @Input() ariaLabelForSelectionColumn?: IDetailsListProps['ariaLabelForSelectionColumn'];
+  @Input() getRowAriaLabel?: IDetailsListProps['getRowAriaLabel'];
+  @Input() getRowAriaDescribedBy?: IDetailsListProps['getRowAriaDescribedBy'];
+  @Input() getKey?: IDetailsListProps['getKey'];
+  @Input() ariaLabel?: IDetailsListProps['ariaLabel'];
+  @Input() checkButtonAriaLabel?: IDetailsListProps['checkButtonAriaLabel'];
+  @Input() ariaLabelForGrid?: IDetailsListProps['ariaLabelForGrid'];
+  @Input() shouldApplyApplicationRole?: IDetailsListProps['shouldApplyApplicationRole'];
+  @Input() minimumPixelsForDrag?: IDetailsListProps['minimumPixelsForDrag'];
+  @Input() compact?: IDetailsListProps['compact'];
+  @Input() usePageCache?: IDetailsListProps['usePageCache'];
+  @Input() onShouldVirtualize?: (props: IListProps) => boolean;
+  @Input() checkboxCellClassName?: IDetailsListProps['checkboxCellClassName'];
+  @Input() enterModalSelectionOnTouch?: IDetailsListProps['enterModalSelectionOnTouch'];
+  @Input() columnReorderOptions?: IDetailsListProps['columnReorderOptions'];
+  @Input() getGroupHeight?: IDetailsListProps['getGroupHeight'];
+  @Input() useReducedRowRenderer?: IDetailsListProps['useReducedRowRenderer'];
+  @Input() cellStyleProps?: IDetailsListProps['cellStyleProps'];
+  @Input() disableSelectionZone?: IDetailsListProps['disableSelectionZone'];
 
   // Inherited members (IWithViewportProps)
-  @Input()
-  skipViewportMeasures?: IDetailsListProps['skipViewportMeasures'];
+  @Input() skipViewportMeasures?: IDetailsListProps['skipViewportMeasures'];
 
   // Render members
-  @Input()
-  renderDetailsFooter?: InputRendererOptions<IDetailsFooterProps>;
-  @Input()
-  renderDetailsHeader?: InputRendererOptions<IDetailsHeaderProps>;
-  @Input()
-  renderMissingItem?: InputRendererOptions<IMissingItemRenderContext>;
-  @Input()
-  renderRow?: InputRendererOptions<IDetailsRowProps>;
+  @Input() renderDetailsFooter?: InputRendererOptions<IDetailsFooterProps>;
+  @Input() renderDetailsHeader?: InputRendererOptions<IDetailsHeaderProps>;
+  @Input() renderMissingItem?: InputRendererOptions<IMissingItemRenderContext>;
+  @Input() renderRow?: InputRendererOptions<IDetailsRowProps>;
 
   // Callback members
-  @Output()
-  readonly onActiveItemChanged = new EventEmitter<{ item?: any; index?: number; ev?: Event }>();
-  @Output()
-  readonly onColumnHeaderClick = new EventEmitter<{ ev?: Event; column?: IColumn }>();
-  @Output()
-  readonly onColumnHeaderContextMenu = new EventEmitter<{ column?: IColumn; ev?: Event }>();
-  @Output()
-  readonly onColumnResize = new EventEmitter<{ column?: IColumn; newWidth?: number; columnIndex?: number }>();
-  @Output()
-  readonly onDidUpdate = new EventEmitter<{ detailsList?: DetailsListBase }>();
-  @Output()
-  readonly onItemContextMenu = new EventEmitter<{ item?: any; index?: number; ev?: Event }>();
-  @Output()
-  readonly onItemInvoked = new EventEmitter<{ item?: any; index?: number; ev?: Event }>();
-  @Output()
-  readonly onRowDidMount = new EventEmitter<{ item?: any; index?: number }>();
-  @Output()
-  readonly onRowWillUnmount = new EventEmitter<{ item?: any; index?: number }>();
+  @Output() readonly onActiveItemChanged = new EventEmitter<{ item?: any; index?: number; ev?: Event }>();
+  @Output() readonly onColumnHeaderClick = new EventEmitter<{ ev?: Event; column?: IColumn }>();
+  @Output() readonly onColumnHeaderContextMenu = new EventEmitter<{ column?: IColumn; ev?: Event }>();
+  @Output() readonly onColumnResize = new EventEmitter<{ column?: IColumn; newWidth?: number; columnIndex?: number }>();
+  @Output() readonly onDidUpdate = new EventEmitter<{ detailsList?: DetailsListBase }>();
+  @Output() readonly onItemContextMenu = new EventEmitter<{ item?: any; index?: number; ev?: Event }>();
+  @Output() readonly onItemInvoked = new EventEmitter<{ item?: any; index?: number; ev?: Event }>();
+  @Output() readonly onRowDidMount = new EventEmitter<{ item?: any; index?: number }>();
+  @Output() readonly onRowWillUnmount = new EventEmitter<{ item?: any; index?: number }>();
 
   // Directive members
-  @Input()
-  columns: ReadonlyArray<IDetailsListColumnOptions>;
-  @Input()
-  groups: ReadonlyArray<IGroup>;
+  @Input() columns: ReadonlyArray<IDetailsListColumnOptions>;
+  @Input() groups: ReadonlyArray<IGroup>;
 
   /** @internal */
   transformedColumns_: ReadonlyArray<IColumn>;

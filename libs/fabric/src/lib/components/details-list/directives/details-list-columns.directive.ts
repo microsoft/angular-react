@@ -12,8 +12,7 @@ import { DetailsListColumnDirective, IDetailsListColumnOptions } from './details
  */
 @Directive({ selector: 'fab-details-list > columns' })
 export class DetailsListColumnsDirective extends ChangeableItemsDirective<IDetailsListColumnOptions> {
-  @ContentChildren(DetailsListColumnDirective)
-  readonly directiveItems: QueryList<DetailsListColumnDirective>;
+  @ContentChildren(DetailsListColumnDirective) readonly directiveItems: QueryList<DetailsListColumnDirective>;
 
   get items() {
     return this.directiveItems.map<IDetailsListColumnOptions>(directiveItem => ({

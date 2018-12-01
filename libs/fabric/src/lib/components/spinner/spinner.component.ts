@@ -2,7 +2,15 @@
 // Licensed under the MIT License.
 
 import { ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ISpinnerProps } from 'office-ui-fabric-react/lib/Spinner';
 
 @Component({
@@ -19,34 +27,25 @@ import { ISpinnerProps } from 'office-ui-fabric-react/lib/Spinner';
       [ariaLive]="ariaLive"
       [ariaLabel]="ariaLabel"
       [theme]="theme"
-      [styles]="styles">
+      [styles]="styles"
+    >
     </Spinner>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: ISpinnerProps['componentRef'];
-  @Input()
-  type?: ISpinnerProps['type'];
-  @Input()
-  size?: ISpinnerProps['size'];
-  @Input()
-  label?: ISpinnerProps['label'];
-  @Input()
-  className?: ISpinnerProps['className'];
-  @Input()
-  ariaLive?: ISpinnerProps['ariaLive'];
-  @Input()
-  ariaLabel?: ISpinnerProps['ariaLabel'];
-  @Input()
-  theme?: ISpinnerProps['theme'];
-  @Input()
-  styles?: ISpinnerProps['styles'];
+  @Input() componentRef?: ISpinnerProps['componentRef'];
+  @Input() type?: ISpinnerProps['type'];
+  @Input() size?: ISpinnerProps['size'];
+  @Input() label?: ISpinnerProps['label'];
+  @Input() className?: ISpinnerProps['className'];
+  @Input() ariaLive?: ISpinnerProps['ariaLive'];
+  @Input() ariaLabel?: ISpinnerProps['ariaLabel'];
+  @Input() theme?: ISpinnerProps['theme'];
+  @Input() styles?: ISpinnerProps['styles'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

@@ -117,24 +117,56 @@
   <fab-calendar [strings]="strings" (onSelectDate)="onSelectDate($event)"></fab-calendar>
 
   <fab-marquee-selection [isEnabled]="marqueeEnabled" [selection]="selection">
-    <fab-details-list [selection]="selection" [items]="detailItems" (onColumnHeaderClick)="onColumnHeaderClicked($event)">
+    <fab-details-list
+      [selection]="selection"
+      [items]="detailItems"
+      (onColumnHeaderClick)="onColumnHeaderClicked($event)"
+    >
       <columns>
-        <fab-details-list-column key="column-1" [minWidth]="150" name="Column #1" fieldName="field1" [isResizable]="true">
+        <fab-details-list-column
+          key="column-1"
+          [minWidth]="150"
+          name="Column #1"
+          fieldName="field1"
+          [isResizable]="true"
+        >
         </fab-details-list-column>
-        <fab-details-list-column key="column-2" [minWidth]="150" name="Column #2" fieldName="field2" [isResizable]="true">
+        <fab-details-list-column
+          key="column-2"
+          [minWidth]="150"
+          name="Column #2"
+          fieldName="field2"
+          [isResizable]="true"
+        >
         </fab-details-list-column>
-        <fab-details-list-column key="column-3" [minWidth]="150" name="Custom Column" fieldName="field3" [isResizable]="true">
+        <fab-details-list-column
+          key="column-3"
+          [minWidth]="150"
+          name="Custom Column"
+          fieldName="field3"
+          [isResizable]="true"
+        >
           <render>
-            <ng-template let-index="index">
-              Custom content for index {{ index }}
-            </ng-template>
+            <ng-template let-index="index"> Custom content for index {{ index }} </ng-template>
           </render>
         </fab-details-list-column>
       </columns>
       <groups>
         <fab-group-item key="group-1" name="Group #1" [count]="3" [startIndex]="0">
-          <fab-group-item [level]="1" key="group-1-1" name="Nested Group #1.1" [count]="1" [startIndex]="0"></fab-group-item>
-          <fab-group-item [level]="1" key="group-1-2" name="Nested Group #1.2" [count]="2" [startIndex]="1"></fab-group-item>
+          <fab-group-item
+            [level]="1"
+            key="group-1-1"
+            name="Nested Group #1.1"
+            [count]="1"
+            [startIndex]="0"
+          ></fab-group-item>
+          <fab-group-item
+            [level]="1"
+            key="group-1-2"
+            name="Nested Group #1.2"
+            [count]="2"
+            [startIndex]="1"
+          ></fab-group-item>
         </fab-group-item>
         <fab-group-item key="group-2" name="Group #2" [count]="1" [startIndex]="3"></fab-group-item>
         <fab-group-item key="group-3" name="Group #3" [count]="1" [startIndex]="4"></fab-group-item>

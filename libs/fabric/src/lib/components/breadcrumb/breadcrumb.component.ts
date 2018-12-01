@@ -31,41 +31,29 @@ import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react/lib/Br
       [styles]="styles"
       [theme]="theme"
       [RenderItem]="renderItem && onRenderItem"
-      [ReduceData]="onReduceData">
+      [ReduceData]="onReduceData"
+    >
     </Breadcrumb>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabBreadcrumbComponent extends ReactWrapperComponent<IBreadcrumbProps> implements OnInit {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: IBreadcrumbProps['componentRef'];
-  @Input()
-  items: IBreadcrumbProps['items'];
-  @Input()
-  className?: IBreadcrumbProps['className'];
-  @Input()
-  dividerAs?: IBreadcrumbProps['dividerAs'];
-  @Input()
-  maxDisplayedItems?: IBreadcrumbProps['maxDisplayedItems'];
-  @Input()
-  ariaLabel?: IBreadcrumbProps['ariaLabel'];
-  @Input()
-  overflowAriaLabel?: IBreadcrumbProps['overflowAriaLabel'];
-  @Input()
-  overflowIndex?: IBreadcrumbProps['overflowIndex'];
-  @Input()
-  styles?: IBreadcrumbProps['styles'];
-  @Input()
-  theme?: IBreadcrumbProps['theme'];
+  @Input() componentRef?: IBreadcrumbProps['componentRef'];
+  @Input() items: IBreadcrumbProps['items'];
+  @Input() className?: IBreadcrumbProps['className'];
+  @Input() dividerAs?: IBreadcrumbProps['dividerAs'];
+  @Input() maxDisplayedItems?: IBreadcrumbProps['maxDisplayedItems'];
+  @Input() ariaLabel?: IBreadcrumbProps['ariaLabel'];
+  @Input() overflowAriaLabel?: IBreadcrumbProps['overflowAriaLabel'];
+  @Input() overflowIndex?: IBreadcrumbProps['overflowIndex'];
+  @Input() styles?: IBreadcrumbProps['styles'];
+  @Input() theme?: IBreadcrumbProps['theme'];
 
-  @Input()
-  renderItem?: InputRendererOptions<IBreadcrumbItem>;
-  @Input('reduceData')
-  onReduceData?: IBreadcrumbProps['onReduceData'];
+  @Input() renderItem?: InputRendererOptions<IBreadcrumbItem>;
+  @Input('reduceData') onReduceData?: IBreadcrumbProps['onReduceData'];
 
   onRenderItem: (props?: IBreadcrumbItem, defaultRender?: JsxRenderFunc<IBreadcrumbItem>) => JSX.Element;
 

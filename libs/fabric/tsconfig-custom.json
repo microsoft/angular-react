@@ -23,9 +23,7 @@
     "importHelpers": true,
     "lib": ["dom", "es2017"],
     "paths": {
-      "@angular-react/*": [
-        "../../@angular-react/*"
-      ]
+      "@angular-react/*": ["../../@angular-react/*"]
     }
   },
   "exclude": ["node_modules", "dist", "**/*.ngfactory.ts", "**/*.shim.ts", "**/*.spec.ts"],

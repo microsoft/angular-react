@@ -12,8 +12,7 @@ import { GroupItemDirective } from '../../group';
  */
 @Directive({ selector: 'fab-details-list > groups' })
 export class DetailsListGroupsDirective extends ChangeableItemsDirective<IGroup> {
-  @ContentChildren(GroupItemDirective)
-  readonly directiveItems: QueryList<GroupItemDirective>;
+  @ContentChildren(GroupItemDirective) readonly directiveItems: QueryList<GroupItemDirective>;
 
   get items() {
     return this.directiveItems.toArray();

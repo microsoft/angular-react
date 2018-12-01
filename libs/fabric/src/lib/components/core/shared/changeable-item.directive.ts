@@ -11,8 +11,7 @@ import { ChangeableItemHelper } from './changeable-helper';
  * Parent class for wrapper directive for single item with OnChanges
  */
 export abstract class ChangeableItemDirective<TItem> implements OnChanges<ChangeableItemDirective<TItem>>, OnInit {
-  @Input()
-  key: string;
+  @Input() key: string;
 
   @Output()
   get onItemChanged(): EventEmitter<ItemChangedPayload<string, TItem>> {

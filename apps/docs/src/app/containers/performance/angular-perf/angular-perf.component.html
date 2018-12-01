@@ -4,9 +4,7 @@
     <h3>Pure Angular View</h3>
   </div>
 
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>settings</mat-icon>
-  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="toggleTriangle()">
       <mat-icon *ngIf="!triangle.isActive">play_circle_outline</mat-icon>
@@ -14,7 +12,14 @@
       <span>{{ toggleTriangleLabel }}</span>
     </button>
     <div mat-menu-item>
-      <mat-slider [value]="DEFAULT_DOT_SIZE" max="60" min="10" step="10" tick-interval="1" (change)="dotSizeChanged($event)">
+      <mat-slider
+        [value]="DEFAULT_DOT_SIZE"
+        max="60"
+        min="10"
+        step="10"
+        tick-interval="1"
+        (change)="dotSizeChanged($event)"
+      >
       </mat-slider>
       <label>Dot size</label>
     </div>
@@ -23,8 +28,16 @@
 
 <app-triangle>
   <ng-template let-text="text" let-dot="dot">
-    <app-dot [size]="dot.size" [x]="dot.x" [y]="dot.y" [color]="dot.color" [textOverride]="dot.textOverride" [backgroundColor]="dot.backgroundColor"
-      (onMouseEnter)="dot.hover = true" (onMouseLeave)="dot.hover = false">
+    <app-dot
+      [size]="dot.size"
+      [x]="dot.x"
+      [y]="dot.y"
+      [color]="dot.color"
+      [textOverride]="dot.textOverride"
+      [backgroundColor]="dot.backgroundColor"
+      (onMouseEnter)="dot.hover = true"
+      (onMouseLeave)="dot.hover = false"
+    >
       {{ text }}
     </app-dot>
   </ng-template>

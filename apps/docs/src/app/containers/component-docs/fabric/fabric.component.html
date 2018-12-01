@@ -2,7 +2,11 @@
 
 <h2>Button</h2>
 <fab-default-button text="Toggle Disabled" (onClick)="toggle()"></fab-default-button>
-<fab-default-button [disabled]="disabled" (onClick)="click()" text="Primary Button{{ disabled ? ' (0)' : ' (2)' }}"></fab-default-button>
+<fab-default-button
+  [disabled]="disabled"
+  (onClick)="click()"
+  text="Primary Button{{ disabled ? ' (0)' : ' (2)' }}"
+></fab-default-button>
 <fab-default-button [primary]="false" (onClick)="click()" text="Secondary Button"></fab-default-button>
 <h3 class="button-height">{{ sampleContent }}</h3>
 
@@ -10,10 +14,15 @@
 
 <h2>Dialog</h2>
 <fab-default-button text="Toggle Dialog" (onClick)="toggleDialog()"></fab-default-button>
-<fab-dialog [hidden]="dialogHidden" (onDismiss)="toggleDialog()" title="Fabric [React] Dialog" subText="Use Fabric React components inside your Angular app!">
+<fab-dialog
+  [hidden]="dialogHidden"
+  (onDismiss)="toggleDialog()"
+  title="Fabric [React] Dialog"
+  subText="Use Fabric React components inside your Angular app!"
+>
   {{ sampleContent2 }} {{ sampleContent3 }}
   <fab-dialog-footer>
-    <fab-default-button (onClick)="clickSave()" text='Save' contentStyle="margin-right: 10px;"></fab-default-button>
-    <fab-default-button (onClick)="toggleDialog()" text='Cancel'></fab-default-button>
+    <fab-default-button (onClick)="clickSave()" text="Save" contentStyle="margin-right: 10px;"></fab-default-button>
+    <fab-default-button (onClick)="toggleDialog()" text="Cancel"></fab-default-button>
   </fab-dialog-footer>
 </fab-dialog>

@@ -6,61 +6,41 @@ import { ChangeDetectorRef, ElementRef, EventEmitter, Input, NgZone, OnInit, Out
 import { IComboBox, IComboBoxOption, IComboBoxProps } from 'office-ui-fabric-react/lib/ComboBox';
 
 export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<IComboBoxProps> implements OnInit {
-  @Input()
-  componentRef?: IComboBoxProps['componentRef'];
-  @Input()
-  options: IComboBoxProps['options'];
-  @Input()
-  allowFreeform?: IComboBoxProps['allowFreeform'];
-  @Input()
-  autoComplete?: IComboBoxProps['autoComplete'];
-  @Input()
-  text?: IComboBoxProps['text'];
-  @Input()
-  buttonIconProps?: IComboBoxProps['buttonIconProps'];
-  @Input()
-  theme?: IComboBoxProps['theme'];
-  @Input()
-  styles?: IComboBoxProps['styles'];
-  @Input()
-  getClassNames?: IComboBoxProps['getClassNames'];
-  @Input()
-  caretDownButtonStyles?: IComboBoxProps['caretDownButtonStyles'];
-  @Input()
-  comboBoxOptionStyles?: IComboBoxProps['comboBoxOptionStyles'];
-  @Input()
-  scrollSelectedToTop?: IComboBoxProps['scrollSelectedToTop'];
-  @Input()
-  dropdownWidth?: IComboBoxProps['dropdownWidth'];
-  @Input()
-  useComboBoxAsMenuWidth?: IComboBoxProps['useComboBoxAsMenuWidth'];
-  @Input()
-  multiSelect?: IComboBoxProps['multiSelect'];
-  @Input()
-  isButtonAriaHidden?: IComboBoxProps['isButtonAriaHidden'];
-  @Input()
-  keytipProps?: IComboBoxProps['keytipProps'];
-  @Input()
-  resolveOptions?: (options: IComboBoxOption[]) => IComboBoxOption[] | PromiseLike<IComboBoxOption[]>;
+  @Input() componentRef?: IComboBoxProps['componentRef'];
+  @Input() options: IComboBoxProps['options'];
+  @Input() allowFreeform?: IComboBoxProps['allowFreeform'];
+  @Input() autoComplete?: IComboBoxProps['autoComplete'];
+  @Input() text?: IComboBoxProps['text'];
+  @Input() buttonIconProps?: IComboBoxProps['buttonIconProps'];
+  @Input() theme?: IComboBoxProps['theme'];
+  @Input() styles?: IComboBoxProps['styles'];
+  @Input() getClassNames?: IComboBoxProps['getClassNames'];
+  @Input() caretDownButtonStyles?: IComboBoxProps['caretDownButtonStyles'];
+  @Input() comboBoxOptionStyles?: IComboBoxProps['comboBoxOptionStyles'];
+  @Input() scrollSelectedToTop?: IComboBoxProps['scrollSelectedToTop'];
+  @Input() dropdownWidth?: IComboBoxProps['dropdownWidth'];
+  @Input() useComboBoxAsMenuWidth?: IComboBoxProps['useComboBoxAsMenuWidth'];
+  @Input() multiSelect?: IComboBoxProps['multiSelect'];
+  @Input() isButtonAriaHidden?: IComboBoxProps['isButtonAriaHidden'];
+  @Input() keytipProps?: IComboBoxProps['keytipProps'];
+  @Input() resolveOptions?: (options: IComboBoxOption[]) => IComboBoxOption[] | PromiseLike<IComboBoxOption[]>;
 
-  @Input()
-  renderLowerContent?: InputRendererOptions<IComboBoxProps>;
+  @Input() renderLowerContent?: InputRendererOptions<IComboBoxProps>;
 
-  @Output()
-  readonly onChange = new EventEmitter<{
+  @Output() readonly onChange = new EventEmitter<{
     event: Event;
     option?: IComboBoxOption;
     index?: number;
     value?: string;
   }>();
-  @Output()
-  readonly onPendingValueChanged = new EventEmitter<{ option?: IComboBoxOption; index?: number; value?: string }>();
-  @Output()
-  readonly onMenuOpen = new EventEmitter<void>();
-  @Output()
-  readonly onMenuDismissed = new EventEmitter<void>();
-  @Output()
-  readonly onScrollToItem = new EventEmitter<{ itemIndex: number }>();
+  @Output() readonly onPendingValueChanged = new EventEmitter<{
+    option?: IComboBoxOption;
+    index?: number;
+    value?: string;
+  }>();
+  @Output() readonly onMenuOpen = new EventEmitter<void>();
+  @Output() readonly onMenuDismissed = new EventEmitter<void>();
+  @Output() readonly onScrollToItem = new EventEmitter<{ itemIndex: number }>();
 
   onRenderLowerContent: (props?: IComboBoxProps, defaultRender?: JsxRenderFunc<IComboBoxProps>) => JSX.Element;
 

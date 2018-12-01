@@ -52,8 +52,9 @@ import {
       [theme]="theme"
       [ReduceData]="onReduceData"
       [GrowData]="onGrowData"
-      (onDataReduced)="onDataReduced"
-      (onDataGrown)="onDataGrown">
+      (onDataReduced)="(onDataReduced)"
+      (onDataGrown)="(onDataGrown)"
+    >
     </CommandBar>
   `,
   styles: ['react-renderer'],
@@ -61,50 +62,30 @@ import {
 })
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>
   implements OnChanges<FabCommandBarComponent>, AfterContentInit, OnDestroy {
-  @ContentChild(CommandBarItemsDirective)
-  readonly itemsDirective?: CommandBarItemsDirective;
-  @ContentChild(CommandBarFarItemsDirective)
-  readonly farItemsDirective?: CommandBarFarItemsDirective;
-  @ContentChild(CommandBarOverflowItemsDirective)
-  readonly overflowItemsDirective?: CommandBarOverflowItemsDirective;
+  @ContentChild(CommandBarItemsDirective) readonly itemsDirective?: CommandBarItemsDirective;
+  @ContentChild(CommandBarFarItemsDirective) readonly farItemsDirective?: CommandBarFarItemsDirective;
+  @ContentChild(CommandBarOverflowItemsDirective) readonly overflowItemsDirective?: CommandBarOverflowItemsDirective;
 
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: ICommandBarProps['componentRef'];
-  @Input()
-  overflowButtonProps?: ICommandBarProps['overflowButtonProps'];
-  @Input()
-  overflowButtonAs?: ICommandBarProps['overflowButtonAs'];
-  @Input()
-  buttonAs?: ICommandBarProps['buttonAs'];
-  @Input()
-  shiftOnReduce?: ICommandBarProps['shiftOnReduce'];
-  @Input()
-  className?: ICommandBarProps['className'];
-  @Input()
-  ariaLabel?: ICommandBarProps['ariaLabel'];
-  @Input()
-  styles?: ICommandBarProps['styles'];
-  @Input()
-  theme?: ICommandBarProps['theme'];
-  @Input()
-  onReduceData?: ICommandBarProps['onReduceData'];
-  @Input()
-  onGrowData?: ICommandBarProps['onGrowData'];
+  @Input() componentRef?: ICommandBarProps['componentRef'];
+  @Input() overflowButtonProps?: ICommandBarProps['overflowButtonProps'];
+  @Input() overflowButtonAs?: ICommandBarProps['overflowButtonAs'];
+  @Input() buttonAs?: ICommandBarProps['buttonAs'];
+  @Input() shiftOnReduce?: ICommandBarProps['shiftOnReduce'];
+  @Input() className?: ICommandBarProps['className'];
+  @Input() ariaLabel?: ICommandBarProps['ariaLabel'];
+  @Input() styles?: ICommandBarProps['styles'];
+  @Input() theme?: ICommandBarProps['theme'];
+  @Input() onReduceData?: ICommandBarProps['onReduceData'];
+  @Input() onGrowData?: ICommandBarProps['onGrowData'];
 
-  @Input()
-  items: ReadonlyArray<ICommandBarItemOptions>;
-  @Input()
-  farItems: ReadonlyArray<ICommandBarItemOptions>;
-  @Input()
-  overflowItems: ReadonlyArray<ICommandBarItemOptions>;
+  @Input() items: ReadonlyArray<ICommandBarItemOptions>;
+  @Input() farItems: ReadonlyArray<ICommandBarItemOptions>;
+  @Input() overflowItems: ReadonlyArray<ICommandBarItemOptions>;
 
-  @Output()
-  readonly onDataReduced = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
-  @Output()
-  readonly onDataGrown = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
+  @Output() readonly onDataReduced = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
+  @Output() readonly onDataGrown = new EventEmitter<{ movedItem: ICommandBarItemProps }>();
 
   /** @internal */
   transformedItems_: ReadonlyArray<ICommandBarItemProps>;

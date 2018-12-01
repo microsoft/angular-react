@@ -38,34 +38,25 @@ import omit from '../../utils/omit';
       [Change]="onChangeHandler"
       [Search]="onSearchHandler"
       [Clear]="onClearHandler"
-      [Escape]="onEscapeHandler">
+      [Escape]="onEscapeHandler"
+    >
     </SearchBox>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps> {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: ISearchBoxProps['componentRef'];
-  @Input()
-  placeholder?: ISearchBoxProps['placeholder'];
-  @Input()
-  value?: ISearchBoxProps['value'];
-  @Input()
-  className?: ISearchBoxProps['className'];
-  @Input()
-  ariaLabel?: ISearchBoxProps['ariaLabel'];
-  @Input()
-  underlined?: ISearchBoxProps['underlined'];
-  @Input()
-  theme?: ISearchBoxProps['theme'];
-  @Input()
-  styles?: ISearchBoxProps['styles'];
-  @Input()
-  disableAnimation?: ISearchBoxProps['disableAnimation'];
+  @Input() componentRef?: ISearchBoxProps['componentRef'];
+  @Input() placeholder?: ISearchBoxProps['placeholder'];
+  @Input() value?: ISearchBoxProps['value'];
+  @Input() className?: ISearchBoxProps['className'];
+  @Input() ariaLabel?: ISearchBoxProps['ariaLabel'];
+  @Input() underlined?: ISearchBoxProps['underlined'];
+  @Input() theme?: ISearchBoxProps['theme'];
+  @Input() styles?: ISearchBoxProps['styles'];
+  @Input() disableAnimation?: ISearchBoxProps['disableAnimation'];
   @Input()
   set clearButtonOptions(value: IButtonOptions) {
     this._clearButtonOptions = value;
@@ -79,17 +70,12 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
     return this._clearButtonOptions;
   }
 
-  @Input()
-  iconProps?: ISearchBoxProps['iconProps'];
+  @Input() iconProps?: ISearchBoxProps['iconProps'];
 
-  @Output()
-  readonly onChange = new EventEmitter<{ newValue: any }>();
-  @Output()
-  readonly onSearch = new EventEmitter<{ newValue: any }>();
-  @Output()
-  readonly onClear = new EventEmitter<{ ev?: any }>();
-  @Output()
-  readonly onEscape = new EventEmitter<{ ev?: any }>();
+  @Output() readonly onChange = new EventEmitter<{ newValue: any }>();
+  @Output() readonly onSearch = new EventEmitter<{ newValue: any }>();
+  @Output() readonly onClear = new EventEmitter<{ ev?: any }>();
+  @Output() readonly onEscape = new EventEmitter<{ ev?: any }>();
 
   clearButtonProps: IButtonProps;
 
@@ -168,14 +154,14 @@ export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps
 
 export interface IButtonOptions
   extends Omit<
-      IButtonProps,
-      | 'onRenderIcon'
-      | 'onRenderText'
-      | 'onRenderDescription'
-      | 'onRenderAriaDescription'
-      | 'onRenderChildren'
-      | 'onRenderMenuIcon'
-    > {
+    IButtonProps,
+    | 'onRenderIcon'
+    | 'onRenderText'
+    | 'onRenderDescription'
+    | 'onRenderAriaDescription'
+    | 'onRenderChildren'
+    | 'onRenderMenuIcon'
+  > {
   readonly renderIcon: InputRendererOptions<IButtonProps>;
   readonly renderText: InputRendererOptions<IButtonProps>;
   readonly renderDescription: InputRendererOptions<IButtonProps>;

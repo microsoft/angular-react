@@ -20,50 +20,29 @@ import { IPersonaCoinProps, IPersonaProps, IPersonaSharedProps } from 'office-ui
 
 export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps> extends ReactWrapperComponent<TProps>
   implements OnInit {
-  @Input()
-  text?: IPersonaProps['text'];
-  @Input()
-  size?: IPersonaProps['size'];
-  @Input()
-  imageShouldFadeIn?: IPersonaProps['imageShouldFadeIn'];
-  @Input()
-  imageShouldStartVisible?: IPersonaProps['imageShouldStartVisible'];
-  @Input()
-  imageUrl?: IPersonaProps['imageUrl'];
-  @Input()
-  imageAlt?: IPersonaProps['imageAlt'];
-  @Input()
-  imageInitials?: IPersonaProps['imageInitials'];
-  @Input()
-  allowPhoneInitials?: IPersonaProps['allowPhoneInitials'];
-  @Input()
-  initialsColor?: IPersonaProps['initialsColor'];
-  @Input()
-  presence?: IPersonaProps['presence'];
-  @Input()
-  secondaryText?: IPersonaProps['secondaryText'];
-  @Input()
-  tertiaryText?: IPersonaProps['tertiaryText'];
-  @Input()
-  optionalText?: IPersonaProps['optionalText'];
-  @Input()
-  hidePersonaDetails?: IPersonaProps['hidePersonaDetails'];
-  @Input()
-  showUnknownPersonaCoin?: IPersonaProps['showUnknownPersonaCoin'];
-  @Input()
-  showInitialsUntilImageLoads?: IPersonaProps['showInitialsUntilImageLoads'];
-  @Input()
-  coinSize?: IPersonaProps['coinSize'];
-  @Input()
-  theme?: IPersonaProps['theme'];
+  @Input() text?: IPersonaProps['text'];
+  @Input() size?: IPersonaProps['size'];
+  @Input() imageShouldFadeIn?: IPersonaProps['imageShouldFadeIn'];
+  @Input() imageShouldStartVisible?: IPersonaProps['imageShouldStartVisible'];
+  @Input() imageUrl?: IPersonaProps['imageUrl'];
+  @Input() imageAlt?: IPersonaProps['imageAlt'];
+  @Input() imageInitials?: IPersonaProps['imageInitials'];
+  @Input() allowPhoneInitials?: IPersonaProps['allowPhoneInitials'];
+  @Input() initialsColor?: IPersonaProps['initialsColor'];
+  @Input() presence?: IPersonaProps['presence'];
+  @Input() secondaryText?: IPersonaProps['secondaryText'];
+  @Input() tertiaryText?: IPersonaProps['tertiaryText'];
+  @Input() optionalText?: IPersonaProps['optionalText'];
+  @Input() hidePersonaDetails?: IPersonaProps['hidePersonaDetails'];
+  @Input() showUnknownPersonaCoin?: IPersonaProps['showUnknownPersonaCoin'];
+  @Input() showInitialsUntilImageLoads?: IPersonaProps['showInitialsUntilImageLoads'];
+  @Input() coinSize?: IPersonaProps['coinSize'];
+  @Input() theme?: IPersonaProps['theme'];
 
-  @Input()
-  renderCoin?: InputRendererOptions<IPersonaSharedProps>;
-  @Input()
-  renderInitials?: InputRendererOptions<IPersonaSharedProps>;
+  @Input() renderCoin?: InputRendererOptions<IPersonaSharedProps>;
+  @Input() renderInitials?: InputRendererOptions<IPersonaSharedProps>;
 
-  @Output()
-  readonly onPhotoLoadingStateChange = new EventEmitter<ImageLoadState>();
+  @Output() readonly onPhotoLoadingStateChange = new EventEmitter<ImageLoadState>();
 
   onRenderCoin: (props?: IPersonaSharedProps, defaultRender?: JsxRenderFunc<IPersonaSharedProps>) => JSX.Element;
   onRenderInitials: (props?: IPersonaSharedProps, defaultRender?: JsxRenderFunc<IPersonaSharedProps>) => JSX.Element;
@@ -112,33 +91,25 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
       [RenderSecondaryText]="renderSecondaryText && onRenderSecondaryText"
       [RenderTertiaryText]="renderTertiaryText && onRenderTertiaryText"
       [RenderOptionalText]="renderOptionalText && onRenderOptionalText"
-      (onPhotoLoadingStateChange)="onPhotoLoadingStateChange.emit($event)">
+      (onPhotoLoadingStateChange)="onPhotoLoadingStateChange.emit($event)"
+    >
     </Persona>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> implements OnInit {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: IPersonaProps['componentRef'];
-  @Input()
-  className?: IPersonaProps['className'];
-  @Input()
-  styles?: IPersonaProps['styles'];
-  @Input()
-  coinProps?: IPersonaProps['coinProps'];
+  @Input() componentRef?: IPersonaProps['componentRef'];
+  @Input() className?: IPersonaProps['className'];
+  @Input() styles?: IPersonaProps['styles'];
+  @Input() coinProps?: IPersonaProps['coinProps'];
 
-  @Input()
-  renderPrimaryText?: InputRendererOptions<IPersonaProps>;
-  @Input()
-  renderSecondaryText?: InputRendererOptions<IPersonaProps>;
-  @Input()
-  renderTertiaryText?: InputRendererOptions<IPersonaProps>;
-  @Input()
-  renderOptionalText?: InputRendererOptions<IPersonaProps>;
+  @Input() renderPrimaryText?: InputRendererOptions<IPersonaProps>;
+  @Input() renderSecondaryText?: InputRendererOptions<IPersonaProps>;
+  @Input() renderTertiaryText?: InputRendererOptions<IPersonaProps>;
+  @Input() renderOptionalText?: InputRendererOptions<IPersonaProps>;
 
   onRenderPrimaryText: (props?: IPersonaProps, defaultRender?: JsxRenderFunc<IPersonaProps>) => JSX.Element;
   onRenderSecondaryText: (props?: IPersonaProps, defaultRender?: JsxRenderFunc<IPersonaProps>) => JSX.Element;
@@ -188,22 +159,19 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
       [className]="className"
       [RenderInitials]="renderInitials && onRenderInitials"
       [RenderCoin]="renderCoin && onRenderCoin"
-      (onPhotoLoadingStateChange)="onPhotoLoadingStateChange.emit($event)">
+      (onPhotoLoadingStateChange)="onPhotoLoadingStateChange.emit($event)"
+    >
     </PersonaCoin>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPersonaCoinComponent extends FabPersonaBaseComponent<IPersonaCoinProps> implements OnInit {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: IPersonaCoinProps['componentRef'];
-  @Input()
-  styles?: IPersonaCoinProps['styles'];
-  @Input()
-  className?: IPersonaCoinProps['className'];
+  @Input() componentRef?: IPersonaCoinProps['componentRef'];
+  @Input() styles?: IPersonaCoinProps['styles'];
+  @Input() className?: IPersonaCoinProps['className'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, ngZone);

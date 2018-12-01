@@ -13,6 +13,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   selector: 'sem-button',
   exportAs: 'semButton',
   template: `
+    <!-- prettier-ignore -->
     <Button
       [primary]="primary"
       [secondary]="secondary"
@@ -27,17 +28,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   host: { class: 'sem-button' },
 })
 export class SemButtonComponent {
-  @Input()
-  disabled = false;
-  @Input()
-  primary = false;
-  @Input()
-  secondary = false;
-  @Input()
-  loading = false;
-  @Input('label')
-  content = '';
+  @Input() disabled = false;
+  @Input() primary = false;
+  @Input() secondary = false;
+  @Input() loading = false;
+  @Input('label') content = '';
 
-  @Output()
-  readonly onClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
+  @Output() readonly onClick = new EventEmitter<MouseEvent>();
 }

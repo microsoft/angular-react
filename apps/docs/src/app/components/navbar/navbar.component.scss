@@ -47,7 +47,6 @@
     background: $smoke;
 
     /deep/ .mat-tab-nav-bar {
-
       .mat-tab-links {
         display: flex;
         overflow-y: auto;
@@ -104,11 +103,8 @@
     }
 
     &.collapse {
-
       /deep/ .mat-tab-nav-bar {
-
         .mat-tab-links {
-
           .mat-tab-link {
             height: $navSecondaryHeightCollapsed;
 
@@ -123,9 +119,7 @@
               }
 
               &.stack {
-
                 svg {
-
                   &:first-child {
                     margin: -30%;
                     height: 70%;
@@ -152,7 +146,6 @@
 @include mediaMobile {
   :host {
     nav.primary {
-
       /deep/ .mat-button:first-child {
         .mat-button-wrapper {
           b {
@@ -171,7 +164,6 @@
       }
 
       /deep/ .mat-tab-links {
-
         .mat-tab-link {
           padding: 0 3%;
           min-width: 0;
@@ -180,11 +172,8 @@
     }
 
     nav.secondary {
-
       /deep/ .mat-tab-nav-bar {
-
         .mat-tab-links {
-
           .mat-tab-link {
             height: $navSecondaryHeightNarrow;
 

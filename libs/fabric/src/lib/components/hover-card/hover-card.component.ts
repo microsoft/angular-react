@@ -38,7 +38,8 @@ import { omit } from '../../utils/omit';
       [setInitialFocus]="setInitialFocus"
       [openHotKey]="openHotKey"
       (onCardVisible)="onCardVisible.emit()"
-      (onCardHide)="onCardHide.emit()">
+      (onCardHide)="onCardHide.emit()"
+    >
       <ReactContent><ng-content></ng-content></ReactContent>
     </HoverCard>
   `,
@@ -46,35 +47,21 @@ import { omit } from '../../utils/omit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps> {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
-  @Input()
-  componentRef?: IHoverCardProps['componentRef'];
-  @Input()
-  setAriaDescribedBy?: IHoverCardProps['setAriaDescribedBy'];
-  @Input()
-  cardOpenDelay?: IHoverCardProps['cardOpenDelay'];
-  @Input()
-  cardDismissDelay?: IHoverCardProps['cardDismissDelay'];
-  @Input()
-  expandedCardOpenDelay?: IHoverCardProps['expandedCardOpenDelay'];
-  @Input()
-  sticky?: IHoverCardProps['sticky'];
-  @Input()
-  instantOpenOnClick?: IHoverCardProps['instantOpenOnClick'];
-  @Input()
-  styles?: IHoverCardProps['styles'];
-  @Input()
-  target?: IHoverCardProps['target'];
-  @Input()
-  trapFocus?: IHoverCardProps['trapFocus'];
-  @Input()
-  shouldBlockHoverCard?: () => boolean; // Workaround for bug in the Fabric React types (() => void)
-  @Input()
-  setInitialFocus?: IHoverCardProps['setInitialFocus'];
-  @Input()
-  openHotKey?: IHoverCardProps['openHotKey'];
+  @Input() componentRef?: IHoverCardProps['componentRef'];
+  @Input() setAriaDescribedBy?: IHoverCardProps['setAriaDescribedBy'];
+  @Input() cardOpenDelay?: IHoverCardProps['cardOpenDelay'];
+  @Input() cardDismissDelay?: IHoverCardProps['cardDismissDelay'];
+  @Input() expandedCardOpenDelay?: IHoverCardProps['expandedCardOpenDelay'];
+  @Input() sticky?: IHoverCardProps['sticky'];
+  @Input() instantOpenOnClick?: IHoverCardProps['instantOpenOnClick'];
+  @Input() styles?: IHoverCardProps['styles'];
+  @Input() target?: IHoverCardProps['target'];
+  @Input() trapFocus?: IHoverCardProps['trapFocus'];
+  @Input() shouldBlockHoverCard?: () => boolean; // Workaround for bug in the Fabric React types (() => void)
+  @Input() setInitialFocus?: IHoverCardProps['setInitialFocus'];
+  @Input() openHotKey?: IHoverCardProps['openHotKey'];
   @Input()
   set expandingCardOptions(value: IExpandingCardOptions) {
     this._expandingCardOptions = value;
@@ -87,10 +74,8 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
     return this._expandingCardOptions;
   }
 
-  @Output()
-  readonly onCardVisible = new EventEmitter<void>();
-  @Output()
-  readonly onCardHide = new EventEmitter<void>();
+  @Output() readonly onCardVisible = new EventEmitter<void>();
+  @Output() readonly onCardHide = new EventEmitter<void>();
 
   transformedExpandingCardProps: IExpandingCardProps;
   private _expandingCardOptions: IExpandingCardOptions;

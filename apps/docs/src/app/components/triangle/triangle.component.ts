@@ -31,8 +31,10 @@ export interface TriangleConfig {
   styleUrls: ['./triangle.component.scss'],
 })
 export class TriangleComponent implements OnInit, OnDestroy {
-  @ContentChild(TemplateRef)
-  dotTemplate;
+  @ContentChild(TemplateRef) readonly dotTemplate: TemplateRef<{
+    dot: SierpinskiTriangleDot;
+    text: number;
+  }>;
 
   // These are initially undefined and default CONST is used unless another
   // value is provided in hte config.  Whether default of config value are used,

@@ -17,8 +17,7 @@ export type CommandBarItemChangedPayload = ItemChangedPayload<ICommandBarItemOpt
  */
 @Directive({ selector: 'fab-command-bar-item > render' })
 export class CommandBarItemRenderDirective {
-  @ContentChild(TemplateRef)
-  readonly templateRef: TemplateRef<ICommandBarItemOptionsRenderContext>;
+  @ContentChild(TemplateRef) readonly templateRef: TemplateRef<ICommandBarItemOptionsRenderContext>;
 }
 
 /**
@@ -26,31 +25,22 @@ export class CommandBarItemRenderDirective {
  */
 @Directive({ selector: 'fab-command-bar-item > render-icon' })
 export class CommandBarItemRenderIconDirective {
-  @ContentChild(TemplateRef)
-  readonly templateRef: TemplateRef<ICommandBarItemOptionsRenderIconContext>;
+  @ContentChild(TemplateRef) readonly templateRef: TemplateRef<ICommandBarItemOptionsRenderIconContext>;
 }
 
 @Directive({ selector: 'fab-command-bar-item' })
 export class CommandBarItemDirective extends ContextualMenuItemDirective
   implements ICommandBarItemOptions, AfterContentInit {
-  @ContentChild(CommandBarItemRenderDirective)
-  readonly renderDirective: CommandBarItemRenderDirective;
-  @ContentChild(CommandBarItemRenderIconDirective)
-  readonly renderIconDirective: CommandBarItemRenderIconDirective;
+  @ContentChild(CommandBarItemRenderDirective) readonly renderDirective: CommandBarItemRenderDirective;
+  @ContentChild(CommandBarItemRenderIconDirective) readonly renderIconDirective: CommandBarItemRenderIconDirective;
 
   // ICommandBarItemOptions implementation
-  @Input()
-  iconOnly?: ICommandBarItemOptions['iconOnly'];
-  @Input()
-  buttonStyles?: ICommandBarItemOptions['buttonStyles'];
-  @Input()
-  cacheKey?: ICommandBarItemOptions['cacheKey'];
-  @Input()
-  renderedInOverflow?: ICommandBarItemOptions['renderedInOverflow'];
-  @Input()
-  render: ICommandBarItemOptions['render'];
-  @Input()
-  renderIcon: ICommandBarItemOptions['renderIcon'];
+  @Input() iconOnly?: ICommandBarItemOptions['iconOnly'];
+  @Input() buttonStyles?: ICommandBarItemOptions['buttonStyles'];
+  @Input() cacheKey?: ICommandBarItemOptions['cacheKey'];
+  @Input() renderedInOverflow?: ICommandBarItemOptions['renderedInOverflow'];
+  @Input() render: ICommandBarItemOptions['render'];
+  @Input() renderIcon: ICommandBarItemOptions['renderIcon'];
 
   ngAfterContentInit() {
     super.ngAfterContentInit();

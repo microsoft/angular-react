@@ -54,7 +54,8 @@ import { FabBaseButtonComponent } from './base-button.component';
       [RenderMenuIcon]="renderMenuIcon && onRenderMenuIcon"
       [MenuClick]="onMenuClickHandler"
       (onAfterMenuDismiss)="onAfterMenuDismiss.emit($event)"
-      (onClick)="onClickHandler($event)">
+      (onClick)="onClickHandler($event)"
+    >
       <ReactContent><ng-content></ng-content></ReactContent>
     </MessageBarButton>
   `,
@@ -62,8 +63,7 @@ import { FabBaseButtonComponent } from './base-button.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMessageBarButtonComponent extends FabBaseButtonComponent {
-  @ViewChild('reactNode')
-  reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, ngZone);
