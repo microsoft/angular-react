@@ -1,10 +1,10 @@
-interface EventListener {
-  type: keyof ElementEventMap;
-  listener: (ev: ElementEventMap[keyof ElementEventMap]) => void;
+interface IEventListener<K extends keyof ElementEventMap> {
+  type: K;
+  listener: (ev: ElementEventMap[K]) => void;
   options?: boolean | EventListenerOptions;
 }
 
-type EventListenerArray<K extends keyof ElementEventMap> = EventListener[];
+type EventListenerArray<K extends keyof ElementEventMap> = IEventListener<K>[];
 
 type EventListenersMap<K extends keyof ElementEventMap> = Record<K, EventListenerArray<K>>;
 
