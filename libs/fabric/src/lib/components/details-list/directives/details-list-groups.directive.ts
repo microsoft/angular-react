@@ -5,7 +5,7 @@ import { ContentChildren, Directive, QueryList } from '@angular/core';
 import { IGroup } from 'office-ui-fabric-react';
 
 import { ChangeableItemsDirective } from '../../core/shared/changeable-items.directive';
-import { GroupItemDirective } from '../../group';
+import { GroupItemDirective } from '../../group/directives/group-item.directive';
 
 /**
  * Wrapper directive for creating multiple DetailsList Groups
