@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as dom from '../utils/dom';
+import * as dom from '../utils/dom/dom-utils';
 
 const DEBUG = false;
 export const CHILDREN_TO_APPEND_PROP = 'children-to-append';
