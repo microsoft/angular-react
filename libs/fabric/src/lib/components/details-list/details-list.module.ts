@@ -6,7 +6,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { registerElement } from '@angular-react/core';
 import { DetailsList } from 'office-ui-fabric-react/lib/DetailsList';
 
-import { FabGroupModule } from '../group';
+import { FabGroupModule } from '../group/group.module';
 import { FabDetailsListComponent } from './details-list.component';
 import {
   DetailsListColumnDirective,
