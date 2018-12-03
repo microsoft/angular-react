@@ -33,12 +33,14 @@ import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/d
       [componentRef]="componentRef"
       [isOpen]="isOpen"
       [isDarkOverlay]="isDarkOverlay"
+      [layerProps]="layerProps"
       [isBlocking]="isBlocking"
       [className]="className"
       [containerClassName]="containerClassName"
       [scrollableContentClassName]="scrollableContentClassName"
       [titleAriaId]="titleAriaId"
       [subtitleAriaId]="subtitleAriaId"
+      [topOffsetFixed]="topOffsetFixed"
       [Dismiss]="onDismissHandler"
       (onLayerDidMount)="onLayerDidMount.emit()"
       (onDismissed)="onDismissed.emit()"
@@ -65,12 +67,14 @@ export class FabModalComponent extends ReactWrapperComponent<IModalProps>
   @Input() componentRef?: IModalProps['componentRef'];
   @Input() isOpen?: IModalProps['isOpen'];
   @Input() isDarkOverlay?: IModalProps['isDarkOverlay'];
+  @Input() layerProps?: IModalProps['layerProps'];
   @Input() isBlocking?: IModalProps['isBlocking'];
   @Input() className?: IModalProps['className'];
   @Input() containerClassName?: IModalProps['containerClassName'];
   @Input() scrollableContentClassName?: IModalProps['scrollableContentClassName'];
   @Input() titleAriaId?: IModalProps['titleAriaId'];
   @Input() subtitleAriaId?: IModalProps['subtitleAriaId'];
+  @Input() topOffsetFixed?: IModalProps['topOffsetFixed'];
 
   @Output() readonly onLayerDidMount = new EventEmitter<void>();
   @Output() readonly onDismiss = new EventEmitter<MouseEvent>();

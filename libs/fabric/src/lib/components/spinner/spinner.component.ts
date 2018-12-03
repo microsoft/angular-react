@@ -28,6 +28,7 @@ import { ISpinnerProps } from 'office-ui-fabric-react/lib/Spinner';
       [ariaLabel]="ariaLabel"
       [theme]="theme"
       [styles]="styles"
+      [labelPosition]="labelPosition"
     >
     </Spinner>
   `,
@@ -46,6 +47,7 @@ export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {
   @Input() ariaLabel?: ISpinnerProps['ariaLabel'];
   @Input() theme?: ISpinnerProps['theme'];
   @Input() styles?: ISpinnerProps['styles'];
+  @Input() labelPosition?: ISpinnerProps['labelPosition'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

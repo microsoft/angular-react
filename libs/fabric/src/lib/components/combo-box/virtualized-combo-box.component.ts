@@ -36,6 +36,7 @@ import { FabBaseComboBoxComponent } from './base-combo-box.component';
       [isButtonAriaHidden]="isButtonAriaHidden"
       [keytipProps]="keytipProps"
       [RenderLowerContent]="renderLowerContent && onRenderLowerContent"
+      [ItemClick]="onItemClickHandler"
       [Change]="onChangeHandler"
       [PendingValueChanged]="onPendingValueChangedHandler"
       [ResolveOptions]="resolveOptions"
