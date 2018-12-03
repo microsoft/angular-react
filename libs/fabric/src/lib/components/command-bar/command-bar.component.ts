@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InputRendererOptions, ReactWrapperComponent } from '@angular-react/core';
+import { InputRendererOptions, KnownKeys, ReactWrapperComponent } from '@angular-react/core';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,

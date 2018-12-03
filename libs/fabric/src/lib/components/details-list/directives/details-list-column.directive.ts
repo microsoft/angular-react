@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { AfterContentInit, ContentChild, Directive, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-import { InputRendererOptions } from '@angular-react/core';
+import { InputRendererOptions, KnownKeys } from '@angular-react/core';
 import { IColumn } from 'office-ui-fabric-react';
 
 import { ChangeableItemDirective } from '../../core/shared/changeable-item.directive';
