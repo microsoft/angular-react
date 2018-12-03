@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { AfterContentInit, ContentChild, Directive, Input, TemplateRef } from '@angular/core';
-import { ContextualMenuItemDirective } from '../../contextual-menu';
+import { ContextualMenuItemDirective } from '../../contextual-menu/directives/contextual-menu-item.directive';
 import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
 import {
   ICommandBarItemOptions,
