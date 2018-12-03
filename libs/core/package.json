@@ -51,10 +51,10 @@
   ],
   "private": false,
   "peerDependencies": {
-    "@angular/compiler": "^6.1.0",
-    "@angular/core": "^6.1.0",
-    "@angular/platform-browser-dynamic": "^6.1.0",
-    "@angular/platform-browser": "^6.1.0",
+    "@angular/compiler": "^7.0.3",
+    "@angular/core": "^7.0.3",
+    "@angular/platform-browser-dynamic": "^7.0.3",
+    "@angular/platform-browser": "^7.0.3",
     "react-dom": "^16.4.1",
     "react": "^16.4.1"
   },
