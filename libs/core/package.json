@@ -55,8 +55,8 @@
     "@angular/core": "^7.0.3",
     "@angular/platform-browser-dynamic": "^7.0.3",
     "@angular/platform-browser": "^7.0.3",
-    "react-dom": "^16.4.1",
-    "react": "^16.4.1"
+    "react-dom": "^16.6.3",
+    "react": "^16.6.3"
   },
   "dependencies": {
     "css-to-style": "^1.2.1",
