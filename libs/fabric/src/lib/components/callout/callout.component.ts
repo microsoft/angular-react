@@ -36,11 +36,13 @@ import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/pos
       [preventDismissOnScroll]="preventDismissOnScroll"
       [preventDismissOnLostFocus]="preventDismissOnLostFocus"
       [coverTarget]="coverTarget"
+      [alignTargetEdge]="alignTargetEdge"
       [role]="role"
       [ariaLabel]="ariaLabel"
       [ariaLabelledBy]="ariaLabelledBy"
       [ariaDescribedBy]="ariaDescribedBy"
       [className]="className"
+      [layerProps]="layerProps"
       [doNotLayer]="doNotLayer"
       [directionalHintFixed]="directionalHintFixed"
       [finalHeight]="finalHeight"
@@ -78,11 +80,13 @@ export class FabCalloutComponent extends ReactWrapperComponent<ICalloutProps> {
   @Input() preventDismissOnScroll?: ICalloutProps['preventDismissOnScroll'];
   @Input() preventDismissOnLostFocus?: ICalloutProps['preventDismissOnLostFocus'];
   @Input() coverTarget?: ICalloutProps['coverTarget'];
+  @Input() alignTargetEdge?: ICalloutProps['alignTargetEdge'];
   @Input() role?: ICalloutProps['role'];
   @Input() ariaLabel?: ICalloutProps['ariaLabel'];
   @Input() ariaLabelledBy?: ICalloutProps['ariaLabelledBy'];
   @Input() ariaDescribedBy?: ICalloutProps['ariaDescribedBy'];
   @Input() className?: ICalloutProps['className'];
+  @Input() layerProps?: ICalloutProps['layerProps'];
   @Input() doNotLayer?: ICalloutProps['doNotLayer'];
   @Input() directionalHintFixed?: ICalloutProps['directionalHintFixed'];
   @Input() finalHeight?: ICalloutProps['finalHeight'];

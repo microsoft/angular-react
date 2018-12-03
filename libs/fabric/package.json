@@ -76,7 +76,7 @@
     "@angular/platform-browser-dynamic": "^7.0.3",
     "@angular/platform-browser": "^7.0.3",
     "office-ui-fabric-react": "6.110.0",
-    "react-dom": "^16.4.1",
-    "react": "^16.4.1"
+    "react-dom": "^16.6.3",
+    "react": "^16.6.3"
   }
 }
