@@ -7,8 +7,9 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ExpandingCard, HoverCard, PlainCard } from 'office-ui-fabric-react/lib/HoverCard';
 import { FabHoverCardComponent } from './hover-card.component';
 import { FabExpandingCardComponent } from './expanding-card.component';
+import { FabPlainCardComponent } from './plain-card.component';
 
-const components = [FabHoverCardComponent, FabExpandingCardComponent];
+const components = [FabHoverCardComponent, FabExpandingCardComponent, FabPlainCardComponent];
 
 @NgModule({
   imports: [CommonModule],
