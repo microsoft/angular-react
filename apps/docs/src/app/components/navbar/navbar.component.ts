@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, ViewContainerRef, OnInit } from '@angular/core';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { throttleTime } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
 import { SubNavService } from '../../shared/sub-nav.service';
 
 @Component({

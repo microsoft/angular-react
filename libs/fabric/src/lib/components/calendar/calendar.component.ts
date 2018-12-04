@@ -46,6 +46,7 @@ import { ICalendarProps } from 'office-ui-fabric-react/lib/Calendar';
       [selectDateOnClick]="selectDateOnClick"
       [showCloseButton]="showCloseButton"
       [allFocusable]="allFocusable"
+      [yearPickerHidden]="yearPickerHidden"
       [SelectDate]="onSelectDateHandler"
       [Dismiss]="onDismissHandler"
     >
@@ -82,6 +83,7 @@ export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> 
   @Input() selectDateOnClick?: ICalendarProps['selectDateOnClick'];
   @Input() showCloseButton?: ICalendarProps['showCloseButton'];
   @Input() allFocusable?: ICalendarProps['allFocusable'];
+  @Input() yearPickerHidden?: ICalendarProps['yearPickerHidden'];
 
   @Output() readonly onSelectDate = new EventEmitter<{ date: Date; selectedDateRangeArray?: Date[] }>();
   @Output() readonly onDismiss = new EventEmitter<void>();

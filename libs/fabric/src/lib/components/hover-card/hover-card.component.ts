@@ -14,7 +14,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IExpandingCardProps, IHoverCardProps } from 'office-ui-fabric-react/lib/HoverCard';
+import { IExpandingCardProps, IHoverCardProps, IPlainCardProps } from 'office-ui-fabric-react/lib/HoverCard';
 import { omit } from '../../utils/omit';
 
 @Component({
@@ -24,7 +24,11 @@ import { omit } from '../../utils/omit';
     <HoverCard
       #reactNode
       [componentRef]="componentRef"
+      [className]="className"
+      [theme]="theme"
+      [type]="type"
       [expandingCardProps]="transformedExpandingCardProps"
+      [plainCardProps]="transformedPlainCardProps"
       [setAriaDescribedBy]="setAriaDescribedBy"
       [cardOpenDelay]="cardOpenDelay"
       [cardDismissDelay]="cardDismissDelay"
@@ -39,6 +43,7 @@ import { omit } from '../../utils/omit';
       [openHotKey]="openHotKey"
       (onCardVisible)="onCardVisible.emit()"
       (onCardHide)="onCardHide.emit()"
+      (onCardExpand)="onCardExpand.emit()"
     >
       <ReactContent><ng-content></ng-content></ReactContent>
     </HoverCard>
@@ -50,6 +55,9 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IHoverCardProps['componentRef'];
+  @Input() className?: IHoverCardProps['className'];
+  @Input() theme?: IHoverCardProps['theme'];
+  @Input() type?: IHoverCardProps['type'];
   @Input() setAriaDescribedBy?: IHoverCardProps['setAriaDescribedBy'];
   @Input() cardOpenDelay?: IHoverCardProps['cardOpenDelay'];
   @Input() cardDismissDelay?: IHoverCardProps['cardDismissDelay'];
@@ -74,11 +82,26 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
     return this._expandingCardOptions;
   }
 
+  @Input() set plainCardOptions(value: IPlainCardOptions) {
+    this._plainCardOptions = value;
+    if (value) {
+      this.transformedPlainCardProps = this._transformPlainCardOptionsToProps(value);
+    }
+  }
+
+  get plainCardOptions(): IPlainCardOptions {
+    return this._plainCardOptions;
+  }
+
   @Output() readonly onCardVisible = new EventEmitter<void>();
   @Output() readonly onCardHide = new EventEmitter<void>();
+  @Output() readonly onCardExpand = new EventEmitter<void>();
 
   transformedExpandingCardProps: IExpandingCardProps;
   private _expandingCardOptions: IExpandingCardOptions;
+
+  transformedPlainCardProps: IPlainCardProps;
+  private _plainCardOptions: IPlainCardOptions;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, { ngZone });
@@ -105,6 +128,19 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
         >)
     );
   }
+
+  private _transformPlainCardOptionsToProps(options: IPlainCardOptions): IPlainCardProps {
+    const sharedProperties = omit(options, 'renderPlainCard');
+
+    const plainCardRenderer = this.createInputJsxRenderer(options.renderPlainCard);
+
+    return Object.assign(
+      {},
+      sharedProperties,
+      plainCardRenderer &&
+        ({ onRenderPlainCard: data => plainCardRenderer({ data }) } as Pick<IPlainCardProps, 'onRenderPlainCard'>)
+    );
+  }
 }
 
 /**
@@ -112,8 +148,12 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
  */
 export interface IExpandingCardOptions
   extends Omit<IExpandingCardProps, 'onRenderCompactCard' | 'onRenderExpandedCard'> {
-  readonly renderCompactCard?: InputRendererOptions<RenderCardContext>;
-  readonly renderExpandedCard?: InputRendererOptions<RenderCardContext>;
+  readonly renderCompactCard?: InputRendererOptions<RenderCardContext<IExpandingCardProps>>;
+  readonly renderExpandedCard?: InputRendererOptions<RenderCardContext<IExpandingCardProps>>;
+}
+
+export interface IPlainCardOptions extends Omit<IPlainCardProps, 'onRenderPlainCard'> {
+  readonly renderPlainCard?: InputRendererOptions<RenderCardContext<IPlainCardProps>>;
 }
 
 export interface RenderCardContext<T = any> {

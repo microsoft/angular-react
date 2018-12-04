@@ -71,12 +71,12 @@
   "private": false,
   "peerDependencies": {
     "@angular-react/core": "^0.4.10",
-    "@angular/common": "^6.1.0",
-    "@angular/core": "^6.1.0",
-    "@angular/platform-browser-dynamic": "^6.1.0",
-    "@angular/platform-browser": "^6.1.0",
-    "office-ui-fabric-react": "6.73.0",
-    "react-dom": "^16.4.1",
-    "react": "^16.4.1"
+    "@angular/common": "^7.0.3",
+    "@angular/core": "^7.0.3",
+    "@angular/platform-browser-dynamic": "^7.0.3",
+    "@angular/platform-browser": "^7.0.3",
+    "office-ui-fabric-react": "6.110.0",
+    "react-dom": "^16.6.3",
+    "react": "^16.6.3"
   }
 }

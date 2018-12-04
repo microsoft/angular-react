@@ -27,6 +27,11 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
 
   @Input() renderLowerContent?: InputRendererOptions<IComboBoxProps>;
 
+  @Output() readonly onItemClick = new EventEmitter<{
+    event: Event;
+    option?: IComboBoxOption;
+    index?: number;
+  }>();
   @Output() readonly onChange = new EventEmitter<{
     event: Event;
     option?: IComboBoxOption;
@@ -48,6 +53,7 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
     super(elementRef, changeDetectorRef, renderer, { ngZone });
 
     // coming from React context - we need to bind to this so we can access the Angular Component properties
+    this.onItemClickHandler = this.onItemClickHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onPendingValueChangedHandler = this.onPendingValueChangedHandler.bind(this);
     this.onScrollToItemHandler = this.onScrollToItemHandler.bind(this);
@@ -55,6 +61,14 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
 
   ngOnInit() {
     this.onRenderLowerContent = this.createRenderPropHandler(this.renderLowerContent);
+  }
+
+  onItemClickHandler(event: React.FormEvent<IComboBox>, option?: IComboBoxOption, index?: number) {
+    this.onItemClick.emit({
+      event: event.nativeEvent,
+      option,
+      index,
+    });
   }
 
   onChangeHandler(event: React.FormEvent<IComboBox>, option?: IComboBoxOption, index?: number, value?: string) {

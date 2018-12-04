@@ -23,8 +23,10 @@ import { omit } from '../../utils/omit';
   template: `
     <TooltipHost
       #reactNode
+      [theme]="theme"
       [componentRef]="componentRef"
       [calloutProps]="calloutProps"
+      [closeDelay]="closeDelay"
       [setAriaDescribedBy]="setAriaDescribedBy"
       [delay]="delay"
       [content]="content"
@@ -32,7 +34,6 @@ import { omit } from '../../utils/omit';
       [directionalHintForRTL]="directionalHintForRTL"
       [overflowMode]="overflowMode"
       [hostClassName]="hostClassName"
-      [closeDelay]="closeDelay"
       [tooltipProps]="transformedTooltipProps"
       [TooltipToggle]="onTooltipToggleHandler"
     >
@@ -46,15 +47,16 @@ export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostP
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ITooltipHostProps['componentRef'];
+  @Input() closeDelay?: ITooltipHostProps['closeDelay'];
   @Input() calloutProps?: ITooltipHostProps['calloutProps'];
-  @Input() setAriaDescribedBy?: ITooltipHostProps['setAriaDescribedBy'];
-  @Input() delay?: ITooltipHostProps['delay'];
   @Input() content?: ITooltipHostProps['content'];
+  @Input() delay?: ITooltipHostProps['delay'];
   @Input() directionalHint?: ITooltipHostProps['directionalHint'];
   @Input() directionalHintForRTL?: ITooltipHostProps['directionalHintForRTL'];
-  @Input() overflowMode?: ITooltipHostProps['overflowMode'];
   @Input() hostClassName?: ITooltipHostProps['hostClassName'];
-  @Input() closeDelay?: ITooltipHostProps['closeDelay'];
+  @Input() overflowMode?: ITooltipHostProps['overflowMode'];
+  @Input() setAriaDescribedBy?: ITooltipHostProps['setAriaDescribedBy'];
+  @Input() theme?: ITooltipHostProps['theme'];
 
   @Input()
   set tooltipOptions(value: ITooltipOptions) {

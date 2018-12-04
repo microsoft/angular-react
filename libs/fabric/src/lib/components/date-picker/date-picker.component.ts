@@ -22,7 +22,10 @@ import { IDatePickerProps } from 'office-ui-fabric-react';
     <DatePicker
       #reactNode
       [componentRef]="componentRef"
+      [theme]="theme"
       [calendarProps]="calendarProps"
+      [calloutProps]="calloutProps"
+      [calendarAs]="calendarAs"
       [label]="label"
       [isRequired]="isRequired"
       [disabled]="disabled"
@@ -65,7 +68,10 @@ export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerPro
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IDatePickerProps['componentRef'];
+  @Input() theme?: IDatePickerProps['theme'];
+  @Input() calloutProps?: IDatePickerProps['calloutProps'];
   @Input() calendarProps?: IDatePickerProps['calendarProps'];
+  @Input() calendarAs?: IDatePickerProps['calendarAs'];
   @Input() label?: IDatePickerProps['label'];
   @Input() isRequired?: IDatePickerProps['isRequired'];
   @Input() disabled?: IDatePickerProps['disabled'];

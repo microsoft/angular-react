@@ -23,6 +23,7 @@ import { FabBaseButtonComponent } from './base-button.component';
       [primary]="primary"
       [uniqueId]="uniqueId"
       [disabled]="disabled"
+      [allowDisabledFocus]="allowDisabledFocus"
       [primaryDisabled]="primaryDisabled"
       [styles]="styles"
       [theme]="theme"
