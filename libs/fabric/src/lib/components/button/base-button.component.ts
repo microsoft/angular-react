@@ -11,6 +11,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
   @Input() primary?: IButtonProps['primary'];
   @Input() uniqueId?: IButtonProps['uniqueId'];
   @Input() disabled?: IButtonProps['disabled'];
+  @Input() allowDisabledFocus?: IButtonProps['allowDisabledFocus'];
   @Input() primaryDisabled?: IButtonProps['primaryDisabled'];
   @Input() styles?: IButtonProps['styles'];
   @Input() theme?: IButtonProps['theme'];

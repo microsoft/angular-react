@@ -15,7 +15,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IGroupedListProps, IGroupRenderProps } from 'office-ui-fabric-react/lib/GroupedList';
+import { IGroup, IGroupedListProps, IGroupRenderProps } from 'office-ui-fabric-react/lib/GroupedList';
 import { IListProps } from 'office-ui-fabric-react/lib/List';
 
 @Component({
@@ -25,10 +25,13 @@ import { IListProps } from 'office-ui-fabric-react/lib/List';
     <GroupedList
       #reactNode
       [componentRef]="componentRef"
+      [theme]="theme"
+      [styles]="styles"
       [className]="className"
       [dragDropEvents]="dragDropEvents"
       [dragDropHelper]="dragDropHelper"
       [eventsToRegister]="eventsToRegister"
+      [groupProps]="groupProps"
       [groups]="groups"
       [items]="items"
       [listProps]="listProps"
@@ -37,7 +40,7 @@ import { IListProps } from 'office-ui-fabric-react/lib/List';
       [viewport]="viewport"
       [usePageCache]="usePageCache"
       [shouldVirtualize]="shouldVirtualize"
-      [groupProps]="groupProps"
+      [getGroupHeight]="getGroupHeight"
       [RenderCell]="renderCell && onRenderCell"
       [GroupExpandStateChanged]="onGroupExpandStateChangedHandler"
     >
@@ -50,10 +53,13 @@ export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListP
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IGroupedListProps['componentRef'];
+  @Input() theme?: IGroupedListProps['theme']
+  @Input() styles?: IGroupedListProps['styles']
   @Input() className?: IGroupedListProps['className'];
   @Input() dragDropEvents?: IGroupedListProps['dragDropEvents'];
   @Input() dragDropHelper?: IGroupedListProps['dragDropHelper'];
   @Input() eventsToRegister?: IGroupedListProps['eventsToRegister'];
+  @Input() groupProps?: IGroupRenderProps;
   @Input() groups?: IGroupedListProps['groups'];
   @Input() items: IGroupedListProps['items'];
   @Input() listProps?: IGroupedListProps['listProps'];
@@ -62,7 +68,7 @@ export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListP
   @Input() viewport?: IGroupedListProps['viewport'];
   @Input() usePageCache?: IGroupedListProps['usePageCache'];
   @Input() shouldVirtualize?: (props: IListProps) => boolean;
-  @Input() groupProps?: IGroupRenderProps;
+  @Input() getGroupHeight?: (group: IGroup, groupIndex: number) => number;
 
   @Input() renderCell: InputRendererOptions<ICellRenderContext>;
 

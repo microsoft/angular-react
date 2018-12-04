@@ -36,9 +36,11 @@ export class CommandBarItemDirective extends ContextualMenuItemDirective
 
   // ICommandBarItemOptions implementation
   @Input() iconOnly?: ICommandBarItemOptions['iconOnly'];
+  @Input() tooltipHostProps?: ICommandBarItemOptions['tooltipHostProps'];
   @Input() buttonStyles?: ICommandBarItemOptions['buttonStyles'];
   @Input() cacheKey?: ICommandBarItemOptions['cacheKey'];
   @Input() renderedInOverflow?: ICommandBarItemOptions['renderedInOverflow'];
+  @Input() commandBarButtonAs?: ICommandBarItemOptions['commandBarButtonAs'];
   @Input() render: ICommandBarItemOptions['render'];
   @Input() renderIcon: ICommandBarItemOptions['renderIcon'];
 

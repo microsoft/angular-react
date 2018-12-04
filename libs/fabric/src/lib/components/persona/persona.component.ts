@@ -34,6 +34,7 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
   @Input() tertiaryText?: IPersonaProps['tertiaryText'];
   @Input() optionalText?: IPersonaProps['optionalText'];
   @Input() hidePersonaDetails?: IPersonaProps['hidePersonaDetails'];
+  @Input() showSecondaryText?: IPersonaProps['showSecondaryText'];
   @Input() showUnknownPersonaCoin?: IPersonaProps['showUnknownPersonaCoin'];
   @Input() showInitialsUntilImageLoads?: IPersonaProps['showInitialsUntilImageLoads'];
   @Input() coinSize?: IPersonaProps['coinSize'];
@@ -77,6 +78,7 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
       [tertiaryText]="tertiaryText"
       [optionalText]="optionalText"
       [hidePersonaDetails]="hidePersonaDetails"
+      [showSecondaryText]="showSecondaryText"
       [showUnknownPersonaCoin]="showUnknownPersonaCoin"
       [showInitialsUntilImageLoads]="showInitialsUntilImageLoads"
       [coinSize]="coinSize"

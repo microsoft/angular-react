@@ -10,7 +10,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ITag, ITagPickerProps } from 'office-ui-fabric-react/lib/Pickers/TagPicker/TagPicker';
+import { ITag, ITagPickerProps } from 'office-ui-fabric-react/lib/Pickers';
 import { FabBasePickerComponent } from '../base-picker/base-picker.component';
 
 @Component({
@@ -24,6 +24,7 @@ import { FabBasePickerComponent } from '../base-picker/base-picker.component';
       [defaultSelectedItems]="defaultSelectedItems"
       [getTextFromItem]="getTextFromItem"
       [className]="className"
+      [pickerCalloutProps]="pickerCalloutProps"
       [searchingText]="searchingText"
       [disabled]="disabled"
       [itemLimit]="itemLimit"

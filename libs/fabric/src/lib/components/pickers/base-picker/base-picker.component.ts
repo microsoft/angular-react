@@ -19,7 +19,8 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
   @Input() resolveDelay?: IBasePickerProps<T>['resolveDelay'];
   @Input() defaultSelectedItems?: IBasePickerProps<T>['defaultSelectedItems'];
   @Input() getTextFromItem?: IBasePickerProps<T>['getTextFromItem'];
-  @Input() className?: IBasePickerProps<T>['className'];
+  @Input() className?: IBasePickerProps<T>['className']; 
+  @Input() pickerCalloutProps?: IBasePickerProps<T>['pickerCalloutProps'];
   @Input() searchingText?: IBasePickerProps<T>['searchingText'];
   @Input() disabled?: IBasePickerProps<T>['disabled'];
   @Input() itemLimit?: IBasePickerProps<T>['itemLimit'];

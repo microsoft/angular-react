@@ -47,6 +47,7 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
   @Input() rel?: IContextualMenuItem['rel'];
   @Input() subMenuProps?: IContextualMenuItem['subMenuProps'];
   @Input() getItemClassNames?: IContextualMenuItem['getItemClassNames'];
+  @Input() itemProps?: IContextualMenuItem['itemProps'];
   @Input() getSplitButtonVerticalDividerClassNames?: IContextualMenuItem['getSplitButtonVerticalDividerClassNames'];
   @Input() sectionProps?: IContextualMenuItem['sectionProps'];
   @Input() className?: IContextualMenuItem['className'];
