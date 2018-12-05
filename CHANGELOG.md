@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.1"></a>
+
+# [0.5.0](https://github.com/Microsoft/angular-react/compare/v0.5.0...v0.5.1) (2018-12-05)
+
+### General
+- **all:** Moved geteventlisteners module to local and revised JS to use es5 syntax ([#48](https://github.com/Microsoft/angular-react/pull/48)) ([9297df4](https://github.com/Microsoft/angular-react/commit/9297df406d9bc5f2b6d13c8c7295abd2a1ca71d7))
+
 <a name="0.5.0"></a>
 
 # [0.5.0](https://github.com/Microsoft/angular-react/compare/v0.4.10...v0.5.0) (2018-12-04)
