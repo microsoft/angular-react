@@ -37,7 +37,7 @@ export function getComponentClass(elementName: string): React.ReactType {
   const entry = elementMap.get(elementName) || elementMap.get(elementName.toLowerCase());
   if (!entry) {
     // throw new TypeError(`No known component for element ${elementName}.`);
-    return elementName;
+    return elementName as React.ReactType;
   }
 
   try {
