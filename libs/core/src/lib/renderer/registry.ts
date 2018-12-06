@@ -33,11 +33,11 @@ export function isKnownComponent(elementName: string): boolean {
   return elementMap.has(elementName) || elementMap.has(elementName.toLowerCase());
 }
 
-export function getComponentClass(elementName: string): React.ReactType {
+export function getComponentClass(elementName: string): React.ReactType | string {
   const entry = elementMap.get(elementName) || elementMap.get(elementName.toLowerCase());
   if (!entry) {
     // throw new TypeError(`No known component for element ${elementName}.`);
-    return elementName as React.ReactType;
+    return elementName;
   }
 
   try {

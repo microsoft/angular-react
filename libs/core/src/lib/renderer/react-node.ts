@@ -53,7 +53,7 @@ export class ReactNode {
     return this._isDestroyPending;
   }
 
-  constructor(private type?: React.ReactType) {
+  constructor(private type?: React.ReactType | string) {
     this.setRenderPending();
     this._tryResolveTypeIsReactElementClass();
   }

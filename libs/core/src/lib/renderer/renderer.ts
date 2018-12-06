@@ -101,7 +101,7 @@ export class ReactRenderer implements Renderer2 {
     if (DEBUG) {
       console.error('Renderer > createElement > name:', name, namespace ? 'namespace:' : '', namespace);
     }
-    return new ReactNode(name as React.ReactType);
+    return new ReactNode(name);
   }
 
   createComment(value: string): ReactNode {
