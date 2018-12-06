@@ -3,31 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.5.1"></a>
-
-# [0.5.0](https://github.com/Microsoft/angular-react/compare/v0.5.0...v0.5.1) (2018-12-05)
-
-### General
-- **all:** Moved geteventlisteners module to local and revised JS to use es5 syntax ([#48](https://github.com/Microsoft/angular-react/pull/48)) ([9297df4](https://github.com/Microsoft/angular-react/commit/9297df406d9bc5f2b6d13c8c7295abd2a1ca71d7))
-
 <a name="0.5.0"></a>
 
 # [0.5.0](https://github.com/Microsoft/angular-react/compare/v0.4.10...v0.5.0) (2018-12-04)
 
 ### Breaking changes
+
 - **all:** Upgrade Angular version to 7.0.3 ([#45](https://github.com/Microsoft/angular-react/pull/45)) ([bc39370](https://github.com/Microsoft/angular-react/commit/bc393707bdfb9f163b2e718702e35f0fb4ff25c3))
 
 ### General
+
 - **all:** Upgrade React version to ^16.6.3 ([#45](https://github.com/Microsoft/angular-react/pull/45)) ([bc39370](https://github.com/Microsoft/angular-react/commit/bc393707bdfb9f163b2e718702e35f0fb4ff25c3)) ([#46](https://github.com/Microsoft/angular-react/pull/46)) ([87e70de](https://github.com/Microsoft/angular-react/commit/87e70de0cee459c69c914e2f723b4e647e3f466f))
 - **all:** Remove all index barrel files ([#44](https://github.com/Microsoft/angular-react/pull/44)) ([7f36a6b](https://github.com/Microsoft/angular-react/commit/7f36a6b47e77c70d53cc4290e53a1a8329d44467))
 - **core:** Upgrade css-to-style to ^1.2.1 ([5408b23](https://github.com/Microsoft/angular-react/commit/5408b238c2e3903a7417b6a2fd2e8c82bd94b0f1))
-- **fabric:** Upgrade `office-ui-fabric-react` to 6.110.0 ([#45](https://github.com/Microsoft/angular-react/pull/45)) ([bc39370](https://github.com/Microsoft/angular-react/commit/bc393707bdfb9f163b2e718702e35f0fb4ff25c3)) ([#46](https://github.com/Microsoft/angular-react/pull/46)) 
+- **fabric:** Upgrade `office-ui-fabric-react` to 6.110.0 ([#45](https://github.com/Microsoft/angular-react/pull/45)) ([bc39370](https://github.com/Microsoft/angular-react/commit/bc393707bdfb9f163b2e718702e35f0fb4ff25c3)) ([#46](https://github.com/Microsoft/angular-react/pull/46))
 
 ### Bug fixes
+
 - **fabric:** Fix `<command-bar-item>` not recognizing some inputs ([#42](https://github.com/Microsoft/angular-react/pull/42)) ([411ef87](https://github.com/Microsoft/angular-react/commit/411ef8730e7e2d984e1a86f03f8603dfb335f499))
 - **fabric:** Fix bad imports in DetailsList module ([#43](https://github.com/Microsoft/angular-react/pull/43)) ([80a50e6](https://github.com/Microsoft/angular-react/commit/80a50e69942c6e679ecdb3c4f0fa2621932231c4))
 
 ### Features
+
 - **fabric:** Add `<fab-plain-card>` and `<fab-expanding-card>` components ([#45](https://github.com/Microsoft/angular-react/pull/45)) ([bc39370](https://github.com/Microsoft/angular-react/commit/bc393707bdfb9f163b2e718702e35f0fb4ff25c3)) ([#46](https://github.com/Microsoft/angular-react/pull/46))
 
 <!-- ### Features
