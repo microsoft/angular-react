@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.2"></a>
+
+# [0.5.2](https://github.com/Microsoft/angular-react/compare/v0.5.1...v0.5.2) (2018-12-06)
+
+### Bug fixes
+
+- **core:** Fix v0.5.1 failing to be built in apps. ([#52](https://github.com/Microsoft/angular-react/pull/52)) ([5c80d79](https://github.com/Microsoft/angular-react/commit/5c80d797a51630a348c241572d6686df6c4f3f71))
+
 <a name="0.5.1"></a>
 
 # [0.5.1](https://github.com/Microsoft/angular-react/compare/v0.5.0...v0.5.1) (2018-12-06)
