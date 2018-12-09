@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.3"></a>
+
+# [0.5.3](https://github.com/Microsoft/angular-react/compare/v0.5.2...v0.5.3) (2018-12-06)
+
+### Bug fixes
+
+- **core:** Fix for `geteventlisteners` not working with AOT (`--prod`) builds. ([#54](https://github.com/Microsoft/angular-react/pull/54)) ([deefeb5](https://github.com/Microsoft/angular-react/commit/deefeb52d83b09563763731fefbd227d25824a54))
+
 <a name="0.5.2"></a>
 
 # [0.5.2](https://github.com/Microsoft/angular-react/compare/v0.5.1...v0.5.2) (2018-12-06)
