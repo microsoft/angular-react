@@ -1,8 +1,13 @@
 // Taken and modified from https://github.com/colxi/getEventListeners to be compiled into ES5, allowing running in older browsers
 
-(function() {
-  'use strict';
-
+/**
+ * Monkey-patches `Element`'s `addEventListener` & `removeEventListener` and adds `getEventListeners`.
+ * This later allows the renderer to emit any event handlers attached to React-wrapped components as Angular Outputs:
+```html
+<my-component (arbitraryEvent)="onEventHandler($event)"></my-component>
+```
+ */
+export function initHooks() {
   // save the original methods before overwriting them
   Element.prototype['_addEventListener'] = Element.prototype.addEventListener;
   Element.prototype['_removeEventListener'] = Element.prototype.removeEventListener;
@@ -83,4 +88,4 @@
         }
     };
     */
-})();
+}
