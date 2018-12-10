@@ -9,6 +9,10 @@
  */
 export function initHooks() {
   // save the original methods before overwriting them
+  if (Element.prototype['_addEventListener'] && Element.prototype['_removeEventListener']) {
+    return;
+  }
+
   Element.prototype['_addEventListener'] = Element.prototype.addEventListener;
   Element.prototype['_removeEventListener'] = Element.prototype.removeEventListener;
 
