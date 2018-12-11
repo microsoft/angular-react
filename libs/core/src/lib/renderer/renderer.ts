@@ -8,7 +8,7 @@ import { Disguise } from './components/Disguise';
 import { ReactContent } from './react-content';
 import { isReactNode, ReactNode } from './react-node';
 import { registerElement } from './registry';
-import { initHooks as initGetEventListeners } from './geteventlisteners';
+import './geteventlisteners';
 
 const DEBUG = false;
 
@@ -84,9 +84,6 @@ export class ReactRenderer implements Renderer2 {
   };
 
   constructor(public readonly rootRenderer: AngularReactRendererFactory) {
-    // Attach hooks to event handlers so we can intercept and re-emit any event handlers passed to React-wrapper components
-    initGetEventListeners();
-
     // These two elements are essential for the whole experience to be smooth for the user - register them from the get-go.
     registerElement('ReactContent', () => ReactContent);
     registerElement('Disguise', () => Disguise);
