@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.4"></a>
+
+# [0.5.4](https://github.com/Microsoft/angular-react/compare/v0.5.3...v0.5.4) (2018-12-11)
+
+### Bug fixes
+
+- **core:** Fix for `geteventlisteners` loading multiple times in certain scenarios. ([#56](https://github.com/Microsoft/angular-react/pull/56)) ([7f691d7](https://github.com/Microsoft/angular-react/commit/7f691d79727e77478ff13362c1399c949bb21bd8))
+
 <a name="0.5.3"></a>
 
 # [0.5.3](https://github.com/Microsoft/angular-react/compare/v0.5.2...v0.5.3) (2018-12-06)
