@@ -30,6 +30,7 @@ export * from './lib/components/pivot/public-api';
 export * from './lib/components/search-box/public-api';
 export * from './lib/components/shimmer/public-api';
 export * from './lib/components/slider/public-api';
+export * from './lib/components/spin-button/public-api';
 export * from './lib/components/spinner/public-api';
 export * from './lib/components/text-field/public-api';
 export * from './lib/components/toggle/public-api';

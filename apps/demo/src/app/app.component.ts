@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ICalendarStrings, IContextualMenuProps, ISelection, Selection } from 'office-ui-fabric-react';
 
+const suffix = ' cm';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -94,8 +96,53 @@ export class AppComponent {
     console.log('Column header clicked', event);
   }
 
+  onIncrement(value: string): string | void {
+    value = this._removeSuffix(value, suffix);
+
+    if (+value >= 13) {
+      return value + suffix;
+    }
+
+    return String(+value + 2) + suffix;
+  }
+
+  onDecrement(value: string): string | void {
+    value = this._removeSuffix(value, suffix);
+
+    if (+value <= 3) {
+      return value + suffix;
+    }
+    return String(+value - 2) + suffix;
+  }
+
+  onValidate(value: string, event: Event): string | void {
+    value = this._removeSuffix(value, suffix);
+    if (value.trim().length === 0 || isNaN(+value)) {
+      return '0' + suffix;
+    }
+
+    return String(value) + suffix;
+  }
+
+  private _hasSuffix(value: string, suffix: string): Boolean {
+    const subString = value.substr(value.length - suffix.length);
+    return subString === suffix;
+  }
+
+  private _removeSuffix(value: string, suffix: string): string {
+    if (!this._hasSuffix(value, suffix)) {
+      return value;
+    }
+
+    return value.substr(0, value.length - suffix.length);
+  }
+
   constructor(private readonly cd: ChangeDetectorRef) {
     this.selection = new Selection();
+
+    this.onValidate = this.onValidate.bind(this);
+    this.onIncrement = this.onIncrement.bind(this);
+    this.onDecrement = this.onDecrement.bind(this);
   }
 
   customItemCount = 1;

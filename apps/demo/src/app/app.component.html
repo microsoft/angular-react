@@ -16,6 +16,14 @@
 
 <span>{{ textFieldValue }}</span>
 
+<fab-spin-button
+  label="my label"
+  [value]="7 + ' cm'"
+  [validate]="onValidate"
+  [increment]="onIncrement"
+  [decrement]="onDecrement"
+></fab-spin-button>
+
 <div>
   <fab-pivot>
     <fab-pivot-item headerText="Tab 1"> <div>Tab 1's content</div> </fab-pivot-item>
