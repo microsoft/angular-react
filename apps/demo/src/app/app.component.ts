@@ -15,8 +15,6 @@ export class AppComponent {
     dismissMenu: (ev?: any, dismissAll?: boolean) => void;
   }>;
 
-  textFieldValue = 'Hello';
-
   onClickEventHandler(ev) {
     console.log('onClick', { ev });
   }
@@ -24,6 +22,8 @@ export class AppComponent {
   onMouseOverEventHandler(ev) {
     console.log('onMouseOver', { ev });
   }
+
+  textFieldValue = 'Hello';
 
   marqueeEnabled: boolean;
   runDisabled: boolean;
