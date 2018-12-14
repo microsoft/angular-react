@@ -21,6 +21,8 @@ export class AppComponent {
     console.log('onMouseOver', { ev });
   }
 
+  textFieldValue = 'Hello';
+
   marqueeEnabled: boolean;
   runDisabled: boolean;
   selection: ISelection;
