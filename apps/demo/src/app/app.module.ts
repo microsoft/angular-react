@@ -31,6 +31,7 @@ import {
   FabSpinnerModule,
   FabToggleModule,
   FabTooltipModule,
+  FabTextFieldModule,
 } from '@angular-react/fabric';
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
@@ -73,6 +74,7 @@ import { CounterComponent } from './counter/counter.component';
     FabDetailsListModule,
     FabGroupModule,
     FabMarqueeSelectionModule,
+    FabTextFieldModule,
   ],
   declarations: [AppComponent, CounterComponent],
   bootstrap: [AppComponent],

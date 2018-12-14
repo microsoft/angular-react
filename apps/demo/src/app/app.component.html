@@ -12,6 +12,10 @@
 <fab-icon iconName="Add" (onClick)="onClickEventHandler($event)" (onMouseOver)="onMouseOverEventHandler($event)">
 </fab-icon>
 
+<fab-text-field [(value)]="textFieldValue"></fab-text-field>
+
+<span>{{ textFieldValue }}</span>
+
 <div>
   <fab-pivot>
     <fab-pivot-item headerText="Tab 1"> <div>Tab 1's content</div> </fab-pivot-item>
