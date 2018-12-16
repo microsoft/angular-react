@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.5"></a>
+
+# [0.5.5](https://github.com/Microsoft/angular-react/compare/v0.5.4...v0.5.5) (2018-12-16)
+
+### Features
+
+- **fabric:** Add `TextField` and `MaskedTextField` components. ([#58](https://github.com/Microsoft/angular-react/pull/58)) ([d18320e](https://github.com/Microsoft/angular-react/commit/d18320e3ab0449c0c6b408dd003cfe700536e8ad))
+- **fabric:** Add `SpinButton` component. ([#59](https://github.com/Microsoft/angular-react/pull/59)) ([35dbbbe](https://github.com/Microsoft/angular-react/commit/35dbbbe69a6e98c0efccf2b9292aff135fd83a20))
+
 <a name="0.5.4"></a>
 
 # [0.5.4](https://github.com/Microsoft/angular-react/compare/v0.5.3...v0.5.4) (2018-12-11)
