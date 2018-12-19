@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AfterContentInit, ContentChild, Directive, Input, TemplateRef } from '@angular/core';
+import { ContentChild, Directive, Input, TemplateRef } from '@angular/core';
 import { ContextualMenuItemDirective } from '../../contextual-menu/directives/contextual-menu-item.directive';
 import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
 import {
@@ -29,11 +29,7 @@ export class CommandBarItemRenderIconDirective {
 }
 
 @Directive({ selector: 'fab-command-bar-item' })
-export class CommandBarItemDirective extends ContextualMenuItemDirective
-  implements ICommandBarItemOptions, AfterContentInit {
-  @ContentChild(CommandBarItemRenderDirective) readonly renderDirective: CommandBarItemRenderDirective;
-  @ContentChild(CommandBarItemRenderIconDirective) readonly renderIconDirective: CommandBarItemRenderIconDirective;
-
+export class CommandBarItemDirective extends ContextualMenuItemDirective implements ICommandBarItemOptions {
   // ICommandBarItemOptions implementation
   @Input() iconOnly?: ICommandBarItemOptions['iconOnly'];
   @Input() tooltipHostProps?: ICommandBarItemOptions['tooltipHostProps'];
@@ -41,18 +37,4 @@ export class CommandBarItemDirective extends ContextualMenuItemDirective
   @Input() cacheKey?: ICommandBarItemOptions['cacheKey'];
   @Input() renderedInOverflow?: ICommandBarItemOptions['renderedInOverflow'];
   @Input() commandBarButtonAs?: ICommandBarItemOptions['commandBarButtonAs'];
-  @Input() render: ICommandBarItemOptions['render'];
-  @Input() renderIcon: ICommandBarItemOptions['renderIcon'];
-
-  ngAfterContentInit() {
-    super.ngAfterContentInit();
-
-    if (this.renderDirective && this.renderDirective.templateRef) {
-      this.render = this.renderDirective.templateRef;
-    }
-
-    if (this.renderIconDirective && this.renderIconDirective.templateRef) {
-      this.renderIcon = this.renderIconDirective.templateRef;
-    }
-  }
 }

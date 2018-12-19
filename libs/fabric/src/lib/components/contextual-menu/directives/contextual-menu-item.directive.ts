@@ -10,13 +10,37 @@ import {
   OnDestroy,
   Output,
   QueryList,
+  ContentChild,
+  TemplateRef,
 } from '@angular/core';
 import { IContextualMenuItem } from 'office-ui-fabric-react';
+import { KnownKeys, InputRendererOptions } from '@angular-react/core';
 
 import { OnChanges } from '../../../declarations/angular/typed-changes';
 import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
 import { ChangeableItemsHelper, IChangeableItemsContainer } from '../../core/shared/changeable-helper';
 import { ChangeableItemDirective } from '../../core/shared/changeable-item.directive';
+
+export type ContextualMenuItemChangedPayload = ItemChangedPayload<
+  IContextualMenuItemOptions['key'],
+  IContextualMenuItemOptions
+>;
+
+/**
+ * Wrapper directive to allow rendering a custom item to a ContextualMenuItem.
+ */
+@Directive({ selector: 'fab-command-bar-item > render' })
+export class ContextualMenuItemRenderDirective {
+  @ContentChild(TemplateRef) readonly templateRef: TemplateRef<IContextualMenuItemOptionsRenderContext>;
+}
+
+/**
+ * Wrapper directive to allow rendering a custom icon to a ContextualMenuItem.
+ */
+@Directive({ selector: 'fab-command-bar-item > render-icon' })
+export class ContextualMenuItemRenderIconDirective {
+  @ContentChild(TemplateRef) readonly templateRef: TemplateRef<IContextualMenuItemOptionsRenderIconContext>;
+}
 
 @Directive({ selector: 'contextual-menu-item' })
 export class ContextualMenuItemDirective extends ChangeableItemDirective<IContextualMenuItem>
@@ -27,13 +51,15 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
     OnChanges<ContextualMenuItemDirective>,
     OnDestroy {
   @ContentChildren(ContextualMenuItemDirective) readonly menuItemsDirectives: QueryList<ContextualMenuItemDirective>;
+  @ContentChild(ContextualMenuItemRenderDirective) readonly renderDirective: ContextualMenuItemRenderDirective;
+  @ContentChild(ContextualMenuItemRenderIconDirective)
+  readonly renderIconDirective: ContextualMenuItemRenderIconDirective;
 
   @Input() componentRef?: IContextualMenuItem['componentRef'];
   @Input() text?: IContextualMenuItem['text'];
   @Input() secondaryText?: IContextualMenuItem['secondaryText'];
   @Input() itemType?: IContextualMenuItem['itemType'];
   @Input() iconProps?: IContextualMenuItem['iconProps'];
-  @Input() onRenderIcon?: IContextualMenuItem['onRenderIcon'];
   @Input() submenuIconProps?: IContextualMenuItem['submenuIconProps'];
   @Input() disabled?: IContextualMenuItem['disabled'];
   @Input() primaryDisabled?: IContextualMenuItem['primaryDisabled'];
@@ -54,29 +80,39 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
   @Input() style?: IContextualMenuItem['style'];
   @Input() ariaLabel?: IContextualMenuItem['ariaLabel'];
   @Input() title?: IContextualMenuItem['title'];
-  @Input() onRender?: IContextualMenuItem['onRender'];
   @Input() onMouseDown?: IContextualMenuItem['onMouseDown'];
   @Input() role?: IContextualMenuItem['role'];
   @Input() customOnRenderListLength?: IContextualMenuItem['customOnRenderListLength'];
   @Input() keytipProps?: IContextualMenuItem['keytipProps'];
   @Input() inactive?: IContextualMenuItem['inactive'];
   @Input() name?: IContextualMenuItem['name'];
+  @Input() render: IContextualMenuItemOptions['render'];
+  @Input() renderIcon: IContextualMenuItemOptions['renderIcon'];
 
   @Output() readonly click = new EventEmitter<{ ev?: MouseEvent | KeyboardEvent; item?: IContextualMenuItem }>();
 
   @Output()
   get onChildItemChanged(): EventEmitter<ItemChangedPayload<string, IContextualMenuItem>> {
-    return this.changeableItemsHelper && this.changeableItemsHelper.onChildItemChanged;
-  }
-  @Input()
-  get onItemsChanged(): EventEmitter<QueryList<ChangeableItemDirective<IContextualMenuItem>>> {
-    return this.changeableItemsHelper && this.changeableItemsHelper.onItemsChanged;
+    return this._changeableItemsHelper && this._changeableItemsHelper.onChildItemChanged;
   }
 
-  private changeableItemsHelper: ChangeableItemsHelper<IContextualMenuItem>;
+  @Output()
+  get onItemsChanged(): EventEmitter<QueryList<ChangeableItemDirective<IContextualMenuItem>>> {
+    return this._changeableItemsHelper && this._changeableItemsHelper.onItemsChanged;
+  }
+
+  private _changeableItemsHelper: ChangeableItemsHelper<IContextualMenuItem>;
 
   ngAfterContentInit() {
-    this.changeableItemsHelper = new ChangeableItemsHelper(this.menuItemsDirectives, this, nonSelfDirective => {
+    if (this.renderDirective && this.renderDirective.templateRef) {
+      this.render = this.renderDirective.templateRef;
+    }
+
+    if (this.renderIconDirective && this.renderIconDirective.templateRef) {
+      this.renderIcon = this.renderIconDirective.templateRef;
+    }
+
+    this._changeableItemsHelper = new ChangeableItemsHelper(this.menuItemsDirectives, this, nonSelfDirective => {
       const items = nonSelfDirective.map(directive => this._directiveToContextualMenuItem(directive as any));
       if (!this.subMenuProps) {
         this.subMenuProps = { items: items };
@@ -87,7 +123,7 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
   }
 
   ngOnDestroy() {
-    this.changeableItemsHelper.destroy();
+    this._changeableItemsHelper.destroy();
   }
 
   private _directiveToContextualMenuItem(directive: ContextualMenuItemDirective): IContextualMenuItem {
@@ -98,4 +134,22 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
       },
     };
   }
+}
+
+// Not using `Omit` here since it confused the TypeScript compiler and it just showed the properties listed here (`renderIcon`, `render` and `data`).
+// The type here is just `Omit` without the generics though.
+export interface IContextualMenuItemOptions<TData = any>
+  extends Pick<IContextualMenuItem, Exclude<KnownKeys<IContextualMenuItem>, 'onRender' | 'onRenderIcon'>> {
+  readonly renderIcon?: InputRendererOptions<IContextualMenuItemOptionsRenderIconContext>;
+  readonly render?: InputRendererOptions<IContextualMenuItemOptionsRenderContext>;
+  readonly data?: TData;
+}
+
+export interface IContextualMenuItemOptionsRenderContext {
+  item: any;
+  dismissMenu: (ev?: any, dismissAll?: boolean) => void;
+}
+
+export interface IContextualMenuItemOptionsRenderIconContext {
+  contextualMenuItem: IContextualMenuItem;
 }
