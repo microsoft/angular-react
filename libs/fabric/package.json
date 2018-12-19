@@ -36,7 +36,9 @@
         "office-ui-fabric-react/lib/SearchBox": "SearchBox",
         "office-ui-fabric-react/lib/Shimmer": "Shimmer",
         "office-ui-fabric-react/lib/Slider": "Slider",
+        "office-ui-fabric-react/lib/SpinButton": "SpinButton",
         "office-ui-fabric-react/lib/Spinner": "Spinner",
+        "office-ui-fabric-react/lib/TextField": "TextField",
         "office-ui-fabric-react/lib/Toggle": "Toggle",
         "office-ui-fabric-react/lib/Tooltip": "Tooltip"
       },
