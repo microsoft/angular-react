@@ -13,7 +13,7 @@ import {
   ContentChild,
   TemplateRef,
 } from '@angular/core';
-import { IContextualMenuItem, IContextualMenuItemProps } from 'office-ui-fabric-react';
+import { IContextualMenuItem } from 'office-ui-fabric-react';
 import { KnownKeys, InputRendererOptions } from '@angular-react/core';
 
 import { OnChanges } from '../../../declarations/angular/typed-changes';
@@ -93,15 +93,15 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
 
   @Output()
   get onChildItemChanged(): EventEmitter<ItemChangedPayload<string, IContextualMenuItem>> {
-    return this.changeableItemsHelper && this.changeableItemsHelper.onChildItemChanged;
+    return this._changeableItemsHelper && this._changeableItemsHelper.onChildItemChanged;
   }
 
   @Output()
   get onItemsChanged(): EventEmitter<QueryList<ChangeableItemDirective<IContextualMenuItem>>> {
-    return this.changeableItemsHelper && this.changeableItemsHelper.onItemsChanged;
+    return this._changeableItemsHelper && this._changeableItemsHelper.onItemsChanged;
   }
 
-  private changeableItemsHelper: ChangeableItemsHelper<IContextualMenuItem>;
+  private _changeableItemsHelper: ChangeableItemsHelper<IContextualMenuItem>;
 
   ngAfterContentInit() {
     if (this.renderDirective && this.renderDirective.templateRef) {
@@ -112,7 +112,7 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
       this.renderIcon = this.renderIconDirective.templateRef;
     }
 
-    this.changeableItemsHelper = new ChangeableItemsHelper(this.menuItemsDirectives, this, nonSelfDirective => {
+    this._changeableItemsHelper = new ChangeableItemsHelper(this.menuItemsDirectives, this, nonSelfDirective => {
       const items = nonSelfDirective.map(directive => this._directiveToContextualMenuItem(directive as any));
       if (!this.subMenuProps) {
         this.subMenuProps = { items: items };
@@ -123,7 +123,7 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
   }
 
   ngOnDestroy() {
-    this.changeableItemsHelper.destroy();
+    this._changeableItemsHelper.destroy();
   }
 
   private _directiveToContextualMenuItem(directive: ContextualMenuItemDirective): IContextualMenuItem {
