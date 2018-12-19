@@ -198,10 +198,9 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     return Object.assign(
       {},
       sharedProperties,
-      iconRenderer &&
-        ({
-          onRenderIcon: (item: IContextualMenuItem) => iconRenderer({ contextualMenuItem: item }),
-        } as any) /* NOTE: Fix for wrong typings of `onRenderIcon` in office-ui-fabric-react */,
+      iconRenderer && {
+        onRenderIcon: (item: IContextualMenuItem) => iconRenderer({ contextualMenuItem: item }),
+      },
       renderer &&
         ({ onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>)
     ) as ICommandBarItemProps;
