@@ -9,6 +9,16 @@
   </ol>
 </div>
 
+<fab-dropdown
+  [label]="'test label'"
+  [selectedKey]="selectedItem && selectedItem.key"
+  [options]="options"
+  [placeholder]="'select one'"
+  (onChange)="logEvent('dropdown change', $event)"
+  (onFocus)="logEvent('dropdown focus', $event)"
+  (onBlur)="logEvent('dropdown blur', $event)"
+></fab-dropdown>
+
 <fab-icon iconName="Add" (onClick)="onClickEventHandler($event)" (onMouseOver)="onMouseOverEventHandler($event)">
 </fab-icon>
 

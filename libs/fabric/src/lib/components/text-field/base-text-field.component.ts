@@ -67,7 +67,7 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
   onRenderSuffix: (props?: ITextFieldProps, defaultRender?: JsxRenderFunc<ITextFieldProps>) => JSX.Element;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
-    super(elementRef, changeDetectorRef, renderer);
+    super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onBeforeChangeHandler = this.onBeforeChangeHandler.bind(this);
