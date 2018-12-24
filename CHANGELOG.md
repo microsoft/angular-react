@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.6"></a>
+
+# [0.5.6](https://github.com/Microsoft/angular-react/compare/v0.5.5...v0.5.6) (2018-12-24)
+
+### Features
+
+- **fabric:** Add `Dropdown` component. ([#63](https://github.com/Microsoft/angular-react/pull/63)) ([7cd90dd](https://github.com/Microsoft/angular-react/commit/7cd90dde402adc5255dc04733ba430cca555ab17))
+- **fabric:** Add declarative syntax for menu items in Buttons. ([#61](https://github.com/Microsoft/angular-react/pull/61)) ([0bf7d9a](https://github.com/Microsoft/angular-react/commit/0bf7d9ab3758f979161799d6dc16012958c68cdf))
+
+### Bug fixes
+
+- **fabric:** Add missing module mappings. ([#62](https://github.com/Microsoft/angular-react/pull/62)) ([5a99d70](https://github.com/Microsoft/angular-react/commit/5a99d70685d101d54fb736777bd02498e70f739e))
+
 <a name="0.5.5"></a>
 
 # [0.5.5](https://github.com/Microsoft/angular-react/compare/v0.5.4...v0.5.5) (2018-12-16)
