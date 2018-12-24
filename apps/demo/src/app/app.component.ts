@@ -1,5 +1,13 @@
 import { ChangeDetectorRef, Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ICalendarStrings, IContextualMenuProps, ISelection, Selection } from 'office-ui-fabric-react';
+import {
+  ICalendarStrings,
+  IContextualMenuProps,
+  ISelection,
+  Selection,
+  DropdownMenuItemType,
+  IDropdownOption,
+} from 'office-ui-fabric-react';
+import { FabDropdownComponent } from '@angular-react/fabric';
 
 const suffix = ' cm';
 
@@ -22,6 +30,22 @@ export class AppComponent {
   onMouseOverEventHandler(ev) {
     console.log('onMouseOver', { ev });
   }
+
+  logEvent(...args: any[]) {
+    console.log(args);
+  }
+
+  selectedItem?: IDropdownOption;
+  options: FabDropdownComponent['options'] = [
+    { key: 'A', text: 'Option a' },
+    { key: 'B', text: 'Option b' },
+    { key: 'C', text: 'Option c' },
+    { key: 'D', text: 'Option d' },
+    { key: 'divider_1', text: '-', itemType: DropdownMenuItemType.Divider },
+    { key: 'E', text: 'Option e' },
+    { key: 'F', text: 'Option f' },
+    { key: 'G', text: 'Option g' },
+  ];
 
   textFieldValue = 'Hello';
 
