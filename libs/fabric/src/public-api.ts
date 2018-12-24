@@ -14,6 +14,7 @@ export * from './lib/components/date-picker/public-api';
 export * from './lib/components/details-list/public-api';
 export * from './lib/components/dialog/public-api';
 export * from './lib/components/divider/public-api';
+export * from './lib/components/dropdown/public-api';
 export * from './lib/components/fabric/public-api';
 export * from './lib/components/group/public-api';
 export * from './lib/components/grouped-list/public-api';

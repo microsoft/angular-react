@@ -1,10 +1,12 @@
 {
   "cSpell.words": [
     "Callout",
+    "Droppable",
     "Focusable",
     "Injectable",
     "Packagr",
     "Renderable",
+    "Reselect",
     "Selectable",
     "VDOM",
     "borderless",
