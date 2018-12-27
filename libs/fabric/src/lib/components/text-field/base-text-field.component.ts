@@ -17,6 +17,17 @@ import { ITextFieldProps } from 'office-ui-fabric-react/lib/TextField';
 export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldProps> implements OnInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
+  @Input() required?: ITextFieldProps['required'];
+  @Input() type?: ITextFieldProps['type'];
+  @Input() cols?: ITextFieldProps['cols'];
+  @Input() colSpan?: ITextFieldProps['colSpan'];
+  @Input() rows?: ITextFieldProps['rows'];
+  @Input() rowSpan?: ITextFieldProps['rowSpan'];
+  @Input() min?: ITextFieldProps['min'];
+  @Input() max?: ITextFieldProps['max'];
+  @Input() pattern?: ITextFieldProps['pattern'];
+  @Input('for') htmlFor?: ITextFieldProps['htmlFor'];
+
   @Input() componentRef?: ITextFieldProps['componentRef'];
   @Input() multiline?: ITextFieldProps['multiline'];
   @Input() resizable?: ITextFieldProps['resizable'];
