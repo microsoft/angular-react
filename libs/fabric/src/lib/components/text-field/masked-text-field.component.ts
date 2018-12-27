@@ -10,6 +10,16 @@ import { FabBaseTextFieldComponent } from './base-text-field.component';
   template: `
     <MaskedTextField
       #reactNode
+      [required]="required"
+      [type]="type"
+      [cols]="cols"
+      [colSpan]="colSpan"
+      [rows]="rows"
+      [rowSpan]="rowSpan"
+      [min]="min"
+      [max]="max"
+      [pattern]="pattern"
+      [htmlFor]="htmlFor"
       [componentRef]="componentRef"
       [multiline]="multiline"
       [resizable]="resizable"
