@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.7"></a>
+
+# [0.5.7](https://github.com/Microsoft/angular-react/compare/v0.5.6...v0.5.7) (2018-12-30)
+
+### Bug fixes
+
+- **fabric:** add missing TextField props. ([#65](https://github.com/Microsoft/angular-react/pull/65)) ([5bdbf64](https://github.com/Microsoft/angular-react/commit/5bdbf6421aafe30cc59bacf411825a3700d6d0a7))
+
 <a name="0.5.6"></a>
 
 # [0.5.6](https://github.com/Microsoft/angular-react/compare/v0.5.5...v0.5.6) (2018-12-24)
