@@ -18,6 +18,7 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() required?: ITextFieldProps['required'];
+  @Input() placeholder?: ITextFieldProps['placeholder'];
   @Input() type?: ITextFieldProps['type'];
   @Input() cols?: ITextFieldProps['cols'];
   @Input() colSpan?: ITextFieldProps['colSpan'];
