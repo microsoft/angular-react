@@ -23,7 +23,7 @@ Use of Angular-React allows consuming any React elements, but specifically Offic
 ## Libraries
 
 - [**core**][lib-core]: Includes the Renderer and supporting logic to render Angular components with React implementations as React components.
-- [**fabric**][lib-fab]: The light-weight Angular component wrappers that expose the Fabric React component api through common Angular components (including both imperative AND declrative syntax in many cases).
+- [**fabric**][lib-fab]: The light-weight Angular component wrappers that expose the Fabric React component API through common Angular components (including both imperative AND declarative syntax in many cases).
 
 # Roadmap
 
