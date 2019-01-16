@@ -1,6 +1,7 @@
 # React support for Angular
 
 [![npm version](https://badge.fury.io/js/%40angular-react%2Fcore.svg)](https://www.npmjs.com/package/@angular-react/core)
+[![CircleCI](https://circleci.com/gh/Microsoft/angular-react.svg?style=svg)](https://circleci.com/gh/Microsoft/angular-react)
 
 Industry trends, organizational pressures, and other factors can lead to mandates regarding the use of component libraries or migration from one technology to another. In the case of [Office UI Fabric][fab], where its use is required, the client must be written in React (there is no Angular component library for the latest version). Rewrite from Angular to React may be cost-prohibitive or ill advised for other reasons.
 
