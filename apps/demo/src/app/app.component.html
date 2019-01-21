@@ -41,6 +41,11 @@
     <fab-pivot-item headerText="Tab 3"> <div>Tab 3's content</div> </fab-pivot-item>
   </fab-pivot>
 
+  <fab-default-button text="button">
+    <contextual-menu-item key="item1" text="item1" data-track-type="button > item1"></contextual-menu-item>
+    <contextual-menu-item key="item2" text="item2" data-track-type="button > item2"></contextual-menu-item>
+  </fab-default-button>
+
   <fab-command-bar>
     <items>
       <fab-command-bar-item
@@ -48,6 +53,7 @@
         text="Run"
         [iconProps]="{ iconName: 'CaretRight' }"
         [disabled]="runDisabled"
+        data-track-type="run"
       ></fab-command-bar-item>
       <fab-command-bar-item
         key="new"
@@ -55,12 +61,10 @@
         [iconProps]="{ iconName: 'Add' }"
         (click)="onNewClicked()"
       ></fab-command-bar-item>
-      <fab-command-bar-item
-        key="copy1"
-        text="Copy1"
-        [iconProps]="{ iconName: 'Copy' }"
-        (click)="onCopyClicked()"
-      ></fab-command-bar-item>
+      <fab-command-bar-item key="copy" text="Copy" [iconProps]="{ iconName: 'Copy' }" (click)="onCopyClicked()">
+        <contextual-menu-item key="item1" text="Item1" data-track-type="copy1 > item1"></contextual-menu-item>
+        <contextual-menu-item key="item2" text="Item2" data-track-type="copy1 > item2"></contextual-menu-item>
+      </fab-command-bar-item>
       <fab-command-bar-item
         key="copy2"
         text="Copy2"

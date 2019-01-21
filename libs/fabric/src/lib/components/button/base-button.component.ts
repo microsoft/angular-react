@@ -24,6 +24,7 @@ import { Subscription } from 'rxjs';
 import { CommandBarItemChangedPayload } from '../command-bar/directives/command-bar-item.directives';
 import { mergeItemChanges } from '../core/declarative/item-changed';
 import { omit } from '../../utils/omit';
+import { getDataAttributes } from '../../utils/get-data-attributes';
 
 export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButtonProps>
   implements OnInit, AfterContentInit, OnDestroy {
@@ -167,6 +168,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
         'ngOnDestroy',
         'ngAfterContentInit'
       ),
+      ...getDataAttributes(directive.elementRef.nativeElement, true),
       onClick: (ev, item) => {
         directive.click.emit({ ev: ev && ev.nativeEvent, item: item });
       },

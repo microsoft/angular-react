@@ -12,6 +12,7 @@ import {
   QueryList,
   ContentChild,
   TemplateRef,
+  ElementRef,
 } from '@angular/core';
 import { IContextualMenuItem } from 'office-ui-fabric-react';
 import { KnownKeys, InputRendererOptions } from '@angular-react/core';
@@ -20,6 +21,7 @@ import { OnChanges } from '../../../declarations/angular/typed-changes';
 import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
 import { ChangeableItemsHelper, IChangeableItemsContainer } from '../../core/shared/changeable-helper';
 import { ChangeableItemDirective } from '../../core/shared/changeable-item.directive';
+import { getDataAttributes } from '../../../utils/get-data-attributes';
 
 export type ContextualMenuItemChangedPayload = ItemChangedPayload<
   IContextualMenuItemOptions['key'],
@@ -101,6 +103,10 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
     return this._changeableItemsHelper && this._changeableItemsHelper.onItemsChanged;
   }
 
+  constructor(readonly elementRef: ElementRef<HTMLElement>) {
+    super();
+  }
+
   private _changeableItemsHelper: ChangeableItemsHelper<IContextualMenuItem>;
 
   ngAfterContentInit() {
@@ -129,6 +135,7 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
   private _directiveToContextualMenuItem(directive: ContextualMenuItemDirective): IContextualMenuItem {
     return {
       ...directive,
+      ...getDataAttributes(directive.elementRef.nativeElement, true),
       onClick: (ev, item) => {
         directive.click.emit({ ev: ev && ev.nativeEvent, item: item });
       },
@@ -143,6 +150,11 @@ export interface IContextualMenuItemOptions<TData = any>
   readonly renderIcon?: InputRendererOptions<IContextualMenuItemOptionsRenderIconContext>;
   readonly render?: InputRendererOptions<IContextualMenuItemOptionsRenderContext>;
   readonly data?: TData;
+
+  /**
+   * For any attributes like data-* etc.
+   */
+  [propertyName: string]: any;
 }
 
 export interface IContextualMenuItemOptionsRenderContext {
