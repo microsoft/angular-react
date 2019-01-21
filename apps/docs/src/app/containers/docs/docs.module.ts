@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '../../material.module';
-import { ReactComponentsModule } from '../../react-components';
-import { SharedModule } from '../../shared';
-import { ComponentsModule } from '../../components';
 
 import { DocsComponent } from './docs.component';
 import { FabricModule } from '../../fabric.module';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { WrappersComponent } from './wrappers/wrappers.component';
+import { ComponentsModule } from '../../components/components.module';
+import { ReactComponentsModule } from '../../react-components/react-components.module';
+import { SharedModule } from '../../shared/shared.module';
 
 const components = [DocsComponent, GettingStartedComponent, WrappersComponent];
 
