@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '../../material.module';
-import { ReactComponentsModule } from '../../react-components';
-import { SharedModule } from '../../shared';
-import { ComponentsModule } from '../../components';
 
 import { AngularPerfComponent } from './angular-perf/angular-perf.component';
 import { MixedPerfComponent } from './mixed-perf/mixed-perf.component';
 import { PerformanceComponent } from './performance.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { FabricModule } from '../../fabric.module';
+import { ReactComponentsModule } from '../../react-components/react-components.module';
+import { SharedModule } from '../../shared/shared.module';
+import { ComponentsModule } from '../../components/components.module';
 
 const components = [AngularPerfComponent, MixedPerfComponent, PerformanceComponent, ProfilesComponent];
 

@@ -6,6 +6,7 @@ import { ContentChildren, Directive, QueryList } from '@angular/core';
 import { ChangeableItemsDirective } from '../../core/shared/changeable-items.directive';
 import { ICommandBarItemOptions } from '../command-bar.component';
 import { CommandBarItemDirective } from './command-bar-item.directives';
+import { getDataAttributes } from '../../../utils/get-data-attributes';
 
 export abstract class CommandBarItemsDirectiveBase extends ChangeableItemsDirective<ICommandBarItemOptions> {
   abstract readonly directiveItems: QueryList<CommandBarItemDirective>;
@@ -13,8 +14,9 @@ export abstract class CommandBarItemsDirectiveBase extends ChangeableItemsDirect
   get items() {
     return (
       this.directiveItems &&
-      this.directiveItems.map<ICommandBarItemOptions>(directiveItem => ({
+      this.directiveItems.map<ICommandBarItemOptions>((directiveItem: CommandBarItemDirective) => ({
         ...directiveItem,
+        ...getDataAttributes(directiveItem.elementRef.nativeElement, true),
         onClick: (ev, item) => {
           directiveItem.click.emit({
             ev: ev && ev.nativeEvent,
