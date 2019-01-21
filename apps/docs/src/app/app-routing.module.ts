@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LandingComponent } from './containers/landing/landing.component';
 import {
-  AngularPerfComponent,
-  ComponentDocsComponent,
-  DocsComponent,
-  FabricComponent,
-  GettingStartedComponent,
-  LandingComponent,
-  MixedPerfComponent,
   PerformanceComponent,
+  AngularPerfComponent,
+  MixedPerfComponent,
   ProfilesComponent,
+} from './containers/performance/performance.module';
+import {
+  ComponentDocsComponent,
+  FabricComponent,
   SemanticUiComponent,
-  WrappersComponent,
-} from './containers';
+} from './containers/component-docs/component-docs.module';
+import { DocsComponent, GettingStartedComponent, WrappersComponent } from './containers/docs/docs.module';
 
 const routes: Routes = [
   { path: 'landing', redirectTo: '' },
