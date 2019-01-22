@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.9"></a>
+
+# [0.5.9](https://github.com/Microsoft/angular-react/compare/v0.5.8...v0.5.9) (2019-01-22)
+
+### Bug fixes
+
+- **fabric:** fix dataset not being passed to office-ui-fabric-react in contextual menu items declared in template (directives) ([#75](https://github.com/Microsoft/angular-react/pull/75)) ([1bf0d3a](https://github.com/Microsoft/angular-react/commit/1bf0d3a81898c77326c663d33b55faf63eed1849))
+
 <a name="0.5.8"></a>
 
 # [0.5.8](https://github.com/Microsoft/angular-react/compare/v0.5.7...v0.5.8) (2018-12-30)
