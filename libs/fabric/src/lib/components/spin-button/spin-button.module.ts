@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { SpinButton } from 'office-ui-fabric-react/lib/SpinButton';
+import { SpinButton } from 'office-ui-fabric-react';
 import { FabSpinButtonComponent } from './spin-button.component';
 
 const components = [FabSpinButtonComponent];

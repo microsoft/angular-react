@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Link } from 'office-ui-fabric-react/lib/Link';
+import { Link } from 'office-ui-fabric-react';
 import { FabLinkComponent } from './link.component';
 
 const components = [FabLinkComponent];

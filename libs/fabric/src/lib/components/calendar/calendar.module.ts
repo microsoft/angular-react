@@ -4,13 +4,8 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import * as CalendarCss from 'office-ui-fabric-react/lib-amd/components/Calendar/Calendar.scss';
-import { Calendar } from 'office-ui-fabric-react/lib/Calendar';
-import { noop } from '../../utils/noop';
+import { Calendar } from 'office-ui-fabric-react';
 import { FabCalendarComponent } from './calendar.component';
-
-// Dummy action to force CalendarCss to load and not be tree-shaken away.
-noop(CalendarCss);
 
 const components = [FabCalendarComponent];
 

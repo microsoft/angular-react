@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { GroupedList } from 'office-ui-fabric-react/lib/GroupedList';
+import { GroupedList } from 'office-ui-fabric-react';
 import { FabGroupedListComponent } from './grouped-list.component';
 
 const components = [FabGroupedListComponent];

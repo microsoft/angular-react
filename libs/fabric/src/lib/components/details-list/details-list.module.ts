@@ -4,7 +4,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { registerElement } from '@angular-react/core';
-import { DetailsList } from 'office-ui-fabric-react/lib/DetailsList';
+import { DetailsList } from 'office-ui-fabric-react';
 
 import { FabGroupModule } from '../group/group.module';
 import { FabDetailsListComponent } from './details-list.component';

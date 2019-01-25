@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Persona, PersonaCoin } from 'office-ui-fabric-react/lib/Persona';
+import { Persona, PersonaCoin } from 'office-ui-fabric-react';
 import { FabPersonaCoinComponent, FabPersonaComponent } from './persona.component';
 
 const components = [FabPersonaComponent, FabPersonaCoinComponent];

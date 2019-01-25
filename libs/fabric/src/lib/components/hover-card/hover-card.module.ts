@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ExpandingCard, HoverCard, PlainCard } from 'office-ui-fabric-react/lib/HoverCard';
+import { ExpandingCard, HoverCard, PlainCard } from 'office-ui-fabric-react';
 import { FabHoverCardComponent } from './hover-card.component';
 import { FabExpandingCardComponent } from './expanding-card.component';
 import { FabPlainCardComponent } from './plain-card.component';
