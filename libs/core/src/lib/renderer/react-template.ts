@@ -62,7 +62,9 @@ export class ReactTemplate<TContext extends object | void> extends React.Compone
 
   componentDidUpdate() {
     // Context has changes, trigger change detection after pushing the new context in
-    Object.assign(this._embeddedViewRef.context, this.props.context);
+    if (this.props.context != null && this._embeddedViewRef.context != null) {
+      Object.assign(this._embeddedViewRef.context, this.props.context);
+    }
     this._embeddedViewRef.detectChanges();
   }
 
@@ -86,9 +88,11 @@ export class ReactTemplate<TContext extends object | void> extends React.Compone
 
     // Throttling the detect changes to an empirically selected value so we don't overload too much work.
     // TODO: This needs some better solution to listen to changes to the binding sources of the template.
-    this._ngZoneSubscription = ngZone.onStable.pipe(throttleTime(TEMPLATE_DETECT_CHANGES_THROTTLE_MS)).subscribe(() => {
-      this._embeddedViewRef.detectChanges();
-    });
+    this._ngZoneSubscription = ngZone.onStable
+      .pipe(throttleTime(TEMPLATE_DETECT_CHANGES_THROTTLE_MS, undefined, { leading: true, trailing: true }))
+      .subscribe(() => {
+        this._embeddedViewRef.detectChanges();
+      });
   }
 
   componentWillUnmount() {
