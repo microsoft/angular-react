@@ -62,7 +62,9 @@ export class ReactTemplate<TContext extends object | void> extends React.Compone
 
   componentDidUpdate() {
     // Context has changes, trigger change detection after pushing the new context in
-    Object.assign(this._embeddedViewRef.context, this.props.context);
+    if (this.props.context != null && this._embeddedViewRef.context != null) {
+      Object.assign(this._embeddedViewRef.context, this.props.context);
+    }
     this._embeddedViewRef.detectChanges();
   }
 
