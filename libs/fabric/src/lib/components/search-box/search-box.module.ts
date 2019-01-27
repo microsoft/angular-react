@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
+import { SearchBox } from 'office-ui-fabric-react';
 import { FabSearchBoxComponent } from './search-box.component';
 
 const components = [FabSearchBoxComponent];

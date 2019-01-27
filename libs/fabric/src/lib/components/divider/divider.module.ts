@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { VerticalDivider } from 'office-ui-fabric-react/lib/Divider';
+import { VerticalDivider } from 'office-ui-fabric-react';
 import { FabDividerComponent } from './divider.component';
 
 const components = [FabDividerComponent];

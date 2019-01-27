@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ILinkProps, Link } from 'office-ui-fabric-react/lib/Link';
+import { ILinkProps, Link } from 'office-ui-fabric-react';
 
 @Component({
   selector: 'fab-link',

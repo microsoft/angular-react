@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Fabric } from 'office-ui-fabric-react/lib/Fabric';
+import { Fabric } from 'office-ui-fabric-react';
 import { FabFabricComponent } from './fabric.component';
 
 const components = [FabFabricComponent];
