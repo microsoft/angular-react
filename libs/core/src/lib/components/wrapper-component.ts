@@ -28,6 +28,7 @@ import { createComponentRenderer, createHtmlRenderer, createTemplateRenderer } f
 import { toObject } from '../utils/object/to-object';
 import { afterRenderFinished } from '../utils/render/render-delay';
 import { unreachable } from '../utils/types/unreachable';
+import { IRenderFunction } from 'office-ui-fabric-react';
 
 // Forbidden attributes are still ignored, since they may be set from the wrapper components themselves (forbidden is only applied for users of the wrapper components)
 const ignoredAttributeMatchers = [/^_?ng-?.*/, /^style$/, /^class$/];
@@ -40,11 +41,16 @@ export interface RenderComponentOptions<TContext extends object> {
   readonly injector: Injector;
 }
 
+export class RenderOverride<TContext extends object> {
+  constructor(public renderer: IRenderFunction<TContext>) { }
+}
+
 export type InputRendererOptions<TContext extends object> =
   | TemplateRef<TContext>
   | ((context: TContext) => HTMLElement)
   | ComponentRef<TContext>
-  | RenderComponentOptions<TContext>;
+  | RenderComponentOptions<TContext>
+  | RenderOverride<TContext>;
 
 export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 
@@ -213,6 +219,10 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       return (context: TContext) => htmlRenderer.render(context);
     }
 
+    if (input instanceof RenderOverride) {
+      return undefined;
+    }
+
     if (typeof input === 'object') {
       const { componentType, factoryResolver, injector } = input;
       const componentFactory = factoryResolver.resolveComponentFactory(componentType);
@@ -238,17 +248,21 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       additionalProps?: ReactContentProps;
     }
   ): (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => JSX.Element | null {
-    const renderer =
-      (options && options.jsxRenderer) ||
-      this.createInputJsxRenderer(renderInputValue, options && options.additionalProps);
+    if (renderInputValue instanceof RenderOverride) {
+      return renderInputValue.renderer;
+    } else {
+      const renderer =
+        (options && options.jsxRenderer) ||
+        this.createInputJsxRenderer(renderInputValue, options && options.additionalProps);
 
-    return (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => {
-      if (!renderInputValue) {
-        return typeof defaultRender === 'function' ? defaultRender(props) : null;
-      }
+      return (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => {
+        if (!renderInputValue) {
+          return typeof defaultRender === 'function' ? defaultRender(props) : null;
+        }
 
-      return renderer(props);
-    };
+        return renderer(props);
+      };
+    }
   }
 
   private _passAttributesAsProps() {
@@ -265,7 +279,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
         throw new Error(
           `[${(this.elementRef
             .nativeElement as HTMLElement).tagName.toLowerCase()}] React wrapper components cannot have the '${
-            attr.name
+          attr.name
           }' attribute set. Use the following alternative: ${alternativeAttrName || ''}`
         );
       }
@@ -284,11 +298,11 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     const eventHandlersProps =
       eventListeners && Object.keys(eventListeners).length
         ? toObject(
-            Object.values(eventListeners).map<[string, React.EventHandler<React.SyntheticEvent>]>(([eventListener]) => [
-              eventListener.type,
-              (ev: React.SyntheticEvent) => eventListener.listener(ev && ev.nativeEvent),
-            ])
-          )
+          Object.values(eventListeners).map<[string, React.EventHandler<React.SyntheticEvent>]>(([eventListener]) => [
+            eventListener.type,
+            (ev: React.SyntheticEvent) => eventListener.listener(ev && ev.nativeEvent),
+          ])
+        )
         : {};
     {
     }
