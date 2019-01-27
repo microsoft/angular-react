@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.10"></a>
+
+# [0.5.10](https://github.com/Microsoft/angular-react/compare/v0.5.9...v0.5.10) (2019-01-27)
+
+### Bug fixes
+
+- **core:** workaround for TemplateRef update issues ([#81](https://github.com/Microsoft/angular-react/pull/81)) ([83f6b3a](https://github.com/Microsoft/angular-react/commit/83f6b3a39f30cda19bbc7562efd522fd62e2c195))
+
+- **fabric**: take benefits from tree-shaking support in Fabric ([#80](https://github.com/Microsoft/angular-react/pull/80)) ([9ca3e45](https://github.com/Microsoft/angular-react/commit/9ca3e4570562f3e2489b5925c0101584f8055220))
+
 <a name="0.5.9"></a>
 
 # [0.5.9](https://github.com/Microsoft/angular-react/compare/v0.5.8...v0.5.9) (2019-01-22)
