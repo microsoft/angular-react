@@ -24,7 +24,7 @@ import { Many } from '../declarations/many';
 import { ReactContentProps } from '../renderer/react-content';
 import { isReactNode } from '../renderer/react-node';
 import { isReactRendererData } from '../renderer/renderer';
-import { createComponentRenderer, createHtmlRenderer, createTemplateRenderer } from '../renderer/renderprop-helpers';
+import { createComponentRenderer, createHtmlRenderer, createTemplateRenderer, RenderPropContext } from '../renderer/renderprop-helpers';
 import { toObject } from '../utils/object/to-object';
 import { afterRenderFinished } from '../utils/render/render-delay';
 import { unreachable } from '../utils/types/unreachable';
@@ -40,8 +40,11 @@ export interface RenderComponentOptions<TContext extends object> {
   readonly injector: Injector;
 }
 
-export interface DefaultRenderOptions<TContext extends object> {
-  readonly getProps: (props?: TContext) => TContext;
+/**
+ * This interface allow to intercept and modify the default props used by defaultRender
+ */
+export interface RenderPropOptions<TContext extends object> {
+  readonly getProps: (defaultProps?: TContext) => TContext;
 }
 
 export type InputRendererOptions<TContext extends object> =
@@ -49,7 +52,8 @@ export type InputRendererOptions<TContext extends object> =
   | ((context: TContext) => HTMLElement)
   | ComponentRef<TContext>
   | RenderComponentOptions<TContext>
-  | DefaultRenderOptions<TContext>;
+  | RenderPropContext<TContext>
+  | RenderPropOptions<TContext>;
 
 export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 
@@ -219,18 +223,18 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     }
 
     if (typeof input === 'object') {
-      if ('componentType' in input) {
-        const { componentType, factoryResolver, injector } = input;
+      if (input.hasOwnProperty('componentType')) {
+        const { componentType, factoryResolver, injector } = <any>input;
         const componentFactory = factoryResolver.resolveComponentFactory(componentType);
         const componentRef = componentFactory.create(injector);
 
         // Call the function again with the created ComponentRef<TContext>
         return this.createInputJsxRenderer(componentRef, additionalProps);
       } else {
+        // it's needed to avoid typescript error on unreachable(input)
         return undefined;
       }
     }
-
     unreachable(input);
   }
 
@@ -247,23 +251,26 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       additionalProps?: ReactContentProps;
     }
   ): (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => JSX.Element | null {
-    if ((typeof renderInputValue === 'object') && ('getProps' in renderInputValue)) {
-      return (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => {
-        return typeof defaultRender === 'function' ? defaultRender(renderInputValue.getProps(props)): null;
+    if (typeof renderInputValue === 'object') {
+      if (renderInputValue.hasOwnProperty('render')) {
+        return (<any>renderInputValue).render;
       }
-    } else {
-      const renderer =
-        (options && options.jsxRenderer) ||
-        this.createInputJsxRenderer(renderInputValue, options && options.additionalProps);
 
-      return (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => {
-        if (!renderInputValue) {
-          return typeof defaultRender === 'function' ? defaultRender(props) : null;
-        }
-
-        return renderer(props);
-      };
+      if (renderInputValue.hasOwnProperty('getProps')) {
+        return (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => {
+          return typeof defaultRender === 'function' ? defaultRender((<any>renderInputValue).getProps(props)) : null;
+        };
+      }
     }
+
+    const renderer = (options && options.jsxRenderer) || this.createInputJsxRenderer(renderInputValue, options && options.additionalProps);
+    return (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => {
+      if (!renderInputValue) {
+        return typeof defaultRender === 'function' ? defaultRender(props) : null;
+      }
+
+      return renderer(props);
+    };
   }
 
   private _passAttributesAsProps() {
