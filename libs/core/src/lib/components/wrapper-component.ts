@@ -28,7 +28,6 @@ import { createComponentRenderer, createHtmlRenderer, createTemplateRenderer } f
 import { toObject } from '../utils/object/to-object';
 import { afterRenderFinished } from '../utils/render/render-delay';
 import { unreachable } from '../utils/types/unreachable';
-import { IRenderFunction } from 'office-ui-fabric-react';
 
 // Forbidden attributes are still ignored, since they may be set from the wrapper components themselves (forbidden is only applied for users of the wrapper components)
 const ignoredAttributeMatchers = [/^_?ng-?.*/, /^style$/, /^class$/];
@@ -41,8 +40,8 @@ export interface RenderComponentOptions<TContext extends object> {
   readonly injector: Injector;
 }
 
-export class RenderOverride<TContext extends object> {
-  constructor(public renderer: IRenderFunction<TContext>) { }
+export interface DefaultRenderOptions<TContext extends object> {
+  readonly getProps: (props?: TContext) => TContext;
 }
 
 export type InputRendererOptions<TContext extends object> =
@@ -50,7 +49,7 @@ export type InputRendererOptions<TContext extends object> =
   | ((context: TContext) => HTMLElement)
   | ComponentRef<TContext>
   | RenderComponentOptions<TContext>
-  | RenderOverride<TContext>;
+  | DefaultRenderOptions<TContext>;
 
 export type JsxRenderFunc<TContext> = (context: TContext) => JSX.Element;
 
@@ -219,17 +218,17 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       return (context: TContext) => htmlRenderer.render(context);
     }
 
-    if (input instanceof RenderOverride) {
-      return undefined;
-    }
-
     if (typeof input === 'object') {
-      const { componentType, factoryResolver, injector } = input;
-      const componentFactory = factoryResolver.resolveComponentFactory(componentType);
-      const componentRef = componentFactory.create(injector);
+      if ('componentType' in input) {
+        const { componentType, factoryResolver, injector } = input;
+        const componentFactory = factoryResolver.resolveComponentFactory(componentType);
+        const componentRef = componentFactory.create(injector);
 
-      // Call the function again with the created ComponentRef<TContext>
-      return this.createInputJsxRenderer(componentRef, additionalProps);
+        // Call the function again with the created ComponentRef<TContext>
+        return this.createInputJsxRenderer(componentRef, additionalProps);
+      } else {
+        return undefined;
+      }
     }
 
     unreachable(input);
@@ -248,8 +247,10 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
       additionalProps?: ReactContentProps;
     }
   ): (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => JSX.Element | null {
-    if (renderInputValue instanceof RenderOverride) {
-      return renderInputValue.renderer;
+    if ((typeof renderInputValue === 'object') && ('getProps' in renderInputValue)) {
+      return (props?: TProps, defaultRender?: JsxRenderFunc<TProps>) => {
+        return typeof defaultRender === 'function' ? defaultRender(renderInputValue.getProps(props)): null;
+      }
     } else {
       const renderer =
         (options && options.jsxRenderer) ||
