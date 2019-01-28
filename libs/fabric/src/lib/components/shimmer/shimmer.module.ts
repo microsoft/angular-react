@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Shimmer, ShimmerElementsGroup } from 'office-ui-fabric-react/lib/Shimmer';
+import { Shimmer, ShimmerElementsGroup } from 'office-ui-fabric-react';
 import { FabShimmerComponent, FabShimmerElementsGroupComponent } from './shimmer.component';
 
 const components = [FabShimmerComponent, FabShimmerElementsGroupComponent];

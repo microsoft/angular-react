@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Dialog, DialogContent, DialogFooter } from 'office-ui-fabric-react/lib/Dialog';
+import { Dialog, DialogContent, DialogFooter } from 'office-ui-fabric-react';
 import { FabDialogComponent, FabDialogContentComponent, FabDialogFooterComponent } from './dialog.component';
 
 const components = [FabDialogComponent, FabDialogContentComponent, FabDialogFooterComponent];
