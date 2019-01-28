@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { TextField, MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
+import { TextField, MaskedTextField } from 'office-ui-fabric-react';
 import { FabTextFieldComponent } from './text-field.component';
 import { FabMaskedTextFieldComponent } from './masked-text-field.component';
 

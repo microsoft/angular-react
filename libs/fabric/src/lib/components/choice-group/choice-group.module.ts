@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import { ChoiceGroup } from 'office-ui-fabric-react';
 import { FabChoiceGroupComponent } from './choice-group.component';
 
 const components = [FabChoiceGroupComponent];

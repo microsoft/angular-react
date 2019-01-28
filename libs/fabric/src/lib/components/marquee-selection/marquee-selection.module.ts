@@ -4,7 +4,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { registerElement } from '@angular-react/core';
-import { MarqueeSelection } from 'office-ui-fabric-react/lib/MarqueeSelection';
+import { MarqueeSelection } from 'office-ui-fabric-react';
 
 import { FabMarqueeSelectionComponent } from './marquee-selection.component';
 

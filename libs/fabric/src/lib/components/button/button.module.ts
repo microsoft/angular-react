@@ -12,7 +12,7 @@ import {
   IconButton,
   MessageBarButton,
   PrimaryButton,
-} from 'office-ui-fabric-react/lib/Button';
+} from 'office-ui-fabric-react';
 import { FabActionButtonComponent } from './action-button.component';
 import { FabCommandBarButtonComponent } from './command-bar-button.component';
 import { FabCompoundButtonComponent } from './compound-button.component';
