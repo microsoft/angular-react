@@ -68,6 +68,7 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
   @Output() readonly onChange = new EventEmitter<{ event: Event; newValue?: string }>();
   @Output() readonly onBeforeChange = new EventEmitter<{ newValue: any }>();
   @Output() readonly onNotifyValidationResult = new EventEmitter<{ errorMessage: string; value: string | undefined }>();
+  @Output() readonly onBlur = new EventEmitter<{ event: Event }>();
 
   /* Non-React props, more native support for Angular */
   // support for two-way data binding for `@Input() checked`.
@@ -84,6 +85,7 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onBeforeChangeHandler = this.onBeforeChangeHandler.bind(this);
     this.onNotifyValidationResultHandler = this.onNotifyValidationResultHandler.bind(this);
+    this.onBlurHandler = this.onBlurHandler.bind(this);
   }
 
   ngOnInit() {
@@ -95,7 +97,6 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
 
   onChangeHandler(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) {
     this.onChange.emit({ event: event.nativeEvent, newValue });
-
     this.valueChange.emit(newValue);
   }
 
@@ -105,5 +106,9 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
 
   onNotifyValidationResultHandler(errorMessage: string, value: string | undefined) {
     this.onNotifyValidationResult.emit({ errorMessage, value });
+  }
+
+  onBlurHandler(event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    this.onBlur.emit({ event: event.nativeEvent });
   }
 }
