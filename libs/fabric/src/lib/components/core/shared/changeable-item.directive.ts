@@ -3,8 +3,8 @@
 
 import { EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { OnChanges, TypedChanges } from '../../../declarations/angular/typed-changes';
-import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
+import { OnChanges } from '../../../declarations/angular/typed-changes';
+import { ItemChangedPayload, ItemChanges } from '../../core/declarative/item-changed.payload';
 import { ChangeableItemHelper } from './changeable-helper';
 
 /**
@@ -24,7 +24,7 @@ export abstract class ChangeableItemDirective<TItem> implements OnChanges<Change
     this.changeableItemHelper = new ChangeableItemHelper(this.key);
   }
 
-  ngOnChanges(changes: TypedChanges<TItem>) {
+  ngOnChanges(changes: ItemChanges<TItem>) {
     if (this.changeableItemHelper) {
       this.changeableItemHelper.emitChanges(changes);
     }

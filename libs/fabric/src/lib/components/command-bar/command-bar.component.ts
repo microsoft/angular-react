@@ -100,7 +100,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
   }
 
-  ngOnChanges(changes: TypedChanges<this>) {
+  ngOnChanges(changes: TypedChanges<FabCommandBarComponent>) {
     if (
       changes['items'] &&
       changes['items'].previousValue !== changes['items'].currentValue &&

@@ -226,7 +226,7 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
     this.onRenderMissingItem = (index, rowProps) => missingItemRenderer({ index, rowProps });
   }
 
-  ngOnChanges(changes: TypedChanges<this>) {
+  ngOnChanges(changes: TypedChanges<FabDetailsListComponent>) {
     if (
       changes['columns'] &&
       changes['columns'].currentValue &&
