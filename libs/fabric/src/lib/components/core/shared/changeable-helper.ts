@@ -4,8 +4,7 @@
 import { EventEmitter, QueryList } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { TypedChanges } from '../../../declarations/angular/typed-changes';
-import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
+import { ItemChangedPayload, ItemChanges } from '../../core/declarative/item-changed.payload';
 import { ChangeableItemDirective } from './changeable-item.directive';
 
 /**
@@ -21,7 +20,7 @@ export class ChangeableItemHelper<TItem> {
    * (Typically called in ngOnChanges)
    * @param changes TypedChanges that are to be emitted
    */
-  emitChanges(changes: TypedChanges<TItem>) {
+  emitChanges(changes: ItemChanges<TItem>) {
     this.onItemChanged.emit({ key: this.key, changes });
   }
 }
