@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.11"></a>
+
+# [0.5.11](https://github.com/Microsoft/angular-react/compare/v0.5.10...v0.5.11) (2019-01-31)
+
+### Bug fixes
+
+- **fabric:** fix typed-changes failing in some AOT configurations ([#86](https://github.com/Microsoft/angular-react/pull/86)) ([498cfde](https://github.com/Microsoft/angular-react/commit/498cfded1ca9a1ae830ed78f5a75c802ddee5f6d))
+
 <a name="0.5.10"></a>
 
 # [0.5.10](https://github.com/Microsoft/angular-react/compare/v0.5.9...v0.5.10) (2019-01-27)
