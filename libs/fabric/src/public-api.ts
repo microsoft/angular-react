@@ -36,6 +36,7 @@ export * from './lib/components/spinner/public-api';
 export * from './lib/components/text-field/public-api';
 export * from './lib/components/toggle/public-api';
 export * from './lib/components/tooltip/public-api';
+export * from './lib/components/nav/public-api';
 
 // Pickers had some warnings at runtime. Leaving out of public API for now
 // export * from './lib/components/pickers/public-api';
