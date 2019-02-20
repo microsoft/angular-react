@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.12"></a>
+
+# [0.5.12](https://github.com/Microsoft/angular-react/compare/v0.5.11...v0.5.12) (2019-02-20)
+
+## Features
+
+- **fabric:** Add `Nav` component. ([#88](https://github.com/Microsoft/angular-react/pull/88)) ([a50eacc](https://github.com/Microsoft/angular-react/commit/a50eaccf775958722c59ab80e0db5c216b7ce332))
+
+### Bug fixes
+
+- **fabric:** Add explicit events for FabTextField and FabMaskedTextField components ([#92](https://github.com/Microsoft/angular-react/pull/92)) ([2f48c6c](https://github.com/Microsoft/angular-react/commit/2f48c6c492991d0af53b27571d4523e6bdbcc65b))
+
 <a name="0.5.11"></a>
 
 # [0.5.11](https://github.com/Microsoft/angular-react/compare/v0.5.10...v0.5.11) (2019-01-31)
