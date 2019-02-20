@@ -65,6 +65,9 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
   @Input() renderPrefix?: InputRendererOptions<ITextFieldProps>;
   @Input() renderSuffix?: InputRendererOptions<ITextFieldProps>;
 
+  @Output() readonly onFocus = new EventEmitter<FocusEvent>();
+  @Output() readonly onClick = new EventEmitter<MouseEvent>();
+
   @Output() readonly onChange = new EventEmitter<{ event: Event; newValue?: string }>();
   @Output() readonly onBeforeChange = new EventEmitter<{ newValue: any }>();
   @Output() readonly onNotifyValidationResult = new EventEmitter<{ errorMessage: string; value: string | undefined }>();
@@ -91,6 +94,14 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
     this.onRenderDescription = this.createRenderPropHandler(this.renderDescription);
     this.onRenderPrefix = this.createRenderPropHandler(this.renderPrefix);
     this.onRenderSuffix = this.createRenderPropHandler(this.renderSuffix);
+  }
+
+  onClickHandler(ev?: React.MouseEvent) {
+    this.onClick.emit(ev && ev.nativeEvent);
+  }
+
+  onFocusHandler(ev?: React.FocusEvent) {
+    this.onFocus.emit(ev && ev.nativeEvent);
   }
 
   onChangeHandler(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) {
