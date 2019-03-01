@@ -58,6 +58,8 @@ import { FabBaseTextFieldComponent } from './base-text-field.component';
       [Change]="onChangeHandler"
       [BeforeChange]="onBeforeChangeHandler"
       [NotifyValidationResult]="onNotifyValidationResultHandler"
+      (onClick)="onClickHandler($event)"
+      (onFocus)="onFocusHandler($event)"
     >
     </MaskedTextField>
   `,
