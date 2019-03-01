@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IComboBoxOption, ICalendarStrings } from 'office-ui-fabric-react';
 
 @Component({
   selector: 'app-fabric',
@@ -12,6 +13,23 @@ export class FabricComponent {
   secondsCounter = 0;
   sampleContent2 = '0 Seconds Passed';
   sampleContent3 = '';
+  selectedComboBoxKey: string = "None";
+  selectedComboBoxValue: string = "None";
+  selectedDate: Date;
+
+  comboBoxOptions: IComboBoxOption[] = [
+    { key: 'A', text: 'See option A' },
+    { key: 'B', text: 'See option B' },
+  ];
+
+  onSelectDate(event) {
+    this.selectedDate = event.date;
+  }
+
+  comboChange(event) {
+    this.selectedComboBoxKey = event.option.key;
+    this.selectedComboBoxValue = event.option.text;
+  }
 
   get sampleContent() {
     return `Button clicked ${this.sampleContentCounter} times.`;

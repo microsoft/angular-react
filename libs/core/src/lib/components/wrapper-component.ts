@@ -97,7 +97,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     this._contentClass = value;
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       this.reactNodeRef.nativeElement.setProperty('className', classnames(value));
-      this.changeDetectorRef.detectChanges();
+      this.markForCheck();
     }
   }
 
@@ -118,7 +118,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       const stringValue = typeof value === 'string' ? value : stylenames(value);
       this.reactNodeRef.nativeElement.setProperty('style', toStyle(stringValue));
-      this.changeDetectorRef.detectChanges();
+      this.markForCheck();
     }
   }
 
@@ -142,9 +142,11 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     this._shouldSetHostDisplay = setHostDisplay;
   }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     this._passAttributesAsProps();
+  }
 
+  ngAfterViewInit() {
     if (this._shouldSetHostDisplay) {
       this._setHostDisplay();
     }
@@ -251,9 +253,9 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     };
   }
 
-  private _passAttributesAsProps() {
+  private _passAttributesAsProps() { 
     const hostAttributes = Array.from((this.elementRef.nativeElement as HTMLElement).attributes);
-
+    
     if (!this.reactNodeRef || !isReactNode(this.reactNodeRef.nativeElement)) {
       throw new Error('reactNodeRef must hold a reference to a ReactNode');
     }
@@ -270,14 +272,14 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
         );
       }
     });
-
+    
     const whitelistedHostAttributes = hostAttributes.filter(attr => !this._isIgnoredAttribute(attr));
     const props = whitelistedHostAttributes.reduce(
       (acc, attr) => ({
         ...acc,
         [attr.name]: attr.value,
       }),
-      {}
+      {}   
     );
 
     const eventListeners = this.elementRef.nativeElement.getEventListeners();
@@ -293,7 +295,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     {
     }
 
-    this.reactNodeRef.nativeElement.setProperties({ ...props, ...eventHandlersProps });
+    this.reactNodeRef.nativeElement.setProperties({ ...props, ...eventHandlersProps });    
   }
 
   private _setHostDisplay() {

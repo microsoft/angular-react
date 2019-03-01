@@ -8,11 +8,12 @@ import * as CalendarCss from 'office-ui-fabric-react/lib-amd/components/Calendar
 import { Calendar } from 'office-ui-fabric-react';
 import { noop } from '../../utils/noop';
 import { FabCalendarComponent } from './calendar.component';
+import { CalendarStringsDirective } from './directives/calendar-strings-directive.component';
 
 // Dummy action to force CalendarCss to load and not be tree-shaken away.
 noop(CalendarCss);
 
-const components = [FabCalendarComponent];
+const components = [FabCalendarComponent, CalendarStringsDirective];
 
 @NgModule({
   imports: [CommonModule],
