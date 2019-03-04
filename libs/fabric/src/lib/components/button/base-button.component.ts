@@ -129,6 +129,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
 
       setItems(this.menuItemsDirectives.toArray());
     }
+    super.ngAfterContentInit();
   }
 
   ngOnDestroy() {

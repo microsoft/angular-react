@@ -13,12 +13,12 @@ import { CalendarStringsDirective } from './directives/calendar-strings-directiv
 // Dummy action to force CalendarCss to load and not be tree-shaken away.
 noop(CalendarCss);
 
-const components = [FabCalendarComponent, CalendarStringsDirective];
+const declarations = [FabCalendarComponent, CalendarStringsDirective];
 
 @NgModule({
   imports: [CommonModule],
-  declarations: components,
-  exports: components,
+  declarations: declarations,
+  exports: declarations,
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabCalendarModule {

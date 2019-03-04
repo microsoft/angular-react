@@ -10,7 +10,7 @@ import { FabVirtualizedComboBoxComponent } from './virtualized-combo-box.compone
 import { ComboBoxOptionDirective } from './directives/combo-box-option.directive';
 import { ComboBoxOptionsDirective } from './directives/combo-box-options.directive';
 
-const components = [
+const declarations = [
   FabComboBoxComponent,
   FabVirtualizedComboBoxComponent,
   ComboBoxOptionDirective,
@@ -19,8 +19,8 @@ const components = [
 
 @NgModule({
   imports: [CommonModule],
-  declarations: components,
-  exports: components,
+  declarations: declarations,
+  exports: declarations,
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabComboBoxModule {

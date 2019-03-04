@@ -103,6 +103,7 @@ export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> 
   ngAfterContentInit() {
     if (this.calendarStringsDirective) {
       this._initDirective(this.calendarStringsDirective);
+      super.ngAfterContentInit();
     }
   }
 

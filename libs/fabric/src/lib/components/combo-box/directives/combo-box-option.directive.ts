@@ -7,9 +7,8 @@ import { IComboBoxOption } from 'office-ui-fabric-react';
 /**
  * Wrapper directive for creating a ComboBoxOption
  */
-@Directive({ selector: 'fab-combo-option' })
+@Directive({ selector: 'fab-combo-box-option' })
 export class ComboBoxOptionDirective {
-
   @Input() optionKey: IComboBoxOption['key'];
   @Input() text: IComboBoxOption['text'];
   @Input() title?: IComboBoxOption['title'];
@@ -21,5 +20,4 @@ export class ComboBoxOptionDirective {
   @Input() data?: IComboBoxOption['data'];
   @Input() styles?: IComboBoxOption['styles'];
   @Input() useAriaLabelAsText?: IComboBoxOption['useAriaLabelAsText'];
-
 }
