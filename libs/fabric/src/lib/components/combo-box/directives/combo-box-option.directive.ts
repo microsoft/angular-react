@@ -16,7 +16,7 @@ export class ComboBoxOptionDirective {
   @Input() index?: IComboBoxOption['index'];
   @Input() ariaLabel?: IComboBoxOption['ariaLabel'];
   @Input() selected?: IComboBoxOption['selected'];
-  @Input() disabled?: IComboBoxOption['disabled'] = false;
+  @Input() disabled?: IComboBoxOption['disabled'];
   @Input() data?: IComboBoxOption['data'];
   @Input() styles?: IComboBoxOption['styles'];
   @Input() useAriaLabelAsText?: IComboBoxOption['useAriaLabelAsText'];
