@@ -47,6 +47,7 @@ import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Pa
       [componentId]="componentId"
       [RenderHeader]="renderHeader && onRenderHeader"
       [RenderNavigation]="renderNavigation && onRenderNavigation"
+      [RenderNavigationContent]="renderNavigationContent && onRenderNavigationContent"
       [RenderBody]="renderBody && onRenderBody"
       [RenderFooter]="renderFooter && onRenderFooter"
       [RenderFooterContent]="renderFooterContent && onRenderFooterContent"
@@ -87,6 +88,7 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
   @Input() componentId?: IPanelProps['componentId'];
 
   @Input() renderNavigation?: InputRendererOptions<IPanelProps>;
+  @Input() renderNavigationContent?: InputRendererOptions<IPanelProps>;
   @Input() renderHeader?: InputRendererOptions<IPanelHeaderRenderContext>;
   @Input() renderBody?: InputRendererOptions<IPanelProps>;
   @Input() renderFooter?: InputRendererOptions<IPanelProps>;
@@ -98,6 +100,7 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
 
   private _renderHeader: JsxRenderFunc<IPanelHeaderRenderContext>;
   onRenderNavigation: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
+  onRenderNavigationContent: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
   onRenderBody: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
   onRenderFooter: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
   onRenderFooterContent: (props?: IPanelProps, defaultRender?: JsxRenderFunc<IPanelProps>) => JSX.Element;
@@ -112,6 +115,7 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
 
   ngOnInit() {
     this.onRenderNavigation = this.createRenderPropHandler(this.renderNavigation);
+    this.onRenderNavigationContent = this.createRenderPropHandler(this.renderNavigationContent);
     this._renderHeader = this.createInputJsxRenderer(this.renderHeader);
     this.onRenderBody = this.createRenderPropHandler(this.renderBody);
     this.onRenderFooter = this.createRenderPropHandler(this.renderFooter);

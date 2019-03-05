@@ -44,12 +44,12 @@
   ],
   "private": false,
   "peerDependencies": {
-    "@angular-react/core": "^0.5.12",
+    "@angular-react/core": "^0.5.13",
     "@angular/common": "^7.0.3",
     "@angular/core": "^7.0.3",
     "@angular/platform-browser-dynamic": "^7.0.3",
     "@angular/platform-browser": "^7.0.3",
-    "office-ui-fabric-react": "6.110.0",
+    "office-ui-fabric-react": "6.151.0",
     "react-dom": "^16.6.3",
     "react": "^16.6.3"
   }

@@ -29,6 +29,7 @@ import { IToggleProps } from 'office-ui-fabric-react/lib/Toggle';
       [checked]="checked"
       [defaultChecked]="defaultChecked"
       [disabled]="disabled"
+      [inlineLabel]="inlineLabel"
       [theme]="theme"
       [styles]="styles"
       [keytipProps]="keytipProps"
@@ -57,6 +58,7 @@ export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {
   @Input() checked?: IToggleProps['checked'];
   @Input() defaultChecked?: IToggleProps['defaultChecked'];
   @Input() disabled?: IToggleProps['disabled'];
+  @Input() inlineLabel?: IToggleProps['inlineLabel'];
   @Input() theme?: IToggleProps['theme'];
   @Input() styles?: IToggleProps['styles'];
   @Input() keytipProps?: IToggleProps['keytipProps'];
