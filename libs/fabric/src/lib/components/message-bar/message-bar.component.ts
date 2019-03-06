@@ -25,7 +25,6 @@ import { IMessageBarProps } from 'office-ui-fabric-react/lib/MessageBar';
       #reactNode
       [componentRef]="componentRef"
       [messageBarType]="messageBarType"
-      [ariaLabel]="ariaLabel"
       [isMultiline]="isMultiline"
       [dismissButtonAriaLabel]="dismissButtonAriaLabel"
       [truncated]="truncated"
@@ -47,7 +46,6 @@ export class FabMessageBarComponent extends ReactWrapperComponent<IMessageBarPro
 
   @Input() componentRef?: IMessageBarProps['componentRef'];
   @Input() messageBarType?: IMessageBarProps['messageBarType'];
-  @Input() ariaLabel?: IMessageBarProps['ariaLabel'];
   @Input() isMultiline?: IMessageBarProps['isMultiline'];
   @Input() dismissButtonAriaLabel?: IMessageBarProps['dismissButtonAriaLabel'];
   @Input() truncated?: IMessageBarProps['truncated'];

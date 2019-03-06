@@ -28,6 +28,7 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
   @Input() autoComplete?: IComboBoxProps['autoComplete'];
   @Input() text?: IComboBoxProps['text'];
   @Input() buttonIconProps?: IComboBoxProps['buttonIconProps'];
+  @Input() autofill?: IComboBoxProps['autofill'];
   @Input() theme?: IComboBoxProps['theme'];
   @Input() styles?: IComboBoxProps['styles'];
   @Input() getClassNames?: IComboBoxProps['getClassNames'];
@@ -38,6 +39,7 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
   @Input() useComboBoxAsMenuWidth?: IComboBoxProps['useComboBoxAsMenuWidth'];
   @Input() multiSelect?: IComboBoxProps['multiSelect'];
   @Input() isButtonAriaHidden?: IComboBoxProps['isButtonAriaHidden'];
+  @Input() ariaDescribedBy?: IComboBoxProps['ariaDescribedBy'];
   @Input() keytipProps?: IComboBoxProps['keytipProps'];
   @Input() resolveOptions?: (options: IComboBoxOption[]) => IComboBoxOption[] | PromiseLike<IComboBoxOption[]>;
 

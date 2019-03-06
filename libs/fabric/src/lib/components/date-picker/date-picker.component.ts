@@ -24,6 +24,7 @@ import { IDatePickerProps } from 'office-ui-fabric-react';
       [componentRef]="componentRef"
       [theme]="theme"
       [calendarProps]="calendarProps"
+      [textField]="textField"
       [calloutProps]="calloutProps"
       [calendarAs]="calendarAs"
       [label]="label"
@@ -71,6 +72,7 @@ export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerPro
   @Input() theme?: IDatePickerProps['theme'];
   @Input() calloutProps?: IDatePickerProps['calloutProps'];
   @Input() calendarProps?: IDatePickerProps['calendarProps'];
+  @Input() textField?: IDatePickerProps['textField'];
   @Input() calendarAs?: IDatePickerProps['calendarAs'];
   @Input() label?: IDatePickerProps['label'];
   @Input() isRequired?: IDatePickerProps['isRequired'];
@@ -102,6 +104,7 @@ export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerPro
   @Input() initialPickerDate?: IDatePickerProps['initialPickerDate'];
   @Input() allFocusable?: IDatePickerProps['allFocusable'];
   @Input() showCloseButton?: IDatePickerProps['showCloseButton'];
+  @Input() tabIndex?: IDatePickerProps['tabIndex'];
 
   @Output() readonly onSelectDate = new EventEmitter<{ date: Date | null | undefined }>();
   @Output() readonly onAfterMenuDismiss = new EventEmitter<void>();

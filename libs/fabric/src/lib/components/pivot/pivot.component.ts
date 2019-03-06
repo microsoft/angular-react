@@ -87,8 +87,8 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
       [styles]="styles"
       [theme]="theme"
       [className]="className"
-      [initialSelectedIndex]="initialSelectedIndex"
-      [initialSelectedKey]="initialSelectedKey"
+      [defaultSelectedKey]="defaultSelectedKey"
+      [defaultSelectedIndex]="defaultSelectedIndex"
       [selectedKey]="selectedKey"
       [linkSize]="linkSize"
       [linkFormat]="linkFormat"
@@ -114,8 +114,8 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
   @Input() styles?: IPivotProps['styles'];
   @Input() theme?: IPivotProps['theme'];
   @Input() className?: IPivotProps['className'];
-  @Input() initialSelectedIndex?: IPivotProps['initialSelectedIndex'];
-  @Input() initialSelectedKey?: IPivotProps['initialSelectedKey'];
+  @Input() defaultSelectedKey?: IPivotProps['defaultSelectedKey'];
+  @Input() defaultSelectedIndex?: IPivotProps['defaultSelectedIndex'];
   @Input() selectedKey?: IPivotProps['selectedKey'];
   @Input() linkSize?: IPivotProps['linkSize'];
   @Input() linkFormat?: IPivotProps['linkFormat'];
