@@ -97,7 +97,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     this._contentClass = value;
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       this.reactNodeRef.nativeElement.setProperty('className', classnames(value));
-      this.changeDetectorRef.detectChanges();
+      this.markForCheck();
     }
   }
 
@@ -118,7 +118,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     if (isReactNode(this.reactNodeRef.nativeElement)) {
       const stringValue = typeof value === 'string' ? value : stylenames(value);
       this.reactNodeRef.nativeElement.setProperty('style', toStyle(stringValue));
-      this.changeDetectorRef.detectChanges();
+      this.markForCheck();
     }
   }
 
@@ -142,9 +142,11 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     this._shouldSetHostDisplay = setHostDisplay;
   }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     this._passAttributesAsProps();
+  }
 
+  ngAfterViewInit() {
     if (this._shouldSetHostDisplay) {
       this._setHostDisplay();
     }

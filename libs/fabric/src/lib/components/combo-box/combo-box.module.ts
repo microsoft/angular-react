@@ -7,13 +7,20 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComboBox, VirtualizedComboBox } from 'office-ui-fabric-react';
 import { FabComboBoxComponent } from './combo-box.component';
 import { FabVirtualizedComboBoxComponent } from './virtualized-combo-box.component';
+import { ComboBoxOptionDirective } from './directives/combo-box-option.directive';
+import { ComboBoxOptionsDirective } from './directives/combo-box-options.directive';
 
-const components = [FabComboBoxComponent, FabVirtualizedComboBoxComponent];
+const declarations = [
+  FabComboBoxComponent,
+  FabVirtualizedComboBoxComponent,
+  ComboBoxOptionDirective,
+  ComboBoxOptionsDirective
+];
 
 @NgModule({
   imports: [CommonModule],
-  declarations: components,
-  exports: components,
+  declarations: declarations,
+  exports: declarations,
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabComboBoxModule {

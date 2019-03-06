@@ -12,8 +12,11 @@ import {
   Output,
   Renderer2,
   ViewChild,
+  ContentChild,
+  AfterContentInit,
 } from '@angular/core';
 import { ICalendarProps } from 'office-ui-fabric-react/lib/Calendar';
+import { CalendarStringsDirective } from './directives/calendar-strings-directive.component';
 
 @Component({
   selector: 'fab-calendar',
@@ -57,7 +60,7 @@ import { ICalendarProps } from 'office-ui-fabric-react/lib/Calendar';
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> {
+export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> implements AfterContentInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ICalendarProps['componentRef'];
@@ -91,12 +94,20 @@ export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> 
   @Output() readonly onSelectDate = new EventEmitter<{ date: Date; selectedDateRangeArray?: Date[] }>();
   @Output() readonly onDismiss = new EventEmitter<void>();
 
+  @ContentChild(CalendarStringsDirective) readonly calendarStringsDirective?: CalendarStringsDirective;
+
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);
-
     // coming from React context - we need to bind to this so we can access the Angular Component properties
     this.onSelectDateHandler = this.onSelectDateHandler.bind(this);
     this.onDismissHandler = this.onDismissHandler.bind(this);
+  }
+
+  ngAfterContentInit() {
+    if (this.calendarStringsDirective) {
+      this._initDirective(this.calendarStringsDirective);
+      super.ngAfterContentInit();
+    }
   }
 
   onSelectDateHandler(date: Date, selectedDateRangeArray?: Date[]) {
@@ -108,5 +119,9 @@ export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> 
 
   onDismissHandler() {
     this.onDismiss.emit();
+  }
+
+  private _initDirective(calendarStringsDirective: CalendarStringsDirective) {
+    this.strings = calendarStringsDirective.strings;
   }
 }

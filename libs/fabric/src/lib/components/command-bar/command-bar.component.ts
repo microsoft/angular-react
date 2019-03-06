@@ -127,6 +127,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     if (this.itemsDirective) this._initDirective(this.itemsDirective, 'items');
     if (this.farItemsDirective) this._initDirective(this.farItemsDirective, 'farItems');
     if (this.overflowItemsDirective) this._initDirective(this.overflowItemsDirective, 'overflowItems');
+    super.ngAfterContentInit();
   }
 
   ngOnDestroy() {

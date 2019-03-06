@@ -142,6 +142,30 @@
 
   <fab-calendar [strings]="strings" (onSelectDate)="onSelectDate($event)"></fab-calendar>
 
+  <fab-calendar (onSelectDate)="onSelectDate($event)">
+    <fab-calendar-strings
+      [months]="[
+        'January',
+        'Fabruary',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ]"
+      [shortMonths]="['Jan', 'Fab', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']"
+      [days]="['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']"
+      [shortDays]="['S', 'M', 'T', 'W', 'T', 'F', 'S']"
+      goToToday="Go to tomorrow"
+      weekNumberFormatString="Week number {0}"
+    ></fab-calendar-strings>
+  </fab-calendar>
+
   <fab-marquee-selection [isEnabled]="marqueeEnabled" [selection]="selection">
     <fab-details-list
       [selection]="selection"

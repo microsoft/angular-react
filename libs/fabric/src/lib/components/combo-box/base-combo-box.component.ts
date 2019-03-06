@@ -2,10 +2,26 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectorRef, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2 } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnInit,
+  Output,
+  Renderer2,
+  ContentChild,
+  AfterContentInit,
+} from '@angular/core';
 import { IComboBox, IComboBoxOption, IComboBoxProps } from 'office-ui-fabric-react/lib/ComboBox';
+import { ComboBoxOptionDirective } from './directives/combo-box-option.directive';
+import { ComboBoxOptionsDirective } from './directives/combo-box-options.directive';
 
-export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<IComboBoxProps> implements OnInit {
+export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<IComboBoxProps>
+  implements OnInit, AfterContentInit {
+  @ContentChild(ComboBoxOptionDirective) readonly optionsDirective?: ComboBoxOptionDirective;
+
   @Input() componentRef?: IComboBoxProps['componentRef'];
   @Input() options: IComboBoxProps['options'];
   @Input() allowFreeform?: IComboBoxProps['allowFreeform'];
@@ -49,6 +65,8 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
   @Output() readonly onMenuDismissed = new EventEmitter<void>();
   @Output() readonly onScrollToItem = new EventEmitter<{ itemIndex: number }>();
 
+  @ContentChild(ComboBoxOptionsDirective) readonly comboBoxOptionsDirective?: ComboBoxOptionsDirective;
+
   onRenderLowerContent: (props?: IComboBoxProps, defaultRender?: JsxRenderFunc<IComboBoxProps>) => JSX.Element;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
@@ -63,6 +81,13 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
 
   ngOnInit() {
     this.onRenderLowerContent = this.createRenderPropHandler(this.renderLowerContent);
+  }
+
+  ngAfterContentInit() {
+    if (this.comboBoxOptionsDirective) {
+      this._initDirective(this.comboBoxOptionsDirective);
+    }
+    super.ngAfterContentInit();
   }
 
   onItemClickHandler(event: React.FormEvent<IComboBox>, option?: IComboBoxOption, index?: number) {
@@ -94,5 +119,10 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
     this.onScrollToItem.emit({
       itemIndex,
     });
+  }
+
+  private _initDirective(directive: ComboBoxOptionsDirective) {
+    this.options = directive.items;
+    this.markForCheck();
   }
 }

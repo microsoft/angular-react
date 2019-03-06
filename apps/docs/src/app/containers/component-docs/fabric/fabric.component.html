@@ -1,7 +1,7 @@
 <h1>Microsoft Fabric [React] Components</h1>
 
 <h2>Button</h2>
-<fab-default-button text="Toggle Disabled" (onClick)="toggle()"></fab-default-button>
+<fab-default-button text="Toggle Disabled" (onClick)="toggle()" contentStyle="margin-right: 10px;"></fab-default-button>
 <fab-default-button
   [disabled]="disabled"
   (onClick)="click()"
@@ -22,7 +22,46 @@
 >
   {{ sampleContent2 }} {{ sampleContent3 }}
   <fab-dialog-footer>
-    <fab-default-button (onClick)="clickSave()" text="Save" contentStyle="margin-right: 10px;"></fab-default-button>
+    <fab-default-button (onClick)="clickSave()" text="Save"></fab-default-button>
     <fab-default-button (onClick)="toggleDialog()" text="Cancel"></fab-default-button>
   </fab-dialog-footer>
 </fab-dialog>
+
+<hr />
+
+<h2>Combo box</h2>
+<fab-combo-box contentStyle="width: 300px;" (onChange)="comboChange($event)">
+  <options>
+    <fab-combo-box-option optionKey="A" text="See option A"></fab-combo-box-option>
+    <fab-combo-box-option optionKey="B" text="See option B"></fab-combo-box-option>
+  </options>
+</fab-combo-box>
+{{ selectedComboBoxKey }}: {{ selectedComboBoxValue }}
+
+<hr />
+
+<h2>Directive Calendar</h2>
+<fab-calendar (onSelectDate)="onSelectDate($event)">
+  <fab-calendar-strings
+    [months]="[
+      'January',
+      'Fabruary',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ]"
+    [shortMonths]="['Jan', 'Fab', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']"
+    [days]="['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']"
+    [shortDays]="['S', 'M', 'T', 'W', 'T', 'F', 'S']"
+    goToToday="Go to tomorrow"
+    weekNumberFormatString="Week number {0}"
+  ></fab-calendar-strings>
+</fab-calendar>
+{{ selectedDate }}

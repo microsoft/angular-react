@@ -251,6 +251,7 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
     if (this.groupsDirective) {
       this._initDirective(this.groupsDirective, 'groups');
     }
+    super.ngAfterContentInit();
   }
 
   ngOnDestroy() {
