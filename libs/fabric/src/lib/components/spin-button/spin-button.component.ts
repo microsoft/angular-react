@@ -12,7 +12,6 @@ import {
   ViewChild,
   EventEmitter,
   Output,
-  OnInit,
 } from '@angular/core';
 import { ISpinButtonProps } from 'office-ui-fabric-react/lib/SpinButton';
 
@@ -29,6 +28,7 @@ import { ISpinButtonProps } from 'office-ui-fabric-react/lib/SpinButton';
       [max]="max"
       [step]="step"
       [ariaLabel]="ariaLabel"
+      [ariaDescribedBy]="ariaDescribedBy"
       [title]="title"
       [disabled]="disabled"
       [className]="className"
@@ -71,6 +71,7 @@ export class FabSpinButtonComponent extends ReactWrapperComponent<ISpinButtonPro
   @Input() max?: ISpinButtonProps['max'];
   @Input() step?: ISpinButtonProps['step'];
   @Input() ariaLabel?: ISpinButtonProps['ariaLabel'];
+  @Input() ariaDescribedBy?: ISpinButtonProps['ariaDescribedBy'];
   @Input() title?: ISpinButtonProps['title'];
   @Input() disabled?: ISpinButtonProps['disabled'];
   @Input() className?: ISpinButtonProps['className'];

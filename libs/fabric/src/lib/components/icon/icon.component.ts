@@ -25,6 +25,7 @@ import { IIconProps } from 'office-ui-fabric-react/lib/Icon';
       [imageProps]="imageProps"
       [imageErrorAs]="imageErrorAs"
       [styles]="styles"
+      [theme]="theme"
     >
     </Icon>
   `,
@@ -42,6 +43,7 @@ export class FabIconComponent extends ReactWrapperComponent<IIconProps> {
   @Input() imageProps?: IIconProps['imageProps'];
   @Input() imageErrorAs?: IIconProps['imageErrorAs'];
   @Input() styles?: IIconProps['styles'];
+  @Input() theme?: IIconProps['theme'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer, { setHostDisplay: true });

@@ -35,6 +35,7 @@ import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/d
       [isDarkOverlay]="isDarkOverlay"
       [layerProps]="layerProps"
       [isBlocking]="isBlocking"
+      [isModeless]="isModeless"
       [className]="className"
       [containerClassName]="containerClassName"
       [scrollableContentClassName]="scrollableContentClassName"
@@ -69,6 +70,7 @@ export class FabModalComponent extends ReactWrapperComponent<IModalProps>
   @Input() isDarkOverlay?: IModalProps['isDarkOverlay'];
   @Input() layerProps?: IModalProps['layerProps'];
   @Input() isBlocking?: IModalProps['isBlocking'];
+  @Input() isModeless?: IModalProps['isModeless'];
   @Input() className?: IModalProps['className'];
   @Input() containerClassName?: IModalProps['containerClassName'];
   @Input() scrollableContentClassName?: IModalProps['scrollableContentClassName'];
