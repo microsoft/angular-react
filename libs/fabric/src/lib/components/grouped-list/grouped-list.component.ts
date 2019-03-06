@@ -28,6 +28,7 @@ import { IListProps } from 'office-ui-fabric-react/lib/List';
       [theme]="theme"
       [styles]="styles"
       [className]="className"
+      [compact]="compact"
       [dragDropEvents]="dragDropEvents"
       [dragDropHelper]="dragDropHelper"
       [eventsToRegister]="eventsToRegister"
@@ -53,9 +54,10 @@ export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListP
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IGroupedListProps['componentRef'];
-  @Input() theme?: IGroupedListProps['theme']
-  @Input() styles?: IGroupedListProps['styles']
+  @Input() theme?: IGroupedListProps['theme'];
+  @Input() styles?: IGroupedListProps['styles'];
   @Input() className?: IGroupedListProps['className'];
+  @Input() compact?: IGroupedListProps['compact'];
   @Input() dragDropEvents?: IGroupedListProps['dragDropEvents'];
   @Input() dragDropHelper?: IGroupedListProps['dragDropHelper'];
   @Input() eventsToRegister?: IGroupedListProps['eventsToRegister'];

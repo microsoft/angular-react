@@ -41,6 +41,8 @@ import { ICalendarProps } from 'office-ui-fabric-react/lib/Calendar';
       [dateTimeFormatter]="dateTimeFormatter"
       [minDate]="minDate"
       [maxDate]="maxDate"
+      [maxDate]="restrictedDates"
+      [restrictedDates]="restrictedDates"
       [showSixWeeksByDefault]="showSixWeeksByDefault"
       [workWeekDays]="workWeekDays"
       [selectDateOnClick]="selectDateOnClick"
@@ -78,6 +80,7 @@ export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> 
   @Input() dateTimeFormatter?: ICalendarProps['dateTimeFormatter'];
   @Input() minDate?: ICalendarProps['minDate'];
   @Input() maxDate?: ICalendarProps['maxDate'];
+  @Input() restrictedDates?: ICalendarProps['restrictedDates'];
   @Input() showSixWeeksByDefault?: ICalendarProps['showSixWeeksByDefault'];
   @Input() workWeekDays?: ICalendarProps['workWeekDays'];
   @Input() selectDateOnClick?: ICalendarProps['selectDateOnClick'];

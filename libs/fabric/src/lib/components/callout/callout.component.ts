@@ -34,6 +34,7 @@ import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/pos
       [minPagePadding]="minPagePadding"
       [isBeakVisible]="isBeakVisible"
       [preventDismissOnScroll]="preventDismissOnScroll"
+      [preventDismissOnResize]="preventDismissOnResize"
       [preventDismissOnLostFocus]="preventDismissOnLostFocus"
       [coverTarget]="coverTarget"
       [alignTargetEdge]="alignTargetEdge"
@@ -78,6 +79,7 @@ export class FabCalloutComponent extends ReactWrapperComponent<ICalloutProps> {
   @Input() minPagePadding?: ICalloutProps['minPagePadding'];
   @Input() isBeakVisible?: ICalloutProps['isBeakVisible'];
   @Input() preventDismissOnScroll?: ICalloutProps['preventDismissOnScroll'];
+  @Input() preventDismissOnResize?: ICalloutProps['preventDismissOnResize'];
   @Input() preventDismissOnLostFocus?: ICalloutProps['preventDismissOnLostFocus'];
   @Input() coverTarget?: ICalloutProps['coverTarget'];
   @Input() alignTargetEdge?: ICalloutProps['alignTargetEdge'];
