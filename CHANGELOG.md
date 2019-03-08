@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.0"></a>
+
+# [0.6.0](https://github.com/Microsoft/angular-react/compare/v0.5.12...v0.6.0) (2019-03-08)
+
+## Breaking changes
+
+- **fabric:** Upgrade `office-ui-fabric-react` to `6.151.0`.([#96](https://github.com/Microsoft/angular-react/pull/96)) ([87863d9](https://github.com/Microsoft/angular-react/commit/87863d96b269ea538c77df09d1e9e1a78190375a))
+
+## Features
+
+- **fabric:** Update combobox and calendar with directives. ([#95](https://github.com/Microsoft/angular-react/pull/95)) ([8ccbaa5](https://github.com/Microsoft/angular-react/commit/8ccbaa5e3efaf7cb971169f9ce06aaac0b0a2a52))
+
+- **fabric:** Add directives for the ComboBox and Calendar to enable the Angular-style template localization pattern. ([#95](https://github.com/Microsoft/angular-react/pull/95)) ([8ccbaa5](https://github.com/Microsoft/angular-react/commit/8ccbaa5e3efaf7cb971169f9ce06aaac0b0a2a52))
+
+### Bug fixes
+
+- **core:** Change wrapper to fix some timing bugs. ([#95](https://github.com/Microsoft/angular-react/pull/95)) ([8ccbaa5](https://github.com/Microsoft/angular-react/commit/8ccbaa5e3efaf7cb971169f9ce06aaac0b0a2a52))
+
 <a name="0.5.12"></a>
 
 # [0.5.12](https://github.com/Microsoft/angular-react/compare/v0.5.11...v0.5.12) (2019-02-20)
