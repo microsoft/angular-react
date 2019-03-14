@@ -60,6 +60,7 @@ import { FabBaseTextFieldComponent } from './base-text-field.component';
       [NotifyValidationResult]="onNotifyValidationResultHandler"
       (onClick)="onClickHandler($event)"
       (onFocus)="onFocusHandler($event)"
+      (onBlur)="onBlurHandler($event)"
     >
     </TextField>
   `,

@@ -65,8 +65,9 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
   @Input() renderPrefix?: InputRendererOptions<ITextFieldProps>;
   @Input() renderSuffix?: InputRendererOptions<ITextFieldProps>;
 
-  @Output() readonly onFocus = new EventEmitter<FocusEvent>();
   @Output() readonly onClick = new EventEmitter<MouseEvent>();
+  @Output() readonly onFocus = new EventEmitter<FocusEvent>();
+  @Output() readonly onBlur = new EventEmitter<Event>();
 
   @Output() readonly onChange = new EventEmitter<{ event: Event; newValue?: string }>();
   @Output() readonly onBeforeChange = new EventEmitter<{ newValue: any }>();
@@ -104,9 +105,12 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
     this.onFocus.emit(ev && ev.nativeEvent);
   }
 
+  onBlurHandler(ev?: React.SyntheticEvent) {
+    this.onBlur.emit(ev && ev.nativeEvent);
+  }
+
   onChangeHandler(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) {
     this.onChange.emit({ event: event.nativeEvent, newValue });
-
     this.valueChange.emit(newValue);
   }
 
