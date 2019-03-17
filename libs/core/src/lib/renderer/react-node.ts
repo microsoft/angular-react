@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+
 import { StringMap } from '../declarations/string-map';
 import removeUndefinedProperties from '../utils/object/remove-undefined-properties';
 import { CHILDREN_TO_APPEND_PROP } from './react-content';
@@ -14,11 +15,15 @@ export function isReactNode(node: any): node is ReactNode {
   return (<ReactNode>node).setRenderPendingCallback !== undefined;
 }
 
+/**
+ * Logical representation of everything needed to render a React element in the
+ * DOM, with the needed methods to do so.
+ */
 export class ReactNode {
   // Access to these properties are restricted through setters and functions
   // so that the dirty "render pending" state of this object can be properly
   // tracked and all nodes with "render pending" can be flushed at the end
-  // of render operation.
+  // of a render operation.
   private _props = {};
   private _comment: string;
   private _text: string;
@@ -70,28 +75,66 @@ export class ReactNode {
     this._isRenderPending = true;
   }
 
+  /**
+   * Marks the node to be removed from the DOM in the next render cycle.
+   */
   destroyNode() {
     this.setRenderPending();
     this._isDestroyPending = true;
   }
 
-  setAttribute(name: string, value: any) {
+  /**
+   * Sets an attribute on the node.
+   * @note the value can only be a `string`. See `setProperty` for other use-cases.
+   * @see `Renderer2#setAttribute`.
+   *
+   * @param name The attribute name.
+   * @param value The new value.
+   */
+  setAttribute(name: string, value: string) {
     this.setAttributes({ [name]: value });
   }
 
-  setAttributes(attributes: StringMap) {
+  /**
+   * Set attributes on this node.
+   * Note that values can only be of type `string`. See `setProperties` for other use-cases.
+   * @see `Renderer2#setAttribute`.
+   *
+   * @param attributes the attributes to set.
+   */
+  setAttributes(attributes: StringMap<string>) {
     this.setProperties(attributes);
   }
 
+  /**
+   * Sets a prop in the underlying React element.
+   * @see `Renderer2#setProperty`.
+   *
+   * @param name The property name.
+   * @param value The new value.
+   */
   setProperty(name: string, value: any) {
     this.setProperties({ [name]: value });
   }
 
+  /**
+   * Like `setProperty` but for multiple props at once.
+   *
+   * @param properties An object with the props.
+   */
   setProperties(properties: StringMap) {
     this.setRenderPending();
     Object.assign(this._props, removeUndefinedProperties(properties));
   }
 
+  /**
+   * Remove a prop or an attribute from the underlying React element.
+   * @see `Renderer2#removeAttribute`.
+   *
+   * @param name The property name.
+   * @param childName _Optional_ A property of `name` to remove instead.
+   * @returns the deleted property
+   */
   removeProperty(name: string, childName?: string) {
     this.setRenderPending();
     if (childName) {
@@ -101,16 +144,35 @@ export class ReactNode {
     return delete this._props[name];
   }
 
+  /**
+   * Add a direct child of this node.
+   * @see `Renderer2#addChild`.
+   *
+   * @param node The node to add.
+   */
   addChild(node: ReactNode) {
     this.setRenderPending();
     this._children.push(node);
   }
 
+  /**
+   * Remove a direct child of this node.
+   * @see `Renderer2#removeChild`.
+   *
+   * @param node The node to remove.
+   */
   removeChild(node: ReactNode) {
     this.setRenderPending();
     this._children = this._children.filter(child => child !== node);
   }
 
+  /**
+   * Cast the node to a comment node.
+   * @see `Renderer2#createComment`.
+   *
+   * @param value the text in the comment to render.
+   * @returns itself.
+   */
   asComment(value: string) {
     this.setRenderPending();
     this.type = undefined;
@@ -118,6 +180,13 @@ export class ReactNode {
     return this;
   }
 
+  /**
+   * Cast the node to a text node.
+   * @see `Renderer2#createText`.
+   *
+   * @param value the text to render.
+   * @returns itself.
+   */
   asText(value: string) {
     this.setRenderPending();
     this.type = undefined;
@@ -132,6 +201,11 @@ export class ReactNode {
     return this;
   }
 
+  /**
+   * Render the node to the DOM, or unmount it, as necessary.
+   *
+   * @returns itself.
+   */
   render(): ReactNode {
     // Only complete render operations for ReactNodes that are parented by HTMLElements.
     // Those that are parented by other ReactNodes will be rendered recursively by their
@@ -159,7 +233,14 @@ export class ReactNode {
     return this;
   }
 
-  // This is called by Angular core when projected content is being added.
+  /**
+   * Appends a child.
+   *
+   * @see `Renderer2#appendChild`.
+   * @note This is called by Angular core when projected content is being added.
+   *
+   * @param projectedContent the content to project.
+   */
   appendChild(projectedContent: HTMLElement) {
     if (DEBUG) {
       console.error(
@@ -172,6 +253,9 @@ export class ReactNode {
     this._childrenToAppend.push(projectedContent);
   }
 
+  /**
+   * @note for easier debugging.
+   */
   toString(): string {
     if (this._typeName) {
       return `[${this._typeName} ReactNode]`;
@@ -203,6 +287,14 @@ export class ReactNode {
       this._props['key'] = key;
     }
 
+    // Just having some props on a React element can cause it to
+    // behave undesirably, and since the templates are hard-coded to pass
+    // all Inputs all the time, they pass `undefined` values too.
+    // This ensures these are removed.
+    // Additionally, there are some things that Angular templating forbids,
+    // and stops at-compile time (with errors), such as `Input`s being prefixed with `on`.
+    // Since React does not have the notion of `Output`s as Angular (they are just props of type function, essentially callbacks).
+    // To work around this, we, by convention, prefix any PascalCased prop with `on` here, after the template has already been compiled.
     const clearedProps = this._transformProps(removeUndefinedProperties(this._props));
 
     if (DEBUG) {
@@ -249,6 +341,8 @@ export class ReactNode {
       this._typeName = this.type as string;
 
       // Attempt to resolve the type as a React Element class name/type.
+      // Since Angular templates are just strings, we can't include types in them.
+      // Therefore, we use the component registry to resolve the type of a component from a string.
       if (typeof this.type === 'string') {
         this.type = getComponentClass(this.type);
       }

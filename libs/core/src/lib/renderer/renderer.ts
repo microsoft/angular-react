@@ -25,16 +25,18 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   public reactRootNodes: Set<ReactNode> = new Set();
 
   private isRenderPending: boolean;
+
   // This flag can only be set to true from outside.  It can only be reset
   // to false from inside.  This value is reset on "end" when the pending
   // renders are flushed.
-  public setRenderPendingCallback = () => {
+  public readonly setRenderPendingCallback = () => {
     this.isRenderPending = true;
   };
 
   constructor(eventManager: EventManager, sharedStylesHost: ɵDomSharedStylesHost) {
     super(eventManager, sharedStylesHost);
 
+    // tslint:disable-next-line: no-use-before-declare
     this.defaultReactRenderer = new ReactRenderer(this);
   }
 
@@ -57,6 +59,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
         this.reactRootNodes
       );
     }
+
     // Flush any pending React element render updates.  This cannot be done
     // earlier (as is done for DOM elements) because React element props
     // are ReadOnly.
@@ -120,7 +123,7 @@ export class ReactRenderer implements Renderer2 {
   }
 
   appendChild(parent: HTMLElement | ReactNode, node: ReactNode): void {
-    // Only append a child if there is a child.
+    // Only append a child if there is a child to append.
     if (!node) {
       return;
     }
@@ -146,6 +149,7 @@ export class ReactRenderer implements Renderer2 {
     if (DEBUG) {
       console.warn('Renderer > appendChild > asReact > parent:', parent.toString(), 'node:', node.toString());
     }
+
     node.setRenderPendingCallback = () => parent.setRenderPending();
     parent.addChild(node);
     node.parent = parent;
@@ -304,7 +308,7 @@ export class ReactRenderer implements Renderer2 {
     }
     target.setProperty(event, callback);
 
-    // NEEDS WORK: Implement prevent default callback behavior.
+    // TODO: NEEDS WORK: Implement prevent default callback behavior.
     // return <() => void>this.eventManager.addEventListener(
     //            target, event, decoratePreventDefault(callback)) as() => void;
 
