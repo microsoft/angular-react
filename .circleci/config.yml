@@ -25,6 +25,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
+          name: test libs/core (@angular-react/core)
+          command: npm run test:ci -- core
+
+      - run:
           name: build libs/core (@angular-react/core)
           command: npm run build:libs:core
 
@@ -71,7 +75,11 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-          name: build docs (@angular-react/core)
+          name: test docs
+          command: npm run test:ci -- docs
+
+      - run:
+          name: build docs
           command: npm run build:demo:github
 
       - deploy:

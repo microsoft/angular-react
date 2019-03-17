@@ -48,6 +48,7 @@
     "lint": "./node_modules/.bin/nx lint && ng lint",
     "ng": "ng",
     "test": "ng test",
+    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI",
     "dep-graph": "./node_modules/.bin/nx dep-graph",
     "affected:dep-graph": "./node_modules/.bin/nx affected:dep-graph",
     "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
