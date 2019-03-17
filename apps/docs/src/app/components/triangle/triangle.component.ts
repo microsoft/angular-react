@@ -1,19 +1,6 @@
 // tslint:disable:no-input-rename
 
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  OnInit,
-  ViewEncapsulation,
-  ContentChild,
-  TemplateRef,
-  ElementRef,
-  OnDestroy,
-} from '@angular/core';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { Component, OnInit, ContentChild, TemplateRef, ElementRef, OnDestroy } from '@angular/core';
 
 export const COLORS = { default: { text: '#222', bg: '#ddd' }, hover: { text: '#fff', bg: '#0078D4' } };
 export const DEFAULT_DOT_SIZE = 25;
@@ -46,7 +33,7 @@ export class TriangleComponent implements OnInit, OnDestroy {
   private startTime: number; // In milliseconds
   private counter = 0; // Revolving counter, 0-9 and back again.
   private _scale: number; // Moves from 1 to 1.5 and back to 1 at a set rate based on time elapsed.
-  private timer: NodeJS.Timer; // Repeating timer that updates the counter once per second.
+  private timer: number; // Repeating timer that updates the counter once per second.
   private _dots: Array<SierpinskiTriangleDot>; // Collection of dot objects, rendered by the dotTemplate.
   public isActive: boolean; // Used to indicate active looping and to prevent further looping (stop).
 
@@ -106,9 +93,9 @@ export class TriangleComponent implements OnInit, OnDestroy {
     // the updates as it is aware of each node being updated.  React struggles
     // with this update since it is not holistically aware of every node
     // being updated.  Although React Fiber optimizes updates to prevent
-    // blocking the single thread and interupting high priority updates such
+    // blocking the single thread and interrupting high priority updates such
     // as animation, each individual React node schedules it's update without
-    // knowledge of the other nodes (dots) and they all atempt to update
+    // knowledge of the other nodes (dots) and they all attempt to update
     // at the same time, blocking the thread.  Further investigation is needed
     // to see if there is a way for the separate React dots to share a scheduler
     // and coordinate DOM updates.
@@ -120,7 +107,7 @@ export class TriangleComponent implements OnInit, OnDestroy {
 
     // Update the counter (the number shown on each dot).
     this.startTime = new Date().getTime();
-    this.timer = setInterval(() => this.updateCounter(), this.interval);
+    this.timer = setInterval(() => this.updateCounter(), this.interval) as any;
 
     // Update the scale value for the container (applied via css transform
     // on the container).
@@ -170,7 +157,6 @@ class SierpinskiTriangle {
     if (size <= targetSize) {
       this.dot = new SierpinskiTriangleDot(x - targetSize / 2, y - targetSize / 2, targetSize);
     } else {
-      const newSize = size / 2;
       size /= 2;
       this.triangles = [
         new SierpinskiTriangle({ x, y: y - size / 2, size, targetSize }),
@@ -188,7 +174,7 @@ class SierpinskiTriangle {
 class SierpinskiTriangleDot {
   hover = false;
 
-  constructor(private _x, private _y, private _size) {}
+  constructor(private readonly _x: number, private readonly _y: number, private readonly _size: number) {}
 
   get x() {
     return this._x + 'px';

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AngularPerfComponent } from './angular-perf.component';
+import { MaterialModule } from '../../../material.module';
+import { ComponentsModule } from '../../../components/components.module';
 
 describe('AngularPerfComponent', () => {
   let component: AngularPerfComponent;
@@ -8,6 +10,7 @@ describe('AngularPerfComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [MaterialModule, ComponentsModule],
       declarations: [AngularPerfComponent],
     }).compileComponents();
   }));

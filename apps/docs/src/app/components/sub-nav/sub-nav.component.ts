@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-sub-nav',
-  templateUrl: './sub-nav.component.html',
+  template: `
+    <ng-container *subnav>
+      <!-- Content is projected into navbar. -->
+      <ng-content></ng-content>
+    </ng-container>
+  `,
 })
 export class SubNavComponent {}
