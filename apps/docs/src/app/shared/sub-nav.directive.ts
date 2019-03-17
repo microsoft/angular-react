@@ -9,13 +9,15 @@ import { SubNavService } from './sub-nav.service';
 export class SubNavDirective implements OnInit, OnDestroy {
   private _viewRef: ViewRef;
 
-  constructor(private subNavService: SubNavService, public tpl: TemplateRef<any>) {}
+  constructor(private readonly subNavService: SubNavService, public readonly tpl: TemplateRef<any>) {}
 
   ngOnInit() {
-    this._viewRef = this.subNavService.vcr.createEmbeddedView(this.tpl);
+    this._viewRef = this.subNavService.vcr && this.subNavService.vcr.createEmbeddedView(this.tpl);
   }
 
   ngOnDestroy() {
-    this._viewRef.destroy();
+    if (this._viewRef) {
+      this._viewRef.destroy();
+    }
   }
 }

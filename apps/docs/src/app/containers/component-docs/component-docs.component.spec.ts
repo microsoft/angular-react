@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { MaterialModule } from '../../material.module';
 
 import { ComponentDocsComponent } from './component-docs.component';
+import { SubNavComponent } from '../../components/components.module';
 
 describe('ComponentDocsComponent', () => {
   let component: ComponentDocsComponent;
@@ -8,7 +12,8 @@ describe('ComponentDocsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ComponentDocsComponent],
+      imports: [RouterTestingModule, MaterialModule],
+      declarations: [ComponentDocsComponent, SubNavComponent],
     }).compileComponents();
   }));
 

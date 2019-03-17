@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularReactBrowserModule } from '@angular-react/core';
+import { FabDialogModule, FabButtonModule, FabComboBoxModule, FabCalendarModule } from '@angular-react/fabric';
 
 import { FabricComponent } from './fabric.component';
 
@@ -8,6 +10,7 @@ describe('FabricComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [AngularReactBrowserModule, FabButtonModule, FabDialogModule, FabComboBoxModule, FabCalendarModule],
       declarations: [FabricComponent],
     }).compileComponents();
   }));

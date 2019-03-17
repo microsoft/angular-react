@@ -1,23 +1,52 @@
 // tslint:disable:no-input-rename
 // tslint:disable:no-output-rename
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter,
+  ElementRef,
+  ViewChild,
+  ChangeDetectorRef,
+  Renderer2,
+  NgZone,
+} from '@angular/core';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { ReactWrapperComponent } from '@angular-react/core';
 
 @Component({
   selector: 'app-react-dot',
-  templateUrl: './react-dot.component.html',
-  styleUrls: ['./react-dot.component.scss'],
+  template: `
+    <ReactDot
+      #reactNode
+      [text]="text"
+      (onMouseEnter)="onMouseEnter($event)"
+      (onMouseLeave)="onMouseLeave($event)"
+      [styles]="{
+        width: size,
+        lineHeight: size,
+        height: size,
+        left: x,
+        top: y,
+        color: color,
+        backgroundColor: backgroundColor,
+        fontSize: size
+      }"
+    >
+      <react-content> <ng-content></ng-content> </react-content>
+    </ReactDot>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: ['react-renderer'],
 })
-export class ReactDotComponent implements OnChanges {
-  style: ReactDotStyle;
+export class ReactDotComponent extends ReactWrapperComponent<ReactDotProps> {
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() x: string;
   @Input() y: string;
   @Input() size: string;
-  @Input('text') _text: string;
+  @Input() text: string;
   @Input() color: string;
   @Input() backgroundColor: string;
   @Input() textOverride: string;
@@ -28,63 +57,44 @@ export class ReactDotComponent implements OnChanges {
   onMouseEnter = (ev: MouseEvent) => this.mouseEnter.emit(ev);
   onMouseLeave = (ev: MouseEvent) => this.mouseLeave.emit(ev);
 
-  get text() {
-    return this.textOverride && this._text ? this.textOverride : this._text;
+  get computedText() {
+    return this.textOverride && this.text ? this.textOverride : this.text;
   }
 
-  ngOnChanges() {
-    this.style = {
-      width: this.size,
-      lineHeight: this.size,
-      height: this.size,
-      left: this.x,
-      top: this.y,
-      color: this.color,
-      backgroundColor: this.backgroundColor,
-      fontSize: this.size,
-    };
+  constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
+    super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
   }
-}
-
-interface ReactDotStyle {
-  display?: string;
-  position?: string;
-  textAlign?: string;
-  borderRadius?: string;
-  cursor?: string;
-
-  width?: string;
-  lineHeight?: string;
-  height?: string;
-  left?: string;
-  top?: string;
-  color?: string;
-  backgroundColor?: string;
-  fontSize?: string;
 }
 
 interface ReactDotProps {
-  style: ReactDotStyle;
-  onMouseEnter?: (ev) => void;
-  onMouseLeave?: (ev) => void;
+  onMouseEnter?: (ev: MouseEvent) => void;
+  onMouseLeave?: (ev: MouseEvent) => void;
+  text: string;
+  styles?: object;
 }
 
-export class ReactDot extends React.Component {
-  private propsOut: ReactDotProps = {
-    style: {
-      display: 'block',
-      position: 'absolute',
-      textAlign: 'center',
-      borderRadius: '30%',
-      cursor: 'pointer',
-    },
+export class ReactDot extends React.Component<ReactDotProps> {
+  private static defaultStyle = {
+    display: 'block',
+    position: 'absolute',
+    textAlign: 'center',
+    borderRadius: '30%',
+    cursor: 'pointer',
   };
 
   render() {
-    this.propsOut.style = { ...this.propsOut.style, ...this.props['dynamicStyle'] };
-    this.propsOut.onMouseEnter = this.props['onMouseEnter'];
-    this.propsOut.onMouseLeave = this.props['onMouseLeave'];
+    const { text, styles, ...rest } = this.props;
 
-    return React.createElement('div', this.propsOut, [this.props['text'], ...(this.props.children as any)]);
+    return React.createElement(
+      'div',
+      {
+        ...rest,
+        style: {
+          ...ReactDot.defaultStyle,
+          ...styles,
+        },
+      },
+      [this.props['text'], ...(this.props.children as any)]
+    );
   }
 }

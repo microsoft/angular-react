@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularReactBrowserModule } from '@angular-react/core';
 
 import { ReactDotComponent } from './react-dot.component';
+import { ReactComponentsModule } from '../react-components.module';
 
 describe('ReactDotComponent', () => {
   let component: ReactDotComponent;
@@ -8,7 +10,7 @@ describe('ReactDotComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ReactDotComponent],
+      imports: [AngularReactBrowserModule, ReactComponentsModule],
     }).compileComponents();
   }));
 
