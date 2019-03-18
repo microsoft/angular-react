@@ -16,6 +16,7 @@ import {
   SimpleChanges,
   TemplateRef,
   Type,
+  AfterContentInit,
 } from '@angular/core';
 import classnames from 'classnames';
 import toStyle from 'css-to-style';
@@ -77,7 +78,7 @@ const defaultWrapperComponentOptions: WrapperComponentOptions = {
  * Simplifies some of the handling around passing down props and CSS styling on the host component.
  */
 // NOTE: TProps is not used at the moment, but a preparation for a potential future change.
-export abstract class ReactWrapperComponent<TProps extends {}> implements AfterViewInit, OnChanges {
+export abstract class ReactWrapperComponent<TProps extends {}> implements AfterContentInit, AfterViewInit, OnChanges {
   private _contentClass: Many<ContentClassValue>;
   private _contentStyle: ContentStyleValue;
 
@@ -302,7 +303,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterV
     const nativeElement: HTMLElement = this.elementRef.nativeElement;
 
     // We want to wait until child elements are rendered
-    setTimeout(() => {
+    afterRenderFinished(() => {
       if (nativeElement.firstElementChild) {
         const rootChildDisplay = getComputedStyle(nativeElement.firstElementChild).display;
         nativeElement.style.display = rootChildDisplay;
