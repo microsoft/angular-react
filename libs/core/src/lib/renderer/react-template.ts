@@ -15,8 +15,10 @@ const TEMPLATE_DETECT_CHANGES_THROTTLE_MS = 250;
  */
 export interface ReactTemplateProps {
   /**
-   * Experimental rendering mode.
+   * Use the legacy rendering mode.
+   *
    * Uses a similar approach to `router-outlet`, where the child elements are added to the parent, instead of this node, and this is hidden.
+   *
    * @default false
    */
   legacyRenderMode?: boolean;

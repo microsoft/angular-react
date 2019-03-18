@@ -13,8 +13,10 @@ export const CHILDREN_TO_APPEND_PROP = 'children-to-append';
  */
 export interface ReactContentProps {
   /**
-   * Experimental rendering mode.
+   * Use the legacy rendering mode.
+   *
    * Uses a similar approach to `router-outlet`, where the child elements are added to the parent, instead of this node, and this is hidden.
+   *
    * @default false
    */
   legacyRenderMode?: boolean;

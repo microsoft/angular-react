@@ -10,8 +10,8 @@ const camelCaseSplit = /([a-z0-9])([A-Z])/g;
 
 /**
  * Register an element to be renderer when the renderer sees the tag.
- * @param elementName the tag
- * @param resolver A resolver to the React component
+ * @param elementName the tag to be used to get the component type when rendering.
+ * @param resolver A resolver to the React component.
  */
 export function registerElement(elementName: string, resolver: ComponentResolver): void {
   if (elementMap.has(elementName)) {
