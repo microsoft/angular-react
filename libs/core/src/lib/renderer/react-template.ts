@@ -106,6 +106,7 @@ export class ReactTemplate<TContext extends object | void> extends React.Compone
   }
 
   render() {
+    // TODO: See if we can just render React.Fragment and the children within it, having no extra DOM nodes.
     return React.createElement('react-template', !this.props.legacyRenderMode && { style: { display: 'none' } });
   }
 }

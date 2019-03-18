@@ -69,6 +69,7 @@ export class ReactContent extends React.PureComponent<InternalReactContentProps>
   }
 
   render() {
+    // TODO: See if we can just render React.Fragment and the children within it, having no extra DOM nodes.
     return React.createElement('react-content', !this.props.legacyRenderMode && { style: { display: 'none' } });
   }
 }
