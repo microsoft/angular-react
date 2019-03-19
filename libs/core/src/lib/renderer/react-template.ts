@@ -15,8 +15,10 @@ const TEMPLATE_DETECT_CHANGES_THROTTLE_MS = 250;
  */
 export interface ReactTemplateProps {
   /**
-   * Experimental rendering mode.
+   * Use the legacy rendering mode.
+   *
    * Uses a similar approach to `router-outlet`, where the child elements are added to the parent, instead of this node, and this is hidden.
+   *
    * @default false
    */
   legacyRenderMode?: boolean;
@@ -104,6 +106,7 @@ export class ReactTemplate<TContext extends object | void> extends React.Compone
   }
 
   render() {
+    // TODO: See if we can just render React.Fragment and the children within it, having no extra DOM nodes.
     return React.createElement('react-template', !this.props.legacyRenderMode && { style: { display: 'none' } });
   }
 }
