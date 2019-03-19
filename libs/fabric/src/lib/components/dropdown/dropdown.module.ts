@@ -6,13 +6,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Dropdown } from 'office-ui-fabric-react';
 import { FabDropdownComponent } from './dropdown.component';
+import { DropdownOptionDirective } from './directives/dropdown-option.directive';
+import { DropdownOptionsDirective } from './directives/dropdown-options.directive';
 
-const components = [FabDropdownComponent];
+const declarations = [
+  FabDropdownComponent,
+  DropdownOptionDirective,
+  DropdownOptionsDirective
+];
 
 @NgModule({
   imports: [CommonModule],
-  declarations: components,
-  exports: components,
+  declarations: declarations,
+  exports: declarations,
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class FabDropdownModule {

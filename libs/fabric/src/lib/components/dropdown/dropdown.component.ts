@@ -13,9 +13,12 @@ import {
   ViewChild,
   Output,
   EventEmitter,
+  ContentChild,
+  AfterContentInit,
 } from '@angular/core';
 import { IDropdownProps, IDropdownOption, IDropdown } from 'office-ui-fabric-react/lib/Dropdown';
 import { ISelectableDroppableTextProps, ISelectableOption } from 'office-ui-fabric-react';
+import { DropdownOptionsDirective } from './directives/dropdown-options.directive';
 
 @Component({
   selector: 'fab-dropdown',
@@ -61,8 +64,9 @@ import { ISelectableDroppableTextProps, ISelectableOption } from 'office-ui-fabr
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> implements OnInit {
+export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> implements OnInit, AfterContentInit {
   @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ContentChild(DropdownOptionsDirective) readonly dropdownOptionsDirective?: DropdownOptionsDirective;
 
   @Input() componentRef?: IDropdownProps['componentRef'];
   @Input() label?: IDropdownProps['label'];
@@ -135,6 +139,13 @@ export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> 
     this.onRenderCaretDown = this.createRenderPropHandler(this.renderCaretDown);
   }
 
+  ngAfterContentInit() {
+    if (this.dropdownOptionsDirective) {
+      this._initDirective(this.dropdownOptionsDirective);
+    }
+    super.ngAfterContentInit();
+  }
+
   onChangeHandler(event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number) {
     this.onChange.emit({
       event: event && event.nativeEvent,
@@ -145,5 +156,10 @@ export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> 
 
   onDismissHandler() {
     this.onDismiss.emit();
+  }
+
+  private _initDirective(directive: DropdownOptionsDirective) {
+    this.options = directive.items;
+    this.markForCheck();
   }
 }

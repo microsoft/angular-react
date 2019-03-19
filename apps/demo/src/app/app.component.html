@@ -19,6 +19,13 @@
   (onBlur)="logEvent('dropdown blur', $event)"
 ></fab-dropdown>
 
+<fab-dropdown contentStyle="width: 300px;" [placeholder]="'Select one'" [defaultSelectedKey]="'A'" (onChange)="logEvent('dropdown change', $event)">
+  <options>
+    <fab-dropdown-option optionKey="A" text="See option A"></fab-dropdown-option>
+    <fab-dropdown-option optionKey="B" text="See option B"></fab-dropdown-option>
+  </options>
+</fab-dropdown>
+
 <fab-icon iconName="Add" (onClick)="onClickEventHandler($event)" (onMouseOver)="onMouseOverEventHandler($event)">
 </fab-icon>
 

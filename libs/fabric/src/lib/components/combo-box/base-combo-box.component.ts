@@ -20,7 +20,6 @@ import { ComboBoxOptionsDirective } from './directives/combo-box-options.directi
 
 export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<IComboBoxProps>
   implements OnInit, AfterContentInit {
-  @ContentChild(ComboBoxOptionDirective) readonly optionsDirective?: ComboBoxOptionDirective;
 
   @Input() componentRef?: IComboBoxProps['componentRef'];
   @Input() options: IComboBoxProps['options'];
