@@ -14,7 +14,7 @@ export class ComboBoxOptionDirective {
   @Input() optionKey: IComboBoxOption['key'];
   @Input() text: IComboBoxOption['text'];
   @Input() title?: IComboBoxOption['title'];
-  @Input() itemType: IComboBoxOption['itemType'];
+  @Input() itemType?: IComboBoxOption['itemType'];
   @Input() index?: IComboBoxOption['index'];
   @Input() ariaLabel?: IComboBoxOption['ariaLabel'];
   @Input() selected?: IComboBoxOption['selected'];
