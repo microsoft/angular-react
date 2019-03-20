@@ -8,26 +8,16 @@ import { ComboBoxOptionDirective } from "./combo-box-option.directive";
 
 /**
  * Wrapper directive for creating multiple ComboBoxOptions
+ * Note that if you use this, it will override the imperative [options] binding.
  */
 @Directive({ selector: 'fab-combo-box > options' })
 export class ComboBoxOptionsDirective {
   @ContentChildren(ComboBoxOptionDirective) readonly directiveItems: QueryList<ComboBoxOptionDirective>;
 
   get items() {
-    return this.directiveItems.map<IComboBoxOption>(directiveItem => {
-      return {
-        key: directiveItem.optionKey,
-        text: directiveItem.text,
-        title: directiveItem.title,
-        itemType: directiveItem.itemType,
-        index: directiveItem.index,
-        ariaLabel: directiveItem.ariaLabel,
-        selected: directiveItem.selected,
-        disabled: directiveItem.disabled,
-        data: directiveItem.data,
-        styles: directiveItem.styles,
-        useAriaLabelAsText: directiveItem.useAriaLabelAsText
-      }
-    });
+    return this.directiveItems.map<IComboBoxOption>(({ optionKey, ...otherDirectiveProps }) => ({
+      key: optionKey,
+      ...otherDirectiveProps
+    }));
   }
 }

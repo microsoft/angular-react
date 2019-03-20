@@ -8,24 +8,16 @@ import { IDropdownOption } from 'office-ui-fabric-react';
 
 /**
  * Wrapper directive for creating multiple DropdownOptions
+ * Note that if you use this, it will override the imperative [options] binding.
  */
 @Directive({ selector: 'fab-dropdown > options' })
 export class DropdownOptionsDirective {
   @ContentChildren(DropdownOptionDirective) readonly directiveItems: QueryList<DropdownOptionDirective>;
 
   get items() {
-    return this.directiveItems.map<IDropdownOption>(directiveItem => {
-      return {
-        key: directiveItem.optionKey,
-        text: directiveItem.text,
-        title: directiveItem.title,
-        itemType: directiveItem.itemType,
-        index: directiveItem.index,
-        ariaLabel: directiveItem.ariaLabel,
-        selected: directiveItem.selected,
-        disabled: directiveItem.disabled,
-        data: directiveItem.data
-      }
-    });
+    return this.directiveItems.map<IDropdownOption>(({ optionKey, ...otherDirectiveProps }) => ({
+      key: optionKey,
+      ...otherDirectiveProps
+    }));
   }
 }
