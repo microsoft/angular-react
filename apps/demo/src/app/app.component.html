@@ -9,6 +9,11 @@
   </ol>
 </div>
 
+<h5>Generic React component wrapper</h5>
+<my-counter [count]="count" (onIncrement)="reactCustomOnIncrement($event)">
+  <div style="text-transform: uppercase;color:red">test</div>
+</my-counter>
+
 <fab-dropdown
   [label]="'test label'"
   [selectedKey]="selectedItem && selectedItem.key"
@@ -19,7 +24,12 @@
   (onBlur)="logEvent('dropdown blur', $event)"
 ></fab-dropdown>
 
-<fab-dropdown contentStyle="width: 300px;" [placeholder]="'Select one'" [defaultSelectedKey]="'A'" (onChange)="logEvent('dropdown change', $event)">
+<fab-dropdown
+  contentStyle="width: 300px;"
+  [placeholder]="'Select one'"
+  [defaultSelectedKey]="'A'"
+  (onChange)="logEvent('dropdown change', $event)"
+>
   <options>
     <fab-dropdown-option optionKey="A" text="See option A"></fab-dropdown-option>
     <fab-dropdown-option optionKey="B" text="See option B"></fab-dropdown-option>

@@ -1,4 +1,4 @@
-import { AngularReactBrowserModule } from '@angular-react/core';
+import { AngularReactBrowserModule, wrapComponent } from '@angular-react/core';
 import {
   FabBreadcrumbModule,
   FabButtonModule,
@@ -35,11 +35,18 @@ import {
   FabSpinButtonModule,
   FabTextFieldModule,
 } from '@angular-react/fabric';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
 import { AppComponent } from './app.component';
 import { CounterComponent } from './counter/counter.component';
+import { CounterProps, Counter } from './counter/react-counter';
+
+const MyCounterComponent = wrapComponent<CounterProps>({
+  ReactComponent: Counter,
+  selector: 'my-counter',
+  // propNames: ['count', 'onIncrement'], // needed if propTypes are not defined on `ReactComponent`
+});
 
 @NgModule({
   imports: [
@@ -80,8 +87,9 @@ import { CounterComponent } from './counter/counter.component';
     FabSpinButtonModule,
     FabTextFieldModule,
   ],
-  declarations: [AppComponent, CounterComponent],
+  declarations: [AppComponent, CounterComponent, MyCounterComponent],
   bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {
   constructor() {
