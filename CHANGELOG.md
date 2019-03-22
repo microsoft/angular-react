@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.1"></a>
+
+# [0.6.1](https://github.com/Microsoft/angular-react/compare/v0.6.0...v0.6.1) (2019-03-22)
+
+## Features
+
+- **fabric:** Update dropdown with directives. ([#104](https://github.com/Microsoft/angular-react/pull/104)) ([a93575c](https://github.com/Microsoft/angular-react/commit/a93575c7a1b31564c0baedd0706d83a77be2271c))
+
+### Bug fixes
+
+- **fabric:** Add blur events to Fabric text field components. ([#98](https://github.com/Microsoft/angular-react/pull/98)) ([8e997c9](https://github.com/Microsoft/angular-react/commit/8e997c9872567e8d1ad839c91e6c464b92444ea9))
+
 <a name="0.6.0"></a>
 
 # [0.6.0](https://github.com/Microsoft/angular-react/compare/v0.5.12...v0.6.0) (2019-03-08)
