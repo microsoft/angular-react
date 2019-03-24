@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.2"></a>
+
+# [0.6.2](https://github.com/Microsoft/angular-react/compare/v0.6.1...v0.6.2) (2019-03-24)
+
+Fix for broken `0.6.1` release.
+
+
 <a name="0.6.1"></a>
 
 # [0.6.1](https://github.com/Microsoft/angular-react/compare/v0.6.0...v0.6.1) (2019-03-22)
