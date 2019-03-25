@@ -9,3 +9,9 @@ export { getPassProps, passProp, PassProp } from './lib/renderer/pass-prop-decor
 export { createReactContentElement, ReactContent, ReactContentProps } from './lib/renderer/react-content';
 export * from './lib/renderer/react-template';
 export { registerElement } from './lib/renderer/registry';
+export {
+  JsxRenderFunc,
+  RenderComponentOptions,
+  InputRendererOptions,
+  RenderPropOptions,
+} from './lib/components/render-props';
