@@ -33,7 +33,7 @@ import { IMessageBarProps } from 'office-ui-fabric-react/lib/MessageBar';
       [theme]="theme"
       [styles]="styles"
       [Dismiss]="onDismissInternal"
-      [actions]="actions"
+      [actions]="renderActions && actions"
     >
       <ReactContent><ng-content></ng-content></ReactContent>
     </MessageBar>
