@@ -18,7 +18,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
+import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent, omit } from '@angular-react/core';
 import {
   DetailsListBase,
   IColumn,
@@ -32,7 +32,6 @@ import { IListProps } from 'office-ui-fabric-react/lib/List';
 import { Subscription } from 'rxjs';
 
 import { OnChanges, TypedChanges } from '../../declarations/angular/typed-changes';
-import { omit } from '../../utils/omit';
 import { mergeItemChanges } from '../core/declarative/item-changed';
 import { ChangeableItemsDirective } from '../core/shared/changeable-items.directive';
 import { IDetailsListColumnOptions } from './directives/details-list-column.directive';

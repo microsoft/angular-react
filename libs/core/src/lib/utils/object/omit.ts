@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Omit } from '@angular-react/core';
+import { Omit } from '../../declarations/omit';
 
 /**
  * Omit a a set of properties from an object.

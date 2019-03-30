@@ -12,6 +12,7 @@ import {
   Renderer2,
   SimpleChanges,
   AfterContentInit,
+  ɵBaseDef,
 } from '@angular/core';
 import classnames from 'classnames';
 import toStyle from 'css-to-style';
@@ -21,9 +22,10 @@ import { Many } from '../declarations/many';
 import { ReactContentProps } from '../renderer/react-content';
 import { isReactNode } from '../renderer/react-node';
 import { isReactRendererData } from '../renderer/renderer';
-import { toObject } from '../utils/object/to-object';
+import { fromPairs } from '../utils/object/from-pairs';
 import { afterRenderFinished } from '../utils/render/render-delay';
 import { InputRendererOptions, JsxRenderFunc, createInputJsxRenderer, createRenderPropHandler } from './render-props';
+import { omit } from '../utils/object/omit';
 
 // Forbidden attributes are still ignored, since they may be set from the wrapper components themselves (forbidden is only applied for users of the wrapper components)
 const ignoredAttributeMatchers = [/^_?ng-?.*/, /^style$/, /^class$/];
@@ -231,17 +233,23 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterC
     );
 
     const eventListeners = this.elementRef.nativeElement.getEventListeners();
+    // Event listeners already being handled natively by the derived component
+    const handledEventListeners = Object.keys(
+      ((this.constructor as any).ngBaseDef as ɵBaseDef<any>).outputs
+    ) as (keyof typeof eventListeners)[];
+    const unhandledEventListeners = omit(eventListeners, ...handledEventListeners);
+
     const eventHandlersProps =
-      eventListeners && Object.keys(eventListeners).length
-        ? toObject(
-            Object.values(eventListeners).map<[string, React.EventHandler<React.SyntheticEvent>]>(([eventListener]) => [
-              eventListener.type,
-              (ev: React.SyntheticEvent) => eventListener.listener(ev && ev.nativeEvent),
-            ])
+      unhandledEventListeners && Object.keys(unhandledEventListeners).length
+        ? fromPairs(
+            Object.values(unhandledEventListeners).map<[string, React.EventHandler<React.SyntheticEvent>]>(
+              ([eventListener]) => [
+                eventListener.type,
+                (ev: React.SyntheticEvent) => eventListener.listener(ev && ev.nativeEvent),
+              ]
+            )
           )
         : {};
-    {
-    }
 
     this.reactNodeRef.nativeElement.setProperties({ ...props, ...eventHandlersProps });
   }
