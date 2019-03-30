@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
+import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent, omit } from '@angular-react/core';
 import {
   ChangeDetectorRef,
   ElementRef,
@@ -23,7 +23,6 @@ import { IContextualMenuItem } from 'office-ui-fabric-react';
 import { Subscription } from 'rxjs';
 import { CommandBarItemChangedPayload } from '../command-bar/directives/command-bar-item.directives';
 import { mergeItemChanges } from '../core/declarative/item-changed';
-import { omit } from '../../utils/omit';
 import { getDataAttributes } from '../../utils/get-data-attributes';
 
 export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButtonProps>

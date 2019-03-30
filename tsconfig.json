@@ -10,6 +10,7 @@
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
     "baseUrl": ".",
+    "jsx": "react",
     "skipLibCheck": true,
     "paths": {
       "@angular-react/*": ["libs/*"],
