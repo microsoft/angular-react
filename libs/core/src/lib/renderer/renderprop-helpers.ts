@@ -9,6 +9,15 @@ export interface RenderPropContext<TContext extends object> {
   readonly render: (context: TContext) => JSX.Element;
 }
 
+export function isRenderPropContext<TContext extends object>(x: unknown): x is RenderPropContext<TContext> {
+  if (typeof x !== 'object') {
+    return false;
+  }
+
+  const maybeRenderPropContext = x as RenderPropContext<TContext>;
+  return maybeRenderPropContext.render && typeof maybeRenderPropContext.render === 'function';
+}
+
 function renderReactContent(rootNodes: HTMLElement[], additionalProps?: ReactContentProps): JSX.Element {
   return createReactContentElement(rootNodes, additionalProps);
 }

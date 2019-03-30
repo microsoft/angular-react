@@ -6,7 +6,9 @@ import {
   Selection,
   DropdownMenuItemType,
   IDropdownOption,
+  ICheckboxProps,
 } from 'office-ui-fabric-react';
+import { RenderPropOptions } from '@angular-react/core';
 import { FabDropdownComponent } from '@angular-react/fabric';
 
 const suffix = ' cm';
@@ -18,6 +20,13 @@ const suffix = ' cm';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
+  renderCheckboxLabel: RenderPropOptions<ICheckboxProps> = {
+    getProps: defaultProps => ({
+      ...defaultProps,
+      label: defaultProps.label.toUpperCase(),
+    }),
+  };
+
   @ViewChild('customRange') customRangeTemplate: TemplateRef<{
     item: any;
     dismissMenu: (ev?: any, dismissAll?: boolean) => void;

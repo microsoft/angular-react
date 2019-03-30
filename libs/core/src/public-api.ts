@@ -12,3 +12,9 @@ export * from './lib/renderer/react-template';
 export { registerElement, ComponentResolver } from './lib/renderer/registry';
 
 export * from './lib/utils/object/omit';
+export {
+  JsxRenderFunc,
+  RenderComponentOptions,
+  InputRendererOptions,
+  RenderPropOptions,
+} from './lib/components/render-props';
