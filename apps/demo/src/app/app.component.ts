@@ -178,12 +178,6 @@ export class AppComponent {
     this.onDecrement = this.onDecrement.bind(this);
   }
 
-  count = 3;
-
-  reactCustomOnIncrement(newCount: number) {
-    this.count = newCount;
-  }
-
   customItemCount = 1;
 
   // FIXME: Allow declarative syntax too
