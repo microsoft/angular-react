@@ -9,6 +9,11 @@
   </ol>
 </div>
 
+<h5>Generic React component wrapper</h5>
+<my-counter [count]="count" (onIncrement)="reactCustomOnIncrement($event)">
+  <div style="text-transform: uppercase;color:red">test</div>
+</my-counter>
+
 <fab-checkbox label="foo" [renderLabel]="renderCheckboxLabel"></fab-checkbox>
 
 <div style="width:500px">
