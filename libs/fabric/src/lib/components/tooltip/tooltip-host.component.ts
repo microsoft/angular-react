@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InputRendererOptions, Omit, ReactWrapperComponent, omit } from '@angular-react/core';
+import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -15,6 +15,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ITooltipHostProps, ITooltipProps } from 'office-ui-fabric-react/lib/Tooltip';
+import { omit } from '../../utils/omit';
 
 @Component({
   selector: 'fab-tooltip-host',

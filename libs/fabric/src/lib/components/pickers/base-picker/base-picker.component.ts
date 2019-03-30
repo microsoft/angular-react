@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InputRendererOptions, JsxRenderFunc, Omit, ReactWrapperComponent, omit } from '@angular-react/core';
+import { InputRendererOptions, JsxRenderFunc, Omit, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectorRef, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2 } from '@angular/core';
 import { IPersonaProps } from 'office-ui-fabric-react/lib/Persona';
 import {
@@ -10,6 +10,7 @@ import {
   IBasePickerSuggestionsProps,
   IPickerItemProps,
 } from 'office-ui-fabric-react/lib/Pickers';
+import omit from '../../../utils/omit';
 
 export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<T>>
   extends ReactWrapperComponent<TProps>
@@ -18,7 +19,7 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
   @Input() resolveDelay?: IBasePickerProps<T>['resolveDelay'];
   @Input() defaultSelectedItems?: IBasePickerProps<T>['defaultSelectedItems'];
   @Input() getTextFromItem?: IBasePickerProps<T>['getTextFromItem'];
-  @Input() className?: IBasePickerProps<T>['className'];
+  @Input() className?: IBasePickerProps<T>['className']; 
   @Input() pickerCalloutProps?: IBasePickerProps<T>['pickerCalloutProps'];
   @Input() searchingText?: IBasePickerProps<T>['searchingText'];
   @Input() disabled?: IBasePickerProps<T>['disabled'];

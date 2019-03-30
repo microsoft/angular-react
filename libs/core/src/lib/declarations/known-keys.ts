@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
-
 // prettier-ignore
 /**
  * Get the known keys (i.e. no index signature) of T.

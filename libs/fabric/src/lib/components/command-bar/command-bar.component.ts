@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InputRendererOptions, KnownKeys, ReactWrapperComponent, omit } from '@angular-react/core';
+import { InputRendererOptions, KnownKeys, ReactWrapperComponent } from '@angular-react/core';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -22,6 +22,7 @@ import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/l
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { Subscription } from 'rxjs';
 import { OnChanges, TypedChanges } from '../../declarations/angular/typed-changes';
+import omit from '../../utils/omit';
 import { mergeItemChanges } from '../core/declarative/item-changed';
 import { CommandBarItemChangedPayload, CommandBarItemDirective } from './directives/command-bar-item.directives';
 import {
