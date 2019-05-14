@@ -65,6 +65,8 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
   @Input() renderPrefix?: InputRendererOptions<ITextFieldProps>;
   @Input() renderSuffix?: InputRendererOptions<ITextFieldProps>;
 
+  @Input() maxLength: number;
+
   @Output() readonly onClick = new EventEmitter<MouseEvent>();
   @Output() readonly onFocus = new EventEmitter<FocusEvent>();
   @Output() readonly onBlur = new EventEmitter<Event>();

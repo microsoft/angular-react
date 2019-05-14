@@ -47,7 +47,9 @@
 <fab-icon iconName="Add" (onClick)="onClickEventHandler($event)" (onMouseOver)="onMouseOverEventHandler($event)">
 </fab-icon>
 
-<fab-text-field [(value)]="textFieldValue"></fab-text-field>
+<div>------------------------------------------------------------</div>
+<fab-text-field maxLength="15" [(value)]="textFieldValue"></fab-text-field>
+<div>------------------------------------------------------------</div>
 
 <span>{{ textFieldValue }}</span>
 
