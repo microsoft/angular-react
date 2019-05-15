@@ -57,6 +57,7 @@ import { FabBaseTextFieldComponent } from './base-text-field.component';
       [RenderSuffix]="renderSuffix"
       [Change]="onChangeHandler"
       [BeforeChange]="onBeforeChangeHandler"
+      [maxLength]="maxLength"
       [NotifyValidationResult]="onNotifyValidationResultHandler"
       (onClick)="onClickHandler($event)"
       (onFocus)="onFocusHandler($event)"
