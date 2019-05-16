@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.5"></a>
+
+# [0.6.5](https://github.com/Microsoft/angular-react/compare/v0.6.2...v0.6.5) (2019-05-16)
+
+Propagate max length attribute in fab-text-field component
+
 <a name="0.6.2"></a>
 
 # [0.6.2](https://github.com/Microsoft/angular-react/compare/v0.6.1...v0.6.2) (2019-03-24)
