@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/fabric",
   "version": "0.6.5",
