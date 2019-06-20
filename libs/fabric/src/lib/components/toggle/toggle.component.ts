@@ -41,7 +41,7 @@ import { IToggleProps } from 'office-ui-fabric-react/lib/Toggle';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() as?: IToggleProps['as'];
   @Input() componentRef?: IToggleProps['componentRef'];

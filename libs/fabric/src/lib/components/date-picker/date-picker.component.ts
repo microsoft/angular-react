@@ -66,7 +66,7 @@ import { IDatePickerProps } from 'office-ui-fabric-react';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IDatePickerProps['componentRef'];
   @Input() theme?: IDatePickerProps['theme'];

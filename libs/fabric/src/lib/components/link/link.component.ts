@@ -52,7 +52,7 @@ import { ILinkProps, Link } from 'office-ui-fabric-react';
 export class FabLinkComponent extends ReactWrapperComponent<ILinkProps> {
   readonly LinkType: any = Link;
 
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() href: ILinkProps['href'];
   @Input() type?: ILinkProps['type'];

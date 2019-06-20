@@ -69,7 +69,7 @@ import { FabBaseTextFieldComponent } from './base-text-field.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTextFieldComponent extends FabBaseTextFieldComponent {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

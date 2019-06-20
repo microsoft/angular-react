@@ -8,9 +8,9 @@ import { SubNavService } from '../../shared/sub-nav.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
-  @ViewChild('primary', { read: ElementRef })
+  @ViewChild('primary', { read: ElementRef, static: true })
   primaryNav: ElementRef;
-  @ViewChild('container', { read: ViewContainerRef })
+  @ViewChild('container', { read: ViewContainerRef, static: true })
   container: ViewContainerRef;
 
   collapseSecondaryNav = false;

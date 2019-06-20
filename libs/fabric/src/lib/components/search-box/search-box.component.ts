@@ -46,7 +46,7 @@ import omit from '../../utils/omit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ISearchBoxProps['componentRef'];
   @Input() placeholder?: ISearchBoxProps['placeholder'];

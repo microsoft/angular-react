@@ -38,7 +38,7 @@ import { IShimmerProps } from 'office-ui-fabric-react/lib/Shimmer';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IShimmerProps['componentRef'];
   @Input() width?: IShimmerProps['width'];
@@ -91,7 +91,7 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabShimmerElementsGroupComponent extends ReactWrapperComponent<IShimmerElementsGroupProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IShimmerElementsGroupProps['componentRef'];
   @Input() rowHeight?: IShimmerElementsGroupProps['rowHeight'];

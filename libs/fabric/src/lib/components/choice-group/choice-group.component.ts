@@ -39,7 +39,7 @@ import { IChoiceGroupOption, IChoiceGroupProps } from 'office-ui-fabric-react/li
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabChoiceGroupComponent extends ReactWrapperComponent<IChoiceGroupProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IChoiceGroupProps['componentRef'];
   @Input() options?: IChoiceGroupProps['options'];

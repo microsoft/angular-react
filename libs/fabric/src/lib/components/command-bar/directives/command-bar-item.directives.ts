@@ -17,7 +17,7 @@ export type CommandBarItemChangedPayload = ItemChangedPayload<ICommandBarItemOpt
  */
 @Directive({ selector: 'fab-command-bar-item > render' })
 export class CommandBarItemRenderDirective {
-  @ContentChild(TemplateRef) readonly templateRef: TemplateRef<ICommandBarItemOptionsRenderContext>;
+  @ContentChild(TemplateRef, /* TODO: add static flag */ {}) readonly templateRef: TemplateRef<ICommandBarItemOptionsRenderContext>;
 }
 
 /**
@@ -25,7 +25,7 @@ export class CommandBarItemRenderDirective {
  */
 @Directive({ selector: 'fab-command-bar-item > render-icon' })
 export class CommandBarItemRenderIconDirective {
-  @ContentChild(TemplateRef) readonly templateRef: TemplateRef<ICommandBarItemOptionsRenderIconContext>;
+  @ContentChild(TemplateRef, /* TODO: add static flag */ {}) readonly templateRef: TemplateRef<ICommandBarItemOptionsRenderIconContext>;
 }
 
 @Directive({ selector: 'fab-command-bar-item' })

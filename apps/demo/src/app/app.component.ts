@@ -27,7 +27,7 @@ export class AppComponent {
     }),
   };
 
-  @ViewChild('customRange') customRangeTemplate: TemplateRef<{
+  @ViewChild('customRange', { static: false }) customRangeTemplate: TemplateRef<{
     item: any;
     dismissMenu: (ev?: any, dismissAll?: boolean) => void;
   }>;

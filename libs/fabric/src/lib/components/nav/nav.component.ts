@@ -38,7 +38,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabNavComponent extends ReactWrapperComponent<INavProps> {
-  @ViewChild('reactNode')
+  @ViewChild('reactNode', { static: true })
   protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: INavProps['componentRef'];

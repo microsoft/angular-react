@@ -36,7 +36,7 @@ import { ISpinnerProps } from 'office-ui-fabric-react/lib/Spinner';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ISpinnerProps['componentRef'];
   @Input() type?: ISpinnerProps['type'];

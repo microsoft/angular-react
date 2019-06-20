@@ -70,7 +70,7 @@ export class FabImageComponent extends ReactWrapperComponent<IImageProps> {
 
   @Output() readonly onLoadingStateChange = new EventEmitter<ImageLoadState>();
 
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

@@ -54,7 +54,7 @@ import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/d
 })
 export class FabModalComponent extends ReactWrapperComponent<IModalProps>
   implements IWithResponsiveModeState, IAccessiblePopupProps {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() responsiveMode?: IModalProps['responsiveMode'];
 

@@ -62,7 +62,7 @@ import { ISpinButtonProps } from 'office-ui-fabric-react/lib/SpinButton';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSpinButtonComponent extends ReactWrapperComponent<ISpinButtonProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ISpinButtonProps['componentRef'];
   @Input() defaultValue?: ISpinButtonProps['defaultValue'];

@@ -52,7 +52,7 @@ import { omit } from '../../utils/omit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IHoverCardProps['componentRef'];
   @Input() className?: IHoverCardProps['className'];

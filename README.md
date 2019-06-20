@@ -33,9 +33,10 @@ Initial work to prove the feasibility of adapting the Angular Renderer to output
 In the coming months we will continue to refine the component implementations as we use the angular-react core and fabric libraries in 2 real-world consumer facing production applications.
 
 ## Getting started
-
-See our [Getting Started Guide][getting-started]
+See our [Getting Started Guide][getting-started] demo
 if you're building your first project with Angular-React.
+
+See a simple [StackBlitz Template](https://stackblitz.com/edit/angular-react)
 
 If you'd like to contribute, you must follow our [contributing guidelines](https://github.com/microsoft/angular-react/blob/master/CONTRIBUTING.md).
 You can look through the issues (which should be up-to-date on who is working on which features and which pieces are blocked) and make a comment.

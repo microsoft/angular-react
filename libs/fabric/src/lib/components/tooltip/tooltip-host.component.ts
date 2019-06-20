@@ -44,7 +44,7 @@ import { omit } from '../../utils/omit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ITooltipHostProps['componentRef'];
   @Input() closeDelay?: ITooltipHostProps['closeDelay'];

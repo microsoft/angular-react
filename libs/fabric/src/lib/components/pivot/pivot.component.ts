@@ -43,7 +43,7 @@ import * as React from 'react';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() @passProp() componentRef?: IPivotItemProps['componentRef'];
 
@@ -106,7 +106,7 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
   readonly PivotType = Pivot;
   readonly PivotItemType = PivotItem;
 
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @ContentChildren(FabPivotItemComponent) pivotItems: QueryList<FabPivotItemComponent>;
 

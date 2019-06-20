@@ -52,7 +52,7 @@ import { FabBaseComboBoxComponent } from './base-combo-box.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabVirtualizedComboBoxComponent extends FabBaseComboBoxComponent {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, ngZone);

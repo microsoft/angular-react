@@ -11,7 +11,7 @@ import { TriangleComponent, DEFAULT_DOT_SIZE } from '../../../components/triangl
 export class MixedPerfComponent {
   DEFAULT_DOT_SIZE = DEFAULT_DOT_SIZE;
 
-  @ViewChild(TriangleComponent) readonly triangle: TriangleComponent;
+  @ViewChild(TriangleComponent, { static: true }) readonly triangle: TriangleComponent;
 
   projectAsAngular = true;
   contentCollapsed = true;

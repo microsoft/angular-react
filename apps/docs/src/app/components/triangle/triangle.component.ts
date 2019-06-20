@@ -18,7 +18,7 @@ export interface TriangleConfig {
   styleUrls: ['./triangle.component.scss'],
 })
 export class TriangleComponent implements OnInit, OnDestroy {
-  @ContentChild(TemplateRef) readonly dotTemplate: TemplateRef<{
+  @ContentChild(TemplateRef, /* TODO: add static flag */ {}) readonly dotTemplate: TemplateRef<{
     dot: SierpinskiTriangleDot;
     text: number;
   }>;

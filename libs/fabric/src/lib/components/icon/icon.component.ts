@@ -33,7 +33,7 @@ import { IIconProps } from 'office-ui-fabric-react/lib/Icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabIconComponent extends ReactWrapperComponent<IIconProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IIconProps['componentRef'];
 

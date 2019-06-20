@@ -65,7 +65,7 @@ import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/pos
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCalloutComponent extends ReactWrapperComponent<ICalloutProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ICalloutProps['componentRef'];
   @Input() target?: ICalloutProps['target'];

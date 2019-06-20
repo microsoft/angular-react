@@ -51,7 +51,7 @@ import { IListProps } from 'office-ui-fabric-react/lib/List';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IGroupedListProps['componentRef'];
   @Input() theme?: IGroupedListProps['theme'];

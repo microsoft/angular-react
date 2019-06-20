@@ -23,7 +23,7 @@ import { IVerticalDividerProps } from 'office-ui-fabric-react/lib/Divider';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDividerComponent extends ReactWrapperComponent<IVerticalDividerProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() getClassNames?: IVerticalDividerProps['getClassNames'];
 

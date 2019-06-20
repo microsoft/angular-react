@@ -42,7 +42,7 @@ import { IMessageBarProps } from 'office-ui-fabric-react/lib/MessageBar';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMessageBarComponent extends ReactWrapperComponent<IMessageBarProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IMessageBarProps['componentRef'];
   @Input() messageBarType?: IMessageBarProps['messageBarType'];
