@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "ng serve  --port 4201",
+    "start": "ng serve --port 4201",
     "start:demo": "ng serve demo",
     "start:docs": "ng serve docs",
     "build": "ng build",
