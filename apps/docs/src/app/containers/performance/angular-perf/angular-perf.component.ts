@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatSliderChange } from '@angular/material';
+import { MatSliderChange } from '@angular/material/slider';
 
 import { TriangleComponent, DEFAULT_DOT_SIZE } from '../../../components/triangle/triangle.component';
 
