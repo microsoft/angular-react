@@ -94,7 +94,7 @@ export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> 
   @Output() readonly onSelectDate = new EventEmitter<{ date: Date; selectedDateRangeArray?: Date[] }>();
   @Output() readonly onDismiss = new EventEmitter<void>();
 
-  @ContentChild(CalendarStringsDirective, /* TODO: add static flag */ {}) readonly calendarStringsDirective?: CalendarStringsDirective;
+  @ContentChild(CalendarStringsDirective, { static: true }) readonly calendarStringsDirective?: CalendarStringsDirective;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

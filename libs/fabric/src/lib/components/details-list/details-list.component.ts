@@ -112,8 +112,8 @@ import { DetailsListGroupsDirective } from './directives/details-list-groups.dir
 })
 export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListProps>
   implements AfterContentInit, OnChanges<FabDetailsListComponent>, OnDestroy, OnInit {
-  @ContentChild(DetailsListColumnsDirective, /* TODO: add static flag */ {}) readonly columnsDirective?: DetailsListColumnsDirective;
-  @ContentChild(DetailsListGroupsDirective, /* TODO: add static flag */ {}) readonly groupsDirective?: DetailsListGroupsDirective;
+  @ContentChild(DetailsListColumnsDirective, { static: true }) readonly columnsDirective?: DetailsListColumnsDirective;
+  @ContentChild(DetailsListGroupsDirective, { static: true }) readonly groupsDirective?: DetailsListGroupsDirective;
 
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
