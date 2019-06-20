@@ -20,7 +20,7 @@
       min-width: 50px;
     }
 
-    /deep/ .mat-tab-links {
+    .mat-tab-links {
       display: flex;
 
       .mat-ink-bar {
@@ -46,7 +46,7 @@
   nav.secondary {
     background: $smoke;
 
-    /deep/ .mat-tab-nav-bar {
+    .mat-tab-nav-bar {
       .mat-tab-links {
         display: flex;
         overflow-y: auto;
@@ -103,7 +103,7 @@
     }
 
     &.collapse {
-      /deep/ .mat-tab-nav-bar {
+      .mat-tab-nav-bar {
         .mat-tab-links {
           .mat-tab-link {
             height: $navSecondaryHeightCollapsed;
@@ -146,7 +146,7 @@
 @include mediaMobile {
   :host {
     nav.primary {
-      /deep/ .mat-button:first-child {
+      .mat-button:first-child {
         .mat-button-wrapper {
           b {
             display: none;
@@ -163,7 +163,7 @@
         }
       }
 
-      /deep/ .mat-tab-links {
+      .mat-tab-links {
         .mat-tab-link {
           padding: 0 3%;
           min-width: 0;
@@ -172,7 +172,7 @@
     }
 
     nav.secondary {
-      /deep/ .mat-tab-nav-bar {
+       .mat-tab-nav-bar {
         .mat-tab-links {
           .mat-tab-link {
             height: $navSecondaryHeightNarrow;
