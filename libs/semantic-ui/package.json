@@ -35,10 +35,10 @@
   "private": false,
   "peerDependencies": {
     "@angular-react/core": "^0.3.0-alpha1",
-    "@angular/common": "^6.1.0",
-    "@angular/core": "^6.1.0",
-    "@angular/platform-browser-dynamic": "^6.1.0",
-    "@angular/platform-browser": "^6.1.0",
+    "@angular/common": "^8.0.2",
+    "@angular/core": "^8.0.2",
+    "@angular/platform-browser-dynamic": "^8.0.2",
+    "@angular/platform-browser": "^8.0.2",
     "semantic-ui-react": "^0.79.1",
     "react-dom": "^16.4.1",
     "react": "^16.4.1"

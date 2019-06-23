@@ -53,7 +53,7 @@ export class Disguise extends React.PureComponent<DisguiseProps> {
 
     if (React.Children.count(children) === 1) {
       const [onlyChild] = React.Children.toArray(children);
-      if (typeof onlyChild === 'object' && (<ReactElement<any, any>>onlyChild).type === ReactContent) {
+      if (typeof onlyChild === 'object' && (<ReactElement<any>>onlyChild).type === ReactContent) {
         return true;
       }
     }
@@ -97,10 +97,10 @@ export class Disguise extends React.PureComponent<DisguiseProps> {
         return child;
       }
 
-      const ChildRoot = (<ReactElement<any, any>>child).type || disguiseChildrenAs;
+      const ChildRoot = (<ReactElement<any>>child).type || disguiseChildrenAs;
       return React.createElement(
         ChildRoot,
-        { ...(<ReactElement<any, any>>child).props, key: (<ReactElement<any, any>>child).key },
+        { ...(<ReactElement<any>>child).props, key: (<ReactElement<any>>child).key },
         child
       );
     });
