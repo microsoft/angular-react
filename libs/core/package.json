@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "0.6.5",
+  "version": "1.0.0-next",
   "ngPackage": {
     "deleteDestPath": true,
     "whitelistedNonPeerDependencies": [
@@ -50,11 +50,11 @@
   ],
   "private": false,
   "peerDependencies": {
-    "@angular/compiler": "^7.0.3",
-    "@angular/core": "^7.0.3",
-    "@angular/platform-browser-dynamic": "^7.0.3",
-    "@angular/platform-browser": "^7.0.3",
-    "rxjs": "^6.2.0",
+    "@angular/compiler": "^8.0.2",
+    "@angular/core": "^8.0.2",
+    "@angular/platform-browser-dynamic": "^8.0.2",
+    "@angular/platform-browser": "^8.0.2",
+    "rxjs": "^6.5.2",
     "react-dom": "^16.6.3",
     "react": "^16.6.3"
   },

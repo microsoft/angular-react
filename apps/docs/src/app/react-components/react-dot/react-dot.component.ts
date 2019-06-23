@@ -41,7 +41,7 @@ import { ReactWrapperComponent } from '@angular-react/core';
   styles: ['react-renderer'],
 })
 export class ReactDotComponent extends ReactWrapperComponent<ReactDotProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() x: string;
   @Input() y: string;

@@ -65,8 +65,8 @@ import { DropdownOptionsDirective } from './directives/dropdown-options.directiv
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> implements OnInit, AfterContentInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
-  @ContentChild(DropdownOptionsDirective) readonly dropdownOptionsDirective?: DropdownOptionsDirective;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
+  @ContentChild(DropdownOptionsDirective, { static: true }) readonly dropdownOptionsDirective?: DropdownOptionsDirective;
 
   @Input() componentRef?: IDropdownProps['componentRef'];
   @Input() label?: IDropdownProps['label'];

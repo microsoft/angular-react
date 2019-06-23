@@ -64,7 +64,7 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
   @Output() readonly onMenuDismissed = new EventEmitter<void>();
   @Output() readonly onScrollToItem = new EventEmitter<{ itemIndex: number }>();
 
-  @ContentChild(ComboBoxOptionsDirective) readonly comboBoxOptionsDirective?: ComboBoxOptionsDirective;
+  @ContentChild(ComboBoxOptionsDirective, { static: true }) readonly comboBoxOptionsDirective?: ComboBoxOptionsDirective;
 
   onRenderLowerContent: (props?: IComboBoxProps, defaultRender?: JsxRenderFunc<IComboBoxProps>) => JSX.Element;
 

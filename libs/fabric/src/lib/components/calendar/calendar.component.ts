@@ -61,7 +61,7 @@ import { CalendarStringsDirective } from './directives/calendar-strings-directiv
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> implements AfterContentInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ICalendarProps['componentRef'];
   @Input() className?: ICalendarProps['className'];
@@ -94,7 +94,7 @@ export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> 
   @Output() readonly onSelectDate = new EventEmitter<{ date: Date; selectedDateRangeArray?: Date[] }>();
   @Output() readonly onDismiss = new EventEmitter<void>();
 
-  @ContentChild(CalendarStringsDirective) readonly calendarStringsDirective?: CalendarStringsDirective;
+  @ContentChild(CalendarStringsDirective, { static: true }) readonly calendarStringsDirective?: CalendarStringsDirective;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

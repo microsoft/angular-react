@@ -101,7 +101,7 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IPersonaProps['componentRef'];
   @Input() className?: IPersonaProps['className'];
@@ -169,7 +169,7 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPersonaCoinComponent extends FabPersonaBaseComponent<IPersonaCoinProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IPersonaCoinProps['componentRef'];
   @Input() styles?: IPersonaCoinProps['styles'];

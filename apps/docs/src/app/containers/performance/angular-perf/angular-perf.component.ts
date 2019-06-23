@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatSliderChange } from '@angular/material';
+import { MatSliderChange } from '@angular/material/slider';
 
 import { TriangleComponent, DEFAULT_DOT_SIZE } from '../../../components/triangle/triangle.component';
 
@@ -11,7 +11,7 @@ import { TriangleComponent, DEFAULT_DOT_SIZE } from '../../../components/triangl
 export class AngularPerfComponent {
   DEFAULT_DOT_SIZE = DEFAULT_DOT_SIZE;
 
-  @ViewChild(TriangleComponent) readonly triangle: TriangleComponent;
+  @ViewChild(TriangleComponent, { static: true }) readonly triangle: TriangleComponent;
 
   get toggleTriangleLabel() {
     return this.triangle.isActive ? 'Stop' : 'Restart';

@@ -46,7 +46,7 @@ import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() responsiveMode?: IDialogProps['responsiveMode'];
   @Input() elementToFocusOnDismiss?: IDialogProps['elementToFocusOnDismiss'];
@@ -89,7 +89,7 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFooterProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IDialogFooterProps['componentRef'];
   @Input() styles?: IDialogFooterProps['styles'];
@@ -130,7 +130,7 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogContentComponent extends ReactWrapperComponent<IDialogContentProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IDialogContentProps['componentRef'];
   @Input() styles?: IDialogContentProps['styles'];

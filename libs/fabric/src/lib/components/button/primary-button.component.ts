@@ -64,7 +64,7 @@ import { FabBaseButtonComponent } from './base-button.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPrimaryButtonComponent extends FabBaseButtonComponent {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, ngZone);

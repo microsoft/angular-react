@@ -48,7 +48,7 @@ import { IExpandingCardProps } from 'office-ui-fabric-react/lib/HoverCard';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabExpandingCardComponent extends ReactWrapperComponent<IExpandingCardProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: false }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IExpandingCardProps['componentRef'];
   @Input() className?: IExpandingCardProps['className'];

@@ -34,7 +34,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   };
 
   constructor(eventManager: EventManager, sharedStylesHost: ɵDomSharedStylesHost) {
-    super(eventManager, sharedStylesHost);
+    super(eventManager, sharedStylesHost, 'app-id');
 
     // tslint:disable-next-line: no-use-before-declare
     this.defaultReactRenderer = new ReactRenderer(this);

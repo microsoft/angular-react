@@ -44,7 +44,7 @@ import { IPlainCardProps } from 'office-ui-fabric-react/lib/HoverCard';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPlainCardComponent extends ReactWrapperComponent<IPlainCardProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: false }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef: IPlainCardProps['componentRef'];
   @Input() className: IPlainCardProps['className'];

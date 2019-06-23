@@ -7,6 +7,7 @@ import { ReactWrapperComponent } from '../../components/wrapper-component';
 import { getPassProps } from '../../renderer/pass-prop-decorator';
 import removeUndefinedProperties from '../../utils/object/remove-undefined-properties';
 import { ReactContent } from '../react-content';
+import { ReactElement } from 'react';
 
 /**
  * Props for `Disguise` component.
@@ -52,7 +53,7 @@ export class Disguise extends React.PureComponent<DisguiseProps> {
 
     if (React.Children.count(children) === 1) {
       const [onlyChild] = React.Children.toArray(children);
-      if (typeof onlyChild === 'object' && onlyChild.type === ReactContent) {
+      if (typeof onlyChild === 'object' && (<ReactElement<any>>onlyChild).type === ReactContent) {
         return true;
       }
     }
@@ -96,8 +97,12 @@ export class Disguise extends React.PureComponent<DisguiseProps> {
         return child;
       }
 
-      const ChildRoot = child.type || disguiseChildrenAs;
-      return React.createElement(ChildRoot, { ...child.props, key: child.key }, child);
+      const ChildRoot = (<ReactElement<any>>child).type || disguiseChildrenAs;
+      return React.createElement(
+        ChildRoot,
+        { ...(<ReactElement<any>>child).props, key: (<ReactElement<any>>child).key },
+        child
+      );
     });
 
     return renderedChildren;

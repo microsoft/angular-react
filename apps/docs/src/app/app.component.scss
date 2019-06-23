@@ -1,13 +1,232 @@
 @import './styles/variables.scss';
+@import './styles/mixins.scss';
 
-:host {
+app-root {
   height: 100%;
   display: block;
   box-sizing: border-box;
   border-top: $navPrimaryHeight + 1 solid transparent;
 
-  /deep/ .page {
+  .page {
     background: $snow;
     padding: 20px;
+  }
+
+  #navbar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top: $rubberbandScrollBuffer solid $oil;
+    margin-top: 0 - $rubberbandScrollBuffer;
+    z-index: 10;
+
+    nav.primary {
+      background-color: $oil;
+      color: $snow;
+
+      .mat-button {
+        line-height: $navPrimaryHeight;
+        min-width: 50px;
+      }
+
+      .mat-tab-links {
+        display: flex;
+
+      }
+
+      .mat-ink-bar {
+        background-color: $smoke;
+      }
+
+      .mat-tab-link {
+        color: $snow;
+
+        &.mat-tab-label-active {
+          opacity: 1;
+        }
+
+        div {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    nav.secondary {
+      background: $smoke;
+
+      .mat-tab-nav-bar {
+        .mat-tab-links {
+          display: flex;
+          overflow-y: auto;
+
+          .mat-ink-bar {
+            background-color: $oil;
+          }
+
+          .mat-tab-link {
+            height: $navSecondaryHeight;
+            transition: height 500ms;
+            display: flex;
+            flex-direction: column;
+            transition: height 500ms;
+
+            &.mat-tab-label-active {
+              opacity: 1;
+            }
+
+            mat-icon {
+              font-size: $navSecondaryHeight - 24;
+              height: $navSecondaryHeight - 24;
+              width: $navSecondaryHeight - 24;
+              opacity: 1;
+              transition: 500ms;
+
+              svg {
+                transition: 500ms;
+                margin: $navSecondaryHeight / 10;
+              }
+
+              &.stack {
+                position: relative;
+
+                svg {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+
+                  &:first-child {
+                    margin: -30%;
+                    height: 50%;
+                  }
+
+                  &:last-child {
+                    margin: 10%;
+                    height: 30%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &.collapse {
+        .mat-tab-nav-bar {
+          .mat-tab-links {
+            .mat-tab-link {
+              height: $navSecondaryHeightCollapsed;
+
+              mat-icon {
+                font-size: 1px;
+                height: 1px;
+                width: 1px;
+                opacity: 0;
+
+                svg {
+                  margin: 0;
+                }
+
+                &.stack {
+                  svg {
+                    &:first-child {
+                      margin: -30%;
+                      height: 70%;
+                    }
+
+                    &:last-child {
+                      margin: 18%;
+                      height: 55%;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .spacer {
+      flex: 1 1 auto;
+    }
+  }
+
+  @include mediaMobile {
+    :host {
+      nav.primary {
+        .mat-button:first-child {
+          .mat-button-wrapper {
+            b {
+              display: none;
+            }
+
+            .mat-icon:last-child {
+              margin-left: -14px;
+              margin-top: 8px;
+
+              svg {
+                height: 60%;
+              }
+            }
+          }
+        }
+
+        .mat-tab-links {
+          .mat-tab-link {
+            padding: 0 3%;
+            min-width: 0;
+          }
+        }
+      }
+
+      nav.secondary {
+        .mat-tab-nav-bar {
+          .mat-tab-links {
+            .mat-tab-link {
+              height: $navSecondaryHeightNarrow;
+
+              mat-icon {
+                font-size: $navSecondaryHeightNarrow - 24;
+                height: $navSecondaryHeightNarrow - 24;
+                width: $navSecondaryHeightNarrow - 24;
+
+                svg {
+                  margin: $navSecondaryHeightNarrow / 8;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  #page-header {
+    display: flex;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      display: inline-block;
+      margin: 0;
+      padding-bottom: 4px;
+      margin-right: 10px;
+    }
+
+    div {
+      flex-grow: 1;
+    }
+
+    button {
+      margin-left: -8px;
+    }
   }
 }

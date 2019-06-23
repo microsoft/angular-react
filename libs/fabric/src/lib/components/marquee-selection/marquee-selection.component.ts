@@ -37,7 +37,7 @@ import { IMarqueeSelectionProps } from 'office-ui-fabric-react/lib/MarqueeSelect
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMarqueeSelectionComponent extends ReactWrapperComponent<IMarqueeSelectionProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IMarqueeSelectionProps['componentRef'];
   @Input() selection: IMarqueeSelectionProps['selection'];

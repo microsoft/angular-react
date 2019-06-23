@@ -50,7 +50,7 @@ import { FormEvent } from 'react';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCheckboxComponent extends ReactWrapperComponent<ICheckboxProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ICheckboxProps['componentRef'];
   @Input() className?: ICheckboxProps['className'];

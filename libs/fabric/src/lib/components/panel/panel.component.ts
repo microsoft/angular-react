@@ -62,7 +62,7 @@ import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Pa
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IPanelProps['componentRef'];
   @Input() isOpen?: IPanelProps['isOpen'];

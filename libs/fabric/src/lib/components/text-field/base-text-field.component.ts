@@ -15,7 +15,7 @@ import {
 import { ITextFieldProps } from 'office-ui-fabric-react/lib/TextField';
 
 export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldProps> implements OnInit {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() required?: ITextFieldProps['required'];
   @Input() placeholder?: ITextFieldProps['placeholder'];

@@ -62,11 +62,11 @@ import {
 })
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>
   implements OnChanges<FabCommandBarComponent>, AfterContentInit, OnDestroy {
-  @ContentChild(CommandBarItemsDirective) readonly itemsDirective?: CommandBarItemsDirective;
-  @ContentChild(CommandBarFarItemsDirective) readonly farItemsDirective?: CommandBarFarItemsDirective;
-  @ContentChild(CommandBarOverflowItemsDirective) readonly overflowItemsDirective?: CommandBarOverflowItemsDirective;
+  @ContentChild(CommandBarItemsDirective, { static: true }) readonly itemsDirective?: CommandBarItemsDirective;
+  @ContentChild(CommandBarFarItemsDirective, { static: true }) readonly farItemsDirective?: CommandBarFarItemsDirective;
+  @ContentChild(CommandBarOverflowItemsDirective, { static: true }) readonly overflowItemsDirective?: CommandBarOverflowItemsDirective;
 
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: ICommandBarProps['componentRef'];
   @Input() overflowButtonProps?: ICommandBarProps['overflowButtonProps'];
