@@ -250,7 +250,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterC
     const nativeElement = this.elementRef.nativeElement;
 
     // We want to wait until child elements are rendered
-    afterRenderFinished(() => {
+    requestAnimationFrame(() => {
       if (nativeElement.firstElementChild) {
         const rootChildDisplay = getComputedStyle(nativeElement.firstElementChild).display;
         nativeElement.style.display = rootChildDisplay;
