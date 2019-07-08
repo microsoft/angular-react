@@ -113,13 +113,13 @@ workflows:
 
   build:
     jobs:
-      - build
+      - build:
           filters:
             branches:
               ignore: gh-pages
   build_and_publish-docs:
     jobs:
-      - build
+      - build:
           filters:
             branches:
               only: master
