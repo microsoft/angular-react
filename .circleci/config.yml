@@ -114,10 +114,15 @@ workflows:
   build:
     jobs:
       - build
-
+          filters:
+            branches:
+              ignore: gh-pages
   build_and_publish-docs:
     jobs:
       - build
+          filters:
+            branches:
+              only: master
       - publish-docs:
           requires:
             - build
