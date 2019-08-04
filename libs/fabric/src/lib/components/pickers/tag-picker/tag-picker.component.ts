@@ -54,7 +54,7 @@ import { FabBasePickerComponent } from '../base-picker/base-picker.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTagPickerComponent extends FabBasePickerComponent<ITag, ITagPickerProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, ngZone);

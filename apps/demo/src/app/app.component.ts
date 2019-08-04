@@ -7,9 +7,12 @@ import {
   DropdownMenuItemType,
   IDropdownOption,
   ICheckboxProps,
+  IPersonaProps,
+  IPeoplePickerProps,
 } from 'office-ui-fabric-react';
 import { RenderPropOptions } from '@angular-react/core';
 import { FabDropdownComponent } from '@angular-react/fabric';
+import { FabPeoplePickerComponent } from '@angular-react/fabric/public-api';
 
 const suffix = ' cm';
 
@@ -43,6 +46,9 @@ export class AppComponent {
   logEvent(...args: any[]) {
     console.log(args);
   }
+
+  peoplePickerSelectedItems: any[] = [{text:"Default person"}];
+  pickerSuggestions: IPersonaProps[] = [{text: "Bob Jones"},{text: "Steve Fred"}, {text: "Mary"}];
 
   selectedItem?: IDropdownOption;
   options: FabDropdownComponent['options'] = [
@@ -157,6 +163,15 @@ export class AppComponent {
     return String(value) + suffix;
   }
 
+  peoplePickerInputChanged(data: any){
+    const results = this.pickerSuggestions.filter(value => value.text.toLowerCase().indexOf(data.toLowerCase()) > -1);
+    return new Promise<IPersonaProps[]>((resolve, reject) => setTimeout(() => resolve(results), 250));
+  }
+
+  updatePeoplePickerSelectedItems(items){
+    this.peoplePickerSelectedItems = items.items;
+  }
+
   private _hasSuffix(value: string, suffix: string): Boolean {
     const subString = value.substr(value.length - suffix.length);
     return subString === suffix;
@@ -176,6 +191,7 @@ export class AppComponent {
     this.onValidate = this.onValidate.bind(this);
     this.onIncrement = this.onIncrement.bind(this);
     this.onDecrement = this.onDecrement.bind(this);
+    this.peoplePickerInputChanged = this.peoplePickerInputChanged.bind(this);
   }
 
   customItemCount = 1;
