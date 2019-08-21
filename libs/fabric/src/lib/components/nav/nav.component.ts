@@ -44,14 +44,14 @@ export class FabNavComponent extends ReactWrapperComponent<INavProps> {
 
   @Input() componentRef?: INavProps['componentRef'];
   @Input() groups: INavProps["groups"];
-  @Input() selectedKey: INavProps["selectedKey"];
-  @Input() expandedStateText: INavProps["expandedStateText"];
-  @Input() collapsedStateText: INavProps["collapsedStateText"];
-  @Input() isOnTop: INavProps["isOnTop"];
-  @Input() initialSelectedKey: INavProps["initialSelectedKey"];
-  @Input() ariaLabel: INavProps["ariaLabel"];
-  @Input() expandButtonAriaLabel: INavProps["expandButtonAriaLabel"];
-  @Input() selectedAriaLabel: INavProps["selectedAriaLabel"];
+  @Input() selectedKey?: INavProps["selectedKey"];
+  @Input() expandedStateText?: INavProps["expandedStateText"];
+  @Input() collapsedStateText?: INavProps["collapsedStateText"];
+  @Input() isOnTop?: INavProps["isOnTop"];
+  @Input() initialSelectedKey?: INavProps["initialSelectedKey"];
+  @Input() ariaLabel?: INavProps["ariaLabel"];
+  @Input() expandButtonAriaLabel?: INavProps["expandButtonAriaLabel"];
+  @Input() selectedAriaLabel?: INavProps["selectedAriaLabel"];
 
   @Output() readonly onLinkClick = new EventEmitter<{
     event: Event,

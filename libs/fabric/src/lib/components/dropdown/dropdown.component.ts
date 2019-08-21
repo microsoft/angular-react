@@ -82,8 +82,8 @@ export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> 
   @Input() calloutProps?: IDropdownProps['calloutProps'];
   @Input() panelProps?: IDropdownProps['panelProps'];
   @Input() errorMessage?: IDropdownProps['errorMessage'];
-  @Input() placeholder: IDropdownProps['placeholder'];
-  @Input() openOnKeyboardFocus: IDropdownProps['openOnKeyboardFocus'];
+  @Input() placeholder?: IDropdownProps['placeholder'];
+  @Input() openOnKeyboardFocus?: IDropdownProps['openOnKeyboardFocus'];
 
   @Input() options: IDropdownProps['options'];
   @Input() dropdownWidth?: IDropdownProps['dropdownWidth'];
