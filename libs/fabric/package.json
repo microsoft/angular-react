@@ -49,7 +49,7 @@
     "@angular/core": "^8.0.2",
     "@angular/platform-browser-dynamic": "^8.0.2",
     "@angular/platform-browser": "^8.0.2",
-    "office-ui-fabric-react": "6.151.0",
+    "office-ui-fabric-react": "6.201.1",
     "react-dom": "^16.6.3",
     "react": "^16.6.3"
   }

@@ -203,7 +203,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
         onRenderIcon: (item: IContextualMenuItem) => iconRenderer({ contextualMenuItem: item }),
       },
       renderer &&
-        ({ onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>)
+      ({ onRender: (item, dismissMenu) => renderer({ item, dismissMenu }) } as Pick<ICommandBarItemProps, 'onRender'>)
     ) as ICommandBarItemProps;
   }
 }

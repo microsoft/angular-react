@@ -29,6 +29,7 @@ import { IShimmerProps } from 'office-ui-fabric-react/lib/Shimmer';
       [styles]="styles"
       [className]="className"
       [theme]="theme"
+      [shimmerColors]="shimmerColors"
       [customElementsGroup]="customElementsGroup"
     >
       <ReactContent><ng-content></ng-content></ReactContent>
@@ -48,6 +49,7 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
   @Input() styles?: IShimmerProps['styles'];
   @Input() className?: IShimmerProps['className'];
   @Input() theme?: IShimmerProps['theme'];
+  @Input() shimmerColors?: IShimmerProps['shimmerColors'];
 
   @Input()
   set renderCustomElementsGroup(value: InputRendererOptions<{}>) {
@@ -83,6 +85,7 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
       [flexWrap]="flexWrap"
       [width]="width"
       [theme]="theme"
+      [backgroundColor]="backgroundColor"
       [styles]="styles"
     >
     </ShimmerElementsGroup>
@@ -99,6 +102,7 @@ export class FabShimmerElementsGroupComponent extends ReactWrapperComponent<IShi
   @Input() flexWrap?: IShimmerElementsGroupProps['flexWrap'];
   @Input() width?: IShimmerElementsGroupProps['width'];
   @Input() theme?: IShimmerElementsGroupProps['theme'];
+  @Input() backgroundColor?: IShimmerElementsGroupProps['backgroundColor'];
   @Input() styles?: IShimmerElementsGroupProps['styles'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {

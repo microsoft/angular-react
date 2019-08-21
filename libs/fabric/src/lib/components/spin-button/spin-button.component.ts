@@ -75,7 +75,7 @@ export class FabSpinButtonComponent extends ReactWrapperComponent<ISpinButtonPro
   @Input() title?: ISpinButtonProps['title'];
   @Input() disabled?: ISpinButtonProps['disabled'];
   @Input() className?: ISpinButtonProps['className'];
-  @Input() label: ISpinButtonProps['label'];
+  @Input() label?: ISpinButtonProps['label'];
   @Input() labelPosition?: ISpinButtonProps['labelPosition'];
   @Input() iconProps?: ISpinButtonProps['iconProps'];
   @Input() incrementButtonIcon?: ISpinButtonProps['incrementButtonIcon'];

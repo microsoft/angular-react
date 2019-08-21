@@ -38,6 +38,7 @@ import { ISliderProps } from 'office-ui-fabric-react/lib/Slider';
       [className]="className"
       [buttonProps]="buttonProps"
       [valueFormat]="valueFormat"
+      [originFromZero]="originFromZero"
       [Changed]="onChangedHandler"
       (onChange)="onChange.emit($event)"
     >
@@ -66,6 +67,7 @@ export class FabSliderComponent extends ReactWrapperComponent<ISliderProps> {
   @Input() className?: ISliderProps['className'];
   @Input() buttonProps?: ISliderProps['buttonProps'];
   @Input() valueFormat?: ISliderProps['valueFormat'];
+  @Input() originFromZero?: ISliderProps['originFromZero'];
 
   @Output() readonly onChange = new EventEmitter<number>();
   @Output() readonly onChanged = new EventEmitter<{ event: MouseEvent | TouchEvent; value: number }>();

@@ -31,6 +31,7 @@ import {
       [isOnTop]="isOnTop"
       [initialSelectedKey]="initialSelectedKey"
       [ariaLabel]="ariaLabel"
+      [selectedAriaLabel]="selectedAriaLabel"
     >
     </Nav>
   `,
@@ -50,7 +51,7 @@ export class FabNavComponent extends ReactWrapperComponent<INavProps> {
   @Input() initialSelectedKey: INavProps["initialSelectedKey"];
   @Input() ariaLabel: INavProps["ariaLabel"];
   @Input() expandButtonAriaLabel: INavProps["expandButtonAriaLabel"];
-
+  @Input() selectedAriaLabel: INavProps["selectedAriaLabel"];
 
   @Output() readonly onLinkClick = new EventEmitter<{
     event: Event,

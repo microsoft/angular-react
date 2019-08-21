@@ -40,6 +40,7 @@ export class DetailsListColumnDirective extends ChangeableItemDirective<IDetails
   @Input() isResizable?: IColumn['isResizable'];
   @Input() isMultiline?: IColumn['isMultiline'];
   @Input() onRender?: IColumn['onRender'];
+  @Input() getValueKey?: IColumn['getValueKey'];
   @Input() onRenderDivider?: IColumn['onRenderDivider'];
   @Input() isFiltered?: IColumn['isFiltered'];
   @Input() isGrouped?: IColumn['isGrouped'];

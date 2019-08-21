@@ -15,9 +15,16 @@ export class CalendarStringsDirective {
   @Input() days: ICalendarStrings['days'];
   @Input() shortDays: ICalendarStrings['shortDays'];
   @Input() goToToday: ICalendarStrings['goToToday'];
-  @Input() weekNumberFormatString: ICalendarStrings['weekNumberFormatString'];
+  @Input() prevMonthAriaLabel?: ICalendarStrings['prevMonthAriaLabel'];
+  @Input() nextMonthAriaLabel?: ICalendarStrings['nextMonthAriaLabel'];
+  @Input() prevYearAriaLabel?: ICalendarStrings['prevYearAriaLabel'];
+  @Input() nextYearAriaLabel?: ICalendarStrings['nextYearAriaLabel'];
+  @Input() prevYearRangeAriaLabel?: ICalendarStrings['prevYearRangeAriaLabel'];
+  @Input() nextYearRangeAriaLabel?: ICalendarStrings['nextYearRangeAriaLabel'];
+  @Input() closeButtonAriaLabel?: ICalendarStrings['closeButtonAriaLabel'];
+  @Input() weekNumberFormatString?: ICalendarStrings['weekNumberFormatString'];
 
-  
+
   get strings(): ICalendarStrings {
     return {
       months: this.months,
@@ -25,6 +32,13 @@ export class CalendarStringsDirective {
       days: this.days,
       shortDays: this.shortDays,
       goToToday: this.goToToday,
+      prevMonthAriaLabel: this.prevMonthAriaLabel,
+      nextMonthAriaLabel: this.nextMonthAriaLabel,
+      prevYearAriaLabel: this.prevYearAriaLabel,
+      nextYearAriaLabel: this.nextYearAriaLabel,
+      prevYearRangeAriaLabel: this.prevYearRangeAriaLabel,
+      nextYearRangeAriaLabel: this.nextYearRangeAriaLabel,
+      closeButtonAriaLabel: this.closeButtonAriaLabel,
       weekNumberFormatString: this.weekNumberFormatString
     }
   }
