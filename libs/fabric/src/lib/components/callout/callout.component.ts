@@ -22,7 +22,6 @@ import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/pos
   template: `
     <Callout
       #reactNode
-      [componentRef]="componentRef"
       [target]="target"
       [directionalHint]="directionalHint"
       [directionalHintForRTL]="directionalHintForRTL"

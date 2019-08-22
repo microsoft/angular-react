@@ -22,7 +22,6 @@ import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
     <!-- prettier-ignore -->
     <Image
       #reactNode
-      [componentRef]="componentRef"
       [alt]="alt"
       [crossOrigin]="crossOrigin"
       [height]="height"
