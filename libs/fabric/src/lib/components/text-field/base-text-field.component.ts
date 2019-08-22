@@ -72,8 +72,8 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
   @Output() readonly onBlur = new EventEmitter<Event>();
 
   @Output() readonly onChange = new EventEmitter<{ event: Event; newValue?: string }>();
-  @Output() readonly onBeforeChange = new EventEmitter<{ newValue: any }>();
-  @Output() readonly onNotifyValidationResult = new EventEmitter<{ errorMessage: string; value: string | undefined }>();
+  @Output() readonly onBeforeChange = new EventEmitter<{ newValue?: string }>();
+  @Output() readonly onNotifyValidationResult = new EventEmitter<{ errorMessage: string | JSX.Element; value: string | undefined }>();
 
   /* Non-React props, more native support for Angular */
   // support for two-way data binding for `@Input() checked`.

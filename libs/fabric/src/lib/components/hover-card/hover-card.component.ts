@@ -37,6 +37,7 @@ import { omit } from '../../utils/omit';
       [instantOpenOnClick]="instantOpenOnClick"
       [styles]="styles"
       [target]="target"
+      [eventListenerTarget]="eventListenerTarget"
       [trapFocus]="trapFocus"
       [shouldBlockHoverCard]="shouldBlockHoverCard"
       [setInitialFocus]="setInitialFocus"
@@ -66,6 +67,7 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
   @Input() instantOpenOnClick?: IHoverCardProps['instantOpenOnClick'];
   @Input() styles?: IHoverCardProps['styles'];
   @Input() target?: IHoverCardProps['target'];
+  @Input() eventListenerTarget?: IHoverCardProps['eventListenerTarget'];
   @Input() trapFocus?: IHoverCardProps['trapFocus'];
   @Input() shouldBlockHoverCard?: () => boolean; // Workaround for bug in the Fabric React types (() => void)
   @Input() setInitialFocus?: IHoverCardProps['setInitialFocus'];
@@ -117,15 +119,15 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
       {},
       sharedProperties,
       compactCardRenderer &&
-        ({ onRenderCompactCard: data => compactCardRenderer({ data }) } as Pick<
-          IExpandingCardProps,
-          'onRenderCompactCard'
-        >),
+      ({ onRenderCompactCard: data => compactCardRenderer({ data }) } as Pick<
+        IExpandingCardProps,
+        'onRenderCompactCard'
+      >),
       expandedCardRenderer &&
-        ({ onRenderExpandedCard: data => expandedCardRenderer({ data }) } as Pick<
-          IExpandingCardProps,
-          'onRenderExpandedCard'
-        >)
+      ({ onRenderExpandedCard: data => expandedCardRenderer({ data }) } as Pick<
+        IExpandingCardProps,
+        'onRenderExpandedCard'
+      >)
     );
   }
 
@@ -138,7 +140,7 @@ export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps
       {},
       sharedProperties,
       plainCardRenderer &&
-        ({ onRenderPlainCard: data => plainCardRenderer({ data }) } as Pick<IPlainCardProps, 'onRenderPlainCard'>)
+      ({ onRenderPlainCard: data => plainCardRenderer({ data }) } as Pick<IPlainCardProps, 'onRenderPlainCard'>)
     );
   }
 }

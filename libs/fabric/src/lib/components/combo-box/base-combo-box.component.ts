@@ -40,6 +40,8 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
   @Input() isButtonAriaHidden?: IComboBoxProps['isButtonAriaHidden'];
   @Input() ariaDescribedBy?: IComboBoxProps['ariaDescribedBy'];
   @Input() keytipProps?: IComboBoxProps['keytipProps'];
+  @Input() persistMenu?: IComboBoxProps['persistMenu'];
+  @Input() shouldRestoreFocus?: IComboBoxProps['shouldRestoreFocus'];
   @Input() resolveOptions?: (options: IComboBoxOption[]) => IComboBoxOption[] | PromiseLike<IComboBoxOption[]>;
 
   @Input() renderLowerContent?: InputRendererOptions<IComboBoxProps>;
@@ -62,6 +64,7 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
   }>();
   @Output() readonly onMenuOpen = new EventEmitter<void>();
   @Output() readonly onMenuDismissed = new EventEmitter<void>();
+  @Output() readonly onMenuDismiss = new EventEmitter<void>();
   @Output() readonly onScrollToItem = new EventEmitter<{ itemIndex: number }>();
 
   @ContentChild(ComboBoxOptionsDirective, { static: true }) readonly comboBoxOptionsDirective?: ComboBoxOptionsDirective;

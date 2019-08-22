@@ -48,7 +48,6 @@ import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabImageComponent extends ReactWrapperComponent<IImageProps> {
-  @Input() componentRef?: IImageProps['componentRef'];
   @Input() alt?: IImageProps['alt'];
   @Input() crossOrigin?: IImageProps['crossOrigin'];
   @Input() height?: IImageProps['height'];

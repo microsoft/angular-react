@@ -53,6 +53,7 @@ import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/pos
       [theme]="theme"
       [styles]="styles"
       [hidden]="hidden"
+      [shouldRestoreFocus]="shouldRestoreFocus"
       (onLayerMounted)="onLayerMounted.emit()"
       (onPositioned)="onPositioned.emit($event)"
       (onDismiss)="onDismiss.emit($event)"
@@ -67,7 +68,6 @@ import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/pos
 export class FabCalloutComponent extends ReactWrapperComponent<ICalloutProps> {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: ICalloutProps['componentRef'];
   @Input() target?: ICalloutProps['target'];
   @Input() directionalHint?: ICalloutProps['directionalHint'];
   @Input() directionalHintForRTL?: ICalloutProps['directionalHintForRTL'];
@@ -98,6 +98,7 @@ export class FabCalloutComponent extends ReactWrapperComponent<ICalloutProps> {
   @Input() theme?: ICalloutProps['theme'];
   @Input() styles?: ICalloutProps['styles'];
   @Input() hidden?: ICalloutProps['hidden'];
+  @Input() shouldRestoreFocus?: ICalloutProps['shouldRestoreFocus'];
 
   @Output() readonly onLayerMounted = new EventEmitter<void>();
   @Output() readonly onPositioned = new EventEmitter<{ positions?: ICalloutPositionedInfo }>();

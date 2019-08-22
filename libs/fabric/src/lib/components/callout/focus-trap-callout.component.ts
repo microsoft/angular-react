@@ -54,6 +54,7 @@ import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/pos
       [theme]="theme"
       [styles]="styles"
       [hidden]="hidden"
+      [shouldRestoreFocus]="shouldRestoreFocus"
       [focusTrapProps]="focusTrapProps"
       (onLayerMounted)="onLayerMounted.emit()"
       (onPositioned)="onPositioned.emit($event)"
@@ -67,9 +68,8 @@ import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/pos
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabFocusTrapCalloutComponent extends ReactWrapperComponent<IFocusTrapCalloutProps> {
-  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IFocusTrapCalloutProps['componentRef'];
   @Input() target?: IFocusTrapCalloutProps['target'];
   @Input() directionalHint?: IFocusTrapCalloutProps['directionalHint'];
   @Input() directionalHintForRTL?: IFocusTrapCalloutProps['directionalHintForRTL'];
@@ -100,6 +100,7 @@ export class FabFocusTrapCalloutComponent extends ReactWrapperComponent<IFocusTr
   @Input() theme?: IFocusTrapCalloutProps['theme'];
   @Input() styles?: IFocusTrapCalloutProps['styles'];
   @Input() hidden?: IFocusTrapCalloutProps['hidden'];
+  @Input() shouldRestoreFocus?: IFocusTrapCalloutProps['shouldRestoreFocus'];
   @Input() focusTrapProps?: IFocusTrapCalloutProps['focusTrapProps'];
 
   @Output() readonly onLayerMounted = new EventEmitter<void>();

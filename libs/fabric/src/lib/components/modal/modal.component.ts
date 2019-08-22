@@ -42,6 +42,7 @@ import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/d
       [titleAriaId]="titleAriaId"
       [subtitleAriaId]="subtitleAriaId"
       [topOffsetFixed]="topOffsetFixed"
+      [dragOptions]="dragOptions"
       [Dismiss]="onDismissHandler"
       (onLayerDidMount)="onLayerDidMount.emit()"
       (onDismissed)="onDismissed.emit()"
@@ -77,6 +78,7 @@ export class FabModalComponent extends ReactWrapperComponent<IModalProps>
   @Input() titleAriaId?: IModalProps['titleAriaId'];
   @Input() subtitleAriaId?: IModalProps['subtitleAriaId'];
   @Input() topOffsetFixed?: IModalProps['topOffsetFixed'];
+  @Input() dragOptions?: IModalProps['dragOptions'];
 
   @Output() readonly onLayerDidMount = new EventEmitter<void>();
   @Output() readonly onDismiss = new EventEmitter<MouseEvent>();

@@ -22,6 +22,7 @@ import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@ang
 import {
   DetailsListBase,
   IColumn,
+  IDetailsListCheckboxProps,
   IDetailsFooterProps,
   IDetailsHeaderProps,
   IDetailsListProps,
@@ -64,7 +65,9 @@ import { DetailsListGroupsDirective } from './directives/details-list-groups.dir
       [disableSelectionZone]="disableSelectionZone"
       [dragDropEvents]="dragDropEvents"
       [enableShimmer]="enableShimmer"
+      [enableUpdateAnimations]="enableUpdateAnimations"
       [enterModalSelectionOnTouch]="enterModalSelectionOnTouch"
+      [getCellValueKey]="getCellValueKey"
       [getGroupHeight]="getGroupHeight"
       [getKey]="getKey"
       [getRowAriaDescribedBy]="getRowAriaDescribedBy"
@@ -87,9 +90,11 @@ import { DetailsListGroupsDirective } from './directives/details-list-groups.dir
       [skipViewportMeasures]="skipViewportMeasures"
       [styles]="styles"
       [theme]="theme"
+      [useFastIcons]="useFastIcons"
       [usePageCache]="usePageCache"
       [useReducedRowRenderer]="useReducedRowRenderer"
       [viewport]="viewport"
+      [RenderCheckbox]="renderCheckbox && onRenderCheckbox"
       [RenderDetailsFooter]="renderDetailsFooter && onRenderDetailsFooter"
       [RenderDetailsHeader]="renderDetailsHeader && onRenderDetailsHeader"
       [RenderMissingItem]="renderMissingItem && onRenderMissingItem"
@@ -136,6 +141,7 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
   @Input() isHeaderVisible?: IDetailsListProps['isHeaderVisible'];
   @Input() constrainMode?: IDetailsListProps['constrainMode'];
   @Input() rowElementEventMap?: IDetailsListProps['rowElementEventMap'];
+  @Input() getCellValueKey?: IDetailsListProps['getCellValueKey'];
   @Input() dragDropEvents?: IDetailsListProps['dragDropEvents'];
   @Input() enableShimmer?: IDetailsListProps['enableShimmer'];
   @Input() viewport?: IDetailsListProps['viewport'];
@@ -160,11 +166,14 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
   @Input() useReducedRowRenderer?: IDetailsListProps['useReducedRowRenderer'];
   @Input() cellStyleProps?: IDetailsListProps['cellStyleProps'];
   @Input() disableSelectionZone?: IDetailsListProps['disableSelectionZone'];
+  @Input() enableUpdateAnimations?: IDetailsListProps['enableUpdateAnimations'];
+  @Input() useFastIcons?: IDetailsListProps['useFastIcons'];
 
   // Inherited members (IWithViewportProps)
   @Input() skipViewportMeasures?: IDetailsListProps['skipViewportMeasures'];
 
   // Render members
+  @Input() renderCheckbox?: InputRendererOptions<IDetailsListCheckboxProps>;
   @Input() renderDetailsFooter?: InputRendererOptions<IDetailsFooterProps>;
   @Input() renderDetailsHeader?: InputRendererOptions<IDetailsHeaderProps>;
   @Input() renderMissingItem?: InputRendererOptions<IMissingItemRenderContext>;
@@ -191,6 +200,10 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
 
   private readonly _subscriptions: Subscription[] = [];
 
+  onRenderCheckbox: (
+    props?: IDetailsListCheckboxProps,
+    defaultRender?: JsxRenderFunc<IDetailsListCheckboxProps>
+  ) => JSX.Element;
   onRenderDetailsFooter: (
     props?: IDetailsFooterProps,
     defaultRender?: JsxRenderFunc<IDetailsFooterProps>
@@ -218,6 +231,7 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
   }
 
   ngOnInit() {
+    this.onRenderCheckbox = this.createRenderPropHandler(this.renderCheckbox);
     this.onRenderDetailsFooter = this.createRenderPropHandler(this.renderDetailsFooter);
     this.onRenderDetailsHeader = this.createRenderPropHandler(this.renderDetailsHeader);
     this.onRenderRow = this.createRenderPropHandler(this.renderRow);
@@ -340,9 +354,9 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
       {},
       omit(options, 'render'),
       renderer &&
-        ({
-          onRender: (item?: any, index?: number, column?: IColumn) => renderer({ item, index, column }),
-        } as Pick<IColumn, 'onRender'>)
+      ({
+        onRender: (item?: any, index?: number, column?: IColumn) => renderer({ item, index, column }),
+      } as Pick<IColumn, 'onRender'>)
     ) as IColumn;
   }
 

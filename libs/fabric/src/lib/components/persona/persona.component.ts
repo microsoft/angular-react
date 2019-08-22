@@ -30,6 +30,7 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
   @Input() allowPhoneInitials?: IPersonaProps['allowPhoneInitials'];
   @Input() initialsColor?: IPersonaProps['initialsColor'];
   @Input() presence?: IPersonaProps['presence'];
+  @Input() isOutOfOffice?: IPersonaProps['isOutOfOffice'];
   @Input() secondaryText?: IPersonaProps['secondaryText'];
   @Input() tertiaryText?: IPersonaProps['tertiaryText'];
   @Input() optionalText?: IPersonaProps['optionalText'];
@@ -74,6 +75,7 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
       [allowPhoneInitials]="allowPhoneInitials"
       [initialsColor]="initialsColor"
       [presence]="presence"
+      [isOutOfOffice]="isOutOfOffice"
       [secondaryText]="secondaryText"
       [tertiaryText]="tertiaryText"
       [optionalText]="optionalText"
@@ -148,6 +150,7 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
       [allowPhoneInitials]="allowPhoneInitials"
       [initialsColor]="initialsColor"
       [presence]="presence"
+      [isOutOfOffice]="isOutOfOffice"
       [secondaryText]="secondaryText"
       [tertiaryText]="tertiaryText"
       [optionalText]="optionalText"

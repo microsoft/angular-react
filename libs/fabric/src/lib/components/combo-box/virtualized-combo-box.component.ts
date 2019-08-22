@@ -37,6 +37,8 @@ import { FabBaseComboBoxComponent } from './base-combo-box.component';
       [isButtonAriaHidden]="isButtonAriaHidden"
       [ariaDescribedBy]="ariaDescribedBy"
       [keytipProps]="keytipProps"
+      [persistMenu]="persistMenu"
+      [shouldRestoreFocus]="shouldRestoreFocus"
       [RenderLowerContent]="renderLowerContent && onRenderLowerContent"
       [ItemClick]="onItemClickHandler"
       [Change]="onChangeHandler"
@@ -45,6 +47,7 @@ import { FabBaseComboBoxComponent } from './base-combo-box.component';
       [ScrollToItem]="onScrollToItemHandler"
       (onMenuOpen)="onMenuOpen.emit()"
       (onMenuDismissed)="onMenuDismissed.emit()"
+      (onMenuDismiss)="onMenuDismiss.emit()"
     >
     </VirtualizedComboBox>
   `,

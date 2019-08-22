@@ -121,6 +121,7 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
       [responsiveMode]="responsiveMode"
       [closeButtonAriaLabel]="closeButtonAriaLabel"
       [type]="type"
+      [draggableHeaderClassName]="draggableHeaderClassName"
       (onDismiss)="onDismiss.emit($event && $event.nativeEvent)"
     >
       <ReactContent><ng-content></ng-content></ReactContent>
@@ -146,6 +147,7 @@ export class FabDialogContentComponent extends ReactWrapperComponent<IDialogCont
   @Input() responsiveMode?: IDialogContentProps['responsiveMode'];
   @Input() closeButtonAriaLabel?: IDialogContentProps['closeButtonAriaLabel'];
   @Input() type?: IDialogContentProps['type'];
+  @Input() draggableHeaderClassName?: IDialogContentProps['draggableHeaderClassName'];
 
   @Output() readonly onDismiss = new EventEmitter<MouseEvent>();
 

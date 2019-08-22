@@ -30,6 +30,8 @@ import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react/lib/Br
       [overflowIndex]="overflowIndex"
       [styles]="styles"
       [theme]="theme"
+      [focusZoneProps]="focusZoneProps"
+      [tooltipHostProps]="tooltipHostProps"
       [RenderItem]="renderItem && onRenderItem"
       [ReduceData]="onReduceData"
     >
@@ -51,6 +53,8 @@ export class FabBreadcrumbComponent extends ReactWrapperComponent<IBreadcrumbPro
   @Input() overflowIndex?: IBreadcrumbProps['overflowIndex'];
   @Input() styles?: IBreadcrumbProps['styles'];
   @Input() theme?: IBreadcrumbProps['theme'];
+  @Input() focusZoneProps?: IBreadcrumbProps['focusZoneProps'];
+  @Input() tooltipHostProps?: IBreadcrumbProps['tooltipHostProps'];
 
   @Input() renderItem?: InputRendererOptions<IBreadcrumbItem>;
   @Input('reduceData') onReduceData?: IBreadcrumbProps['onReduceData'];

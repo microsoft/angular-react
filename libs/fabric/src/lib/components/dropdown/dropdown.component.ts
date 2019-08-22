@@ -39,6 +39,7 @@ import { DropdownOptionsDirective } from './directives/dropdown-options.directiv
       [panelProps]="panelProps"
       [errorMessage]="errorMessage"
       [placeholder]="placeholder"
+      [openOnKeyboardFocus]="openOnKeyboardFocus"
       [options]="options"
       [dropdownWidth]="dropdownWidth"
       [responsiveMode]="responsiveMode"
@@ -54,6 +55,7 @@ import { DropdownOptionsDirective } from './directives/dropdown-options.directiv
       [RenderList]="renderList && onRenderList"
       [RenderItem]="renderItem && onRenderItem"
       [RenderOption]="renderOption && onRenderOption"
+      [RenderPlaceholder]="renderPlaceholder && onRenderPlaceholder"
       [RenderPlaceHolder]="renderPlaceHolder && onRenderPlaceHolder"
       [RenderTitle]="renderTitle && onRenderTitle"
       [RenderCaretDown]="renderCaretDown && onRenderCaretDown"
@@ -80,8 +82,9 @@ export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> 
   @Input() calloutProps?: IDropdownProps['calloutProps'];
   @Input() panelProps?: IDropdownProps['panelProps'];
   @Input() errorMessage?: IDropdownProps['errorMessage'];
+  @Input() placeholder?: IDropdownProps['placeholder'];
+  @Input() openOnKeyboardFocus?: IDropdownProps['openOnKeyboardFocus'];
 
-  @Input() placeholder: IDropdownProps['placeholder'];
   @Input() options: IDropdownProps['options'];
   @Input() dropdownWidth?: IDropdownProps['dropdownWidth'];
   @Input() responsiveMode?: IDropdownProps['responsiveMode'];
@@ -98,6 +101,7 @@ export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> 
   @Input() renderList?: InputRendererOptions<ISelectableDroppableTextProps<IDropdown>>;
   @Input() renderItem?: InputRendererOptions<ISelectableOption>;
   @Input() renderOption?: InputRendererOptions<ISelectableOption>;
+  @Input() renderPlaceholder?: InputRendererOptions<IDropdownProps>;
   @Input() renderPlaceHolder?: InputRendererOptions<IDropdownProps>;
   @Input() renderTitle?: InputRendererOptions<IDropdownOption | IDropdownOption[]>;
   @Input() renderCaretDown?: InputRendererOptions<IDropdownProps>;
@@ -115,6 +119,7 @@ export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> 
   ) => JSX.Element;
   onRenderItem: (props?: ISelectableOption, defaultRender?: JsxRenderFunc<ISelectableOption>) => JSX.Element;
   onRenderOption: (props?: ISelectableOption, defaultRender?: JsxRenderFunc<ISelectableOption>) => JSX.Element;
+  onRenderPlaceholder: (props?: IDropdownProps, defaultRender?: JsxRenderFunc<IDropdownProps>) => JSX.Element;
   onRenderPlaceHolder: (props?: IDropdownProps, defaultRender?: JsxRenderFunc<IDropdownProps>) => JSX.Element;
   onRenderTitle: (
     props?: IDropdownOption | IDropdownOption[],
@@ -134,6 +139,7 @@ export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> 
     this.onRenderList = this.createRenderPropHandler(this.renderList);
     this.onRenderItem = this.createRenderPropHandler(this.renderItem);
     this.onRenderOption = this.createRenderPropHandler(this.renderOption);
+    this.onRenderPlaceholder = this.createRenderPropHandler(this.renderPlaceholder);
     this.onRenderPlaceHolder = this.createRenderPropHandler(this.renderPlaceHolder);
     this.onRenderTitle = this.createRenderPropHandler(this.renderTitle);
     this.onRenderCaretDown = this.createRenderPropHandler(this.renderCaretDown);

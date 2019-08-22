@@ -17,7 +17,14 @@ import { IVerticalDividerProps } from 'office-ui-fabric-react/lib/Divider';
   selector: 'fab-vertical-divider',
   exportAs: 'fabVerticalDivider',
   template: `
-    <VerticalDivider #reactNode [getClassNames]="getClassNames"> </VerticalDivider>
+    <VerticalDivider
+      #reactNode
+      [getClassNames]="getClassNames"
+      [theme]="theme"
+      [styles]="styles"
+      [className]="className"
+    >
+    </VerticalDivider>
   `,
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,6 +33,9 @@ export class FabDividerComponent extends ReactWrapperComponent<IVerticalDividerP
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() getClassNames?: IVerticalDividerProps['getClassNames'];
+  @Input() theme?: IVerticalDividerProps['theme'];
+  @Input() styles?: IVerticalDividerProps['styles'];
+  @Input() className?: IVerticalDividerProps['className'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

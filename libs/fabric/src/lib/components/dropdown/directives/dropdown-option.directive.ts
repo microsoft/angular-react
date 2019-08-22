@@ -19,5 +19,6 @@ export class DropdownOptionDirective {
   @Input() ariaLabel?: IDropdownOption['ariaLabel'];
   @Input() selected?: IDropdownOption['selected'];
   @Input() disabled?: IDropdownOption['disabled'];
+  @Input() hidden?: IDropdownOption['hidden'];
   @Input() data?: IDropdownOption['data'];
 }

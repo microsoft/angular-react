@@ -52,6 +52,8 @@ import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Pa
       [RenderFooter]="renderFooter && onRenderFooter"
       [RenderFooterContent]="renderFooterContent && onRenderFooterContent"
       [Dismiss]="onDismissHandler"
+      (onOpen)="onOpen.emit($event)"
+      (onOpened)="onOpened.emit($event)"
       (onDismissed)="onDismissed.emit($event)"
       (onLightDismissClick)="onLightDismissClick.emit($event)"
     >
@@ -95,6 +97,8 @@ export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implem
   @Input() renderFooterContent?: InputRendererOptions<IPanelProps>;
 
   @Output() readonly onLightDismissClick = new EventEmitter<void>();
+  @Output() readonly onOpen = new EventEmitter<void>();
+  @Output() readonly onOpened = new EventEmitter<void>();
   @Output() readonly onDismiss = new EventEmitter<{ ev?: Event }>();
   @Output() readonly onDismissed = new EventEmitter<void>();
 
