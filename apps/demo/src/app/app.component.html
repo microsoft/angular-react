@@ -192,7 +192,7 @@
       weekNumberFormatString="Week number {0}"
     ></fab-calendar-strings>
   </fab-calendar>
-  
+
   <fab-marquee-selection [isEnabled]="marqueeEnabled" [selection]="selection">
     <fab-details-list
       [selection]="selection"
@@ -254,6 +254,7 @@
   <fab-default-button (onClick)="marqueeEnabled = !marqueeEnabled">
     Marquee {{ marqueeEnabled === false ? 'Disabled' : 'Enabled' }}
   </fab-default-button>
-  <fab-people-picker [inputProps]="{placeholder: 'Search for a person'}" [pickerSuggestionsOptions]="{noResultsFoundText: 'No results found', loadingText: 'Loading'}"  [selectedItems]="peoplePickerSelectedItems" (onChange)="updatePeoplePickerSelectedItems($event)" [resolveSuggestions]="peoplePickerInputChanged"></fab-people-picker> 
-  <div>{{peoplePickerSelectedItems.length}} item(s) selected in the people picker</div> 
+  <fab-people-picker [inputProps]="{placeholder: 'Search for a person'}" [pickerSuggestionsOptions]="{noResultsFoundText: 'No results found', loadingText: 'Loading'}"  [selectedItems]="peoplePickerSelectedItems" (onChange)="updatePeoplePickerSelectedItems($event)" [resolveSuggestions]="peoplePickerInputChanged"></fab-people-picker>
+  <div>{{peoplePickerSelectedItems.length}} item(s) selected in the people picker</div>
+  <fab-progress-indicator bar-height="4"  [percentComplete]="0.35" description="Progress indicator description" label="Progress indicator label"></fab-progress-indicator>
  </div>

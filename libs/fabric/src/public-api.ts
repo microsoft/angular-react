@@ -38,3 +38,4 @@ export * from './lib/components/toggle/public-api';
 export * from './lib/components/tooltip/public-api';
 export * from './lib/components/nav/public-api';
 export * from './lib/components/pickers/public-api';
+export * from './lib/components/progress-indicator/public-api';
