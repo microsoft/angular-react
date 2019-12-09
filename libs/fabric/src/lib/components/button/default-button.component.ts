@@ -32,6 +32,7 @@ import { FabBaseButtonComponent } from './base-button.component';
       [ariaLabel]="ariaLabel"
       [ariaDescription]="ariaDescription"
       [ariaHidden]="ariaHidden"
+      [role]="role"
       [text]="text"
       [iconProps]="iconProps"
       [menuProps]="menuProps"
