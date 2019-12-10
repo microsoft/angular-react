@@ -42,7 +42,9 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
   @Input() ariaLabel?: IButtonProps['ariaLabel'];
   @Input() ariaDescription?: IButtonProps['ariaDescription'];
   @Input() ariaHidden?: IButtonProps['ariaHidden'];
+  @Input() ariaSelected?: IButtonProps['aria-selected'];
   @Input() role?: IButtonProps['role'];
+  @Input() tabIndex?: IButtonProps['tabIndex'];
   @Input() text?: IButtonProps['text'];
   @Input() iconProps?: IButtonProps['iconProps'];
   @Input() menuProps?: IButtonProps['menuProps'];
