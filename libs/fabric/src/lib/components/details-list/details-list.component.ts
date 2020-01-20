@@ -143,7 +143,6 @@ export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListP
   @Input() rowElementEventMap?: IDetailsListProps['rowElementEventMap'];
   @Input() getCellValueKey?: IDetailsListProps['getCellValueKey'];
   @Input() dragDropEvents?: IDetailsListProps['dragDropEvents'];
-  @Input() enableShimmer?: IDetailsListProps['enableShimmer'];
   @Input() viewport?: IDetailsListProps['viewport'];
   @Input() ariaLabelForListHeader?: IDetailsListProps['ariaLabelForListHeader'];
   @Input() ariaLabelForSelectAllCheckbox?: IDetailsListProps['ariaLabelForSelectAllCheckbox'];

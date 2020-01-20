@@ -97,8 +97,8 @@ export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> 
   @Input() theme?: IDropdownProps['theme'];
   @Input() styles?: IDropdownProps['styles'];
 
-  @Input() renderContainer?: InputRendererOptions<ISelectableDroppableTextProps<IDropdown>>;
-  @Input() renderList?: InputRendererOptions<ISelectableDroppableTextProps<IDropdown>>;
+  @Input() renderContainer?: InputRendererOptions<ISelectableDroppableTextProps<IDropdown, IDropdown>>;
+  @Input() renderList?: InputRendererOptions<ISelectableDroppableTextProps<IDropdown, IDropdown>>;
   @Input() renderItem?: InputRendererOptions<ISelectableOption>;
   @Input() renderOption?: InputRendererOptions<ISelectableOption>;
   @Input() renderPlaceholder?: InputRendererOptions<IDropdownProps>;
