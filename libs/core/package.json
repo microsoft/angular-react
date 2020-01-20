@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "1.0.1",
+  "version": "2.0.0-rc0",
   "ngPackage": {
     "deleteDestPath": true,
     "whitelistedNonPeerDependencies": [
@@ -55,8 +55,8 @@
     "@angular/platform-browser-dynamic": "^8.0.2",
     "@angular/platform-browser": "^8.0.2",
     "rxjs": "^6.5.2",
-    "react-dom": "^16.6.3",
-    "react": "^16.6.3"
+    "react-dom": "~16.8.6",
+    "react": "~16.8.6"
   },
   "dependencies": {
     "css-to-style": "^1.2.1",
