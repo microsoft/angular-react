@@ -25,8 +25,6 @@ import {
       [LinkClick]="onLinkClickHandler"
       [selectedKey]="selectedKey"
       [expandButtonAriaLabel]="expandButtonAriaLabel"
-      [expandedStateText]="expandedStateText"
-      [collapsedStateText]="collapsedStateText"
       [LinkExpandClick]="onLinkExpandClickHandler"
       [isOnTop]="isOnTop"
       [initialSelectedKey]="initialSelectedKey"
