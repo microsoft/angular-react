@@ -71,7 +71,7 @@
     "@ngrx/store-devtools": "~8.0.1",
     "core-js": "^2.5.4",
     "ngrx-store-freeze": "^0.2.4",
-    "office-ui-fabric-react": "7.71.0",
+    "office-ui-fabric-react": "7.82.2",
     "react": "~16.8.6",
     "react-dom": "~16.8.6",
     "rxjs": "6.5.2",

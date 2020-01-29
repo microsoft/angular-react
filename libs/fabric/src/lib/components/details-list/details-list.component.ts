@@ -64,7 +64,6 @@ import { DetailsListGroupsDirective } from './directives/details-list-groups.dir
       [constrainMode]="constrainMode"
       [disableSelectionZone]="disableSelectionZone"
       [dragDropEvents]="dragDropEvents"
-      [enableShimmer]="enableShimmer"
       [enableUpdateAnimations]="enableUpdateAnimations"
       [enterModalSelectionOnTouch]="enterModalSelectionOnTouch"
       [getCellValueKey]="getCellValueKey"

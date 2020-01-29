@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
-  "version": "2.0.0-rc0",
+  "version": "2.0.2",
   "ngPackage": {
     "deleteDestPath": true,
     "whitelistedNonPeerDependencies": [

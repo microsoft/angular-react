@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/fabric",
-  "version": "2.0.0-rc0",
+  "version": "2.0.2",
   "ngPackage": {
     "lib": {
       "entryFile": "public-api.ts",
@@ -49,7 +49,7 @@
     "@angular/core": "^8.0.2",
     "@angular/platform-browser-dynamic": "^8.0.2",
     "@angular/platform-browser": "^8.0.2",
-    "office-ui-fabric-react": "7.71.0",
+    "office-ui-fabric-react": "7.82.2",
     "react-dom": "~16.8.6",
     "react": "^16.8.6"
   }
