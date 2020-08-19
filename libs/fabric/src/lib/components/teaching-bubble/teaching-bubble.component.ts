@@ -26,7 +26,6 @@ import { ITeachingBubbleProps } from 'office-ui-fabric-react/lib/TeachingBubble'
       [ariaLabelledBy]="ariaLabelledBy"
       [calloutProps]="calloutProps"
       [componentRef]="componentRef"
-      [focusTrapZoneProps]="focusTrapZoneProps"
       [footerContent]="footerContent"
       [hasCloseButton]="hasCloseButton"
       [hasCondensedHeadline]="hasCondensedHeadline"
@@ -54,7 +53,6 @@ export class FabTeachingBubbleComponent extends ReactWrapperComponent<ITeachingB
   @Input() ariaLabelledBy?: ITeachingBubbleProps['ariaLabelledBy'];
   @Input() calloutProps?: ITeachingBubbleProps['calloutProps'];
   @Input() componentRef?: ITeachingBubbleProps['componentRef'];
-  // @Input() focusTrapZoneProps?: ITeachingBubbleProps['focusTrapZoneProps'];
   @Input() footerContent?: ITeachingBubbleProps['footerContent'];
   @Input() hasCloseButton?: ITeachingBubbleProps['hasCloseButton'];
   @Input() hasCondensedHeadline?: ITeachingBubbleProps['hasCondensedHeadline'];

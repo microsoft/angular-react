@@ -115,6 +115,25 @@ export class AppComponent {
     onClick: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement | HTMLAnchorElement | BaseButton | Button | HTMLSpanElement, MouseEvent>) => alert('Maybe later clicked'),
   };
 
+  isCalloutVisible = false;
+  isTeachingBubbleVisible = false;
+
+  onOpenCalloutClicked() {
+    this.isCalloutVisible = true;
+  }
+
+  onOpenTeachingBubbleClicked() {
+    this.isTeachingBubbleVisible = true;
+  }
+
+  onCalloutDismiss(event) {
+    this.isCalloutVisible = false;
+  }
+
+  onTeachingBubbleDismiss(event) {
+    this.isTeachingBubbleVisible = false;
+  }
+
   onNewClicked() {
     console.log('New clicked');
   }
