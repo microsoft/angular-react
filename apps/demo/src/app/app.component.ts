@@ -9,6 +9,7 @@ import {
   ICheckboxProps,
   IPersonaProps,
   IPeoplePickerProps,
+  IButtonProps
 } from 'office-ui-fabric-react';
 import { RenderPropOptions } from '@angular-react/core';
 import { FabDropdownComponent } from '@angular-react/fabric';
@@ -101,6 +102,16 @@ export class AppComponent {
     { field1: 'f1content4' },
     { field2: 'f2content5' },
   ];
+
+  teachingBubblePrimaryButtonProps: IButtonProps = {
+    children: 'Primary action',
+    onClick: alert('Primary action clicked'),
+  };
+
+  teachingBubbleSecondaryButtonProps: IButtonProps = {
+    children: 'Maybe later',
+    onClick: alert('Maybe later clicked'),
+  };
 
   onNewClicked() {
     console.log('New clicked');
