@@ -47,14 +47,14 @@ import { ITeachingBubbleProps } from 'office-ui-fabric-react/lib/TeachingBubble'
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FabTeachingBubbleComponent extends ReactWrapperComponent<ITeachingBubbleProps> implements OnInit {
+export class FabTeachingBubbleComponent extends ReactWrapperComponent<ITeachingBubbleProps> {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() ariaDescribedBy?: ITeachingBubbleProps['ariaDescribedBy'];
   @Input() ariaLabelledBy?: ITeachingBubbleProps['ariaLabelledBy'];
   @Input() calloutProps?: ITeachingBubbleProps['calloutProps'];
   @Input() componentRef?: ITeachingBubbleProps['componentRef'];
-  @Input() focusTrapZoneProps?: ITeachingBubbleProps['focusTrapZoneProps'];
+  // @Input() focusTrapZoneProps?: ITeachingBubbleProps['focusTrapZoneProps'];
   @Input() footerContent?: ITeachingBubbleProps['footerContent'];
   @Input() hasCloseButton?: ITeachingBubbleProps['hasCloseButton'];
   @Input() hasCondensedHeadline?: ITeachingBubbleProps['hasCondensedHeadline'];

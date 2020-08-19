@@ -9,7 +9,9 @@ import {
   ICheckboxProps,
   IPersonaProps,
   IPeoplePickerProps,
-  IButtonProps
+  IButtonProps,
+  BaseButton,
+  Button
 } from 'office-ui-fabric-react';
 import { RenderPropOptions } from '@angular-react/core';
 import { FabDropdownComponent } from '@angular-react/fabric';
@@ -105,12 +107,12 @@ export class AppComponent {
 
   teachingBubblePrimaryButtonProps: IButtonProps = {
     children: 'Primary action',
-    onClick: alert('Primary action clicked'),
+    onClick: (event:  React.MouseEvent<HTMLButtonElement | HTMLDivElement | HTMLAnchorElement | BaseButton | Button | HTMLSpanElement, MouseEvent>) => alert('Primary action clicked'),
   };
 
   teachingBubbleSecondaryButtonProps: IButtonProps = {
     children: 'Maybe later',
-    onClick: alert('Maybe later clicked'),
+    onClick: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement | HTMLAnchorElement | BaseButton | Button | HTMLSpanElement, MouseEvent>) => alert('Maybe later clicked'),
   };
 
   onNewClicked() {
