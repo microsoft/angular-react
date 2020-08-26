@@ -63,7 +63,7 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
 
   @Input() @passProp() renderItemLink?: InputRendererOptions<IPivotItemProps>;
 
-  onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
+  @passProp() onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
