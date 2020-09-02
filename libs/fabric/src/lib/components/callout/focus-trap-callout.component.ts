@@ -13,7 +13,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IFocusTrapCalloutProps } from 'office-ui-fabric-react';
+import { IFocusTrapCalloutProps } from 'office-ui-fabric-react/lib/Callout';
 import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/positioning';
 
 @Component({

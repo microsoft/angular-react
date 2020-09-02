@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ProgressIndicator } from 'office-ui-fabric-react';
+import { ProgressIndicator } from 'office-ui-fabric-react/lib/ProgressIndicator';
 import { FabProgressIndicatorComponent } from './progress-indicator.component';
 
 const components = [FabProgressIndicatorComponent];

@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Modal } from 'office-ui-fabric-react';
+import { Modal } from 'office-ui-fabric-react/lib/Modal';
 import { FabModalComponent } from './modal.component';
 
 const components = [FabModalComponent];

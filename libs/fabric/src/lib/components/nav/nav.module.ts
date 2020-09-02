@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { registerElement } from "@angular-react/core";
-import { Nav } from "office-ui-fabric-react";
+import { Nav } from "office-ui-fabric-react/lib/Nav";
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FabNavComponent } from "./nav.component";
