@@ -17,7 +17,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib/components/Pivot';
+import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
 import * as React from 'react';
 
 @Component({
