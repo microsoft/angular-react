@@ -21,7 +21,7 @@
     "postbuild:libs:core": "copyfiles README.md ./@angular-react/core",
     "build:libs:fabric": "ts-node libs/fabric/build.ts",
     "build:libs:semantic-ui": "ts-node libs/semantic-ui/build.ts",
-    "build:libs:utils": "ts-node libs/utils/build.ts",
+    "build:libs:toolkit": "ts-node libs/toolkit/build.ts",
     "affected:apps": "./node_modules/.bin/nx affected:apps",
     "affected:build": "./node_modules/.bin/nx affected:build",
     "affected:e2e": "./node_modules/.bin/nx affected:e2e",

@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
-  "name": "angular-react-utils",
+  "name": "angular-react-toolkit",
   "version": "1.0.0",
   "ngPackage": {
     "lib": {
@@ -12,7 +12,7 @@
         "office-ui-fabric-react": "Fabric"
       }
     },
-    "dest": "../../angular-react-utils"
+    "dest": "../../angular-react-toolkit"
   },
   "license": "MIT",
   "bugs": {

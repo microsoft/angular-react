@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { DatePicker } from 'office-ui-fabric-react/lib/DatePicker';
 import * as CalendarCss from 'office-ui-fabric-react/lib-amd/components/Calendar/Calendar.scss';
-import { noop } from 'angular-react-utils/lib/noop';
+import { noop } from 'angular-react-toolkit/utils/noop';
 import { FabDatePickerComponent } from './date-picker.component';
 
 // Dummy action to force CalendarCss to load and not be tree-shaken away.
