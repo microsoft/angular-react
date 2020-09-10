@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 
 import { ContentChildren, Directive, QueryList } from '@angular/core';
+import { ChangeableItemsDirective } from 'angular-react-toolkit/core/shared/changeable-items.directive';
+import { getDataAttributes } from 'angular-react-toolkit/utils/get-data-attributes';
 
-import { ChangeableItemsDirective } from '../../core/shared/changeable-items.directive';
 import { ICommandBarItemOptions } from '../command-bar.component';
 import { CommandBarItemDirective } from './command-bar-item.directives';
-import { getDataAttributes } from '../../../utils/get-data-attributes';
 
 export abstract class CommandBarItemsDirectiveBase extends ChangeableItemsDirective<ICommandBarItemOptions> {
   abstract readonly directiveItems: QueryList<CommandBarItemDirective>;

@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 
 import { ContentChildren, Directive, QueryList } from '@angular/core';
-import { IGroup } from 'office-ui-fabric-react';
+import { IGroup } from 'office-ui-fabric-react/lib/DetailsList';
+import { ChangeableItemsDirective } from 'angular-react-toolkit/core/shared/changeable-items.directive';
 
-import { ChangeableItemsDirective } from '../../core/shared/changeable-items.directive';
+// TODO:
 import { GroupItemDirective } from '../../group/directives/group-item.directive';
 
 /**

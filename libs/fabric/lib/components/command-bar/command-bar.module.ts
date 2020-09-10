@@ -5,8 +5,10 @@ import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import * as OverflowSetCss from 'office-ui-fabric-react/lib-amd/components/OverflowSet/OverflowSet.scss';
-import { CommandBar } from 'office-ui-fabric-react';
-import { noop } from '../../utils/noop';
+import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
+import { noop } from 'angular-react-toolkit/utils/noop';
+
+// TODO:
 import { FabContextualMenuModule } from '../contextual-menu/contextual-menu.module';
 import { FabCommandBarComponent } from './command-bar.component';
 import {

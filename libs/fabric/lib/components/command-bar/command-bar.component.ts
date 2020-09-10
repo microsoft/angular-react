@@ -21,9 +21,10 @@ import {
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { Subscription } from 'rxjs';
-import { OnChanges, TypedChanges } from '../../declarations/angular/typed-changes';
-import omit from '../../utils/omit';
-import { mergeItemChanges } from '../core/declarative/item-changed';
+import { OnChanges, TypedChanges } from 'angular-react-toolkit/declarations/angular/typed-changes';
+import omit from 'angular-react-toolkit/utils/omit';
+import { mergeItemChanges } from 'angular-react-toolkit/core/declarative/item-changed';
+
 import { CommandBarItemChangedPayload, CommandBarItemDirective } from './directives/command-bar-item.directives';
 import {
   CommandBarFarItemsDirective,
@@ -196,6 +197,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
     const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon, { legacyRenderMode: true });
     const renderer = this.createInputJsxRenderer(itemOptions.render);
 
+    // @ts-ignore
     return Object.assign(
       {},
       sharedProperties,

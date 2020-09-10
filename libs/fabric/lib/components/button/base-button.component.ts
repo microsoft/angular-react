@@ -17,14 +17,16 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
-import { ContextualMenuItemDirective, IContextualMenuItemOptions } from '../contextual-menu/public-api';
-import { ChangeableItemsHelper } from '../core/shared/changeable-helper';
-import { IContextualMenuItem } from 'office-ui-fabric-react';
+import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
+import { ChangeableItemsHelper } from 'angular-react-toolkit/core/shared/changeable-helper';
+import { mergeItemChanges } from 'angular-react-toolkit/core/declarative/item-changed';
+import { omit } from 'angular-react-toolkit/utils/omit';
+import { getDataAttributes } from 'angular-react-toolkit/utils/get-data-attributes';
 import { Subscription } from 'rxjs';
+
+// TODO:
+import { ContextualMenuItemDirective, IContextualMenuItemOptions } from '../contextual-menu/public-api';
 import { CommandBarItemChangedPayload } from '../command-bar/directives/command-bar-item.directives';
-import { mergeItemChanges } from '../core/declarative/item-changed';
-import { omit } from '../../utils/omit';
-import { getDataAttributes } from '../../utils/get-data-attributes';
 
 export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButtonProps>
   implements OnInit, AfterContentInit, OnDestroy {
@@ -115,6 +117,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
         this.markForCheck();
       };
 
+      // @ts-ignore
       this._changeableItemsHelper = new ChangeableItemsHelper(this.menuItemsDirectives);
       this._subscriptions.push(
         this._changeableItemsHelper.onItemsChanged.subscribe((newItems: QueryList<ContextualMenuItemDirective>) => {
@@ -186,6 +189,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
     const iconRenderer = this.createInputJsxRenderer(itemOptions.renderIcon, { legacyRenderMode: true });
     const renderer = this.createInputJsxRenderer(itemOptions.render);
 
+    // @ts-ignore
     return Object.assign(
       {},
       sharedProperties,

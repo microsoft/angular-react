@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { ContentChildren, Directive, QueryList } from '@angular/core';
-import { IColumn } from 'office-ui-fabric-react';
+import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import { ChangeableItemsDirective } from 'angular-react-toolkit/core/shared/changeable-items.directive';
 
-import { ChangeableItemsDirective } from '../../core/shared/changeable-items.directive';
 import { DetailsListColumnDirective, IDetailsListColumnOptions } from './details-list-column.directive';
 
 /**

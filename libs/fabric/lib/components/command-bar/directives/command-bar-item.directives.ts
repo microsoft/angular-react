@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 
 import { ContentChild, Directive, Input, TemplateRef, ElementRef } from '@angular/core';
+import { ItemChangedPayload } from 'angular-react-toolkit/core/declarative/item-changed.payload';
+
+// TODO:
 import { ContextualMenuItemDirective } from '../../contextual-menu/directives/contextual-menu-item.directive';
-import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
 import {
   ICommandBarItemOptions,
   ICommandBarItemOptionsRenderContext,
