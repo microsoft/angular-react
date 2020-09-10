@@ -45,22 +45,15 @@ import * as React from 'react';
 export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps> implements OnInit {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
+  @Input() disabled? = false;
   @Input() @passProp() componentRef?: IPivotItemProps['componentRef'];
-
   @Input() @passProp() headerText?: IPivotItemProps['headerText'];
-
   @Input() @passProp() headerButtonProps?: IPivotItemProps['headerButtonProps'];
-
   @Input() @passProp() itemKey?: IPivotItemProps['itemKey'];
-
   @Input() @passProp() ariaLabel?: IPivotItemProps['ariaLabel'];
-
   @Input() @passProp() itemCount?: IPivotItemProps['itemCount'];
-
   @Input() @passProp() itemIcon?: IPivotItemProps['itemIcon'];
-
   @Input() @passProp() keytipProps?: IPivotItemProps['keytipProps'];
-
   @Input() @passProp() renderItemLink?: InputRendererOptions<IPivotItemProps>;
 
   @passProp() onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
