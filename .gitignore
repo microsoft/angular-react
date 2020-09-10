@@ -46,6 +46,8 @@ yarn-error.log
 
 # dist artifacts
 @angular-react/
+angular-react-fabric
+angular-react-utils
 
 # ng-packagr (temporary files)
 .ng_pkg_build/

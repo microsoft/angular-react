@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
-  "name": "@angular-react/fabric",
-  "version": "3.0.0",
+  "name": "angular-react-utils",
+  "version": "1.0.0",
   "ngPackage": {
     "lib": {
       "entryFile": "public-api.ts",
@@ -12,18 +12,8 @@
         "office-ui-fabric-react": "Fabric"
       }
     },
-    "dest": "../../@angular-react/fabric"
+    "dest": "../../angular-react-utils"
   },
-  "description": "Use Fabric React components inside Angular",
-  "author": {
-    "name": "Ben Feely",
-    "url": "http://benfeely.com"
-  },
-  "contributors": [
-    {
-      "name": "Ben Grynhaus"
-    }
-  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/microsoft/angular-react/issues"
@@ -48,7 +38,6 @@
     "@angular/core": "^8.0.2",
     "@angular/platform-browser-dynamic": "^8.0.2",
     "@angular/platform-browser": "^8.0.2",
-    "angular-react-utils": "1.0.0",
     "office-ui-fabric-react": "7.82.2",
     "react-dom": "~16.8.6",
     "react": "^16.8.6"

@@ -15,8 +15,9 @@
     "paths": {
       "@angular-react/*": ["libs/*"],
       "@angular-react/core": ["libs/core/src/index.ts"],
-      "@angular-react/fabric": ["libs/fabric/src/index.ts"],
-      "@angular-react/semantic-ui": ["libs/semantic-ui/src/index.ts"]
+      "@angular-react/fabric": ["libs/fabric/public-api.ts"],
+      "@angular-react/semantic-ui": ["libs/semantic-ui/src/index.ts"],
+      "angular-react-utils": ["libs/utils/public-api.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
