@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 
 import { Directive, Input } from '@angular/core';
-import { IComboBoxOption } from 'office-ui-fabric-react';
+import { IComboBoxOption } from 'office-ui-fabric-react/lib/ComboBox';
 
 /**
  * Wrapper directive for creating a ComboBoxOption
  * @paramName optionKey Binds to React 'key' property.
- *                      Name change necessary because key is a reserved attribute in the wrapper component. 
+ *                      Name change necessary because key is a reserved attribute in the wrapper component.
  */
 @Directive({ selector: 'fab-combo-box-option' })
 export class ComboBoxOptionDirective {

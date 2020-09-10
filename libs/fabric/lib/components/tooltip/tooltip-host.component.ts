@@ -15,7 +15,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ITooltipHostProps, ITooltipProps } from 'office-ui-fabric-react/lib/Tooltip';
-import { omit } from '../../utils/omit';
+import { omit } from 'angular-react-utils/lib/omit';
 
 @Component({
   selector: 'fab-tooltip-host',

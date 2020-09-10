@@ -13,7 +13,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IDatePickerProps } from 'office-ui-fabric-react';
+import { IDatePickerProps } from 'office-ui-fabric-react/lib/DatePicker';
 
 @Component({
   selector: 'fab-date-picker',
