@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { ISearchBoxProps } from 'office-ui-fabric-react/lib/SearchBox';
-import omit from '../../utils/omit';
+import omit from 'angular-react-utils/lib/omit';
 
 @Component({
   selector: 'fab-search-box',

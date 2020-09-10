@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 
 import { Directive, Input } from '@angular/core';
-import { IDropdownOption } from 'office-ui-fabric-react';
+import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 
 /**
  * Wrapper directive for creating a DropdownOption
  * @paramName optionKey Binds to React 'key' property.
- *                      Name change necessary because key is a reserved attribute in the wrapper component. 
+ *                      Name change necessary because key is a reserved attribute in the wrapper component.
  */
 @Directive({ selector: 'fab-dropdown-option' })
 export class DropdownOptionDirective {

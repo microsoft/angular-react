@@ -17,7 +17,7 @@ import {
   AfterContentInit,
 } from '@angular/core';
 import { IDropdownProps, IDropdownOption, IDropdown } from 'office-ui-fabric-react/lib/Dropdown';
-import { ISelectableDroppableTextProps, ISelectableOption } from 'office-ui-fabric-react';
+import { ISelectableDroppableTextProps, ISelectableOption } from 'office-ui-fabric-react/lib/SelectableOption';
 import { DropdownOptionsDirective } from './directives/dropdown-options.directive';
 
 @Component({

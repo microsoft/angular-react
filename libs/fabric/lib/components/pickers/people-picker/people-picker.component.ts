@@ -13,8 +13,9 @@ import {
     EventEmitter,
   } from '@angular/core';
   import { FabBasePickerComponent } from '../base-picker/base-picker.component';
-  import { IPersonaProps, IPeoplePickerProps, BaseAutoFill } from 'office-ui-fabric-react';
-  
+  import { IPeoplePickerProps, BaseAutoFill } from 'office-ui-fabric-react/lib/Pickers';
+  import { IPersonaProps } from 'office-ui-fabric-react/lib/Persona';
+
   @Component({
     selector: 'fab-people-picker',
     exportAs: 'fabPeoplePicker',
@@ -57,9 +58,8 @@ import {
   })
   export class FabPeoplePickerComponent extends FabBasePickerComponent<IPersonaProps, IPeoplePickerProps> {
     @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
-    
+
     constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
       super(elementRef, changeDetectorRef, renderer, ngZone);
     }
   }
-  
