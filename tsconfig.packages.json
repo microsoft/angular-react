@@ -5,7 +5,8 @@
     "module": "es2015",
     "baseUrl": ".",
     "paths": {
-      "@angular-react/*": ["@angular-react/*"]
+      "@angular-react/*": ["@angular-react/*"],
+      "angular-react-utils/*": ["angular-react-utils/*"]
     }
   },
   "exclude": ["**/*.spec.ts", "**/*.e2e-spec.ts", "node_modules", "tmp"]
