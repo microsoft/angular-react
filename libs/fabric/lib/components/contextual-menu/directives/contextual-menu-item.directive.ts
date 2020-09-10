@@ -21,7 +21,7 @@ import { OnChanges } from '../../../declarations/angular/typed-changes';
 import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
 import { ChangeableItemsHelper, IChangeableItemsContainer } from '../../core/shared/changeable-helper';
 import { ChangeableItemDirective } from '../../core/shared/changeable-item.directive';
-import { getDataAttributes } from '../../../utils/get-data-attributes';
+import { getDataAttributes } from 'angular-react-toolkit/utils/get-data-attributes';
 
 export type ContextualMenuItemChangedPayload = ItemChangedPayload<
   IContextualMenuItemOptions['key'],

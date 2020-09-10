@@ -6,7 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@angular-react/*": ["@angular-react/*"],
-      "angular-react-utils/*": ["angular-react-utils/*"]
+      "angular-react-toolkit/*": ["angular-react-toolkit/*"]
     }
   },
   "exclude": ["**/*.spec.ts", "**/*.e2e-spec.ts", "node_modules", "tmp"]

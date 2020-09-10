@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/utils",
+    "outDir": "../../dist/out-tsc/libs/toolkit",
     "types": ["jasmine", "node"]
   },
   "files": ["src/test.ts"],
