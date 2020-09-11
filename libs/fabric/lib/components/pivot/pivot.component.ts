@@ -75,7 +75,7 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
       #reactNode
       [disguiseRootAs]="PivotType"
       [disguiseChildrenAs]="PivotItemType"
-      [ngChildComponents]="pivotItems?.toArray()"
+      [ngChildComponents]="children || pivotItems?.toArray()"
       [componentRef]="componentRef"
       [styles]="styles"
       [theme]="theme"
@@ -114,6 +114,7 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
   @Input() linkFormat?: IPivotProps['linkFormat'];
   @Input() headersOnly?: IPivotProps['headersOnly'];
   @Input() getTabId?: IPivotProps['getTabId'];
+  @Input() children?: QueryList<FabPivotItemComponent>;
 
   @Output() readonly onLinkClick = new EventEmitter<{ item?: PivotItem; ev?: MouseEvent }>();
 
