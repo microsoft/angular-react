@@ -42,6 +42,9 @@
     "fabric"
   ],
   "private": false,
+  "dependencies": {
+    "angular-react-toolkit": "^1.0.0"
+  },
   "peerDependencies": {
     "@angular-react/core": "^1.0.0",
     "@angular/common": "^8.0.2",
