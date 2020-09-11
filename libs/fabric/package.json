@@ -3,6 +3,9 @@
   "name": "@angular-react/fabric",
   "version": "3.0.0",
   "ngPackage": {
+    "whitelistedNonPeerDependencies": [
+      "angular-react-toolkit"
+    ],
     "lib": {
       "entryFile": "public-api.ts",
       "umdModuleIds": {
