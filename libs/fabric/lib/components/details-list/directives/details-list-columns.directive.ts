@@ -3,7 +3,7 @@
 
 import { ContentChildren, Directive, QueryList } from '@angular/core';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
-import { ChangeableItemsDirective } from 'angular-react-toolkit/core/shared/changeable-items.directive';
+import { ChangeableItemsDirective } from 'angular-react-toolkit';
 
 import { DetailsListColumnDirective, IDetailsListColumnOptions } from './details-list-column.directive';
 

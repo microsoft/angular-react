@@ -16,11 +16,7 @@ import {
 } from '@angular/core';
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { KnownKeys, InputRendererOptions } from '@angular-react/core';
-import { OnChanges } from 'angular-react-toolkit/declarations/angular/typed-changes';
-import { ItemChangedPayload } from 'angular-react-toolkit/core/declarative/item-changed.payload';
-import { ChangeableItemsHelper, IChangeableItemsContainer } from 'angular-react-toolkit/core/shared/changeable-helper';
-import { ChangeableItemDirective } from 'angular-react-toolkit/core/shared/changeable-item.directive';
-import { getDataAttributes } from 'angular-react-toolkit/utils/get-data-attributes';
+import { OnChanges, ItemChangedPayload, ChangeableItemsHelper, IChangeableItemsContainer, ChangeableItemDirective, getDataAttributes } from 'angular-react-toolkit';
 
 export type ContextualMenuItemChangedPayload = ItemChangedPayload<
   IContextualMenuItemOptions['key'],

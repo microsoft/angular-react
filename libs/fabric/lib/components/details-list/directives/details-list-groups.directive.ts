@@ -3,7 +3,7 @@
 
 import { ContentChildren, Directive, QueryList } from '@angular/core';
 import { IGroup } from 'office-ui-fabric-react/lib/DetailsList';
-import { ChangeableItemsDirective } from 'angular-react-toolkit/core/shared/changeable-items.directive';
+import { ChangeableItemsDirective } from 'angular-react-toolkit';
 
 // TODO:
 import { GroupItemDirective } from '../../group/directives/group-item.directive';

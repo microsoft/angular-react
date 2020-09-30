@@ -4,7 +4,7 @@
 import { AfterContentInit, ContentChild, Directive, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { InputRendererOptions, KnownKeys } from '@angular-react/core';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
-import { ChangeableItemDirective } from 'angular-react-toolkit/core/shared/changeable-item.directive';
+import { ChangeableItemDirective } from 'angular-react-toolkit';
 
 /**
  * Wrapper directive for rendering a custom column to a DetailsListColumn

@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 
 import { ContentChildren, Directive, QueryList } from '@angular/core';
-import { ChangeableItemsDirective } from 'angular-react-toolkit/core/shared/changeable-items.directive';
-import { getDataAttributes } from 'angular-react-toolkit/utils/get-data-attributes';
+import { ChangeableItemsDirective, getDataAttributes } from 'angular-react-toolkit';
 
 import { ICommandBarItemOptions } from '../command-bar.component';
 import { CommandBarItemDirective } from './command-bar-item.directives';
