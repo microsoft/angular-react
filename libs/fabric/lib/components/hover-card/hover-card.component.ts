@@ -15,7 +15,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IExpandingCardProps, IHoverCardProps, IPlainCardProps } from 'office-ui-fabric-react/lib/HoverCard';
-import { omit } from 'angular-react-toolkit';
+import { omit } from '@angular-react/fabric/lib/utils';
 
 @Component({
   selector: 'fab-hover-card',
