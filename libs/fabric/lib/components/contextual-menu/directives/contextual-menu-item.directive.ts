@@ -16,7 +16,8 @@ import {
 } from '@angular/core';
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { KnownKeys, InputRendererOptions } from '@angular-react/core';
-import { OnChanges, ItemChangedPayload, ChangeableItemsHelper, IChangeableItemsContainer, ChangeableItemDirective, getDataAttributes } from 'angular-react-toolkit';
+import { ItemChangedPayload, ChangeableItemsHelper, IChangeableItemsContainer, ChangeableItemDirective, getDataAttributes } from 'angular-react-toolkit';
+import { OnChanges } from '@angular-react/fabric/lib/declarations';
 
 export type ContextualMenuItemChangedPayload = ItemChangedPayload<
   IContextualMenuItemOptions['key'],

@@ -3,8 +3,8 @@
 
 import { EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { OnChanges } from '../../../declarations/angular/typed-changes';
-import { ItemChangedPayload, ItemChanges } from '../../core/declarative/item-changed.payload';
+import { OnChanges } from '@angular-react/fabric/lib/declarations';;
+import { ItemChangedPayload, ItemChanges } from '../declarative/item-changed.payload';
 import { ChangeableItemHelper } from './changeable-helper';
 
 /**
