@@ -18,10 +18,7 @@ import {
 } from '@angular/core';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
-import { ChangeableItemsHelper } from 'angular-react-toolkit/core/shared/changeable-helper';
-import { mergeItemChanges } from 'angular-react-toolkit/core/declarative/item-changed';
-import { omit } from 'angular-react-toolkit/utils/omit';
-import { getDataAttributes } from 'angular-react-toolkit/utils/get-data-attributes';
+import { ChangeableItemsHelper, omit, mergeItemChanges, getDataAttributes } from 'angular-react-toolkit';
 import { Subscription } from 'rxjs';
 
 // TODO:

@@ -10,7 +10,7 @@ import {
   IBasePickerSuggestionsProps,
   IPickerItemProps,
 } from 'office-ui-fabric-react/lib/Pickers';
-import omit from 'angular-react-toolkit/utils/omit';
+import { omit } from 'angular-react-toolkit';
 
 export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<T>>
   extends ReactWrapperComponent<TProps>

@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import * as PeoplePickerItemCss from 'office-ui-fabric-react/lib-amd/components/pickers/PeoplePicker/PeoplePickerItems/PickerItemsDefault.scss';
 import { NormalPeoplePickerBase } from 'office-ui-fabric-react/lib/Pickers';
-import { noop } from 'angular-react-toolkit/utils/noop';
+import { noop } from 'angular-react-toolkit';
 import { FabBasePickerModule } from '../base-picker/base-picker.module';
 import { FabPeoplePickerComponent } from './people-picker.component';
 

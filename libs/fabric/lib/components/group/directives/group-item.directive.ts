@@ -12,9 +12,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { IGroup } from 'office-ui-fabric-react/lib/GroupedList';
-import { ItemChangedPayload } from 'angular-react-toolkit/core/declarative/item-changed';
-import { ChangeableItemsHelper, IChangeableItemsContainer } from 'angular-react-toolkit/core/shared/changeable-helper';
-import { ChangeableItemDirective } from 'angular-react-toolkit/core/shared/changeable-item.directive';
+import { ItemChangedPayload, ChangeableItemsHelper, IChangeableItemsContainer, ChangeableItemDirective } from 'angular-react-toolkit';
 
 @Directive({ selector: 'fab-group-item' })
 export class GroupItemDirective extends ChangeableItemDirective<IGroup>

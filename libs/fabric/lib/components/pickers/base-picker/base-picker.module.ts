@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import * as BasePickerCss from 'office-ui-fabric-react/lib-amd/components/pickers/BasePicker.scss';
 import { BasePicker } from 'office-ui-fabric-react/lib/Pickers';
-import { noop } from 'angular-react-toolkit/utils/noop';
+import { noop } from 'angular-react-toolkit';
 
 // Dummy action to force BasePickerCss to load and not be tree-shaken away.
 noop(BasePickerCss);
