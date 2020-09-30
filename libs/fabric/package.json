@@ -54,7 +54,6 @@
     "@angular/core": "^8.0.2",
     "@angular/platform-browser-dynamic": "^8.0.2",
     "@angular/platform-browser": "^8.0.2",
-    "angular-react-toolkit": "1.0.0",
     "office-ui-fabric-react": "7.82.2",
     "react-dom": "~16.8.6",
     "react": "^16.8.6"
