@@ -4,8 +4,6 @@
 import { ContentChild, Directive, Input, TemplateRef, ElementRef } from '@angular/core';
 import { ItemChangedPayload } from 'angular-react-toolkit';
 
-// TODO:
-// import { ContextualMenuItemDirective } from '../../contextual-menu/directives/contextual-menu-item.directive';
 import { ContextualMenuItemDirective } from '@angular-react/fabric/lib/components/contextual-menu'
 import {
   ICommandBarItemOptions,
