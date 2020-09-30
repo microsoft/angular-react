@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 
 import { ContentChild, Directive, Input, TemplateRef, ElementRef } from '@angular/core';
-import { ItemChangedPayload } from 'angular-react-toolkit';
-
+import { ItemChangedPayload } from '@angular-react/fabric/lib/components/core';
 import { ContextualMenuItemDirective } from '@angular-react/fabric/lib/components/contextual-menu'
 import {
   ICommandBarItemOptions,

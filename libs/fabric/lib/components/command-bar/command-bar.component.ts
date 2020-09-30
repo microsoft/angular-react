@@ -21,8 +21,9 @@ import {
 import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { Subscription } from 'rxjs';
-import { TypedChanges, omit, mergeItemChanges } from 'angular-react-toolkit';
-import { OnChanges } from '@angular-react/fabric/lib/declarations';
+import { mergeItemChanges } from '@angular-react/fabric/lib/components/core';
+import { omit } from 'angular-react-toolkit';
+import { OnChanges, TypedChanges } from '@angular-react/fabric/lib/declarations';
 
 import { CommandBarItemChangedPayload, CommandBarItemDirective } from './directives/command-bar-item.directives';
 import {
