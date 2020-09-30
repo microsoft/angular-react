@@ -21,9 +21,8 @@ import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { ChangeableItemsHelper, omit, mergeItemChanges, getDataAttributes } from 'angular-react-toolkit';
 import { Subscription } from 'rxjs';
 
-// TODO:
-import { ContextualMenuItemDirective, IContextualMenuItemOptions } from '../contextual-menu/public-api';
-import { CommandBarItemChangedPayload } from '../command-bar/directives/command-bar-item.directives';
+import { ContextualMenuItemDirective, IContextualMenuItemOptions } from '@angular-react/fabric/lib/components/contextual-menu';
+import { CommandBarItemChangedPayload } from '@angular-react/fabric/lib/components/command-bar';
 
 export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButtonProps>
   implements OnInit, AfterContentInit, OnDestroy {
