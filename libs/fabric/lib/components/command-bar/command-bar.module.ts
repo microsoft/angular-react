@@ -9,7 +9,8 @@ import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 import { noop } from 'angular-react-toolkit';
 
 // TODO:
-import { FabContextualMenuModule } from '../contextual-menu/contextual-menu.module';
+// import { FabContextualMenuModule } from '../contextual-menu/contextual-menu.module';
+import { FabContextualMenuModule } from '@angular-react/fabric/lib/components/contextual-menu';
 import { FabCommandBarComponent } from './command-bar.component';
 import {
   CommandBarItemDirective,
