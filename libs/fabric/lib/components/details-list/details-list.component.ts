@@ -31,8 +31,9 @@ import {
 } from 'office-ui-fabric-react/lib/DetailsList';
 import { IListProps } from 'office-ui-fabric-react/lib/List';
 import { Subscription } from 'rxjs';
-import { TypedChanges, omit, mergeItemChanges, ChangeableItemsDirective } from 'angular-react-toolkit';
-import { OnChanges } from '@angular-react/fabric/lib/declarations';
+import { omit } from 'angular-react-toolkit';
+import { mergeItemChanges, ChangeableItemsDirective } from '@angular-react/fabric/lib/components/core';
+import { TypedChanges, OnChanges } from '@angular-react/fabric/lib/declarations';
 
 import { IDetailsListColumnOptions } from './directives/details-list-column.directive';
 import { DetailsListColumnsDirective } from './directives/details-list-columns.directive';
