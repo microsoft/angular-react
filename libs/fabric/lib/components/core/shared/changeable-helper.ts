@@ -4,7 +4,7 @@
 import { EventEmitter, QueryList } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ItemChangedPayload, ItemChanges } from '../../core/declarative/item-changed.payload';
+import { ItemChangedPayload, ItemChanges } from '../declarative/item-changed.payload';
 import { ChangeableItemDirective } from './changeable-item.directive';
 
 /**

@@ -3,7 +3,7 @@
 
 import { AfterContentInit, ContentChildren, EventEmitter, OnDestroy, Output, QueryList } from '@angular/core';
 
-import { ItemChangedPayload } from '../../core/declarative/item-changed.payload';
+import { ItemChangedPayload } from '../declarative/item-changed.payload';
 import { ChangeableItemsHelper, IChangeableItemsContainer } from './changeable-helper';
 import { ChangeableItemDirective } from './changeable-item.directive';
 
