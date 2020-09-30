@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { KnownKeys, InputRendererOptions } from '@angular-react/core';
-import { getDataAttributes } from 'angular-react-toolkit';
+import { getDataAttributes } from '@angular-react/fabric/lib/utils';
 import { ItemChangedPayload, ChangeableItemsHelper, IChangeableItemsContainer, ChangeableItemDirective } from '@angular-react/fabric/lib/components/core';
 import { OnChanges } from '@angular-react/fabric/lib/declarations';
 

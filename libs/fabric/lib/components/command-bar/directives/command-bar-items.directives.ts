@@ -3,7 +3,7 @@
 
 import { ContentChildren, Directive, QueryList } from '@angular/core';
 import { ChangeableItemsDirective } from '@angular-react/fabric/lib/components/core';
-import { getDataAttributes } from 'angular-react-toolkit';
+import { getDataAttributes } from '@angular-react/fabric/lib/utils';
 
 import { ICommandBarItemOptions } from '../command-bar.component';
 import { CommandBarItemDirective } from './command-bar-item.directives';

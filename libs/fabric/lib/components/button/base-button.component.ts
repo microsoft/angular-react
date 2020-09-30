@@ -19,7 +19,7 @@ import {
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { ChangeableItemsHelper, mergeItemChanges } from '@angular-react/fabric/lib/components/core';
-import { omit, getDataAttributes } from 'angular-react-toolkit';
+import { omit, getDataAttributes } from '@angular-react/fabric/lib/utils';
 import { Subscription } from 'rxjs';
 
 import { ContextualMenuItemDirective, IContextualMenuItemOptions } from '@angular-react/fabric/lib/components/contextual-menu';
