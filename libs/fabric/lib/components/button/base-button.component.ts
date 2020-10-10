@@ -114,7 +114,6 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
         this.markForCheck();
       };
 
-      // @ts-ignore
       this._changeableItemsHelper = new ChangeableItemsHelper(this.menuItemsDirectives);
       this._subscriptions.push(
         this._changeableItemsHelper.onItemsChanged.subscribe((newItems: QueryList<ContextualMenuItemDirective>) => {
