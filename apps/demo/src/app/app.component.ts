@@ -381,4 +381,12 @@ export class AppComponent {
   }
 
   fullScreenIcon = 'MiniExpand';
+
+  onRatingChange({ ev, rating }) {
+    console.log(ev, rating);
+  }
+
+  onRatingChanged({ rating }) {
+    console.log(rating)
+  }
 }

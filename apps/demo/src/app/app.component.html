@@ -257,4 +257,11 @@
   <fab-people-picker [inputProps]="{placeholder: 'Search for a person'}" [pickerSuggestionsOptions]="{noResultsFoundText: 'No results found', loadingText: 'Loading'}"  [selectedItems]="peoplePickerSelectedItems" (onChange)="updatePeoplePickerSelectedItems($event)" [resolveSuggestions]="peoplePickerInputChanged"></fab-people-picker>
   <div>{{peoplePickerSelectedItems.length}} item(s) selected in the people picker</div>
   <fab-progress-indicator bar-height="4"  [percentComplete]="0.35" description="Progress indicator description" label="Progress indicator label"></fab-progress-indicator>
+  <fab-rating
+    [min]="1"
+    [max]="5"
+    [rating]="3"
+    (onRatingChange)="onRatingChange($event)"
+    (onRatingChanged)="onRatingChanged($event)"
+  ></fab-rating>
  </div>
