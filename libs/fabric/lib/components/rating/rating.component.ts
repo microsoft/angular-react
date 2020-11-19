@@ -1,6 +1,6 @@
-import { InputRendererOptions, Omit, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectorRef, Component, ElementRef, Input, NgZone, Output, Renderer2, ViewChild, EventEmitter } from '@angular/core';
-import { IRatingProps } from 'office-ui-fabric-react/lib/Rating';
+import { InputRendererOptions, passProp, ReactWrapperComponent } from '@angular-react/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, NgZone, Output, Renderer2, ViewChild, EventEmitter, OnInit } from '@angular/core';
+import { IRatingProps, IRatingStarProps } from 'office-ui-fabric-react/lib/Rating';
 
 @Component({
   selector: 'fab-rating',
@@ -24,11 +24,12 @@ import { IRatingProps } from 'office-ui-fabric-react/lib/Rating';
       [getAriaLabel]="getAriaLabel"
       [styles]="styles"
       [theme]="theme"
+      [RenderStar]="renderStar && onRenderStar"
     ></Rating>
   `,
   styles: ['react-renderer'],
 })
-export class FabRatingComponent extends ReactWrapperComponent<IRatingProps> {
+export class FabRatingComponent extends ReactWrapperComponent<IRatingProps> implements OnInit {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IRatingProps['componentRef'];
@@ -46,6 +47,9 @@ export class FabRatingComponent extends ReactWrapperComponent<IRatingProps> {
   @Input() getAriaLabel?: IRatingProps['getAriaLabel'];
   @Input() styles?: IRatingProps['styles'];
   @Input() theme?: IRatingProps['theme'];
+  @Input() renderStar?: InputRendererOptions<IRatingStarProps>;
+
+  @passProp() onRenderStar: (props?: IRatingStarProps) => JSX.Element;
 
   // tslint:disable-next-line: no-output-on-prefix
   @Output() readonly onRatingChange = new EventEmitter<{ ev?: FocusEvent, rating?: number }>();
@@ -57,6 +61,10 @@ export class FabRatingComponent extends ReactWrapperComponent<IRatingProps> {
 
     this.onChange = this.onChange.bind(this);
     this.onChanged = this.onChanged.bind(this);
+  }
+
+  ngOnInit() {
+    this.onRenderStar = this.createRenderPropHandler(this.renderStar);
   }
 
   onChange(ev?: React.FocusEvent<HTMLElement>, rating?: number) {
