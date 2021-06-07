@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   ICalendarStrings,
   IContextualMenuProps,
@@ -13,8 +13,27 @@ import {
 import { RenderPropOptions } from '@angular-react/core';
 import { FabDropdownComponent } from '@angular-react/fabric';
 import { FabPeoplePickerComponent } from '@angular-react/fabric/public-api';
+import { createListItems, createGroups, IExampleItem } from '@uifabric/example-data';
+import { IColumn, DetailsRow, IGroup } from 'office-ui-fabric-react/lib/DetailsList';
 
 const suffix = ' cm';
+interface IKeyboardShortcutsTab {
+  label: string;
+  items: IKeyboardShortcutItem[];
+  groups: IKeyboardShortcutsGroup[]
+}
+
+interface IKeyboardShortcutItem {
+  action: string;
+  shortcut: string;
+}
+
+interface IKeyboardShortcutsGroup extends IGroup {
+  name: string;
+  startIndex: number;
+  count: number;
+  level: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -35,6 +54,8 @@ export class AppComponent {
     dismissMenu: (ev?: any, dismissAll?: boolean) => void;
   }>;
 
+  @ViewChild('calloutTarget', { static: false }) calloutTarget: ElementRef;
+
   onClickEventHandler(ev) {
     console.log('onClick', { ev });
   }
@@ -47,10 +68,14 @@ export class AppComponent {
     console.log(args);
   }
 
-  peoplePickerSelectedItems: any[] = [{text:"Default person"}];
-  pickerSuggestions: IPersonaProps[] = [{text: "Bob Jones"},{text: "Steve Fred"}, {text: "Mary"}];
+  // tslint:disable-next-line: member-ordering
+  peoplePickerSelectedItems: any[] = [{ text: "Default person" }];
+  // tslint:disable-next-line: member-ordering
+  pickerSuggestions: IPersonaProps[] = [{ text: "Bob Jones" }, { text: "Steve Fred" }, { text: "Mary" }];
 
+  // tslint:disable-next-line: member-ordering
   selectedItem?: IDropdownOption;
+  // tslint:disable-next-line: member-ordering
   options: FabDropdownComponent['options'] = [
     { key: 'A', text: 'Option a' },
     { key: 'B', text: 'Option b' },
@@ -62,12 +87,14 @@ export class AppComponent {
     { key: 'G', text: 'Option g' },
   ];
 
+  // tslint:disable-next-line: member-ordering
   textFieldValue = 'Hello';
 
   marqueeEnabled: boolean;
   runDisabled: boolean;
   selection: ISelection;
 
+  // tslint:disable-next-line: member-ordering
   strings: ICalendarStrings = {
     months: [
       'January',
@@ -94,6 +121,7 @@ export class AppComponent {
     weekNumberFormatString: 'Week number {0}',
   };
 
+  // tslint:disable-next-line: member-ordering
   detailItems = [
     { field1: 'f1content1', field2: 'f2content1' },
     { field1: 'f1content2', field2: 'f2content2' },
@@ -101,6 +129,194 @@ export class AppComponent {
     { field1: 'f1content4' },
     { field2: 'f2content5' },
   ];
+
+  // tslint:disable-next-line: member-ordering
+  groupListItems = createListItems(3);
+  // tslint:disable-next-line: member-ordering
+  groupListGroups = createGroups(3, 3, 0, 3);
+  // tslint:disable-next-line: member-ordering
+  // columns = Object.keys(this.groupListItems[0])
+  // .slice(0, 3)
+  // .map(
+  //   (key: string): IColumn => ({
+  //     key: key,
+  //     name: key,
+  //     fieldName: key,
+  //     minWidth: 300,
+  //   }),
+  // );
+
+  // tslint:disable-next-line: member-ordering
+  public readonly columns: IColumn[] = [
+    {
+      name: 'action',
+      fieldName: 'action',
+      isResizable: false,
+      key: 'action',
+      minWidth: 100
+    },
+    {
+      name: 'shortcut',
+      fieldName: 'shortcut',
+      isResizable: false,
+      key: 'shortcut',
+      minWidth: 100
+    }
+  ];
+
+  // tslint:disable-next-line: member-ordering
+  private readonly _pipelineEditorShortcutItems: IKeyboardShortcutItem[] = [
+    {
+      action: 'Select all',
+      shortcut: 'Ctrl+A'
+    },
+    {
+      action: 'Cut',
+      shortcut: 'Ctrl+X'
+    },
+    {
+      action: 'Copy',
+      shortcut: 'Ctrl+C'
+    },
+    {
+      action: 'Paste',
+      shortcut: 'Ctrl+V'
+    },
+    {
+      action: 'Delete',
+      shortcut: 'Delete'
+    },
+    {
+      action: 'Zoom in',
+      shortcut: 'I'
+    },
+    {
+      action: 'O',
+      shortcut: 'O'
+    },
+    {
+      action: 'Zoom to fit',
+      shortcut: 'F'
+    },
+    {
+      action: 'Hide nested activities',
+      shortcut: 'N'
+    }
+  ];
+
+  // tslint:disable-next-line: member-ordering
+  private readonly _pipelineEditorGroups: IKeyboardShortcutsGroup[] = [
+    {
+      name: 'Basic',
+      startIndex: 0,
+      count: 5,
+      level: 0,
+      key: 'Basic'
+    },
+    {
+      name: 'Canvas controls',
+      startIndex: 5,
+      count: 4,
+      level: 0,
+      key: 'canvas'
+    }
+  ];
+
+  // tslint:disable-next-line: member-ordering
+  private readonly _dataflowEditorShortcutItems: IKeyboardShortcutItem[] = [
+    {
+      action: 'Select all',
+      shortcut: 'Ctrl+A'
+    },
+    {
+      action: 'Delete',
+      shortcut: 'Delete'
+    },
+    {
+      action: 'Zoom in',
+      shortcut: 'I'
+    },
+    {
+      action: 'O',
+      shortcut: 'O'
+    },
+    {
+      action: 'Zoom to fit',
+      shortcut: 'F'
+    }
+  ];
+
+  // tslint:disable-next-line: member-ordering
+  private readonly _dataflowEditorGroups: IKeyboardShortcutsGroup[] = [
+    {
+      name: 'Basic',
+      startIndex: 0,
+      count: 2,
+      level: 0,
+      key: 'Basic'
+    },
+    {
+      name: 'Canvas controls',
+      startIndex: 2,
+      count: 3,
+      level: 0,
+      key: 'canvas'
+    }
+  ];
+
+  // tslint:disable-next-line: member-ordering
+  public readonly tabs: IKeyboardShortcutsTab[] = [
+    {
+      label: 'Pipeline_Editor',
+      items: this._pipelineEditorShortcutItems,
+      groups: this._pipelineEditorGroups
+    },
+    {
+      label: 'Dataflow_Editor',
+      items: this._dataflowEditorShortcutItems,
+      groups: this._dataflowEditorGroups
+    },
+    {
+      label: 'Pipeline_Editor',
+      items: this._pipelineEditorShortcutItems,
+      groups: this._pipelineEditorGroups
+    },
+    {
+      label: 'Dataflow_Editor',
+      items: this._dataflowEditorShortcutItems,
+      groups: this._dataflowEditorGroups
+    },
+    {
+      label: 'Pipeline_Editor',
+      items: this._pipelineEditorShortcutItems,
+      groups: this._pipelineEditorGroups
+    },
+    {
+      label: 'Dataflow_Editor',
+      items: this._dataflowEditorShortcutItems,
+      groups: this._dataflowEditorGroups
+    }, {
+      label: 'Pipeline_Editor',
+      items: this._pipelineEditorShortcutItems,
+      groups: this._pipelineEditorGroups
+    },
+    {
+      label: 'Dataflow_Editor',
+      items: this._dataflowEditorShortcutItems,
+      groups: this._dataflowEditorGroups
+    },
+    {
+      label: 'Pipeline_Editor',
+      items: this._pipelineEditorShortcutItems,
+      groups: this._pipelineEditorGroups
+    },
+    {
+      label: 'Dataflow_Editor',
+      items: this._dataflowEditorShortcutItems,
+      groups: this._dataflowEditorGroups
+    }
+  ];
+
 
   onNewClicked() {
     console.log('New clicked');
@@ -163,12 +379,12 @@ export class AppComponent {
     return String(value) + suffix;
   }
 
-  peoplePickerInputChanged(data: any){
+  peoplePickerInputChanged(data: any) {
     const results = this.pickerSuggestions.filter(value => value.text.toLowerCase().indexOf(data.toLowerCase()) > -1);
     return new Promise<IPersonaProps[]>((resolve, reject) => setTimeout(() => resolve(results), 250));
   }
 
-  updatePeoplePickerSelectedItems(items){
+  updatePeoplePickerSelectedItems(items) {
     this.peoplePickerSelectedItems = items.items;
   }
 
@@ -192,6 +408,15 @@ export class AppComponent {
     this.onIncrement = this.onIncrement.bind(this);
     this.onDecrement = this.onDecrement.bind(this);
     this.peoplePickerInputChanged = this.peoplePickerInputChanged.bind(this);
+  }
+
+  public showCallout = false;
+
+  ngAfterViewInit() {
+    console.log(this.calloutTarget)
+    if (this.calloutTarget) {
+      this.showCallout = true;
+    }
   }
 
   customItemCount = 1;

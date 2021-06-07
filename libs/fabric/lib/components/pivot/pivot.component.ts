@@ -17,7 +17,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
+import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from '@fluentui/react/lib/Pivot';
 import * as React from 'react';
 
 @Component({
@@ -34,6 +34,7 @@ import * as React from 'react';
       [itemCount]="itemCount"
       [itemIcon]="itemIcon"
       [keytipProps]="keytipProps"
+      [alwaysRender]="alwaysRender"
       [RenderItemLink]="renderItemLink && onRenderItemLink"
     >
       <ReactContent><ng-content></ng-content></ReactContent>
@@ -46,6 +47,7 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
   @Input() disabled? = false;
+  @Input() visible? = true;
   @Input() @passProp() componentRef?: IPivotItemProps['componentRef'];
   @Input() @passProp() headerText?: IPivotItemProps['headerText'];
   @Input() @passProp() headerButtonProps?: IPivotItemProps['headerButtonProps'];
@@ -54,6 +56,7 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   @Input() @passProp() itemCount?: IPivotItemProps['itemCount'];
   @Input() @passProp() itemIcon?: IPivotItemProps['itemIcon'];
   @Input() @passProp() keytipProps?: IPivotItemProps['keytipProps'];
+  @Input() @passProp() alwaysRender?: IPivotItemProps['alwaysRender'];
   @Input() @passProp() renderItemLink?: InputRendererOptions<IPivotItemProps>;
 
   @passProp() onRenderItemLink: (props?: IPivotItemProps, defaultRender?: JsxRenderFunc<IPivotItemProps>) => JSX.Element;
@@ -81,10 +84,10 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
       [theme]="theme"
       [className]="className"
       [defaultSelectedKey]="defaultSelectedKey"
-      [defaultSelectedIndex]="defaultSelectedIndex"
       [selectedKey]="selectedKey"
       [linkSize]="linkSize"
       [linkFormat]="linkFormat"
+      [overflowBehavior]="overflowBehavior"
       [headersOnly]="headersOnly"
       [getTabId]="getTabId"
       [LinkClick]="onLinkClickHandler"
@@ -108,10 +111,10 @@ export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {
   @Input() theme?: IPivotProps['theme'];
   @Input() className?: IPivotProps['className'];
   @Input() defaultSelectedKey?: IPivotProps['defaultSelectedKey'];
-  @Input() defaultSelectedIndex?: IPivotProps['defaultSelectedIndex'];
   @Input() selectedKey?: IPivotProps['selectedKey'];
   @Input() linkSize?: IPivotProps['linkSize'];
   @Input() linkFormat?: IPivotProps['linkFormat'];
+  @Input() overflowBehavior?: IPivotProps['overflowBehavior'];
   @Input() headersOnly?: IPivotProps['headersOnly'];
   @Input() getTabId?: IPivotProps['getTabId'];
   @Input() children?: QueryList<FabPivotItemComponent>;

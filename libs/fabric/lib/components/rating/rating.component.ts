@@ -1,6 +1,6 @@
 import { InputRendererOptions, passProp, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectorRef, Component, ElementRef, Input, NgZone, Output, Renderer2, ViewChild, EventEmitter, OnInit } from '@angular/core';
-import { IRatingProps, IRatingStarProps } from 'office-ui-fabric-react/lib/Rating';
+import { IRatingProps, IRatingStarProps } from '@fluentui/react/lib/Rating';
 
 @Component({
   selector: 'fab-rating',
@@ -10,16 +10,17 @@ import { IRatingProps, IRatingStarProps } from 'office-ui-fabric-react/lib/Ratin
       #reactNode
       [componentRef]="componentRef"
       [rating]="rating"
+      [defaultRating]="defaultRating"
       [min]="min"
       [max]="max"
       [allowZeroStars]="allowZeroStars"
+      [disabled]="disabled"
       [icon]="icon"
       [unselectedIcon]="unselectedIcon"
       [size]="size"
       [Change]="onChange"
       [Changed]="onChanged"
       [ariaLabelFormat]="ariaLabelFormat"
-      [ariaLabelId]="ariaLabelId"
       [readOnly]="readOnly"
       [getAriaLabel]="getAriaLabel"
       [styles]="styles"
@@ -34,15 +35,16 @@ export class FabRatingComponent extends ReactWrapperComponent<IRatingProps> impl
 
   @Input() componentRef?: IRatingProps['componentRef'];
   @Input() rating?: IRatingProps['rating'];
+  @Input() defaultRating?: IRatingProps['defaultRating'];
   @Input() min?: IRatingProps['min'];
   @Input() max?: IRatingProps['max'];
   @Input() allowZeroStars?: IRatingProps['allowZeroStars'];
+  @Input() disabled?: IRatingProps['disabled'];
   @Input() icon?: IRatingProps['icon'];
   @Input() unselectedIcon?: IRatingProps['unselectedIcon'];
   @Input() size?: IRatingProps['size'];
   // @Input() onChanged?: IRatingProps['onChanged'];
   @Input() ariaLabelFormat?: IRatingProps['ariaLabelFormat'];
-  @Input() ariaLabelId?: IRatingProps['ariaLabelId'];
   @Input() readOnly?: IRatingProps['readOnly'];
   @Input() getAriaLabel?: IRatingProps['getAriaLabel'];
   @Input() styles?: IRatingProps['styles'];
