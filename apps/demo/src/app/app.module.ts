@@ -41,7 +41,7 @@ import {
 } from '@angular-react/fabric';
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
-import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
+import { initializeIcons } from '@fluentui/react/lib/Icons';
 import { AppComponent } from './app.component';
 import { CounterComponent } from './counter/counter.component';
 

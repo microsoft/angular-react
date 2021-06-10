@@ -28,8 +28,8 @@ import {
   IDetailsListProps,
   IDetailsRowProps,
   IGroup,
-} from 'office-ui-fabric-react/lib/DetailsList';
-import { IListProps } from 'office-ui-fabric-react/lib/List';
+} from '@fluentui/react/lib/DetailsList';
+import { IListProps } from '@fluentui/react/lib/List';
 import { Subscription } from 'rxjs';
 import { omit } from '@angular-react/fabric/lib/utils';
 import { mergeItemChanges, ChangeableItemsDirective } from '@angular-react/fabric/lib/components/core';

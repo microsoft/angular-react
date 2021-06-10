@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Directive, Input } from '@angular/core';
-import { ICalendarStrings } from 'office-ui-fabric-react/lib/Calendar';
+import { ICalendarStrings } from '@fluentui/react/lib/Calendar';
 
 /**
  * Wrapper directive for calendar strings

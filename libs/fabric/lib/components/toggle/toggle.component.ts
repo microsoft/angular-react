@@ -13,7 +13,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IToggleProps } from 'office-ui-fabric-react/lib/Toggle';
+import { IToggleProps } from '@fluentui/react/lib/Toggle';
 
 @Component({
   selector: 'fab-toggle',
@@ -32,7 +32,6 @@ import { IToggleProps } from 'office-ui-fabric-react/lib/Toggle';
       [inlineLabel]="inlineLabel"
       [theme]="theme"
       [styles]="styles"
-      [keytipProps]="keytipProps"
       [Change]="onChangeHandler"
     >
     </Toggle>
@@ -61,7 +60,6 @@ export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {
   @Input() inlineLabel?: IToggleProps['inlineLabel'];
   @Input() theme?: IToggleProps['theme'];
   @Input() styles?: IToggleProps['styles'];
-  @Input() keytipProps?: IToggleProps['keytipProps'];
 
   @Output() readonly onChange = new EventEmitter<{ event: MouseEvent; checked?: boolean }>();
 

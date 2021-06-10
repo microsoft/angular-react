@@ -11,7 +11,7 @@ import {
   Output,
   QueryList,
 } from '@angular/core';
-import { IGroup } from 'office-ui-fabric-react/lib/GroupedList';
+import { IGroup } from '@fluentui/react/lib/GroupedList';
 import { ItemChangedPayload, ChangeableItemsHelper, IChangeableItemsContainer, ChangeableItemDirective } from '@angular-react/fabric/lib/components/core';
 
 @Directive({ selector: 'fab-group-item' })

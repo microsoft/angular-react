@@ -13,7 +13,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IChoiceGroupOption, IChoiceGroupProps } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import { IChoiceGroupOption, IChoiceGroupProps } from '@fluentui/react/lib/ChoiceGroup';
 
 @Component({
   selector: 'fab-choice-group',

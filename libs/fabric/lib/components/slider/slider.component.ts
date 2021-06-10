@@ -13,7 +13,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ISliderProps } from 'office-ui-fabric-react/lib/Slider';
+import { ISliderProps } from '@fluentui/react/lib/Slider';
 
 @Component({
   selector: 'fab-slider',

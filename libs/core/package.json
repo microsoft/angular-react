@@ -48,6 +48,7 @@
     "components"
   ],
   "private": false,
+  "sideEffects": false,
   "peerDependencies": {
     "@angular/compiler": "^8.0.2",
     "@angular/core": "^8.0.2",

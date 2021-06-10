@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { ReactWrapperComponent } from '@angular-react/core';
-import { INavProps, INavLink, INav } from 'office-ui-fabric-react/lib/Nav';
+import { INavProps, INavLink, INav } from '@fluentui/react/lib/Nav';
 import {
   Component,
   ChangeDetectionStrategy,

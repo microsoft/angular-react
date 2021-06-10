@@ -15,8 +15,8 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ImageLoadState } from 'office-ui-fabric-react/lib/components/Image/Image.types';
-import { IPersonaCoinProps, IPersonaProps, IPersonaSharedProps } from 'office-ui-fabric-react/lib/Persona';
+import { ImageLoadState } from '@fluentui/react/lib/components/Image/Image.types';
+import { IPersonaCoinProps, IPersonaProps, IPersonaSharedProps } from '@fluentui/react/lib/Persona';
 
 export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps> extends ReactWrapperComponent<TProps>
   implements OnInit {

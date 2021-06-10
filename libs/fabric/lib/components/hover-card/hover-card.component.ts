@@ -14,7 +14,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IExpandingCardProps, IHoverCardProps, IPlainCardProps } from 'office-ui-fabric-react/lib/HoverCard';
+import { IExpandingCardProps, IHoverCardProps, IPlainCardProps } from '@fluentui/react/lib/HoverCard';
 import { omit } from '@angular-react/fabric/lib/utils';
 
 @Component({

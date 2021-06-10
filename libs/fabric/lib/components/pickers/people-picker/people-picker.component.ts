@@ -13,8 +13,8 @@ import {
     EventEmitter,
   } from '@angular/core';
   import { FabBasePickerComponent } from '../base-picker/base-picker.component';
-  import { IPeoplePickerProps, BaseAutoFill } from 'office-ui-fabric-react/lib/Pickers';
-  import { IPersonaProps } from 'office-ui-fabric-react/lib/Persona';
+  import { IPeoplePickerProps } from '@fluentui/react/lib/Pickers';
+  import { IPersonaProps } from '@fluentui/react/lib/Persona';
 
   @Component({
     selector: 'fab-people-picker',

@@ -15,8 +15,8 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IGroup, IGroupedListProps, IGroupRenderProps } from 'office-ui-fabric-react/lib/GroupedList';
-import { IListProps } from 'office-ui-fabric-react/lib/List';
+import { IGroup, IGroupedListProps, IGroupRenderProps } from '@fluentui/react/lib/GroupedList';
+import { IListProps } from '@fluentui/react/lib/List';
 
 @Component({
   selector: 'fab-grouped-list',

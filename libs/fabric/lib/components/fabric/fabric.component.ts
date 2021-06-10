@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IFabricProps } from 'office-ui-fabric-react/lib/Fabric';
+import { IFabricProps } from '@fluentui/react/lib/Fabric';
 
 @Component({
   selector: 'fab-fabric',

@@ -14,7 +14,7 @@ import {
   ContentChild,
   AfterContentInit,
 } from '@angular/core';
-import { IComboBox, IComboBoxOption, IComboBoxProps } from 'office-ui-fabric-react/lib/ComboBox';
+import { IComboBox, IComboBoxOption, IComboBoxProps } from '@fluentui/react/lib/ComboBox';
 import { ComboBoxOptionDirective } from './directives/combo-box-option.directive';
 import { ComboBoxOptionsDirective } from './directives/combo-box-options.directive';
 
@@ -39,7 +39,6 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
   @Input() multiSelect?: IComboBoxProps['multiSelect'];
   @Input() isButtonAriaHidden?: IComboBoxProps['isButtonAriaHidden'];
   @Input() ariaDescribedBy?: IComboBoxProps['ariaDescribedBy'];
-  @Input() keytipProps?: IComboBoxProps['keytipProps'];
   @Input() persistMenu?: IComboBoxProps['persistMenu'];
   @Input() shouldRestoreFocus?: IComboBoxProps['shouldRestoreFocus'];
   @Input() resolveOptions?: (options: IComboBoxOption[]) => IComboBoxOption[] | PromiseLike<IComboBoxOption[]>;

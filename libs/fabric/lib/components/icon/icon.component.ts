@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IIconProps } from 'office-ui-fabric-react/lib/Icon';
+import { IIconProps } from '@fluentui/react/lib/Icon';
 
 @Component({
   selector: 'fab-icon',

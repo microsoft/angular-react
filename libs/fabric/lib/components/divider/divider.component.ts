@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IVerticalDividerProps } from 'office-ui-fabric-react/lib/Divider';
+import { IVerticalDividerProps } from '@fluentui/react/lib/Divider';
 
 @Component({
   selector: 'fab-vertical-divider',

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { ContentChildren, Directive, QueryList } from '@angular/core';
-import { IComboBoxOption } from 'office-ui-fabric-react/lib/ComboBox';
+import { IComboBoxOption } from '@fluentui/react/lib/ComboBox';
 
 import { ComboBoxOptionDirective } from "./combo-box-option.directive";
 

@@ -15,7 +15,7 @@ import {
   ContentChild,
   AfterContentInit,
 } from '@angular/core';
-import { ICalendarProps } from 'office-ui-fabric-react/lib/Calendar';
+import { ICalendarProps } from '@fluentui/react/lib/Calendar';
 import { CalendarStringsDirective } from './directives/calendar-strings-directive.component';
 
 @Component({
@@ -33,7 +33,6 @@ import { CalendarStringsDirective } from './directives/calendar-strings-directiv
       [value]="value"
       [firstDayOfWeek]="firstDayOfWeek"
       [dateRangeType]="dateRangeType"
-      [autoNavigateOnSelection]="autoNavigateOnSelection"
       [showGoToToday]="showGoToToday"
       [strings]="strings"
       [highlightCurrentMonth]="highlightCurrentMonth"
@@ -48,10 +47,8 @@ import { CalendarStringsDirective } from './directives/calendar-strings-directiv
       [restrictedDates]="restrictedDates"
       [showSixWeeksByDefault]="showSixWeeksByDefault"
       [workWeekDays]="workWeekDays"
-      [selectDateOnClick]="selectDateOnClick"
       [showCloseButton]="showCloseButton"
       [allFocusable]="allFocusable"
-      [yearPickerHidden]="yearPickerHidden"
       [SelectDate]="onSelectDateHandler"
       [Dismiss]="onDismissHandler"
     >
@@ -72,7 +69,6 @@ export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> 
   @Input() value?: ICalendarProps['value'];
   @Input() firstDayOfWeek?: ICalendarProps['firstDayOfWeek'];
   @Input() dateRangeType?: ICalendarProps['dateRangeType'];
-  @Input() autoNavigateOnSelection?: ICalendarProps['autoNavigateOnSelection'];
   @Input() showGoToToday?: ICalendarProps['showGoToToday'];
   @Input() strings: ICalendarProps['strings'];
   @Input() highlightCurrentMonth?: ICalendarProps['highlightCurrentMonth'];
@@ -86,10 +82,8 @@ export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> 
   @Input() restrictedDates?: ICalendarProps['restrictedDates'];
   @Input() showSixWeeksByDefault?: ICalendarProps['showSixWeeksByDefault'];
   @Input() workWeekDays?: ICalendarProps['workWeekDays'];
-  @Input() selectDateOnClick?: ICalendarProps['selectDateOnClick'];
   @Input() showCloseButton?: ICalendarProps['showCloseButton'];
   @Input() allFocusable?: ICalendarProps['allFocusable'];
-  @Input() yearPickerHidden?: ICalendarProps['yearPickerHidden'];
 
   @Output() readonly onSelectDate = new EventEmitter<{ date: Date; selectedDateRangeArray?: Date[] }>();
   @Output() readonly onDismiss = new EventEmitter<void>();

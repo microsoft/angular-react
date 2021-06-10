@@ -16,8 +16,8 @@ import {
   ContentChild,
   AfterContentInit,
 } from '@angular/core';
-import { IDropdownProps, IDropdownOption, IDropdown } from 'office-ui-fabric-react/lib/Dropdown';
-import { ISelectableDroppableTextProps, ISelectableOption } from 'office-ui-fabric-react/lib/SelectableOption';
+import { IDropdownProps, IDropdownOption, IDropdown } from '@fluentui/react/lib/Dropdown';
+import { ISelectableDroppableTextProps, ISelectableOption } from '@fluentui/react/lib/SelectableOption';
 import { DropdownOptionsDirective } from './directives/dropdown-options.directive';
 
 @Component({
@@ -48,7 +48,6 @@ import { DropdownOptionsDirective } from './directives/dropdown-options.directiv
       [selectedKeys]="selectedKeys"
       [multiSelectDelimiter]="multiSelectDelimiter"
       [notifyOnReselect]="notifyOnReselect"
-      [keytipProps]="keytipProps"
       [theme]="theme"
       [styles]="styles"
       [RenderContainer]="renderContainer && onRenderContainer"
@@ -93,7 +92,6 @@ export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> 
   @Input() selectedKeys?: IDropdownProps['selectedKeys'];
   @Input() multiSelectDelimiter?: IDropdownProps['multiSelectDelimiter'];
   @Input() notifyOnReselect?: IDropdownProps['notifyOnReselect'];
-  @Input() keytipProps?: IDropdownProps['keytipProps'];
   @Input() theme?: IDropdownProps['theme'];
   @Input() styles?: IDropdownProps['styles'];
 

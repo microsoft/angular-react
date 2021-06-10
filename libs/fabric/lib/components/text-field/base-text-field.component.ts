@@ -12,7 +12,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { ITextFieldProps } from 'office-ui-fabric-react/lib/TextField';
+import { ITextFieldProps } from '@fluentui/react/lib/TextField';
 
 export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldProps> implements OnInit {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
@@ -55,9 +55,6 @@ export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldP
   @Input() theme?: ITextFieldProps['theme'];
   @Input() styles?: ITextFieldProps['styles'];
   @Input() autoComplete?: ITextFieldProps['autoComplete'];
-  @Input() mask?: ITextFieldProps['mask'];
-  @Input() maskChar?: ITextFieldProps['maskChar'];
-  @Input() maskFormat?: ITextFieldProps['maskFormat'];
   @Input() getErrorMessage?: ITextFieldProps['onGetErrorMessage'];
 
   @Input() renderLabel?: InputRendererOptions<ITextFieldProps>;

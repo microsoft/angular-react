@@ -13,8 +13,8 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ICalloutProps } from 'office-ui-fabric-react/lib/Callout';
-import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/positioning/positioning.types';
+import { ICalloutProps } from '@fluentui/react/lib/Callout';
+import { ICalloutPositionedInfo } from '@fluentui/react/lib/utilities/positioning/positioning.types';
 
 @Component({
   selector: 'fab-callout',

@@ -15,7 +15,7 @@ import {
   Renderer2,
   NgZone,
 } from '@angular/core';
-import { IExpandingCardProps } from 'office-ui-fabric-react/lib/HoverCard';
+import { IExpandingCardProps } from '@fluentui/react/lib/HoverCard';
 
 @Component({
   selector: 'fab-expanding-card',

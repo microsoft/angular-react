@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { TagPicker } from 'office-ui-fabric-react';
+import { TagPicker } from '@fluentui/react';
 import { FabBasePickerModule } from '../base-picker/base-picker.module';
 import { FabTagPickerComponent } from './tag-picker.component';
 

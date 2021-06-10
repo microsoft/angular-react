@@ -13,7 +13,7 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
-import { ISpinButtonProps } from 'office-ui-fabric-react/lib/SpinButton';
+import { ISpinButtonProps } from '@fluentui/react/lib/SpinButton';
 
 @Component({
   selector: 'fab-spin-button',
@@ -38,7 +38,6 @@ import { ISpinButtonProps } from 'office-ui-fabric-react/lib/SpinButton';
       [incrementButtonIcon]="incrementButtonIcon"
       [decrementButtonIcon]="decrementButtonIcon"
       [styles]="styles"
-      [getClassNames]="getClassNames"
       [upArrowButtonStyles]="upArrowButtonStyles"
       [downArrowButtonStyles]="downArrowButtonStyles"
       [theme]="theme"
@@ -81,7 +80,6 @@ export class FabSpinButtonComponent extends ReactWrapperComponent<ISpinButtonPro
   @Input() incrementButtonIcon?: ISpinButtonProps['incrementButtonIcon'];
   @Input() decrementButtonIcon?: ISpinButtonProps['decrementButtonIcon'];
   @Input() styles?: ISpinButtonProps['styles'];
-  @Input() getClassNames?: ISpinButtonProps['getClassNames'];
   @Input() upArrowButtonStyles?: ISpinButtonProps['upArrowButtonStyles'];
   @Input() downArrowButtonStyles?: ISpinButtonProps['downArrowButtonStyles'];
   @Input() theme?: ISpinButtonProps['theme'];

@@ -12,7 +12,7 @@ import {
   ViewChild,
   OnInit,
 } from '@angular/core';
-import { IProgressIndicatorProps } from 'office-ui-fabric-react/lib/ProgressIndicator';
+import { IProgressIndicatorProps } from '@fluentui/react/lib/ProgressIndicator';
 
 @Component({
   selector: 'fab-progress-indicator',

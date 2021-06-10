@@ -13,7 +13,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IDialogContentProps, IDialogFooterProps, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
+import { IDialogContentProps, IDialogFooterProps, IDialogProps } from '@fluentui/react/lib/Dialog';
 
 @Component({
   selector: 'fab-dialog',

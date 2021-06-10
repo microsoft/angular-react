@@ -15,7 +15,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IPanelHeaderRenderer, IPanelProps } from 'office-ui-fabric-react/lib/Panel';
+import { IPanelHeaderRenderer, IPanelProps } from '@fluentui/react/lib/Panel';
 
 @Component({
   selector: 'fab-panel',

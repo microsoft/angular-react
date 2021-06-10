@@ -9,12 +9,12 @@ import {
   ICheckboxProps,
   IPersonaProps,
   IPeoplePickerProps,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
 import { RenderPropOptions } from '@angular-react/core';
 import { FabDropdownComponent } from '@angular-react/fabric';
 import { FabPeoplePickerComponent } from '@angular-react/fabric/public-api';
 import { createListItems, createGroups, IExampleItem } from '@uifabric/example-data';
-import { IColumn, DetailsRow, IGroup } from 'office-ui-fabric-react/lib/DetailsList';
+import { IColumn, DetailsRow, IGroup } from '@fluentui/react/lib/DetailsList';
 
 const suffix = ' cm';
 interface IKeyboardShortcutsTab {
@@ -315,6 +315,17 @@ export class AppComponent {
       items: this._dataflowEditorShortcutItems,
       groups: this._dataflowEditorGroups
     }
+  ];
+
+  public itemsWithHref = [
+    // Normally each breadcrumb would have a unique href, but to make the navigation less disruptive
+    // in the example, it uses the breadcrumb page as the href for all the items
+    { text: 'Files', key: 'Files', href: '#/controls/web/breadcrumb' },
+    { text: 'Folder 1', key: 'f1', href: '#/controls/web/breadcrumb' },
+    { text: 'Folder 2', key: 'f2', href: '#/controls/web/breadcrumb' },
+    { text: 'Folder 3', key: 'f3', href: '#/controls/web/breadcrumb' },
+    { text: 'Folder 4 (non-clickable)', key: 'f4' },
+    { text: 'Folder 5', key: 'f5', href: '#/controls/web/breadcrumb', isCurrentItem: true },
   ];
 
 

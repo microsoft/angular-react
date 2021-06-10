@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ISpinnerProps } from 'office-ui-fabric-react/lib/Spinner';
+import { ISpinnerProps } from '@fluentui/react/lib/Spinner';
 
 @Component({
   selector: 'fab-spinner',

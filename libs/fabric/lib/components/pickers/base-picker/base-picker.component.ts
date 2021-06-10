@@ -3,13 +3,12 @@
 
 import { InputRendererOptions, JsxRenderFunc, Omit, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectorRef, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2 } from '@angular/core';
-import { IPersonaProps } from 'office-ui-fabric-react/lib/Persona';
+import { IPersonaProps } from '@fluentui/react/lib/Persona';
 import {
-  BaseAutoFill,
   IBasePickerProps,
   IBasePickerSuggestionsProps,
   IPickerItemProps,
-} from 'office-ui-fabric-react/lib/Pickers';
+} from '@fluentui/react/lib/Pickers';
 import { omit } from '@angular-react/fabric/lib/utils';
 
 export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<T>>
@@ -88,11 +87,11 @@ export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<
     });
   }
 
-  onFocusHandler(event: React.FocusEvent<HTMLInputElement | BaseAutoFill>) {
+  onFocusHandler(event: React.FocusEvent<HTMLInputElement>) {
     this.onFocus.emit(event.nativeEvent);
   }
 
-  onBlurHandler(event: React.FocusEvent<HTMLInputElement | BaseAutoFill>) {
+  onBlurHandler(event: React.FocusEvent<HTMLInputElement>) {
     this.onBlur.emit(event.nativeEvent);
   }
 

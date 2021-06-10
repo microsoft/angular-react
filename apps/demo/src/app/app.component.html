@@ -9,21 +9,64 @@
   </ol>
 </div>
 
-<fab-rating [renderStar]="onRenderStar">
-  <ng-template #onRenderStar let-fillPercentage="fillPercentage" let-starNum="starNum">
-    <div>test {{fillPercentage}} {{starNum}}</div>
-  </ng-template>
-</fab-rating>
+<div>
+  rating:
+  <fab-rating [renderStar]="onRenderStar">
+    <ng-template #onRenderStar let-fillPercentage="fillPercentage" let-starNum="starNum">
+      <div>test {{fillPercentage}} {{starNum}}</div>
+    </ng-template>
+  </fab-rating>
+</div>
 
-<div style="width: 500px;">
-  <fab-pivot overflowBehavior="menu">
-    <fab-pivot-item *ngFor="let tab of tabs" [renderItemLink]="tabLabel">
-        <ng-template #tabLabel>
-            <span>{{tab.label}}</span>
-        </ng-template>
-        <!-- <fab-details-list [items]="tab.items" [groups]="tab.groups" [selectionMode]="0" [columns]="columns" [enableUpdateAnimations]="false">
-        </fab-details-list> -->
-        <div>111</div>
-    </fab-pivot-item>
-  </fab-pivot>
+<div>
+  pivot:
+  <div style="width: 500px;">
+    <fab-pivot overflowBehavior="menu">
+      <fab-pivot-item *ngFor="let tab of tabs" [renderItemLink]="tabLabel">
+          <ng-template #tabLabel>
+              <span>{{tab.label}}</span>
+          </ng-template>
+          <!-- <fab-details-list [items]="tab.items" [groups]="tab.groups" [selectionMode]="0" [columns]="columns" [enableUpdateAnimations]="false">
+          </fab-details-list> -->
+          <div>111</div>
+      </fab-pivot-item>
+    </fab-pivot>
+  </div>
+</div>
+<div>
+  breadcrumb:
+  <fab-breadcrumb [items]="itemsWithHref"></fab-breadcrumb>
+</div>
+<div>
+  button:
+  <fab-primary-button>primary button</fab-primary-button>
+  <fab-default-button>default button</fab-default-button>
+</div>
+<div>
+  calendar:
+  <fab-calendar></fab-calendar>
+</div>
+<div>
+  callout:
+  <fab-callout></fab-callout>
+</div>
+<div>
+  checkbox:
+  <fab-checkbox></fab-checkbox>
+</div>
+choice group:
+<fab-choice-group [options]="options"></fab-choice-group>
+data picker:
+<fab-date-picker></fab-date-picker>
+
+divider:
+<fab-vertical-divider></fab-vertical-divider>
+
+<br/>
+dropdown:
+<fab-dropdown></fab-dropdown>
+
+<div>
+  combo-box:
+  <fab-combo-box></fab-combo-box>
 </div>

@@ -12,7 +12,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react/lib/Breadcrumb';
+import { IBreadcrumbItem, IBreadcrumbProps } from '@fluentui/react/lib/Breadcrumb';
 
 @Component({
   selector: 'fab-breadcrumb',
@@ -24,6 +24,7 @@ import { IBreadcrumbItem, IBreadcrumbProps } from 'office-ui-fabric-react/lib/Br
       [items]="items"
       [className]="className"
       [dividerAs]="dividerAs"
+      [overflowButtonAs]="overflowButtonAs"
       [maxDisplayedItems]="maxDisplayedItems"
       [ariaLabel]="ariaLabel"
       [overflowAriaLabel]="overflowAriaLabel"
@@ -47,6 +48,7 @@ export class FabBreadcrumbComponent extends ReactWrapperComponent<IBreadcrumbPro
   @Input() items: IBreadcrumbProps['items'];
   @Input() className?: IBreadcrumbProps['className'];
   @Input() dividerAs?: IBreadcrumbProps['dividerAs'];
+  @Input() overflowButtonAs?: IBreadcrumbProps['overflowButtonAs'];
   @Input() maxDisplayedItems?: IBreadcrumbProps['maxDisplayedItems'];
   @Input() ariaLabel?: IBreadcrumbProps['ariaLabel'];
   @Input() overflowAriaLabel?: IBreadcrumbProps['overflowAriaLabel'];

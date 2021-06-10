@@ -4,7 +4,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Callout, FocusTrapCallout } from 'office-ui-fabric-react/lib/Callout';
+import { Callout, FocusTrapCallout } from '@fluentui/react/lib/Callout';
 import { FabCalloutComponent } from './callout.component';
 
 const components = [FabCalloutComponent];

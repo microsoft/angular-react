@@ -12,7 +12,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ReactWrapperComponent } from '@angular-react/core';
-import { IMarqueeSelectionProps } from 'office-ui-fabric-react/lib/MarqueeSelection';
+import { IMarqueeSelectionProps } from '@fluentui/react/lib/MarqueeSelection';
 
 @Component({
   selector: 'fab-marquee-selection',

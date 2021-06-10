@@ -3,7 +3,7 @@
 
 import { AfterContentInit, ContentChild, Directive, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { InputRendererOptions, KnownKeys } from '@angular-react/core';
-import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import { IColumn } from '@fluentui/react/lib/DetailsList';
 import { ChangeableItemDirective } from '@angular-react/fabric/lib/components/core';
 
 /**

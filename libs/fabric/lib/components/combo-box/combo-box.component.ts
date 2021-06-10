@@ -36,7 +36,6 @@ import { FabBaseComboBoxComponent } from './base-combo-box.component';
       [multiSelect]="multiSelect"
       [isButtonAriaHidden]="isButtonAriaHidden"
       [ariaDescribedBy]="ariaDescribedBy"
-      [keytipProps]="keytipProps"
       [persistMenu]="persistMenu"
       [shouldRestoreFocus]="shouldRestoreFocus"
       [RenderLowerContent]="renderLowerContent && onRenderLowerContent"

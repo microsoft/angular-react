@@ -14,7 +14,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ITooltipHostProps, ITooltipProps } from 'office-ui-fabric-react/lib/Tooltip';
+import { ITooltipHostProps, ITooltipProps } from '@fluentui/react/lib/Tooltip';
 import { omit } from '@angular-react/fabric/lib/utils';
 
 @Component({

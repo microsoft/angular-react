@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IComboBoxOption, ICalendarStrings } from 'office-ui-fabric-react';
+import { IComboBoxOption, ICalendarStrings } from '@fluentui/react';
 
 @Component({
   selector: 'app-fabric',

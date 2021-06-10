@@ -12,8 +12,8 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IShimmerElementsGroupProps } from 'office-ui-fabric-react/lib/components/Shimmer/ShimmerElementsGroup/ShimmerElementsGroup.types';
-import { IShimmerProps } from 'office-ui-fabric-react/lib/Shimmer';
+import { IShimmerElementsGroupProps } from '@fluentui/react/lib/components/Shimmer/ShimmerElementsGroup/ShimmerElementsGroup.types';
+import { IShimmerProps } from '@fluentui/react/lib/Shimmer';
 
 @Component({
   selector: 'fab-shimmer',
@@ -21,7 +21,6 @@ import { IShimmerProps } from 'office-ui-fabric-react/lib/Shimmer';
   template: `
     <Shimmer
       #reactNode
-      [componentRef]="componentRef"
       [width]="width"
       [isDataLoaded]="isDataLoaded"
       [shimmerElements]="shimmerElements"
@@ -41,7 +40,6 @@ import { IShimmerProps } from 'office-ui-fabric-react/lib/Shimmer';
 export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
-  @Input() componentRef?: IShimmerProps['componentRef'];
   @Input() width?: IShimmerProps['width'];
   @Input() isDataLoaded?: IShimmerProps['isDataLoaded'];
   @Input() shimmerElements?: IShimmerProps['shimmerElements'];

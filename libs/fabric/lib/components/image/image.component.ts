@@ -13,7 +13,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IImageProps, ImageLoadState } from 'office-ui-fabric-react/lib/Image';
+import { IImageProps, ImageLoadState } from '@fluentui/react/lib/Image';
 
 @Component({
   selector: 'fab-image',

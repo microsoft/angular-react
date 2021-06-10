@@ -18,8 +18,8 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ICommandBarItemProps, ICommandBarProps } from 'office-ui-fabric-react/lib/CommandBar';
-import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
+import { ICommandBarItemProps, ICommandBarProps } from '@fluentui/react/lib/CommandBar';
+import { IContextualMenuItem } from '@fluentui/react/lib/ContextualMenu';
 import { Subscription } from 'rxjs';
 import { mergeItemChanges } from '@angular-react/fabric/lib/components/core';
 import { omit } from '@angular-react/fabric/lib/utils';

@@ -15,7 +15,7 @@ import {
   Renderer2,
   NgZone,
 } from '@angular/core';
-import { IPlainCardProps } from 'office-ui-fabric-react/lib/HoverCard';
+import { IPlainCardProps } from '@fluentui/react/lib/HoverCard';
 
 @Component({
   selector: 'fab-plain-card',

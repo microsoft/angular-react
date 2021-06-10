@@ -15,7 +15,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ICheckboxProps } from 'office-ui-fabric-react/lib/Checkbox';
+import { ICheckboxProps } from '@fluentui/react/lib/Checkbox';
 import { FormEvent } from 'react';
 
 @Component({
@@ -39,7 +39,6 @@ import { FormEvent } from 'react';
       [ariaPositionInSet]="ariaPositionInSet"
       [ariaSetSize]="ariaSetSize"
       [checkmarkIconProps]="checkmarkIconProps"
-      [keytipProps]="keytipProps"
       [styles]="styles"
       [RenderLabel]="renderLabel && onRenderLabel"
       [Change]="onChangeHandler"
@@ -67,7 +66,6 @@ export class FabCheckboxComponent extends ReactWrapperComponent<ICheckboxProps> 
   @Input() ariaPositionInSet?: ICheckboxProps['ariaPositionInSet'];
   @Input() ariaSetSize?: ICheckboxProps['ariaSetSize'];
   @Input() checkmarkIconProps?: ICheckboxProps['checkmarkIconProps'];
-  @Input() keytipProps?: ICheckboxProps['keytipProps'];
   @Input() styles?: ICheckboxProps['styles'];
 
   @Input() renderLabel?: InputRendererOptions<ICheckboxProps>;

@@ -13,8 +13,8 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IFocusTrapCalloutProps } from 'office-ui-fabric-react/lib/Callout';
-import { ICalloutPositionedInfo } from 'office-ui-fabric-react/lib/utilities/positioning';
+import { IFocusTrapCalloutProps } from '@fluentui/react/lib/Callout';
+import { ICalloutPositionedInfo } from '@fluentui/react/lib/utilities/positioning';
 
 @Component({
   selector: 'fab-focus-trap-callout',

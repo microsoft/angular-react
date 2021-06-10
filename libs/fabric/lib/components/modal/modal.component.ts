@@ -13,9 +13,9 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IAccessiblePopupProps } from 'office-ui-fabric-react/lib/common/IAccessiblePopupProps';
-import { IModalProps } from 'office-ui-fabric-react/lib/Modal';
-import { IWithResponsiveModeState } from 'office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode';
+import { IAccessiblePopupProps } from '@fluentui/react/lib/common/IAccessiblePopupProps';
+import { IModalProps } from '@fluentui/react/lib/Modal';
+import { IWithResponsiveModeState } from '@fluentui/react/lib/utilities/decorators/withResponsiveMode';
 
 @Component({
   selector: 'fab-modal',

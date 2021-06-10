@@ -14,8 +14,8 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
-import { ISearchBoxProps } from 'office-ui-fabric-react/lib/SearchBox';
+import { IButtonProps } from '@fluentui/react/lib/Button';
+import { ISearchBoxProps } from '@fluentui/react/lib/SearchBox';
 import { omit } from '@angular-react/fabric/lib/utils';
 
 @Component({

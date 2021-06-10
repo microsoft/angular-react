@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Directive, Input } from '@angular/core';
-import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
+import { IDropdownOption } from '@fluentui/react/lib/Dropdown';
 
 /**
  * Wrapper directive for creating a DropdownOption

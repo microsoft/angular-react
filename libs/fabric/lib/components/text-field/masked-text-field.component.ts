@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
 import { FabBaseTextFieldComponent } from './base-text-field.component';
+import { IMaskedTextFieldProps } from '@fluentui/react/lib/TextField';
 
 @Component({
   selector: 'fab-masked-text-field',
@@ -69,6 +70,10 @@ import { FabBaseTextFieldComponent } from './base-text-field.component';
 })
 export class FabMaskedTextFieldComponent extends FabBaseTextFieldComponent {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
+
+  @Input() mask?: IMaskedTextFieldProps['mask'];
+  @Input() maskChar?: IMaskedTextFieldProps['maskChar'];
+  @Input() maskFormat?: IMaskedTextFieldProps['maskFormat'];
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);

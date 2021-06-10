@@ -10,7 +10,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ITag, ITagPickerProps } from 'office-ui-fabric-react/lib/Pickers';
+import { ITag, ITagPickerProps } from '@fluentui/react/lib/Pickers';
 import { FabBasePickerComponent } from '../base-picker/base-picker.component';
 
 @Component({

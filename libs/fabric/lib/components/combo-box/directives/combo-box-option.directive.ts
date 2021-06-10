@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Directive, Input } from '@angular/core';
-import { IComboBoxOption } from 'office-ui-fabric-react/lib/ComboBox';
+import { IComboBoxOption } from '@fluentui/react/lib/ComboBox';
 
 /**
  * Wrapper directive for creating a ComboBoxOption
