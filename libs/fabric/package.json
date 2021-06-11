@@ -9,7 +9,7 @@
         "react": "React",
         "react-dom": "ReactDOM",
         "@angular-react/core": "ɵa",
-        "office-ui-fabric-react": "Fabric"
+        "@fluentui/react": "Fabric"
       }
     },
     "dest": "../../@angular-react/fabric"
@@ -49,7 +49,7 @@
     "@angular/core": "^8.0.2",
     "@angular/platform-browser-dynamic": "^8.0.2",
     "@angular/platform-browser": "^8.0.2",
-    "office-ui-fabric-react": "7.82.2",
+    "@fluentui/react": "^8.17.3",
     "react-dom": "~16.8.6",
     "react": "^16.8.6"
   }
