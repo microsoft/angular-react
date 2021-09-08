@@ -41,6 +41,3 @@ export * from './lib/components/spinner/public-api';
 export * from './lib/components/text-field/public-api';
 export * from './lib/components/toggle/public-api';
 export * from './lib/components/tooltip/public-api';
-
-export * from './lib/declarations/public-api';
-export * from './lib/utils/public-api';
