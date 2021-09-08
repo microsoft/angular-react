@@ -19,7 +19,9 @@ import {
 import { IDropdownProps, IDropdownOption, IDropdown } from '@fluentui/react/lib/Dropdown';
 import { ISelectableDroppableTextProps, ISelectableOption } from '@fluentui/react/lib/SelectableOption';
 import { DropdownOptionsDirective } from './directives/dropdown-options.directive';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-dropdown',
   exportAs: 'fabDropdown',

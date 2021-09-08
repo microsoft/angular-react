@@ -12,7 +12,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IFabricProps } from '@fluentui/react/lib/Fabric';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-fabric',
   exportAs: 'fabFabric',

@@ -12,7 +12,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IVerticalDividerProps } from '@fluentui/react/lib/Divider';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-vertical-divider',
   exportAs: 'fabVerticalDivider',

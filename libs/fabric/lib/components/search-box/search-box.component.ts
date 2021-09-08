@@ -16,8 +16,9 @@ import {
 } from '@angular/core';
 import { IButtonProps } from '@fluentui/react/lib/Button';
 import { ISearchBoxProps } from '@fluentui/react/lib/SearchBox';
-import { omit } from '@angular-react/fabric/lib/utils';
+import { omit, Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-search-box',
   exportAs: 'fabSearchBox',

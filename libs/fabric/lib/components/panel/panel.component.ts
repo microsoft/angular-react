@@ -16,7 +16,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IPanelHeaderRenderer, IPanelProps } from '@fluentui/react/lib/Panel';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-panel',
   exportAs: 'fabPanel',

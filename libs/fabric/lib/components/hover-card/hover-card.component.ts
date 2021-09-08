@@ -15,8 +15,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IExpandingCardProps, IHoverCardProps, IPlainCardProps } from '@fluentui/react/lib/HoverCard';
-import { omit } from '@angular-react/fabric/lib/utils';
+import { omit, Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-hover-card',
   exportAs: 'fabHoverCard',

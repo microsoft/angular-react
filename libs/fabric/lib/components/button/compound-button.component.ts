@@ -11,7 +11,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FabBaseButtonComponent } from './base-button.component';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-compound-button',
   exportAs: 'fabCompoundButton',

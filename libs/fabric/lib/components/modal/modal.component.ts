@@ -16,7 +16,9 @@ import {
 import { IAccessiblePopupProps } from '@fluentui/react/lib/common/IAccessiblePopupProps';
 import { IModalProps } from '@fluentui/react/lib/Modal';
 import { IWithResponsiveModeState } from '@fluentui/react/lib/utilities/decorators/withResponsiveMode';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-modal',
   exportAs: 'fabModal',

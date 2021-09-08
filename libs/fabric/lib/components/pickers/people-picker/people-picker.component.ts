@@ -15,7 +15,9 @@ import {
   import { FabBasePickerComponent } from '../base-picker/base-picker.component';
   import { IPeoplePickerProps } from '@fluentui/react/lib/Pickers';
   import { IPersonaProps } from '@fluentui/react/lib/Persona';
+  import { Styled } from '@angular-react/fabric/lib/utils';
 
+  @Styled()
   @Component({
     selector: 'fab-people-picker',
     exportAs: 'fabPeoplePicker',

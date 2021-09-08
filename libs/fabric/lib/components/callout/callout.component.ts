@@ -15,7 +15,9 @@ import {
 } from '@angular/core';
 import { ICalloutProps } from '@fluentui/react/lib/Callout';
 import { ICalloutPositionedInfo } from '@fluentui/react/lib/utilities/positioning/positioning.types';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-callout',
   exportAs: 'fabCallout',

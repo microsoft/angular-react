@@ -1,7 +1,9 @@
 import { InputRendererOptions, passProp, ReactWrapperComponent } from '@angular-react/core';
 import { ChangeDetectorRef, Component, ElementRef, Input, NgZone, Output, Renderer2, ViewChild, EventEmitter, OnInit } from '@angular/core';
 import { IRatingProps, IRatingStarProps } from '@fluentui/react/lib/Rating';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-rating',
   exportAs: 'fabRating',

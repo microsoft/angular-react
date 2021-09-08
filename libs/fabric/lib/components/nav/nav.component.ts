@@ -14,7 +14,9 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-nav',
   exportAs: 'fabNav',

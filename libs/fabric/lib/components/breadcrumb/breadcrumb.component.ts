@@ -13,7 +13,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IBreadcrumbItem, IBreadcrumbProps } from '@fluentui/react/lib/Breadcrumb';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-breadcrumb',
   exportAs: 'fabBreadcrumb',

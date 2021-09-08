@@ -38,7 +38,9 @@ import { TypedChanges, OnChanges } from '@angular-react/fabric/lib/declarations'
 import { IDetailsListColumnOptions } from './directives/details-list-column.directive';
 import { DetailsListColumnsDirective } from './directives/details-list-columns.directive';
 import { DetailsListGroupsDirective } from './directives/details-list-groups.directive';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-details-list',
   exportAs: 'fabDetailsList',

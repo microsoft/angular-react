@@ -12,7 +12,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IIconProps } from '@fluentui/react/lib/Icon';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-icon',
   exportAs: 'fabIcon',

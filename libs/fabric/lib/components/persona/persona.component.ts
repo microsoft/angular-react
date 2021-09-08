@@ -17,6 +17,7 @@ import {
 } from '@angular/core';
 import { ImageLoadState } from '@fluentui/react/lib/components/Image/Image.types';
 import { IPersonaCoinProps, IPersonaProps, IPersonaSharedProps } from '@fluentui/react/lib/Persona';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
 export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps> extends ReactWrapperComponent<TProps>
   implements OnInit {
@@ -59,6 +60,7 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
   }
 }
 
+@Styled()
 @Component({
   selector: 'fab-persona',
   exportAs: 'fabPersona',
@@ -134,6 +136,7 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
   }
 }
 
+@Styled()
 @Component({
   selector: 'fab-persona-coin',
   exportAs: 'fabPersonaCoin',

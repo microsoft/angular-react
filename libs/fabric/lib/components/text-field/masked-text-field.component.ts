@@ -4,7 +4,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
 import { FabBaseTextFieldComponent } from './base-text-field.component';
 import { IMaskedTextFieldProps } from '@fluentui/react/lib/TextField';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-masked-text-field',
   exportAs: 'fabMaskedTextField',

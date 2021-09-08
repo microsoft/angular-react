@@ -14,7 +14,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ISliderProps } from '@fluentui/react/lib/Slider';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-slider',
   exportAs: 'fabSlider',

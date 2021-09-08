@@ -22,7 +22,7 @@ import { ICommandBarItemProps, ICommandBarProps } from '@fluentui/react/lib/Comm
 import { IContextualMenuItem } from '@fluentui/react/lib/ContextualMenu';
 import { Subscription } from 'rxjs';
 import { mergeItemChanges } from '@angular-react/fabric/lib/components/core';
-import { omit } from '@angular-react/fabric/lib/utils';
+import { omit, Styled } from '@angular-react/fabric/lib/utils';
 import { OnChanges, TypedChanges } from '@angular-react/fabric/lib/declarations';
 
 import { CommandBarItemChangedPayload, CommandBarItemDirective } from './directives/command-bar-item.directives';
@@ -33,6 +33,7 @@ import {
   CommandBarOverflowItemsDirective,
 } from './directives/command-bar-items.directives';
 
+@Styled()
 @Component({
   selector: 'fab-command-bar',
   exportAs: 'fabCommandBar',

@@ -17,7 +17,9 @@ import {
 } from '@angular/core';
 import { ICheckboxProps } from '@fluentui/react/lib/Checkbox';
 import { FormEvent } from 'react';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-checkbox',
   exportAs: 'fabCheckbox',

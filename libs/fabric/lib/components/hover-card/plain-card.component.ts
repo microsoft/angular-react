@@ -16,7 +16,9 @@ import {
   NgZone,
 } from '@angular/core';
 import { IPlainCardProps } from '@fluentui/react/lib/HoverCard';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-plain-card',
   exportAs: 'fabPlainCard',

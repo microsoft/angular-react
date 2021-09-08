@@ -14,7 +14,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IDatePickerProps } from '@fluentui/react/lib/DatePicker';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-date-picker',
   exportAs: 'fabDatePicker',

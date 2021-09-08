@@ -17,7 +17,9 @@ import {
 } from '@angular/core';
 import { IGroup, IGroupedListProps, IGroupRenderProps } from '@fluentui/react/lib/GroupedList';
 import { IListProps } from '@fluentui/react/lib/List';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-grouped-list',
   exportAs: 'fabGroupedList',

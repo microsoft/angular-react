@@ -12,7 +12,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ILinkProps, Link } from '@fluentui/react/lib/Link';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-link',
   exportAs: 'fabLink',

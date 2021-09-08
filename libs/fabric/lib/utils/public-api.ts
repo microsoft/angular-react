@@ -3,3 +3,4 @@ export * from './kebab-case';
 export * from './noop';
 export * from './omit';
 export * from './pick'
+export * from './styles-plugin';

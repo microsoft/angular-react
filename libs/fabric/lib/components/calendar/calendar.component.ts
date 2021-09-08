@@ -17,7 +17,9 @@ import {
 } from '@angular/core';
 import { ICalendarProps } from '@fluentui/react/lib/Calendar';
 import { CalendarStringsDirective } from './directives/calendar-strings-directive.component';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-calendar',
   exportAs: 'fabCalendar',

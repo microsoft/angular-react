@@ -14,7 +14,9 @@ import {
   Output,
 } from '@angular/core';
 import { ISpinButtonProps } from '@fluentui/react/lib/SpinButton';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-spin-button',
   exportAs: 'fabSpinButton',

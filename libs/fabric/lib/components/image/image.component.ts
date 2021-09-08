@@ -14,7 +14,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IImageProps, ImageLoadState } from '@fluentui/react/lib/Image';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-image',
   exportAs: 'fabImage',

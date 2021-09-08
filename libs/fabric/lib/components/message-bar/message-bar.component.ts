@@ -16,7 +16,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IMessageBarProps } from '@fluentui/react/lib/MessageBar';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-message-bar',
   exportAs: 'fabMessageBar',

@@ -14,7 +14,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IToggleProps } from '@fluentui/react/lib/Toggle';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-toggle',
   exportAs: 'fabToggle',

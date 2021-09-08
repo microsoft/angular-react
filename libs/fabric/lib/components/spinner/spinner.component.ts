@@ -12,7 +12,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ISpinnerProps } from '@fluentui/react/lib/Spinner';
+import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Styled()
 @Component({
   selector: 'fab-spinner',
   exportAs: 'fabSpinner',
