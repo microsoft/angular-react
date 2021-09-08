@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "angular-react-toolkit",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "ngPackage": {
     "lib": {
       "entryFile": "public-api.ts",

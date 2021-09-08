@@ -10,3 +10,5 @@ export * from './core/declarative/item-changed';
 export * from './core/shared/changeable-helper';
 export * from './core/shared/changeable-item.directive';
 export * from './core/shared/changeable-items.directive';
+
+export * from './plugins/styles-plugin';
