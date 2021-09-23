@@ -14,7 +14,7 @@ import {
 import { ISpinnerProps } from '@fluentui/react/lib/Spinner';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabSpinnerComponent')
 @Component({
   selector: 'fab-spinner',
   exportAs: 'fabSpinner',

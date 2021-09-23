@@ -17,7 +17,7 @@ import {
   import { IPersonaProps } from '@fluentui/react/lib/Persona';
   import { Styled } from '@angular-react/fabric/lib/utils';
 
-  @Styled()
+  @Styled('FabPeoplePickerComponent')
   @Component({
     selector: 'fab-people-picker',
     exportAs: 'fabPeoplePicker',

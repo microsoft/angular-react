@@ -13,7 +13,7 @@ import {
 import { FabBaseComboBoxComponent } from './base-combo-box.component';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabComboBoxComponent')
 @Component({
   selector: 'fab-combo-box',
   exportAs: 'fabComboBox',

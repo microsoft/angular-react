@@ -60,7 +60,7 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
   }
 }
 
-@Styled()
+@Styled('FabPersonaComponent')
 @Component({
   selector: 'fab-persona',
   exportAs: 'fabPersona',
@@ -136,7 +136,7 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
   }
 }
 
-@Styled()
+@Styled('FabPersonaCoinComponent')
 @Component({
   selector: 'fab-persona-coin',
   exportAs: 'fabPersonaCoin',

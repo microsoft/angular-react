@@ -25,12 +25,12 @@ interface IConstructor {
     ngAfterViewChecked?(): void
   }
 }
-export function Styled<T extends IConstructor>() {
+export function Styled<T extends IConstructor>(componentName: string) {
   return function (constructor: T) {
     class Wrapper extends constructor implements OnInit, OnChanges, OnDestroy, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, DoCheck {
       styles: IStyleFunctionOrObject<any, any>;
       ngOnInit() {
-        const handler = proxyHandlerMap.get(constructor.name);
+        const handler = proxyHandlerMap.get(componentName);
         if (handler && handler.beforeNgInit) {
           handler.beforeNgInit.apply(this);
         }
@@ -39,7 +39,7 @@ export function Styled<T extends IConstructor>() {
         }
       }
       ngOnChanges(changes: TypedChanges<T>) {
-        const handler = proxyHandlerMap.get(constructor.name);
+        const handler = proxyHandlerMap.get(componentName);
         if (handler && handler.beforeNgChanges) {
           handler.beforeNgChanges.apply(this, [changes]);
         }
@@ -48,7 +48,7 @@ export function Styled<T extends IConstructor>() {
         }
       }
       ngOnDestroy() {
-        const handler = proxyHandlerMap.get(constructor.name);
+        const handler = proxyHandlerMap.get(componentName);
         if (handler && handler.beforeNgDestroy) {
           handler.beforeNgDestroy.apply(this);
         }
@@ -57,7 +57,7 @@ export function Styled<T extends IConstructor>() {
         }
       }
       ngDoCheck() {
-        const handler = proxyHandlerMap.get(constructor.name);
+        const handler = proxyHandlerMap.get(componentName);
         if (handler && handler.beforeNgDoCheck) {
           handler.beforeNgDoCheck.apply(this);
         }
@@ -66,7 +66,7 @@ export function Styled<T extends IConstructor>() {
         }
       }
       ngAfterContentInit() {
-        const handler = proxyHandlerMap.get(constructor.name);
+        const handler = proxyHandlerMap.get(componentName);
         if (handler && handler.beforeNgAfterContentInit) {
           handler.beforeNgAfterContentInit.apply(this);
         }
@@ -75,7 +75,7 @@ export function Styled<T extends IConstructor>() {
         }
       }
       ngAfterContentChecked() {
-        const handler = proxyHandlerMap.get(constructor.name);
+        const handler = proxyHandlerMap.get(componentName);
         if (handler && handler.beforeNgAfterContentChecked) {
           handler.beforeNgAfterContentChecked.apply(this);
         }
@@ -84,7 +84,7 @@ export function Styled<T extends IConstructor>() {
         }
       }
       ngAfterViewInit() {
-        const handler = proxyHandlerMap.get(constructor.name);
+        const handler = proxyHandlerMap.get(componentName);
         if (handler && handler.beforeNgAfterViewInit) {
           handler.beforeNgAfterViewInit.apply(this);
         }
@@ -93,7 +93,7 @@ export function Styled<T extends IConstructor>() {
         }
       }
       ngAfterViewChecked() {
-        const handler = proxyHandlerMap.get(constructor.name);
+        const handler = proxyHandlerMap.get(componentName);
         if (handler && handler.beforeNgAfterViewChecked) {
           handler.beforeNgAfterViewChecked.apply(this);
         }

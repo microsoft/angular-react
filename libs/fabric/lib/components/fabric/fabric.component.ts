@@ -14,7 +14,7 @@ import {
 import { IFabricProps } from '@fluentui/react/lib/Fabric';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabFabricComponent')
 @Component({
   selector: 'fab-fabric',
   exportAs: 'fabFabric',

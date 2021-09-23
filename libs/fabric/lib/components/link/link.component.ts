@@ -14,7 +14,7 @@ import {
 import { ILinkProps, Link } from '@fluentui/react/lib/Link';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabLinkComponent')
 @Component({
   selector: 'fab-link',
   exportAs: 'fabLink',

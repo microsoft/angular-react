@@ -40,7 +40,7 @@ import { DetailsListColumnsDirective } from './directives/details-list-columns.d
 import { DetailsListGroupsDirective } from './directives/details-list-groups.directive';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabDetailsListComponent')
 @Component({
   selector: 'fab-details-list',
   exportAs: 'fabDetailsList',

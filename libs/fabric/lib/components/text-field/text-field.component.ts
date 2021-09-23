@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Rend
 import { FabBaseTextFieldComponent } from './base-text-field.component';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabTextFieldComponent')
 @Component({
   selector: 'fab-text-field',
   exportAs: 'fabTextField',

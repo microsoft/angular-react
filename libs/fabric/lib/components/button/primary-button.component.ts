@@ -13,7 +13,7 @@ import {
 import { FabBaseButtonComponent } from './base-button.component';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabPrimaryButtonComponent')
 @Component({
   selector: 'fab-primary-button',
   exportAs: 'fabPrimaryButton',

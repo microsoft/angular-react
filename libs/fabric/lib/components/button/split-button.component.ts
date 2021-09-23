@@ -13,7 +13,7 @@ import {
 import { FabBaseButtonComponent } from './base-button.component';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabSplitButtonComponent')
 @Component({
   selector: 'fab-split-button',
   exportAs: 'fabSplitButton',

@@ -15,7 +15,7 @@ import { ReactWrapperComponent } from '@angular-react/core';
 import { IMarqueeSelectionProps } from '@fluentui/react/lib/MarqueeSelection';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabMarqueeSelectionComponent')
 @Component({
   selector: 'fab-marquee-selection',
   exportAs: 'fabMarqueeSelection',

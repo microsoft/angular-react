@@ -6,7 +6,7 @@ import { FabBaseTextFieldComponent } from './base-text-field.component';
 import { IMaskedTextFieldProps } from '@fluentui/react/lib/TextField';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabMaskedTextFieldComponent')
 @Component({
   selector: 'fab-masked-text-field',
   exportAs: 'fabMaskedTextField',

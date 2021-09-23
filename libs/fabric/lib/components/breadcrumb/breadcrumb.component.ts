@@ -15,7 +15,7 @@ import {
 import { IBreadcrumbItem, IBreadcrumbProps } from '@fluentui/react/lib/Breadcrumb';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabBreadcrumbComponent')
 @Component({
   selector: 'fab-breadcrumb',
   exportAs: 'fabBreadcrumb',

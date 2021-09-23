@@ -17,7 +17,7 @@ import {
 import { IExpandingCardProps, IHoverCardProps, IPlainCardProps } from '@fluentui/react/lib/HoverCard';
 import { omit, Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabHoverCardComponent')
 @Component({
   selector: 'fab-hover-card',
   exportAs: 'fabHoverCard',

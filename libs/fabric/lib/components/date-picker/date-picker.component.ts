@@ -16,7 +16,7 @@ import {
 import { IDatePickerProps } from '@fluentui/react/lib/DatePicker';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabDatePickerComponent')
 @Component({
   selector: 'fab-date-picker',
   exportAs: 'fabDatePicker',

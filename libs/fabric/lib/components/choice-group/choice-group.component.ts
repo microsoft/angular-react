@@ -16,7 +16,7 @@ import {
 import { IChoiceGroupOption, IChoiceGroupProps } from '@fluentui/react/lib/ChoiceGroup';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabChoiceGroupComponent')
 @Component({
   selector: 'fab-choice-group',
   exportAs: 'fabChoiceGroup',

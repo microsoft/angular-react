@@ -16,7 +16,7 @@ import {
 import { IImageProps, ImageLoadState } from '@fluentui/react/lib/Image';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabImageComponent')
 @Component({
   selector: 'fab-image',
   exportAs: 'fabImage',

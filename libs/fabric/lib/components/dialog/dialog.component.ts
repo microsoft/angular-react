@@ -16,7 +16,7 @@ import {
 import { IDialogContentProps, IDialogFooterProps, IDialogProps } from '@fluentui/react/lib/Dialog';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabDialogComponent')
 @Component({
   selector: 'fab-dialog',
   exportAs: 'fabDialog',
@@ -79,7 +79,7 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
   }
 }
 
-@Styled()
+@Styled('FabDialogFooterComponent')
 @Component({
   selector: 'fab-dialog-footer',
   exportAs: 'fabDialogFooter',
@@ -104,7 +104,7 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
   }
 }
 
-@Styled()
+@Styled('FabDialogContentComponent')
 @Component({
   selector: 'fab-dialog-content',
   exportAs: 'fabDialogContent',

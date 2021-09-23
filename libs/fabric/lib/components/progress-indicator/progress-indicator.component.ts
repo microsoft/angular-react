@@ -15,7 +15,7 @@ import {
 import { IProgressIndicatorProps } from '@fluentui/react/lib/ProgressIndicator';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabProgressIndicatorComponent')
 @Component({
   selector: 'fab-progress-indicator',
   exportAs: 'fabProgressIndicator',

@@ -33,7 +33,7 @@ import {
   CommandBarOverflowItemsDirective,
 } from './directives/command-bar-items.directives';
 
-@Styled()
+@Styled('FabCommandBarComponent')
 @Component({
   selector: 'fab-command-bar',
   exportAs: 'fabCommandBar',

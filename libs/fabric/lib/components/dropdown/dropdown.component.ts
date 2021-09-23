@@ -21,7 +21,7 @@ import { ISelectableDroppableTextProps, ISelectableOption } from '@fluentui/reac
 import { DropdownOptionsDirective } from './directives/dropdown-options.directive';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabDropdownComponent')
 @Component({
   selector: 'fab-dropdown',
   exportAs: 'fabDropdown',

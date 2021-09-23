@@ -16,7 +16,7 @@ import { IShimmerElementsGroupProps } from '@fluentui/react/lib/components/Shimm
 import { IShimmerProps } from '@fluentui/react/lib/Shimmer';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabShimmerComponent')
 @Component({
   selector: 'fab-shimmer',
   exportAs: 'fabShimmer',
@@ -73,7 +73,7 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
   }
 }
 
-@Styled()
+@Styled('FabShimmerElementsGroupComponent')
 @Component({
   selector: 'fab-shimmer-elements-group',
   exportAs: 'fabShimmerElementsGroup',

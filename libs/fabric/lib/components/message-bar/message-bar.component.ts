@@ -18,7 +18,7 @@ import {
 import { IMessageBarProps } from '@fluentui/react/lib/MessageBar';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabMessageBarComponent')
 @Component({
   selector: 'fab-message-bar',
   exportAs: 'fabMessageBar',

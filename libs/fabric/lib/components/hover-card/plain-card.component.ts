@@ -18,7 +18,7 @@ import {
 import { IPlainCardProps } from '@fluentui/react/lib/HoverCard';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabPlainCardComponent')
 @Component({
   selector: 'fab-plain-card',
   exportAs: 'fabPlainCard',

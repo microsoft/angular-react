@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabNavComponent')
 @Component({
   selector: 'fab-nav',
   exportAs: 'fabNav',

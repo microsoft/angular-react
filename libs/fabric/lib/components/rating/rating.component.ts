@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, ElementRef, Input, NgZone, Output, Render
 import { IRatingProps, IRatingStarProps } from '@fluentui/react/lib/Rating';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabRatingComponent')
 @Component({
   selector: 'fab-rating',
   exportAs: 'fabRating',

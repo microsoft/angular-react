@@ -17,7 +17,7 @@ import {
 import { ITooltipHostProps, ITooltipProps } from '@fluentui/react/lib/Tooltip';
 import { omit, Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabTooltipHostComponent')
 @Component({
   selector: 'fab-tooltip-host',
   exportAs: 'fabTooltipHost',

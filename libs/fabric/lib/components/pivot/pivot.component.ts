@@ -21,7 +21,7 @@ import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from '@fluentui/react/
 import * as React from 'react';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
-@Styled()
+@Styled('FabPivotItemComponent')
 @Component({
   selector: 'fab-pivot-item',
   exportAs: 'fabPivotItem',
@@ -72,7 +72,7 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   }
 }
 
-@Styled()
+@Styled('FabPivotComponent')
 @Component({
   selector: 'fab-pivot',
   exportAs: 'fabPivot',
