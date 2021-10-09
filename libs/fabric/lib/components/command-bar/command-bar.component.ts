@@ -13,6 +13,7 @@ import {
   Input,
   NgZone,
   OnDestroy,
+  OnInit,
   Output,
   QueryList,
   Renderer2,
@@ -63,7 +64,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>
-  implements OnChanges<FabCommandBarComponent>, AfterContentInit, OnDestroy {
+  implements OnInit, OnChanges<FabCommandBarComponent>, AfterContentInit, OnDestroy {
   @ContentChild(CommandBarItemsDirective, { static: true }) readonly itemsDirective?: CommandBarItemsDirective;
   @ContentChild(CommandBarFarItemsDirective, { static: true }) readonly farItemsDirective?: CommandBarFarItemsDirective;
   @ContentChild(CommandBarOverflowItemsDirective, { static: true }) readonly overflowItemsDirective?: CommandBarOverflowItemsDirective;
@@ -101,6 +102,8 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, ngZone: NgZone) {
     super(elementRef, changeDetectorRef, renderer, { ngZone, setHostDisplay: true });
   }
+
+  ngOnInit() {}
 
   ngOnChanges(changes: TypedChanges<FabCommandBarComponent>) {
     if (
