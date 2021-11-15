@@ -41,7 +41,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       [multiSelect]="multiSelect"
       [isButtonAriaHidden]="isButtonAriaHidden"
       [ariaDescribedBy]="ariaDescribedBy"
-      [keytipProps]="keytipProps"
       [persistMenu]="persistMenu"
       [shouldRestoreFocus]="shouldRestoreFocus"
       [RenderLowerContent]="renderLowerContent && onRenderLowerContent"
