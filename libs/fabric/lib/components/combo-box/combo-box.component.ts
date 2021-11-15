@@ -21,6 +21,9 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     <ComboBox
       #reactNode
       [componentRef]="componentRef"
+      [label]="label"
+      [defaultSelectedKey]="defaultSelectedKey"
+      [selectedKey]="selectedKey"
       [options]="options"
       [allowFreeform]="allowFreeform"
       [autoComplete]="autoComplete"

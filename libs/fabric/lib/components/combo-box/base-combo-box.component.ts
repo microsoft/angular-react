@@ -22,6 +22,9 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
   implements OnInit, AfterContentInit {
 
   @Input() componentRef?: IComboBoxProps['componentRef'];
+  @Input() label?: IComboBoxProps['label'];
+  @Input() defaultSelectedKey?: IComboBoxProps['defaultSelectedKey'];
+  @Input() selectedKey?: IComboBoxProps['selectedKey'];
   @Input() options: IComboBoxProps['options'];
   @Input() allowFreeform?: IComboBoxProps['allowFreeform'];
   @Input() autoComplete?: IComboBoxProps['autoComplete'];
