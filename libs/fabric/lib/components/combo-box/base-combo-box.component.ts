@@ -17,14 +17,16 @@ import {
 import { IComboBox, IComboBoxOption, IComboBoxProps } from '@fluentui/react/lib/ComboBox';
 import { ComboBoxOptionDirective } from './directives/combo-box-option.directive';
 import { ComboBoxOptionsDirective } from './directives/combo-box-options.directive';
+import { OnChanges, TypedChanges } from '@angular-react/fabric/lib/declarations';
 
 export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<IComboBoxProps>
-  implements OnInit, AfterContentInit {
+  implements OnInit, OnChanges<FabBaseComboBoxComponent>, AfterContentInit {
 
   @Input() componentRef?: IComboBoxProps['componentRef'];
   @Input() label?: IComboBoxProps['label'];
   @Input() defaultSelectedKey?: IComboBoxProps['defaultSelectedKey'];
   @Input() selectedKey?: IComboBoxProps['selectedKey'];
+  _selectedKey?: IComboBoxProps['selectedKey'];
   @Input() options: IComboBoxProps['options'];
   @Input() allowFreeform?: IComboBoxProps['allowFreeform'];
   @Input() autoComplete?: IComboBoxProps['autoComplete'];
@@ -92,6 +94,17 @@ export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<ICo
       this._initDirective(this.comboBoxOptionsDirective);
     }
     super.ngAfterContentInit();
+  }
+
+  ngOnChanges(changes: TypedChanges<FabBaseComboBoxComponent>) {
+    if (
+      changes['selectedKey'] &&
+      changes['selectedKey'].previousValue !== changes['selectedKey'].currentValue &&
+      changes['selectedKey'].currentValue
+    ) {
+      const currentValue = changes['selectedKey'].currentValue;
+      this._selectedKey = currentValue;
+    }
   }
 
   onItemClickHandler(event: React.FormEvent<IComboBox>, option?: IComboBoxOption, index?: number) {

@@ -23,7 +23,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       [componentRef]="componentRef"
       [label]="label"
       [defaultSelectedKey]="defaultSelectedKey"
-      [selectedKey]="selectedKey"
+      [selectedKey]="_selectedKey"
       [options]="options"
       [allowFreeform]="allowFreeform"
       [autoComplete]="autoComplete"
