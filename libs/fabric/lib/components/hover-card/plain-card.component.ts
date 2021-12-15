@@ -46,7 +46,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPlainCardComponent extends ReactWrapperComponent<IPlainCardProps> implements OnInit {
-  @ViewChild('reactNode', { static: false }) protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef: IPlainCardProps['componentRef'];
   @Input() className: IPlainCardProps['className'];

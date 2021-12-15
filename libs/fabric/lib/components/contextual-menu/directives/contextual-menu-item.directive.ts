@@ -30,7 +30,7 @@ export type ContextualMenuItemChangedPayload = ItemChangedPayload<
  */
 @Directive({ selector: 'fab-command-bar-item > render' })
 export class ContextualMenuItemRenderDirective {
-  @ContentChild(TemplateRef, { static: false }) readonly templateRef: TemplateRef<IContextualMenuItemOptionsRenderContext>;
+  @ContentChild(TemplateRef) readonly templateRef: TemplateRef<IContextualMenuItemOptionsRenderContext>;
 }
 
 /**
@@ -38,7 +38,7 @@ export class ContextualMenuItemRenderDirective {
  */
 @Directive({ selector: 'fab-command-bar-item > render-icon' })
 export class ContextualMenuItemRenderIconDirective {
-  @ContentChild(TemplateRef, { static: false }) readonly templateRef: TemplateRef<IContextualMenuItemOptionsRenderIconContext>;
+  @ContentChild(TemplateRef) readonly templateRef: TemplateRef<IContextualMenuItemOptionsRenderIconContext>;
 }
 
 @Directive({ selector: 'contextual-menu-item' })
@@ -50,8 +50,8 @@ export class ContextualMenuItemDirective extends ChangeableItemDirective<IContex
     OnChanges<ContextualMenuItemDirective>,
     OnDestroy {
   @ContentChildren(ContextualMenuItemDirective) readonly menuItemsDirectives: QueryList<ContextualMenuItemDirective>;
-  @ContentChild(ContextualMenuItemRenderDirective, { static: false }) readonly renderDirective: ContextualMenuItemRenderDirective;
-  @ContentChild(ContextualMenuItemRenderIconDirective, { static: false })
+  @ContentChild(ContextualMenuItemRenderDirective) readonly renderDirective: ContextualMenuItemRenderDirective;
+  @ContentChild(ContextualMenuItemRenderIconDirective)
   readonly renderIconDirective: ContextualMenuItemRenderIconDirective;
 
   @Input() componentRef?: IContextualMenuItem['componentRef'];

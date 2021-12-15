@@ -50,7 +50,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabExpandingCardComponent extends ReactWrapperComponent<IExpandingCardProps> implements OnInit {
-  @ViewChild('reactNode', { static: false }) protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() componentRef?: IExpandingCardProps['componentRef'];
   @Input() className?: IExpandingCardProps['className'];

@@ -11,7 +11,7 @@ import { ChangeableItemDirective } from '@angular-react/fabric/lib/components/co
  */
 @Directive({ selector: 'fab-details-list-column > render' })
 export class DetailsListColumnRenderDirective {
-  @ContentChild(TemplateRef, { static: false }) readonly templateRef: TemplateRef<IDetailsListColumnOptionsRenderContext>;
+  @ContentChild(TemplateRef) readonly templateRef: TemplateRef<IDetailsListColumnOptionsRenderContext>;
 }
 
 /**
@@ -20,7 +20,7 @@ export class DetailsListColumnRenderDirective {
 @Directive({ selector: 'fab-details-list-column' })
 export class DetailsListColumnDirective extends ChangeableItemDirective<IDetailsListColumnOptions>
   implements AfterContentInit {
-  @ContentChild(DetailsListColumnRenderDirective, { static: false }) readonly renderDirective: DetailsListColumnRenderDirective;
+  @ContentChild(DetailsListColumnRenderDirective) readonly renderDirective: DetailsListColumnRenderDirective;
 
   @Input() name: IColumn['name'];
   @Input() fieldName?: IColumn['fieldName'];
