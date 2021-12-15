@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "module": "esnext",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
