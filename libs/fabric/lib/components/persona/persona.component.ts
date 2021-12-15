@@ -2,23 +2,12 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  NgZone,
-  OnInit,
-  Output,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2, ViewChild, Directive } from '@angular/core';
 import { ImageLoadState } from '@fluentui/react/lib/components/Image/Image.types';
 import { IPersonaCoinProps, IPersonaProps, IPersonaSharedProps } from '@fluentui/react/lib/Persona';
 import { Styled } from '@angular-react/fabric/lib/utils';
 
+@Directive()
 export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps> extends ReactWrapperComponent<TProps>
   implements OnInit {
   @Input() text?: IPersonaProps['text'];

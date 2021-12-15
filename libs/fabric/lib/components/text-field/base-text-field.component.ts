@@ -2,18 +2,10 @@
 // Licensed under the MIT License.
 
 import { ReactWrapperComponent, InputRendererOptions, JsxRenderFunc } from '@angular-react/core';
-import {
-  ChangeDetectorRef,
-  EventEmitter,
-  ElementRef,
-  Input,
-  Renderer2,
-  ViewChild,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, ElementRef, Input, Renderer2, ViewChild, OnInit, Output, Directive } from '@angular/core';
 import { ITextFieldProps } from '@fluentui/react/lib/TextField';
 
+@Directive()
 export class FabBaseTextFieldComponent extends ReactWrapperComponent<ITextFieldProps> implements OnInit {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;
 
