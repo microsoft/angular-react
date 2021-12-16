@@ -250,9 +250,7 @@
   },
   "defaultProject": "docs",
   "cli": {
-    "warnings": {
-      "typescriptMismatch": false
-    },
+    "warnings": {},
     "defaultCollection": "@nrwl/schematics"
   }
 }
