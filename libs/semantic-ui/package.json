@@ -32,6 +32,9 @@
     "semantic-ui"
   ],
   "private": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular-react/core": "^0.3.0-alpha1",
     "@angular/common": "^9.1.13",

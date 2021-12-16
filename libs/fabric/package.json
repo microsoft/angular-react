@@ -43,6 +43,9 @@
   ],
   "private": false,
   "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular-react/core": "^1.0.0",
     "@angular/common": "^9.1.13",
