@@ -30,7 +30,7 @@ export class ReactNode {
   private _typeIsReactElementClass: boolean | undefined;
   private _children: Array<ReactNode> = [];
   private _typeName: string;
-  private _childrenToAppend: Array<HTMLElement> = [];
+  private _childrenToAppend: Array<HTMLElement | Node> = [];
   private _renderedDomElement: HTMLElement;
   private _parent: HTMLElement | ReactNode;
   private _isNotRenderable: boolean;
@@ -241,7 +241,7 @@ export class ReactNode {
    *
    * @param projectedContent the content to project.
    */
-  appendChild(projectedContent: HTMLElement) {
+  appendChild(projectedContent: HTMLElement | Node) {
     if (DEBUG) {
       console.error(
         'ReactNode > appendChild > node:',

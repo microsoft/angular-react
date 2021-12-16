@@ -122,9 +122,17 @@ export class ReactRenderer implements Renderer2 {
     return new ReactNode().asText(value);
   }
 
-  appendChild(parent: HTMLElement | ReactNode, node: ReactNode): void {
+  appendChild(parent: HTMLElement | ReactNode, node: ReactNode | Node): void {
     // Only append a child if there is a child to append.
     if (!node) {
+      return;
+    }
+
+    if (node instanceof Node) {
+      if (DEBUG) {
+        console.warn('Renderer > appendChild > asNode > parent:', parent.toString(), 'node:', node.toString());
+      }
+      parent.appendChild(node);
       return;
     }
 
