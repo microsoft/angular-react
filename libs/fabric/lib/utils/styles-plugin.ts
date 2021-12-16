@@ -1,5 +1,3 @@
-import { OnInit, OnChanges, OnDestroy, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, DoCheck } from "@angular/core";
-import { IStyleFunctionOrObject } from "@fluentui/react";
 import { TypedChanges } from '@angular-react/fabric/lib/declarations';
 
 const proxyHandlerMap = new Map<string, {
@@ -25,84 +23,98 @@ interface IConstructor {
     ngAfterViewChecked?(): void
   }
 }
+
 export function Styled<T extends IConstructor>(componentName: string) {
   return function (constructor: T) {
-    class Wrapper extends constructor implements OnInit, OnChanges, OnDestroy, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, DoCheck {
-      styles: IStyleFunctionOrObject<any, any>;
-      ngOnInit() {
-        const handler = proxyHandlerMap.get(componentName);
-        if (handler && handler.beforeNgInit) {
-          handler.beforeNgInit.apply(this);
-        }
-        if (super.ngOnInit) {
-          super.ngOnInit();
-        }
+    const ngOnInit = constructor.prototype.ngOnInit
+    constructor.prototype.ngOnInit = function () {
+      const handler = proxyHandlerMap.get(componentName);
+      if (handler && handler.beforeNgInit) {
+        handler.beforeNgInit.apply(this);
       }
-      ngOnChanges(changes: TypedChanges<T>) {
-        const handler = proxyHandlerMap.get(componentName);
-        if (handler && handler.beforeNgChanges) {
-          handler.beforeNgChanges.apply(this, [changes]);
-        }
-        if (super.ngOnChanges) {
-          super.ngOnChanges(changes);
-        }
-      }
-      ngOnDestroy() {
-        const handler = proxyHandlerMap.get(componentName);
-        if (handler && handler.beforeNgDestroy) {
-          handler.beforeNgDestroy.apply(this);
-        }
-        if (super.ngOnDestroy) {
-          super.ngOnDestroy();
-        }
-      }
-      ngDoCheck() {
-        const handler = proxyHandlerMap.get(componentName);
-        if (handler && handler.beforeNgDoCheck) {
-          handler.beforeNgDoCheck.apply(this);
-        }
-        if (super.ngDoCheck) {
-          super.ngDoCheck();
-        }
-      }
-      ngAfterContentInit() {
-        const handler = proxyHandlerMap.get(componentName);
-        if (handler && handler.beforeNgAfterContentInit) {
-          handler.beforeNgAfterContentInit.apply(this);
-        }
-        if (super.ngAfterContentInit) {
-          super.ngAfterContentInit();
-        }
-      }
-      ngAfterContentChecked() {
-        const handler = proxyHandlerMap.get(componentName);
-        if (handler && handler.beforeNgAfterContentChecked) {
-          handler.beforeNgAfterContentChecked.apply(this);
-        }
-        if (super.ngAfterContentChecked) {
-          super.ngAfterContentChecked();
-        }
-      }
-      ngAfterViewInit() {
-        const handler = proxyHandlerMap.get(componentName);
-        if (handler && handler.beforeNgAfterViewInit) {
-          handler.beforeNgAfterViewInit.apply(this);
-        }
-        if (super.ngAfterViewInit) {
-          super.ngAfterViewInit();
-        }
-      }
-      ngAfterViewChecked() {
-        const handler = proxyHandlerMap.get(componentName);
-        if (handler && handler.beforeNgAfterViewChecked) {
-          handler.beforeNgAfterViewChecked.apply(this);
-        }
-        if (super.ngAfterViewChecked) {
-          super.ngAfterViewChecked();
-        }
+      if (ngOnInit) {
+        ngOnInit.apply(this);
       }
     }
-    return Wrapper as any;
+
+    const ngOnChanges = constructor.prototype.ngOnChanges
+    constructor.prototype.ngOnChanges = function (changes: TypedChanges<T>) {
+      const handler = proxyHandlerMap.get(componentName);
+      if (handler && handler.beforeNgChanges) {
+        handler.beforeNgChanges.apply(this, [changes]);
+      }
+      if (ngOnChanges) {
+        ngOnChanges.apply(this, [changes]);
+      }
+    }
+
+    const ngOnDestroy = constructor.prototype.ngOnDestroy
+    constructor.prototype.ngOnDestroy = function () {
+      const handler = proxyHandlerMap.get(componentName);
+      if (handler && handler.beforeNgDestroy) {
+        handler.beforeNgDestroy.apply(this);
+      }
+      if (ngOnDestroy) {
+        ngOnDestroy.ngOnDestroy.apply(this);
+      }
+    }
+
+    const ngDoCheck = constructor.prototype.ngDoCheck
+    constructor.prototype.ngDoCheck = function () {
+      const handler = proxyHandlerMap.get(componentName);
+      if (handler && handler.beforeNgDoCheck) {
+        handler.beforeNgDoCheck.apply(this);
+      }
+      if (ngDoCheck) {
+        ngDoCheck.apply(this);
+      }
+    }
+
+    const ngAfterContentInit = constructor.prototype.ngAfterContentInit
+    constructor.prototype.ngAfterContentInit = function () {
+      const handler = proxyHandlerMap.get(componentName);
+      if (handler && handler.beforeNgAfterContentInit) {
+        handler.beforeNgAfterContentInit.apply(this);
+      }
+      if (ngAfterContentInit) {
+        ngAfterContentInit.apply(this);
+      }
+    }
+
+    const ngAfterContentChecked = constructor.prototype.ngAfterContentChecked
+    constructor.prototype.ngAfterContentChecked = function () {
+      const handler = proxyHandlerMap.get(componentName);
+      if (handler && handler.beforeNgAfterContentChecked) {
+        handler.beforeNgAfterContentChecked.apply(this);
+      }
+      if (ngAfterContentChecked) {
+        ngAfterContentChecked.apply(this);
+      }
+    }
+
+    const ngAfterViewInit = constructor.prototype.ngAfterViewInit
+    constructor.prototype.ngAfterViewInit = function () {
+      const handler = proxyHandlerMap.get(componentName);
+      if (handler && handler.beforeNgAfterViewInit) {
+        handler.beforeNgAfterViewInit.apply(this);
+      }
+      if (ngAfterViewInit) {
+        ngAfterViewInit.apply(this);
+      }
+    }
+
+    const ngAfterViewChecked = constructor.prototype.ngAfterViewChecked
+    constructor.prototype.ngAfterViewChecked = function () {
+      const handler = proxyHandlerMap.get(componentName);
+      if (handler && handler.beforeNgAfterViewChecked) {
+        handler.beforeNgAfterViewChecked.apply(this);
+      }
+      if (ngAfterViewChecked) {
+        ngAfterViewChecked.apply(this);
+      }
+    }
+
+    return constructor as any;
   }
 }
 
