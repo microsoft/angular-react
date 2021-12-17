@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AngularReactBrowserModule } from '@angular-react/core';
 
 import { MaterialModule } from '../../../material.module';
@@ -11,7 +11,7 @@ describe('MixedPerfComponent', () => {
   let component: MixedPerfComponent;
   let fixture: ComponentFixture<MixedPerfComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [MixedPerfComponent],
       imports: [AngularReactBrowserModule, MaterialModule, ComponentsModule, ReactComponentsModule],
