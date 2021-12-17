@@ -37,10 +37,10 @@
   },
   "peerDependencies": {
     "@angular-react/core": "^0.3.0-alpha1",
-    "@angular/common": "^9.1.13",
-    "@angular/core": "^9.1.13",
-    "@angular/platform-browser-dynamic": "^9.1.13",
-    "@angular/platform-browser": "^9.1.13",
+    "@angular/common": "^10.2.5",
+    "@angular/core": "^10.2.5",
+    "@angular/platform-browser-dynamic": "^10.2.5",
+    "@angular/platform-browser": "^10.2.5",
     "semantic-ui-react": "^0.79.1",
     "react-dom": "^16.4.1",
     "react": "^16.4.1"

@@ -48,10 +48,10 @@
   },
   "peerDependencies": {
     "@angular-react/core": "^1.0.0",
-    "@angular/common": "^9.1.13",
-    "@angular/core": "^9.1.13",
-    "@angular/platform-browser-dynamic": "^9.1.13",
-    "@angular/platform-browser": "^9.1.13",
+    "@angular/common": "^10.2.5",
+    "@angular/core": "^10.2.5",
+    "@angular/platform-browser-dynamic": "^10.2.5",
+    "@angular/platform-browser": "^10.2.5",
     "@fluentui/react": "^8.47.3",
     "react-dom": "~16.8.6",
     "react": "^16.8.6"
