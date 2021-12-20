@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, JsxRenderFunc, Omit, ReactWrapperComponent } from '@angular-react/core';
-import { ChangeDetectorRef, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2, Directive } from '@angular/core';
 import { IPersonaProps } from '@fluentui/react/lib/Persona';
 import {
   IBasePickerProps,
@@ -11,6 +11,7 @@ import {
 } from '@fluentui/react/lib/Pickers';
 import { omit } from '@angular-react/fabric/lib/utils';
 
+@Directive()
 export abstract class FabBasePickerComponent<T, TProps extends IBasePickerProps<T>>
   extends ReactWrapperComponent<TProps>
   implements OnInit {

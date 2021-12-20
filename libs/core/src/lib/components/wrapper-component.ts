@@ -2,17 +2,7 @@
 // Licensed under the MIT License.
 /// <reference path="../@types/geteventlisteners.d.ts" />
 
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  ElementRef,
-  Input,
-  NgZone,
-  OnChanges,
-  Renderer2,
-  SimpleChanges,
-  AfterContentInit,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, Input, NgZone, OnChanges, Renderer2, SimpleChanges, AfterContentInit, Directive } from '@angular/core';
 import classnames from 'classnames';
 import toStyle from 'css-to-style';
 import stylenames, { StyleObject } from 'stylenames';
@@ -59,6 +49,7 @@ const defaultWrapperComponentOptions: WrapperComponentOptions = {
  * Simplifies some of the handling around passing down props and CSS styling on the host component.
  */
 // NOTE: TProps is not used at the moment, but a preparation for a potential future change.
+@Directive()
 export abstract class ReactWrapperComponent<TProps extends {}> implements AfterContentInit, AfterViewInit, OnChanges {
   private _contentClass: Many<ContentClassValue>;
   private _contentStyle: ContentStyleValue;

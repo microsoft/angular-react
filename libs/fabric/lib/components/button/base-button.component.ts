@@ -2,20 +2,7 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectorRef,
-  ElementRef,
-  EventEmitter,
-  Input,
-  NgZone,
-  OnInit,
-  Output,
-  Renderer2,
-  ContentChildren,
-  QueryList,
-  AfterContentInit,
-  OnDestroy,
-} from '@angular/core';
+import { ChangeDetectorRef, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2, ContentChildren, QueryList, AfterContentInit, OnDestroy, Directive } from '@angular/core';
 import { IButtonProps } from '@fluentui/react/lib/Button';
 import { IContextualMenuItem } from '@fluentui/react/lib/ContextualMenu';
 import { ChangeableItemsHelper, mergeItemChanges } from '@angular-react/fabric/lib/components/core';
@@ -25,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { ContextualMenuItemDirective, IContextualMenuItemOptions } from '@angular-react/fabric/lib/components/contextual-menu';
 import { CommandBarItemChangedPayload } from '@angular-react/fabric/lib/components/command-bar';
 
+@Directive()
 export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButtonProps>
   implements OnInit, AfterContentInit, OnDestroy {
   @Input() componentRef?: IButtonProps['componentRef'];

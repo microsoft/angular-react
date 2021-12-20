@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter, Input, OnInit, Output, Directive } from '@angular/core';
 
 import { OnChanges } from '../../declarations/angular/typed-changes';
 import { ItemChangedPayload, ItemChanges } from '../declarative/item-changed.payload';
@@ -10,6 +10,7 @@ import { ChangeableItemHelper } from './changeable-helper';
 /**
  * Parent class for wrapper directive for single item with OnChanges
  */
+@Directive()
 export abstract class ChangeableItemDirective<TItem> implements OnChanges<ChangeableItemDirective<TItem>>, OnInit {
   @Input() key: string;
 

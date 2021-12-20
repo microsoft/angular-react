@@ -49,12 +49,12 @@ export class AppComponent {
     }),
   };
 
-  @ViewChild('customRange', { static: false }) customRangeTemplate: TemplateRef<{
+  @ViewChild('customRange') customRangeTemplate: TemplateRef<{
     item: any;
     dismissMenu: (ev?: any, dismissAll?: boolean) => void;
   }>;
 
-  @ViewChild('calloutTarget', { static: false }) calloutTarget: ElementRef;
+  @ViewChild('calloutTarget') calloutTarget: ElementRef;
 
   onClickEventHandler(ev) {
     console.log('onClick', { ev });

@@ -2,23 +2,13 @@
 // Licensed under the MIT License.
 
 import { InputRendererOptions, JsxRenderFunc, ReactWrapperComponent } from '@angular-react/core';
-import {
-  ChangeDetectorRef,
-  ElementRef,
-  EventEmitter,
-  Input,
-  NgZone,
-  OnInit,
-  Output,
-  Renderer2,
-  ContentChild,
-  AfterContentInit,
-} from '@angular/core';
+import { ChangeDetectorRef, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2, ContentChild, AfterContentInit, Directive } from '@angular/core';
 import { IComboBox, IComboBoxOption, IComboBoxProps } from '@fluentui/react/lib/ComboBox';
 import { ComboBoxOptionDirective } from './directives/combo-box-option.directive';
 import { ComboBoxOptionsDirective } from './directives/combo-box-options.directive';
 import { OnChanges, TypedChanges } from '@angular-react/fabric/lib/declarations';
 
+@Directive()
 export abstract class FabBaseComboBoxComponent extends ReactWrapperComponent<IComboBoxProps>
   implements OnInit, OnChanges<FabBaseComboBoxComponent>, AfterContentInit {
 

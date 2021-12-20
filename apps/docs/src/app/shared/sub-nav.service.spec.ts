@@ -1,9 +1,9 @@
-import { TestBed, inject, async } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 
 import { SubNavService } from './sub-nav.service';
 
 describe('SubNavService', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [SubNavService],
     }).compileComponents();

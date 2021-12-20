@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AngularReactBrowserModule } from '@angular-react/core';
 
 import { SemanticUiComponent } from './semantic-ui.component';
@@ -9,7 +9,7 @@ describe('SemanticUiComponent', () => {
   let component: SemanticUiComponent;
   let fixture: ComponentFixture<SemanticUiComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [AngularReactBrowserModule, SemButtonModule],
       declarations: [SemanticUiComponent],

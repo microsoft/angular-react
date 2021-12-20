@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "angular-react-toolkit",
-  "version": "1.1.1",
+  "version": "4.0.0",
   "ngPackage": {
     "lib": {
       "entryFile": "public-api.ts",
@@ -34,12 +34,12 @@
   "private": false,
   "sideEffects": false,
   "peerDependencies": {
-    "@angular-react/core": "^1.0.0",
-    "@angular/common": "^8.0.2",
-    "@angular/core": "^8.0.2",
-    "@angular/platform-browser-dynamic": "^8.0.2",
-    "@angular/platform-browser": "^8.0.2",
-    "@fluentui/react": "^8.17.3",
+    "@angular-react/core": "^4.0.0",
+    "@angular/common": "^11.2.14",
+    "@angular/core": "^11.2.14",
+    "@angular/platform-browser-dynamic": "^11.2.14",
+    "@angular/platform-browser": "^11.2.14",
+    "@fluentui/react": "^8.47.3",
     "react-dom": "~16.8.6",
     "react": "^16.8.6"
   }

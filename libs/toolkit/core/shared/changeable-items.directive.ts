@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AfterContentInit, ContentChildren, EventEmitter, OnDestroy, Output, QueryList } from '@angular/core';
+import { AfterContentInit, ContentChildren, EventEmitter, OnDestroy, Output, QueryList, Directive } from '@angular/core';
 
 import { ItemChangedPayload } from '../declarative/item-changed.payload';
 import { ChangeableItemsHelper, IChangeableItemsContainer } from './changeable-helper';
@@ -10,6 +10,7 @@ import { ChangeableItemDirective } from './changeable-item.directive';
 /**
  * Parent class for wrapper directive for multiple ChangeableItemDirectives
  */
+@Directive()
 export abstract class ChangeableItemsDirective<TItem>
   implements AfterContentInit, IChangeableItemsContainer<TItem>, OnDestroy {
   @ContentChildren(ChangeableItemDirective) readonly directiveItems: QueryList<ChangeableItemDirective<TItem>>;
