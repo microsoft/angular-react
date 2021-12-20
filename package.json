@@ -119,6 +119,7 @@
     "rimraf": "^2.6.2",
     "stylenames": "^1.1.6",
     "ts-node": "~10.4.0",
+    "tsickle": "0.39.1",
     "tslint": "~6.1.0",
     "typescript": "~4.0.8"
   },
