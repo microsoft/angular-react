@@ -2,13 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/apps/demo"
-},
+  },
   "files": [
     "src/main.ts",
     "src/polyfills.ts"
   ],
-  "include": ["**/*.d.ts"],
-  "angularCompilerOptions": {
-    "enableIvy": false
-  }
+  "include": ["**/*.d.ts"]
 }

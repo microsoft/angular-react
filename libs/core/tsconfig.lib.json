@@ -13,10 +13,9 @@
     "importHelpers": true,
     "types": [],
     "typeRoots": ["./src/lib/@types"],
-    "lib": ["dom", "es2015"]
+    "lib": ["dom", "es2017"]
   },
   "angularCompilerOptions": {
-    "enableIvy": false,
     "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,

@@ -221,7 +221,7 @@ export abstract class ReactWrapperComponent<TProps extends {}> implements AfterC
       {}
     );
 
-    const eventListeners = this.elementRef.nativeElement.getEventListeners();
+    const eventListeners = this.elementRef.nativeElement.getEventListeners?.();
     const eventHandlersProps =
       eventListeners && Object.keys(eventListeners).length
         ? toObject(

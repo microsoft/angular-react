@@ -11,10 +11,6 @@
       "stylenames"
     ],
     "lib": {
-      "languageLevel": [
-        "dom",
-        "es2017"
-      ],
       "entryFile": "public-api.ts",
       "umdModuleIds": {
         "react": "React",
