@@ -59,7 +59,8 @@
     "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
     "help": "./node_modules/.bin/nx help",
     "affected:test": "./node_modules/.bin/nx affected:test",
-    "affected:lint": "./node_modules/.bin/nx affected:lint"
+    "affected:lint": "./node_modules/.bin/nx affected:lint",
+    "postinstall": "ngcc"
   },
   "private": false,
   "dependencies": {
