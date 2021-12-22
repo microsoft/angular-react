@@ -33,10 +33,10 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
+              "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "fileReplacements": [
                 {
                   "replace": "apps/docs/src/environments/environment.ts",
@@ -105,6 +105,7 @@
           },
           "configurations": {
             "production": {
+              "tsConfig": "apps/demo/tsconfig.app.prod.json",
               "budgets": [
                 {
                   "type": "anyComponentStyle",
@@ -115,10 +116,10 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
+              "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "fileReplacements": [
                 {
                   "replace": "apps/demo/src/environments/environment.ts",
@@ -172,6 +173,18 @@
       "sourceRoot": "libs/core/src",
       "projectType": "library",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/core/tsconfig.lib.json",
+            "project": "libs/core/package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/core/tsconfig.lib.prod.json"
+            }
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -191,13 +204,25 @@
           }
         }
       },
-      "prefix": "app"
+      "prefix": "lib"
     },
     "fabric": {
       "root": "libs/fabric",
       "sourceRoot": "libs/fabric/src",
       "projectType": "library",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/fabric/tsconfig.lib.json",
+            "project": "libs/fabric/package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/fabric/tsconfig.lib.prod.json"
+            }
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -217,13 +242,25 @@
           }
         }
       },
-      "prefix": "app"
+      "prefix": "lib"
     },
     "semantic-ui": {
       "root": "libs/semantic-ui",
       "sourceRoot": "libs/semantic-ui/src",
       "projectType": "library",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/semantic-ui/tsconfig.lib.json",
+            "project": "libs/semantic-ui/package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/semantic-ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -243,7 +280,45 @@
           }
         }
       },
-      "prefix": "app"
+      "prefix": "lib"
+    },
+    "toolkit": {
+      "root": "libs/toolkit",
+      "sourceRoot": "libs/toolkit/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/toolkit/tsconfig.lib.json",
+            "project": "libs/toolkit/package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/toolkit/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/toolkit/src/test.ts",
+            "karmaConfig": "libs/toolkit/karma.conf.js",
+            "scripts": [],
+            "styles": [],
+            "assets": [],
+            "tsConfig": "libs/toolkit/tsconfig.spec.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/toolkit/tsconfig.lib.json", "libs/toolkit/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "prefix": "lib"
     }
   },
   "defaultProject": "docs",
