@@ -29,6 +29,8 @@ export interface DisguiseProps {
    * The Angular child components to render.
    */
   ngChildComponents?: ReactWrapperComponent<any>[];
+
+  key?: string | number
 }
 
 /**
@@ -37,7 +39,6 @@ export interface DisguiseProps {
 export class Disguise extends React.PureComponent<DisguiseProps> {
   render() {
     const { disguiseRootAs, disguiseChildrenAs, children, ngChildComponents, ...rest } = this.props;
-    const Root = disguiseRootAs || React.Fragment;
 
     const renderedChildren = ngChildComponents
       ? this._isReactContentOnlyChild()
@@ -45,7 +46,11 @@ export class Disguise extends React.PureComponent<DisguiseProps> {
         : this._renderChildrenNaive()
       : children;
 
-    return React.createElement(Root, rest || null, renderedChildren);
+    if (disguiseRootAs) {
+      return React.createElement(disguiseRootAs, rest || null, renderedChildren);
+    } else {
+      return React.createElement(React.Fragment, rest.key != null ? { key: rest.key } : null, renderedChildren);
+    }
   }
 
   private _isReactContentOnlyChild(): boolean {
