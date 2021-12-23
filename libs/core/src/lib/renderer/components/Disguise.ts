@@ -46,7 +46,7 @@ export class Disguise extends React.PureComponent<DisguiseProps> {
         : this._renderChildrenNaive()
       : children;
 
-    if (disguiseRootAs) {
+    if (disguiseRootAs != null) {
       return React.createElement(disguiseRootAs, rest || null, renderedChildren);
     } else {
       return React.createElement(React.Fragment, rest.key != null ? { key: rest.key } : null, renderedChildren);
