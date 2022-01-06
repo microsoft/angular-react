@@ -8,13 +8,11 @@ import {
   IDropdownOption,
   ICheckboxProps,
   IPersonaProps,
-  IPeoplePickerProps,
 } from '@fluentui/react';
 import { RenderPropOptions } from '@angular-react/core';
-import { FabDropdownComponent } from '@angular-react/fabric';
-import { FabPeoplePickerComponent } from '@angular-react/fabric/public-api';
-import { createListItems, createGroups, IExampleItem } from '@uifabric/example-data';
-import { IColumn, DetailsRow, IGroup } from '@fluentui/react/lib/DetailsList';
+import { FabDropdownComponent } from '@angular-react/fabric/lib/components/dropdown';
+import { createListItems, createGroups } from '@uifabric/example-data';
+import { IColumn, IGroup } from '@fluentui/react/lib/DetailsList';
 
 const suffix = ' cm';
 interface IKeyboardShortcutsTab {
