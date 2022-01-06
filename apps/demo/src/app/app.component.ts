@@ -625,4 +625,8 @@ export class AppComponent {
   onRatingChanged({ rating }) {
     console.log(rating)
   }
+
+  changeShowCallout() {
+    this.showCallout = !this.showCallout;
+  }
 }
