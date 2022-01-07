@@ -4,7 +4,7 @@ import { NxModule } from '@nrwl/nx';
 import { initializeIcons } from '@fluentui/react/lib/Icons';
 import { AppComponent } from './app.component';
 import { CounterComponent } from './counter/counter.component';
-import { FabFabricModule } from 'libs/fabric/lib/components/fabric/public-api';
+import { FabFabricModule } from '@angular-react/fabric/lib/components/fabric';
 import { FabIconModule } from '@angular-react/fabric/lib/components/icon';
 import { FabButtonModule } from '@angular-react/fabric/lib/components/button';
 import { FabDialogModule } from '@angular-react/fabric/lib/components/dialog';
