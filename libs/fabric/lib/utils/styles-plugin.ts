@@ -55,7 +55,7 @@ export function Styled<T extends IConstructor>(componentName: string) {
         handler.beforeNgDestroy.apply(this);
       }
       if (ngOnDestroy) {
-        ngOnDestroy.ngOnDestroy.apply(this);
+        ngOnDestroy.apply(this);
       }
     }
 
