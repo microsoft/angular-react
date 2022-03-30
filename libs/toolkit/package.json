@@ -4,13 +4,7 @@
   "version": "4.0.0",
   "ngPackage": {
     "lib": {
-      "entryFile": "public-api.ts",
-      "umdModuleIds": {
-        "react": "React",
-        "react-dom": "ReactDOM",
-        "@angular-react/core": "ɵa",
-        "@fluentui/react": "Fabric"
-      }
+      "entryFile": "public-api.ts"
     },
     "dest": "../../angular-react-toolkit"
   },

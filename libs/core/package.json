@@ -11,11 +11,7 @@
       "stylenames"
     ],
     "lib": {
-      "entryFile": "public-api.ts",
-      "umdModuleIds": {
-        "react": "React",
-        "react-dom": "ReactDOM"
-      }
+      "entryFile": "public-api.ts"
     },
     "dest": "../../@angular-react/core"
   },
