@@ -79,13 +79,6 @@
             "styles": ["apps/docs/src/styles.scss"],
             "assets": ["apps/docs/src/assets", "apps/docs/src/favicon.ico", "apps/docs/src/404.html"]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/docs/tsconfig.app.json", "apps/docs/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
         }
       },
       "prefix": "app"
@@ -167,13 +160,6 @@
             "styles": ["apps/demo/src/styles.css"],
             "assets": ["apps/demo/src/assets", "apps/demo/src/favicon.ico", "apps/demo/src/404.html"]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/demo/tsconfig.app.json", "apps/demo/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
         }
       },
       "prefix": "app"
@@ -204,13 +190,6 @@
             "styles": [],
             "assets": [],
             "tsConfig": "libs/core/tsconfig.spec.json"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["libs/core/tsconfig.lib.json", "libs/core/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -243,13 +222,6 @@
             "assets": [],
             "tsConfig": "libs/fabric/tsconfig.spec.json"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["libs/fabric/tsconfig.lib.json", "libs/fabric/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
         }
       },
       "prefix": "lib"
@@ -281,13 +253,6 @@
             "assets": [],
             "tsConfig": "libs/semantic-ui/tsconfig.spec.json"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["libs/semantic-ui/tsconfig.lib.json", "libs/semantic-ui/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
         }
       },
       "prefix": "lib"
@@ -318,13 +283,6 @@
             "styles": [],
             "assets": [],
             "tsConfig": "libs/toolkit/tsconfig.spec.json"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["libs/toolkit/tsconfig.lib.json", "libs/toolkit/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
           }
         }
       },
