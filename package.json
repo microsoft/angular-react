@@ -87,7 +87,6 @@
     "rxjs": "6.6.7",
     "semantic-ui-react": "^0.82.1",
     "tslib": "^2.0.0",
-    "web-animations-js": "^2.3.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
