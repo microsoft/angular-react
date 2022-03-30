@@ -1,0 +1,14 @@
+{
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "deleteDestPath": true,
+  "allowedNonPeerDependencies": [
+    "tslib",
+    "css-to-style",
+    "classnames",
+    "stylenames"
+  ],
+  "lib": {
+    "entryFile": "public-api.ts"
+  },
+  "dest": "../../@angular-react/core"
+}

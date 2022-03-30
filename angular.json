@@ -173,7 +173,7 @@
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/core/tsconfig.lib.json",
-            "project": "libs/core/package.json"
+            "project": "libs/core/ng-package.json"
           },
           "configurations": {
             "production": {
@@ -204,7 +204,7 @@
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/fabric/tsconfig.lib.json",
-            "project": "libs/fabric/package.json"
+            "project": "libs/fabric/ng-package.json"
           },
           "configurations": {
             "production": {
@@ -291,7 +291,6 @@
   },
   "defaultProject": "docs",
   "cli": {
-    "warnings": {},
-    "defaultCollection": "@nrwl/schematics"
+    "warnings": {}
   }
 }

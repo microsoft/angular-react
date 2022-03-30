@@ -1,20 +1,6 @@
 {
-  "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@angular-react/core",
   "version": "4.0.1",
-  "ngPackage": {
-    "deleteDestPath": true,
-    "whitelistedNonPeerDependencies": [
-      "tslib",
-      "css-to-style",
-      "classnames",
-      "stylenames"
-    ],
-    "lib": {
-      "entryFile": "public-api.ts"
-    },
-    "dest": "../../@angular-react/core"
-  },
   "description": "Use React components inside Angular",
   "author": {
     "name": "Ben Feely",
@@ -42,10 +28,10 @@
   "private": false,
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/compiler": "^11.2.14",
-    "@angular/core": "^11.2.14",
-    "@angular/platform-browser-dynamic": "^11.2.14",
-    "@angular/platform-browser": "^11.2.14",
+    "@angular/compiler": "^13.3.0",
+    "@angular/core": "^13.3.0",
+    "@angular/platform-browser-dynamic": "^13.3.0",
+    "@angular/platform-browser": "^13.3.0",
     "rxjs": "^6.5.2",
     "react-dom": "~16.8.6",
     "react": "~16.8.6"
