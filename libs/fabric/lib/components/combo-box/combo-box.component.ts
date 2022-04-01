@@ -55,7 +55,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </ComboBox>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabComboBoxComponent extends FabBaseComboBoxComponent {

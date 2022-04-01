@@ -35,7 +35,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </ProgressIndicator>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabProgressIndicatorComponent extends ReactWrapperComponent<IProgressIndicatorProps> implements OnInit {

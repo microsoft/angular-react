@@ -28,7 +28,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </VerticalDivider>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDividerComponent extends ReactWrapperComponent<IVerticalDividerProps> {

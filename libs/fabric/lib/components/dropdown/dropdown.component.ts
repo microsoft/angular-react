@@ -64,7 +64,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       [Dismiss]="onDismissHandler"
     ></Dropdown>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> implements OnInit, AfterContentInit {

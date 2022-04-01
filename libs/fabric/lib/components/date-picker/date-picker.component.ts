@@ -64,7 +64,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </DatePicker>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerProps> {

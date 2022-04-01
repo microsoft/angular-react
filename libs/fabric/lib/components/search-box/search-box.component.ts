@@ -43,7 +43,7 @@ import { omit, Styled } from '@angular-react/fabric/lib/utils';
     >
     </SearchBox>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps> {

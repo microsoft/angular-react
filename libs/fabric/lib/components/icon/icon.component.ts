@@ -31,7 +31,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Icon>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabIconComponent extends ReactWrapperComponent<IIconProps> {

@@ -40,7 +40,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </MessageBar>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMessageBarComponent extends ReactWrapperComponent<IMessageBarProps> implements OnInit {

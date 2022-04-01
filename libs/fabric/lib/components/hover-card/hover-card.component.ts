@@ -50,7 +50,7 @@ import { omit, Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </HoverCard>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps> {

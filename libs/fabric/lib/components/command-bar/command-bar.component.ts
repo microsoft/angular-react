@@ -60,7 +60,7 @@ import {
     >
     </CommandBar>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>
@@ -214,10 +214,7 @@ export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarPro
   }
 }
 
-// Not using `Omit` here since it confused the TypeScript compiler and it just showed the properties listed here (`renderIcon`, `render` and `data`).
-// The type here is just `Omit` without the generics though.
-export interface ICommandBarItemOptions<TData = any>
-  extends Pick<ICommandBarItemProps, Exclude<KnownKeys<ICommandBarItemProps>, 'onRender' | 'onRenderIcon'>> {
+export interface ICommandBarItemOptions<TData = any> extends Omit<ICommandBarItemProps, 'onRender' | 'onRenderIcon'> {
   readonly renderIcon?: InputRendererOptions<ICommandBarItemOptionsRenderIconContext>;
   readonly render?: InputRendererOptions<ICommandBarItemOptionsRenderContext>;
   readonly data?: TData;

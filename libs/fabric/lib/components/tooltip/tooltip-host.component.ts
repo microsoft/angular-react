@@ -41,7 +41,7 @@ import { omit, Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </TooltipHost>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostProps> {

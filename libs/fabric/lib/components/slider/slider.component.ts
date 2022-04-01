@@ -46,7 +46,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Slider>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSliderComponent extends ReactWrapperComponent<ISliderProps> {

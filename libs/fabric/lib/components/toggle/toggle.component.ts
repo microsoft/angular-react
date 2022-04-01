@@ -38,7 +38,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Toggle>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {

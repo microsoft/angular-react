@@ -23,7 +23,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
       (onClick)="onClick.emit($event)"
     ></Button>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'sem-button' },
 })

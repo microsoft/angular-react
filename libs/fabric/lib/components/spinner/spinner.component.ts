@@ -34,7 +34,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Spinner>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {

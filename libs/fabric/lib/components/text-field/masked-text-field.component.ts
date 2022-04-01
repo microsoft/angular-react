@@ -67,7 +67,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </MaskedTextField>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMaskedTextFieldComponent extends FabBaseTextFieldComponent {

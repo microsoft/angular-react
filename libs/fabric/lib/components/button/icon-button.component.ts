@@ -65,7 +65,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </IconButton>
   `,
-  styles: ['react-renderer'],
+  styles: ['react-renderer {}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabIconButtonComponent extends FabBaseButtonComponent {
