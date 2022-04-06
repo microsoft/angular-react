@@ -90,7 +90,7 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
     >
     </Persona>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> implements OnInit {
@@ -160,7 +160,7 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
     >
     </PersonaCoin>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPersonaCoinComponent extends FabPersonaBaseComponent<IPersonaCoinProps> implements OnInit {

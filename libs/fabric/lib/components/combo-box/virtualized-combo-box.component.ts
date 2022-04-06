@@ -55,7 +55,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </VirtualizedComboBox>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabVirtualizedComboBoxComponent extends FabBaseComboBoxComponent {

@@ -1,13 +1,6 @@
 {
-  "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "angular-react-toolkit",
-  "version": "4.0.0",
-  "ngPackage": {
-    "lib": {
-      "entryFile": "public-api.ts"
-    },
-    "dest": "../../angular-react-toolkit"
-  },
+  "version": "5.0.0-alpha",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/microsoft/angular-react/issues"
@@ -29,10 +22,10 @@
   "sideEffects": false,
   "peerDependencies": {
     "@angular-react/core": "^4.0.0",
-    "@angular/common": "^11.2.14",
-    "@angular/core": "^11.2.14",
-    "@angular/platform-browser-dynamic": "^11.2.14",
-    "@angular/platform-browser": "^11.2.14",
+    "@angular/common": "^13.3.0",
+    "@angular/core": "^13.3.0",
+    "@angular/platform-browser-dynamic": "^13.3.0",
+    "@angular/platform-browser": "^13.3.0",
     "@fluentui/react": "^8.47.3",
     "react-dom": "~16.8.6",
     "react": "^16.8.6"

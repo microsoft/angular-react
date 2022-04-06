@@ -42,7 +42,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </PivotItem>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps> implements OnInit {
@@ -98,7 +98,7 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
       <ReactContent><ng-content select="fab-pivot-item"></ng-content></ReactContent>
     </Disguise>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {

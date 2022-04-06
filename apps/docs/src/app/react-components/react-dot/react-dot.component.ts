@@ -38,7 +38,7 @@ import { ReactWrapperComponent } from '@angular-react/core';
     </ReactDot>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
 })
 export class ReactDotComponent extends ReactWrapperComponent<ReactDotProps> {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;

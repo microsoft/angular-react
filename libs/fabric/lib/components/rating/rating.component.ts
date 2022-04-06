@@ -30,7 +30,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       [RenderStar]="renderStar && onRenderStar"
     ></Rating>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
 })
 export class FabRatingComponent extends ReactWrapperComponent<IRatingProps> implements OnInit {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;

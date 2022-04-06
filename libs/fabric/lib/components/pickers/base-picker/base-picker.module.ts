@@ -4,12 +4,8 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import * as BasePickerCss from '@fluentui/react/lib-amd/components/pickers/BasePicker.scss';
+import '@fluentui/react/lib/components/pickers/BasePicker.styles';
 import { BasePicker } from '@fluentui/react/lib/Pickers';
-import { noop } from '@angular-react/fabric/lib/utils';
-
-// Dummy action to force BasePickerCss to load and not be tree-shaken away.
-noop(BasePickerCss);
 
 @NgModule({
   imports: [CommonModule],

@@ -65,7 +65,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </MessageBarButton>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMessageBarButtonComponent extends FabBaseButtonComponent {

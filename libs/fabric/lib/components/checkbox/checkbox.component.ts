@@ -47,7 +47,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Checkbox>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCheckboxComponent extends ReactWrapperComponent<ICheckboxProps> implements OnInit {

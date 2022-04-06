@@ -35,7 +35,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Nav>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabNavComponent extends ReactWrapperComponent<INavProps> {

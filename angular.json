@@ -235,7 +235,7 @@
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/semantic-ui/tsconfig.lib.json",
-            "project": "libs/semantic-ui/package.json"
+            "project": "libs/semantic-ui/ng-package.json"
           },
           "configurations": {
             "production": {
@@ -266,7 +266,7 @@
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/toolkit/tsconfig.lib.json",
-            "project": "libs/toolkit/package.json"
+            "project": "libs/toolkit/ng-package.json"
           },
           "configurations": {
             "production": {

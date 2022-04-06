@@ -44,7 +44,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </Dialog>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
@@ -88,7 +88,7 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
       <ReactContent><ng-content></ng-content></ReactContent>
     </DialogFooter>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFooterProps> {
@@ -131,7 +131,7 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
       <ReactContent><ng-content></ng-content></ReactContent>
     </DialogContent>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogContentComponent extends ReactWrapperComponent<IDialogContentProps> {

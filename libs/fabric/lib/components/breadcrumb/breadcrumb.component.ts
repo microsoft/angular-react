@@ -40,7 +40,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Breadcrumb>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabBreadcrumbComponent extends ReactWrapperComponent<IBreadcrumbProps> implements OnInit {

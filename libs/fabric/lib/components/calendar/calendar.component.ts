@@ -56,7 +56,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Calendar>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> implements AfterContentInit {

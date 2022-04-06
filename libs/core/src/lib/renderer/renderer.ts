@@ -41,13 +41,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   }
 
   createRenderer(element: any, type: RendererType2 | null): Renderer2 {
-    if (
-      type?.styles?.length
-      && (
-        type.styles[0] === 'react-renderer'
-        || type.styles[0] === 'react-renderer {}'
-      )
-    ) {
+    if (typeof type.styles?.[0] === 'string' && type.styles[0].startsWith('react-renderer')) {
       return this.defaultReactRenderer;
     }
 

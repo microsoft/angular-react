@@ -60,7 +60,7 @@ import {
     >
     </CommandBar>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>

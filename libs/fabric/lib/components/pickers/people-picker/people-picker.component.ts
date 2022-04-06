@@ -55,7 +55,7 @@ import {
       >
       </PeoplePicker>
     `,
-    styles: ['react-renderer {}'],
+    styles: ['react-renderer { display: none; }'],
     changeDetection: ChangeDetectionStrategy.OnPush,
   })
   export class FabPeoplePickerComponent extends FabBasePickerComponent<IPersonaProps, IPeoplePickerProps> {

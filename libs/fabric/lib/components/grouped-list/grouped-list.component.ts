@@ -49,7 +49,7 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </GroupedList>
   `,
-  styles: ['react-renderer {}'],
+  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListProps> implements OnInit {
