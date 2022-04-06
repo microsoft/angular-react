@@ -13,7 +13,9 @@ import {
 import { ITag, ITagPickerProps } from '@fluentui/react/lib/Pickers';
 import { FabBasePickerComponent } from '../base-picker/base-picker.component';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabTagPickerComponent')
 @Component({
   selector: 'fab-tag-picker',
@@ -52,7 +54,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </TagPicker>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTagPickerComponent extends FabBasePickerComponent<ITag, ITagPickerProps> {

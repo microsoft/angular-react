@@ -13,7 +13,9 @@ import {
 } from '@angular/core';
 import { IIconProps } from '@fluentui/react/lib/Icon';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabIconComponent')
 @Component({
   selector: 'fab-icon',
@@ -31,7 +33,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Icon>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabIconComponent extends ReactWrapperComponent<IIconProps> {

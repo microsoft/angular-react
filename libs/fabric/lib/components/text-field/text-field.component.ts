@@ -4,7 +4,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FabBaseTextFieldComponent } from './base-text-field.component';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabTextFieldComponent')
 @Component({
   selector: 'fab-text-field',
@@ -64,7 +66,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </TextField>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTextFieldComponent extends FabBaseTextFieldComponent {

@@ -20,7 +20,9 @@ import { IDropdownProps, IDropdownOption, IDropdown } from '@fluentui/react/lib/
 import { ISelectableDroppableTextProps, ISelectableOption } from '@fluentui/react/lib/SelectableOption';
 import { DropdownOptionsDirective } from './directives/dropdown-options.directive';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabDropdownComponent')
 @Component({
   selector: 'fab-dropdown',
@@ -64,7 +66,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       [Dismiss]="onDismissHandler"
     ></Dropdown>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDropdownComponent extends ReactWrapperComponent<IDropdownProps> implements OnInit, AfterContentInit {

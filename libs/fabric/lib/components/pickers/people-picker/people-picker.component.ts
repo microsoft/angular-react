@@ -16,7 +16,9 @@ import {
   import { IPeoplePickerProps } from '@fluentui/react/lib/Pickers';
   import { IPersonaProps } from '@fluentui/react/lib/Persona';
   import { Styled } from '@angular-react/fabric/lib/utils';
+  import { AngularReact } from '@angular-react/core';
 
+  @AngularReact()
   @Styled('FabPeoplePickerComponent')
   @Component({
     selector: 'fab-people-picker',
@@ -55,7 +57,6 @@ import {
       >
       </PeoplePicker>
     `,
-    styles: ['react-renderer { display: none; }'],
     changeDetection: ChangeDetectionStrategy.OnPush,
   })
   export class FabPeoplePickerComponent extends FabBasePickerComponent<IPersonaProps, IPeoplePickerProps> {

@@ -18,7 +18,9 @@ import {
 import { ICalendarProps } from '@fluentui/react/lib/Calendar';
 import { CalendarStringsDirective } from './directives/calendar-strings-directive.component';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabCalendarComponent')
 @Component({
   selector: 'fab-calendar',
@@ -56,7 +58,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Calendar>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> implements AfterContentInit {

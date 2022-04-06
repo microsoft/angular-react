@@ -14,7 +14,9 @@ import {
 } from '@angular/core';
 import { IBreadcrumbItem, IBreadcrumbProps } from '@fluentui/react/lib/Breadcrumb';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabBreadcrumbComponent')
 @Component({
   selector: 'fab-breadcrumb',
@@ -40,7 +42,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Breadcrumb>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabBreadcrumbComponent extends ReactWrapperComponent<IBreadcrumbProps> implements OnInit {

@@ -20,7 +20,9 @@ import {
 import { IPivotItemProps, IPivotProps, Pivot, PivotItem } from '@fluentui/react/lib/Pivot';
 import * as React from 'react';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabPivotItemComponent')
 @Component({
   selector: 'fab-pivot-item',
@@ -42,7 +44,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </PivotItem>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps> implements OnInit {
@@ -72,6 +73,7 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
   }
 }
 
+@AngularReact()
 @Styled('FabPivotComponent')
 @Component({
   selector: 'fab-pivot',
@@ -98,7 +100,6 @@ export class FabPivotItemComponent extends ReactWrapperComponent<IPivotItemProps
       <ReactContent><ng-content select="fab-pivot-item"></ng-content></ReactContent>
     </Disguise>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPivotComponent extends ReactWrapperComponent<IPivotProps> {

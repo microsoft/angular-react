@@ -9,6 +9,7 @@ import { ReactContent } from './react-content';
 import { isReactNode, ReactNode } from './react-node';
 import { registerElement } from './registry';
 import './geteventlisteners';
+import { isAngularReactComponent } from '../utils/angular-react/metadata';
 
 const DEBUG = false;
 
@@ -41,7 +42,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   }
 
   createRenderer(element: any, type: RendererType2 | null): Renderer2 {
-    if (typeof type.styles?.[0] === 'string' && type.styles[0].startsWith('react-renderer')) {
+    if (type.styles?.[0] === 'react-renderer' || isAngularReactComponent(type)) {
       return this.defaultReactRenderer;
     }
 

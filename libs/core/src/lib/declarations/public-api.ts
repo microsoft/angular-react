@@ -5,3 +5,4 @@ export * from './known-keys';
 export * from './many';
 export * from './omit';
 export * from './string-map';
+export * from './interfaces';

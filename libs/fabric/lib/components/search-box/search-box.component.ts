@@ -17,7 +17,9 @@ import {
 import { IButtonProps } from '@fluentui/react/lib/Button';
 import { ISearchBoxProps } from '@fluentui/react/lib/SearchBox';
 import { omit, Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabSearchBoxComponent')
 @Component({
   selector: 'fab-search-box',
@@ -43,7 +45,6 @@ import { omit, Styled } from '@angular-react/fabric/lib/utils';
     >
     </SearchBox>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSearchBoxComponent extends ReactWrapperComponent<ISearchBoxProps> {

@@ -14,7 +14,9 @@ import {
 } from '@angular/core';
 import { IProgressIndicatorProps } from '@fluentui/react/lib/ProgressIndicator';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabProgressIndicatorComponent')
 @Component({
   selector: 'fab-progress-indicator',
@@ -35,7 +37,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </ProgressIndicator>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabProgressIndicatorComponent extends ReactWrapperComponent<IProgressIndicatorProps> implements OnInit {

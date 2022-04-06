@@ -12,7 +12,9 @@ import {
 } from '@angular/core';
 import { FabBaseComboBoxComponent } from './base-combo-box.component';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabVirtualizedComboBoxComponent')
 @Component({
   selector: 'fab-virtualized-combo-box',
@@ -55,7 +57,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </VirtualizedComboBox>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabVirtualizedComboBoxComponent extends FabBaseComboBoxComponent {

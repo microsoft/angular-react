@@ -17,7 +17,9 @@ import {
 } from '@angular/core';
 import { IPanelHeaderRenderer, IPanelProps } from '@fluentui/react/lib/Panel';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabPanelComponent')
 @Component({
   selector: 'fab-panel',
@@ -62,7 +64,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </Panel>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPanelComponent extends ReactWrapperComponent<IPanelProps> implements OnInit {

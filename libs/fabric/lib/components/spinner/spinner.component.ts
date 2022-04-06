@@ -13,7 +13,9 @@ import {
 } from '@angular/core';
 import { ISpinnerProps } from '@fluentui/react/lib/Spinner';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabSpinnerComponent')
 @Component({
   selector: 'fab-spinner',
@@ -34,7 +36,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Spinner>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSpinnerComponent extends ReactWrapperComponent<ISpinnerProps> {

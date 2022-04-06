@@ -15,7 +15,9 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabNavComponent')
 @Component({
   selector: 'fab-nav',
@@ -35,7 +37,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Nav>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabNavComponent extends ReactWrapperComponent<INavProps> {

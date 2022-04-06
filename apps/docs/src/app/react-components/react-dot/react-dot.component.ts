@@ -14,7 +14,9 @@ import {
 } from '@angular/core';
 import * as React from 'react';
 import { ReactWrapperComponent } from '@angular-react/core';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Component({
   selector: 'app-react-dot',
   template: `
@@ -38,7 +40,6 @@ import { ReactWrapperComponent } from '@angular-react/core';
     </ReactDot>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: ['react-renderer { display: none; }'],
 })
 export class ReactDotComponent extends ReactWrapperComponent<ReactDotProps> {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;

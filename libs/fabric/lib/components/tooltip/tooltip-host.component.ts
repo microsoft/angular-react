@@ -16,7 +16,9 @@ import {
 } from '@angular/core';
 import { ITooltipHostProps, ITooltipProps } from '@fluentui/react/lib/Tooltip';
 import { omit, Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabTooltipHostComponent')
 @Component({
   selector: 'fab-tooltip-host',
@@ -41,7 +43,6 @@ import { omit, Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </TooltipHost>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabTooltipHostComponent extends ReactWrapperComponent<ITooltipHostProps> {

@@ -18,7 +18,9 @@ import {
 import { IGroup, IGroupedListProps, IGroupRenderProps } from '@fluentui/react/lib/GroupedList';
 import { IListProps } from '@fluentui/react/lib/List';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabGroupedListComponent')
 @Component({
   selector: 'fab-grouped-list',
@@ -49,7 +51,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </GroupedList>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabGroupedListComponent extends ReactWrapperComponent<IGroupedListProps> implements OnInit {

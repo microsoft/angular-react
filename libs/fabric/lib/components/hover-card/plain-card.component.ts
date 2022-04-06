@@ -17,7 +17,9 @@ import {
 } from '@angular/core';
 import { IPlainCardProps } from '@fluentui/react/lib/HoverCard';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabPlainCardComponent')
 @Component({
   selector: 'fab-plain-card',
@@ -42,7 +44,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </PlainCard>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPlainCardComponent extends ReactWrapperComponent<IPlainCardProps> implements OnInit {

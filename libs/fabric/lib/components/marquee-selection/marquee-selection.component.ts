@@ -14,7 +14,9 @@ import {
 import { ReactWrapperComponent } from '@angular-react/core';
 import { IMarqueeSelectionProps } from '@fluentui/react/lib/MarqueeSelection';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabMarqueeSelectionComponent')
 @Component({
   selector: 'fab-marquee-selection',
@@ -35,7 +37,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </MarqueeSelection>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMarqueeSelectionComponent extends ReactWrapperComponent<IMarqueeSelectionProps> {

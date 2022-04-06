@@ -33,7 +33,9 @@ import {
   CommandBarItemsDirectiveBase,
   CommandBarOverflowItemsDirective,
 } from './directives/command-bar-items.directives';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabCommandBarComponent')
 @Component({
   selector: 'fab-command-bar',
@@ -60,7 +62,6 @@ import {
     >
     </CommandBar>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCommandBarComponent extends ReactWrapperComponent<ICommandBarProps>

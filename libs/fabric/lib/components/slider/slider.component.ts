@@ -15,7 +15,9 @@ import {
 } from '@angular/core';
 import { ISliderProps } from '@fluentui/react/lib/Slider';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabSliderComponent')
 @Component({
   selector: 'fab-slider',
@@ -46,7 +48,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Slider>
   `,
-  styles: ['react-renderer { display: none; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSliderComponent extends ReactWrapperComponent<ISliderProps> {
