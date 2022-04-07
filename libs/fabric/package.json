@@ -1,6 +1,6 @@
 {
   "name": "@angular-react/fabric",
-  "version": "5.0.0-alpha",
+  "version": "4.1.0",
   "description": "Use Fabric React components inside Angular",
   "author": {
     "name": "Ben Feely",
@@ -34,7 +34,7 @@
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular-react/core": "^5.0.0-alpha",
+    "@angular-react/core": "^4.1.0",
     "@angular/common": "^13.3.0",
     "@angular/core": "^13.3.0",
     "@angular/platform-browser-dynamic": "^13.3.0",

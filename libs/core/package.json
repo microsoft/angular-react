@@ -1,6 +1,6 @@
 {
   "name": "@angular-react/core",
-  "version": "5.0.0-alpha",
+  "version": "4.1.0",
   "description": "Use React components inside Angular",
   "author": {
     "name": "Ben Feely",

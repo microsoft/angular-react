@@ -70,3 +70,11 @@ dropdown:
   combo-box:
   <fab-combo-box></fab-combo-box>
 </div>
+
+<div>
+  callout:
+  <button #calloutTarget (click)="handCalloutClicked()">{{ showCallout ? 'hide callout' : 'show callout' }}</button>
+  <fab-callout *ngIf="showCallout" [target]="calloutTarget" (onDismiss)="showCallout = false">
+    <div>I am a callout</div>
+  </fab-callout>
+</div>
