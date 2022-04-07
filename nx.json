@@ -2,18 +2,23 @@
   "npmScope": "angular-react",
   "projects": {
     "docs": {
+      "root": "./apps/docs",
       "tags": []
     },
     "demo": {
+      "root": "./apps/demo",
       "tags": []
     },
     "core": {
+      "root": "./libs/core",
       "tags": []
     },
     "fabric": {
+      "root": "./libs/fabric",
       "tags": []
     },
     "semantic-ui": {
+      "root": "./libs/semantic-ui",
       "tags": []
     }
   },
