@@ -5,7 +5,7 @@ const KEY = 'angularReact';
 
 export const setAngularReactMetadata = (
   componentDef: {
-    data: {
+    readonly data: {
       [kind: string]: any;
     };
   },
@@ -13,10 +13,6 @@ export const setAngularReactMetadata = (
 ): void => {
   if (componentDef.data) {
     componentDef.data[KEY] = metadata;
-  } else {
-    componentDef.data = {
-      [KEY]: metadata
-    }
   }
 };
 
