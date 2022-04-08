@@ -17,7 +17,9 @@ import { IAccessiblePopupProps } from '@fluentui/react/lib/common/IAccessiblePop
 import { IModalProps } from '@fluentui/react/lib/Modal';
 import { IWithResponsiveModeState } from '@fluentui/react/lib/utilities/decorators/withResponsiveMode';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabModalComponent')
 @Component({
   selector: 'fab-modal',
@@ -52,7 +54,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </Modal>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabModalComponent extends ReactWrapperComponent<IModalProps>

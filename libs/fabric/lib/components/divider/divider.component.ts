@@ -13,7 +13,9 @@ import {
 } from '@angular/core';
 import { IVerticalDividerProps } from '@fluentui/react/lib/Divider';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabDividerComponent')
 @Component({
   selector: 'fab-vertical-divider',
@@ -28,7 +30,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </VerticalDivider>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDividerComponent extends ReactWrapperComponent<IVerticalDividerProps> {

@@ -8,7 +8,9 @@
 // tslint:disable:no-output-on-prefix
 
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Component({
   selector: 'sem-button',
   exportAs: 'semButton',
@@ -23,7 +25,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
       (onClick)="onClick.emit($event)"
     ></Button>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'sem-button' },
 })

@@ -15,7 +15,9 @@ import {
 } from '@angular/core';
 import { IDialogContentProps, IDialogFooterProps, IDialogProps } from '@fluentui/react/lib/Dialog';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabDialogComponent')
 @Component({
   selector: 'fab-dialog',
@@ -44,7 +46,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </Dialog>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
@@ -79,6 +80,7 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
   }
 }
 
+@AngularReact()
 @Styled('FabDialogFooterComponent')
 @Component({
   selector: 'fab-dialog-footer',
@@ -88,7 +90,6 @@ export class FabDialogComponent extends ReactWrapperComponent<IDialogProps> {
       <ReactContent><ng-content></ng-content></ReactContent>
     </DialogFooter>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFooterProps> {
@@ -104,6 +105,7 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
   }
 }
 
+@AngularReact()
 @Styled('FabDialogContentComponent')
 @Component({
   selector: 'fab-dialog-content',
@@ -131,7 +133,6 @@ export class FabDialogFooterComponent extends ReactWrapperComponent<IDialogFoote
       <ReactContent><ng-content></ng-content></ReactContent>
     </DialogContent>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDialogContentComponent extends ReactWrapperComponent<IDialogContentProps> {

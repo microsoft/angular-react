@@ -15,7 +15,9 @@ import {
 } from '@angular/core';
 import { IDatePickerProps } from '@fluentui/react/lib/DatePicker';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabDatePickerComponent')
 @Component({
   selector: 'fab-date-picker',
@@ -64,7 +66,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </DatePicker>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDatePickerComponent extends ReactWrapperComponent<IDatePickerProps> {

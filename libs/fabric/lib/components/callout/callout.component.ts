@@ -16,7 +16,9 @@ import {
 import { ICalloutProps } from '@fluentui/react/lib/Callout';
 import { ICalloutPositionedInfo } from '@fluentui/react/lib/utilities/positioning/positioning.types';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabCalloutComponent')
 @Component({
   selector: 'fab-callout',
@@ -63,7 +65,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </Callout>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCalloutComponent extends ReactWrapperComponent<ICalloutProps> {

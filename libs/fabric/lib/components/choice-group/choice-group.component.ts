@@ -15,7 +15,9 @@ import {
 } from '@angular/core';
 import { IChoiceGroupOption, IChoiceGroupProps } from '@fluentui/react/lib/ChoiceGroup';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabChoiceGroupComponent')
 @Component({
   selector: 'fab-choice-group',
@@ -37,7 +39,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </ChoiceGroup>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabChoiceGroupComponent extends ReactWrapperComponent<IChoiceGroupProps> {

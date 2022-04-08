@@ -2,7 +2,9 @@ import { InputRendererOptions, passProp, ReactWrapperComponent } from '@angular-
 import { ChangeDetectorRef, Component, ElementRef, Input, NgZone, Output, Renderer2, ViewChild, EventEmitter, OnInit } from '@angular/core';
 import { IRatingProps, IRatingStarProps } from '@fluentui/react/lib/Rating';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabRatingComponent')
 @Component({
   selector: 'fab-rating',
@@ -30,7 +32,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       [RenderStar]="renderStar && onRenderStar"
     ></Rating>
   `,
-  styles: ['react-renderer'],
 })
 export class FabRatingComponent extends ReactWrapperComponent<IRatingProps> implements OnInit {
   @ViewChild('reactNode', { static: true }) protected reactNodeRef: ElementRef;

@@ -13,7 +13,9 @@ import {
 } from '@angular/core';
 import { ILinkProps, Link } from '@fluentui/react/lib/Link';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabLinkComponent')
 @Component({
   selector: 'fab-link',
@@ -48,7 +50,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </Disguise>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabLinkComponent extends ReactWrapperComponent<ILinkProps> {

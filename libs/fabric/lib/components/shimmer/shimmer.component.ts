@@ -15,7 +15,9 @@ import {
 import { IShimmerElementsGroupProps } from '@fluentui/react/lib/components/Shimmer/ShimmerElementsGroup/ShimmerElementsGroup.types';
 import { IShimmerProps } from '@fluentui/react/lib/Shimmer';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabShimmerComponent')
 @Component({
   selector: 'fab-shimmer',
@@ -36,7 +38,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </Shimmer>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
@@ -73,6 +74,7 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
   }
 }
 
+@AngularReact()
 @Styled('FabShimmerElementsGroupComponent')
 @Component({
   selector: 'fab-shimmer-elements-group',
@@ -91,7 +93,6 @@ export class FabShimmerComponent extends ReactWrapperComponent<IShimmerProps> {
     >
     </ShimmerElementsGroup>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabShimmerElementsGroupComponent extends ReactWrapperComponent<IShimmerElementsGroupProps> {

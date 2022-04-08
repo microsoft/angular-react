@@ -17,7 +17,9 @@ import {
 } from '@angular/core';
 import { IExpandingCardProps } from '@fluentui/react/lib/HoverCard';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabExpandingCardComponent')
 @Component({
   selector: 'fab-expanding-card',
@@ -46,7 +48,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </ExpandingCard>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabExpandingCardComponent extends ReactWrapperComponent<IExpandingCardProps> implements OnInit {

@@ -12,7 +12,9 @@ import {
 } from '@angular/core';
 import { FabBaseButtonComponent } from './base-button.component';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabCompoundButtonComponent')
 @Component({
   selector: 'fab-compound-button',
@@ -65,7 +67,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </CompoundButton>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCompoundButtonComponent extends FabBaseButtonComponent {

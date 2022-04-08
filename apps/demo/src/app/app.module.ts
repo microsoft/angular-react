@@ -1,6 +1,6 @@
 import { AngularReactBrowserModule } from '@angular-react/core';
 import { NgModule } from '@angular/core';
-import { NxModule } from '@nrwl/nx';
+import { NxModule } from '@nrwl/angular';
 import { initializeIcons } from '@fluentui/react/lib/Icons';
 import { AppComponent } from './app.component';
 import { CounterComponent } from './counter/counter.component';

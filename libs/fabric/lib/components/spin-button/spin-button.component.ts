@@ -15,7 +15,9 @@ import {
 } from '@angular/core';
 import { ISpinButtonProps } from '@fluentui/react/lib/SpinButton';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabSpinButtonComponent')
 @Component({
   selector: 'fab-spin-button',
@@ -59,7 +61,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </SpinButton>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabSpinButtonComponent extends ReactWrapperComponent<ISpinButtonProps> {

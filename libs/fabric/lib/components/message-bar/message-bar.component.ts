@@ -17,7 +17,9 @@ import {
 } from '@angular/core';
 import { IMessageBarProps } from '@fluentui/react/lib/MessageBar';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabMessageBarComponent')
 @Component({
   selector: 'fab-message-bar',
@@ -40,7 +42,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </MessageBar>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMessageBarComponent extends ReactWrapperComponent<IMessageBarProps> implements OnInit {

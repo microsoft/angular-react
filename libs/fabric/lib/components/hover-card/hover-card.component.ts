@@ -16,7 +16,9 @@ import {
 } from '@angular/core';
 import { IExpandingCardProps, IHoverCardProps, IPlainCardProps } from '@fluentui/react/lib/HoverCard';
 import { omit, Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabHoverCardComponent')
 @Component({
   selector: 'fab-hover-card',
@@ -50,7 +52,6 @@ import { omit, Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </HoverCard>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabHoverCardComponent extends ReactWrapperComponent<IHoverCardProps> {

@@ -15,7 +15,9 @@ import {
 } from '@angular/core';
 import { IToggleProps } from '@fluentui/react/lib/Toggle';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabToggleComponent')
 @Component({
   selector: 'fab-toggle',
@@ -38,7 +40,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Toggle>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabToggleComponent extends ReactWrapperComponent<IToggleProps> {

@@ -15,7 +15,9 @@ import {
 } from '@angular/core';
 import { IImageProps, ImageLoadState } from '@fluentui/react/lib/Image';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabImageComponent')
 @Component({
   selector: 'fab-image',
@@ -45,7 +47,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Image>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabImageComponent extends ReactWrapperComponent<IImageProps> {

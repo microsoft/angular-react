@@ -110,7 +110,7 @@ export abstract class FabBaseButtonComponent extends ReactWrapperComponent<IButt
         }),
         this._changeableItemsHelper.onChildItemChanged.subscribe(({ key, changes }: CommandBarItemChangedPayload) => {
           const newItems = this.menuItemsDirectives.map(item =>
-            item.key === key ? mergeItemChanges(item, changes) : item
+            item.key === key ? mergeItemChanges<ContextualMenuItemDirective>(item, changes) : item
           );
           setItems(newItems);
 

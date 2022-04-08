@@ -39,7 +39,9 @@ import { IDetailsListColumnOptions } from './directives/details-list-column.dire
 import { DetailsListColumnsDirective } from './directives/details-list-columns.directive';
 import { DetailsListGroupsDirective } from './directives/details-list-groups.directive';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabDetailsListComponent')
 @Component({
   selector: 'fab-details-list',
@@ -112,7 +114,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </DetailsList>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabDetailsListComponent extends ReactWrapperComponent<IDetailsListProps>

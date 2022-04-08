@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { NxModule } from '@nrwl/nx';
+import { NxModule } from '@nrwl/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularReactBrowserModule } from '@angular-react/core';

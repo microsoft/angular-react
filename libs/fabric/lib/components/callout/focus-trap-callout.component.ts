@@ -16,7 +16,9 @@ import {
 import { IFocusTrapCalloutProps } from '@fluentui/react/lib/Callout';
 import { ICalloutPositionedInfo } from '@fluentui/react/lib/utilities/positioning';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabFocusTrapCalloutComponent')
 @Component({
   selector: 'fab-focus-trap-callout',
@@ -66,7 +68,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
       <ReactContent><ng-content></ng-content></ReactContent>
     </Callout>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabFocusTrapCalloutComponent extends ReactWrapperComponent<IFocusTrapCalloutProps> {

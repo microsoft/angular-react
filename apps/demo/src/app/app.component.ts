@@ -623,4 +623,10 @@ export class AppComponent {
   onRatingChanged({ rating }) {
     console.log(rating)
   }
+
+  handCalloutClicked() {
+    if (!this.showCallout) {
+      this.showCallout = true;
+    }
+  }
 }

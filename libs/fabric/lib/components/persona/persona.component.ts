@@ -48,7 +48,9 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
     this.onRenderInitials = this.createRenderPropHandler(this.renderInitials);
   }
 }
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabPersonaComponent')
 @Component({
   selector: 'fab-persona',
@@ -90,7 +92,6 @@ export abstract class FabPersonaBaseComponent<TProps extends IPersonaSharedProps
     >
     </Persona>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> implements OnInit {
@@ -125,6 +126,7 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
   }
 }
 
+@AngularReact()
 @Styled('FabPersonaCoinComponent')
 @Component({
   selector: 'fab-persona-coin',
@@ -160,7 +162,6 @@ export class FabPersonaComponent extends FabPersonaBaseComponent<IPersonaProps> 
     >
     </PersonaCoin>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabPersonaCoinComponent extends FabPersonaBaseComponent<IPersonaCoinProps> implements OnInit {

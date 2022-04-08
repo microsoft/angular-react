@@ -18,7 +18,9 @@ import {
 import { ICheckboxProps } from '@fluentui/react/lib/Checkbox';
 import { FormEvent } from 'react';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabCheckboxComponent')
 @Component({
   selector: 'fab-checkbox',
@@ -47,7 +49,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </Checkbox>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabCheckboxComponent extends ReactWrapperComponent<ICheckboxProps> implements OnInit {

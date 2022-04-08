@@ -5,7 +5,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inpu
 import { FabBaseTextFieldComponent } from './base-text-field.component';
 import { IMaskedTextFieldProps } from '@fluentui/react/lib/TextField';
 import { Styled } from '@angular-react/fabric/lib/utils';
+import { AngularReact } from '@angular-react/core';
 
+@AngularReact()
 @Styled('FabMaskedTextFieldComponent')
 @Component({
   selector: 'fab-masked-text-field',
@@ -67,7 +69,6 @@ import { Styled } from '@angular-react/fabric/lib/utils';
     >
     </MaskedTextField>
   `,
-  styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabMaskedTextFieldComponent extends FabBaseTextFieldComponent {
