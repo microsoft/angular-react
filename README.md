@@ -18,6 +18,7 @@ Use of Angular-React allows consuming any React elements, but specifically Offic
     
     The light-weight Angular component wrappers that expose the Fabric React component API through common Angular components (including both imperative AND declarative syntax in many cases).
 
+`angular-react@3` is for `Angular@8`
 
 ### Quick links
 
