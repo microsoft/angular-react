@@ -8,7 +8,7 @@ type IEventListenerArray<K extends keyof ElementEventMap> = IEventListener<K>[];
 
 type IEventListenersMap<K extends keyof ElementEventMap> = Record<K, IEventListenerArray<K>>;
 
-interface Element {
+interface HTMLElement {
   /**
    * Gets all the event listeners of the element.
    */
