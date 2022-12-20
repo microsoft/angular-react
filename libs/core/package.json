@@ -37,11 +37,13 @@
     "react": "~16.8.6"
   },
   "dependencies": {
-    "@types/stylenames": "^1.1.0",
     "css-to-style": "^1.2.1",
     "classnames": "^2.2.6",
     "stylenames": "^1.1.6",
     "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/stylenames": "^1.1.0"
   },
   "bundledDependencies": [
     "css-to-style",
