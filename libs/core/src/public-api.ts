@@ -16,3 +16,5 @@ export {
   RenderPropOptions,
 } from './lib/components/render-props';
 export * from './lib/decorators/index';
+export { AngularReactRendererFactory } from './lib/renderer/renderer';
+

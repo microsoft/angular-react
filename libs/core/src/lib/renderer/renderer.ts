@@ -42,7 +42,7 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   }
 
   createRenderer(element: any, type: RendererType2 | null): Renderer2 {
-    if (type.styles?.[0] === 'react-renderer' || isAngularReactComponent(type)) {
+    if (type?.styles?.[0] === 'react-renderer' || isAngularReactComponent(type)) {
       return this.defaultReactRenderer;
     }
 

@@ -8,6 +8,29 @@
  * @note Taken and modified from https://github.com/colxi/getEventListeners to be compiled into ES5, allowing running in older browsers
  **/
 
+interface IEventListener<K extends keyof ElementEventMap> {
+  type: K;
+  listener: (ev: ElementEventMap[K]) => void;
+  options?: boolean | EventListenerOptions;
+}
+
+type IEventListenerArray<K extends keyof ElementEventMap> = IEventListener<K>[];
+
+type IEventListenersMap<K extends keyof ElementEventMap> = Record<K, IEventListenerArray<K>>;
+
+interface Element {
+  /**
+   * Gets all the event listeners of the element.
+   */
+  getEventListeners<K extends keyof ElementEventMap>(): IEventListenersMap<K>;
+
+  /**
+   * Gets all the event listeners of a type of the element.
+   */
+  getEventListeners<K extends keyof ElementEventMap>(type?: K): IEventListenerArray<K>;
+}
+
+
 Element.prototype['_addEventListener'] = Element.prototype.addEventListener;
 Element.prototype['_removeEventListener'] = Element.prototype.removeEventListener;
 
