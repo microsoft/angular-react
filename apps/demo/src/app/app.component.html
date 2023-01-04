@@ -59,6 +59,19 @@ choice group:
 data picker:
 <fab-date-picker></fab-date-picker>
 
+time picker:
+<fab-time-picker
+  [styles]="timePickerStyles"
+  [allowFreeform]="allowFreeform"
+  [useHour12]="useHour12"
+  (onChange)="handleTimePickerChange($event)"
+  (onItemClick)="handleTimePickerItemClick($event)"
+  (onInputValueChange)="handleTimePickerInputValueChange($event)"
+  (onMenuOpen)="handleTimePickerMenuOpen()"
+  (onMenuDismissed)="handleTimePickerMenuDismissed()"
+  (onMenuDismiss)="handleTimePickerMenuDismiss()"
+></fab-time-picker>
+
 divider:
 <fab-vertical-divider></fab-vertical-divider>
 
@@ -66,15 +79,15 @@ divider:
 dropdown:
 <fab-dropdown></fab-dropdown>
 
-<div>
+<!-- <div>
   combo-box:
   <fab-combo-box></fab-combo-box>
-</div>
+</div> -->
 
-<div>
+<!-- <div>
   callout:
   <button #calloutTarget (click)="handCalloutClicked()">{{ showCallout ? 'hide callout' : 'show callout' }}</button>
   <fab-callout *ngIf="showCallout" [target]="calloutTarget" (onDismiss)="showCallout = false">
     <div>I am a callout</div>
   </fab-callout>
-</div>
+</div> -->
