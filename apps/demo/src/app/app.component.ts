@@ -85,6 +85,45 @@ export class AppComponent {
     { key: 'G', text: 'Option g' },
   ];
 
+  allowFreeform = true;
+  useHour12 = true;
+  timePickerStyles = {
+    optionsContainerWrapper: {
+      height: '500px',
+    },
+    root: {
+      width: '50%',
+    },
+  }
+
+  onFormatDate(date) {
+    console.log(date)
+  }
+
+  handleTimePickerChange($event) {
+    console.log($event);
+  }
+
+  handleTimePickerItemClick($event) {
+    console.log($event)
+  }
+
+  handleTimePickerInputValueChange(v) {
+    console.log(v);
+  }
+
+  handleTimePickerMenuOpen() {
+    console.log('handleTimePickerMenuOpen')
+  }
+
+  handleTimePickerMenuDismissed() {
+    console.log('handleTimePickerMenuDismissed')
+  }
+
+  handleTimePickerMenuDismiss() {
+    console.log('handleTimePickerMenuDismiss')
+  }
+
   // tslint:disable-next-line: member-ordering
   textFieldValue = 'Hello';
 

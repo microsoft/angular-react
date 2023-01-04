@@ -41,6 +41,7 @@ import { FabTextFieldModule } from '@angular-react/fabric/lib/components/text-fi
 import { FabPeoplePickerModule, FabTagPickerModule } from '@angular-react/fabric/lib/components/pickers';
 import { FabProgressIndicatorModule } from '@angular-react/fabric/lib/components/progress-indicator';
 import { FabRatingModule } from '@angular-react/fabric/lib/components/rating';
+import { FabTimePickerModule } from '@angular-react/fabric/lib/components/time-picker';
 
 @NgModule({
   imports: [
@@ -83,7 +84,8 @@ import { FabRatingModule } from '@angular-react/fabric/lib/components/rating';
     FabPeoplePickerModule,
     FabTagPickerModule,
     FabProgressIndicatorModule,
-    FabRatingModule
+    FabRatingModule,
+    FabTimePickerModule
   ],
   declarations: [AppComponent, CounterComponent],
   bootstrap: [AppComponent],
