@@ -30,6 +30,9 @@ import { AngularReact } from '@angular-react/core';
       #reactNode
       [componentRef]="componentRef"
       [className]="className"
+      [styles]="styles"
+      [calendarDayProps]="calendarDayProps"
+      [calendarMonthProps]="calendarMonthProps"
       [isMonthPickerVisible]="isMonthPickerVisible"
       [isDayPickerVisible]="isDayPickerVisible"
       [showMonthPickerAsOverlay]="showMonthPickerAsOverlay"
@@ -87,6 +90,9 @@ export class FabCalendarComponent extends ReactWrapperComponent<ICalendarProps> 
   @Input() workWeekDays?: ICalendarProps['workWeekDays'];
   @Input() showCloseButton?: ICalendarProps['showCloseButton'];
   @Input() allFocusable?: ICalendarProps['allFocusable'];
+  @Input() styles?: ICalendarProps['styles']
+  @Input() calendarDayProps?: ICalendarProps['calendarDayProps'];
+  @Input() calendarMonthProps?: ICalendarProps['calendarMonthProps'];
 
   @Output() readonly onSelectDate = new EventEmitter<{ date: Date; selectedDateRangeArray?: Date[] }>();
   @Output() readonly onDismiss = new EventEmitter<void>();
