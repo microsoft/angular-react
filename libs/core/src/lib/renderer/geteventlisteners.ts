@@ -85,7 +85,7 @@ Element.prototype.removeEventListener = function<K extends keyof ElementEventMap
   if (this.eventListenerList[type].length == 0) delete this.eventListenerList[type];
 };
 
-Element.prototype.getEventListeners = function<K extends keyof ElementEventMap>(type?: K) {
+HTMLElement.prototype.getEventListeners = function<K extends keyof ElementEventMap>(type?: K) {
   if (!this.eventListenerList) this.eventListenerList = {};
 
   // return requested listeners type or all them

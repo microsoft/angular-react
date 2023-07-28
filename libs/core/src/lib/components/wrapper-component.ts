@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="../renderer/geteventlisteners.ts" />
+import '../@types/geteventlisteners';
+
 
 import { AfterViewInit, ChangeDetectorRef, ElementRef, Input, NgZone, OnChanges, Renderer2, SimpleChanges, AfterContentInit, Directive } from '@angular/core';
 import classnames from 'classnames';
