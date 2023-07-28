@@ -42,6 +42,9 @@
     "stylenames": "^1.1.6",
     "tslib": "^2.0.0"
   },
+  "devDependencies": {
+    "@types/stylenames": "^1.1.0"
+  },
   "bundledDependencies": [
     "css-to-style",
     "classnames",
