@@ -22,6 +22,8 @@ Use of Angular-React allows consuming any React elements, but specifically Offic
 
 `angular-react@4.1` is for `Angular@13`
 
+`angular-react@5.0` is for `Angular@16`
+
 ### Quick links
 
 [Documentation, quick start, and guides][ard] |
