@@ -10,6 +10,7 @@
     "baseUrl": "",
     "target": "es2015",
     "module": "es2015",
+    "useDefineForClassFields": false,
     "moduleResolution": "node",
     "outDir": "../../out-tsc/libs/fabric",
     "declaration": true,

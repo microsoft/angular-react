@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Injectable, Renderer2, RendererStyleFlags2, RendererType2 } from '@angular/core';
-import { EventManager, ɵDomRendererFactory2, ɵDomSharedStylesHost } from '@angular/platform-browser';
+import { ɵDomRendererFactory2 } from '@angular/platform-browser';
 import { StringMap } from '../declarations/string-map';
 import { Disguise } from './components/Disguise';
 import { ReactContent } from './react-content';
@@ -15,7 +15,7 @@ const DEBUG = false;
 
 @Injectable()
 export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
-  private readonly defaultReactRenderer: ReactRenderer;
+  private readonly defaultReactRenderer = new ReactRenderer(this);
 
   // Collection of ReactNodes that can be evaluated and flushed at the
   // end of Render.  This is necessary as the flow of element creation
@@ -33,13 +33,6 @@ export class AngularReactRendererFactory extends ɵDomRendererFactory2 {
   public readonly setRenderPendingCallback = () => {
     this.isRenderPending = true;
   };
-
-  constructor(eventManager: EventManager, sharedStylesHost: ɵDomSharedStylesHost) {
-    super(eventManager, sharedStylesHost, 'app-id');
-
-    // tslint:disable-next-line: no-use-before-declare
-    this.defaultReactRenderer = new ReactRenderer(this);
-  }
 
   createRenderer(element: any, type: RendererType2 | null): Renderer2 {
     if (type?.styles?.[0] === 'react-renderer' || isAngularReactComponent(type)) {

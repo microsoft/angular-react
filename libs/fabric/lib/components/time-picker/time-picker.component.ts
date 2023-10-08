@@ -17,7 +17,6 @@ import type { ITimePickerProps } from '@fluentui/react/lib/TimePicker';
 import { Styled } from '@angular-react/fabric/lib/utils';
 import { AngularReact } from '@angular-react/core';
 import type { IComboBox, IComboBoxOption } from '@fluentui/react/lib/components/ComboBox';
-import { formatTimeString } from '@fluentui/date-time-utilities';
 
 @AngularReact()
 @Styled('FabTimePickerComponent')

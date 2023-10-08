@@ -20,7 +20,7 @@ const ignoredAttributeMatchers = [/^_?ng-?.*/, /^style$/, /^class$/];
 
 const ngClassRegExp = /^ng-/;
 
-export type ContentClassValue = string[] | Set<string> | { [klass: string]: any };
+export type ContentClassValue = string[] | { [klass: string]: any };
 export type ContentStyleValue = string | StyleObject;
 
 /**

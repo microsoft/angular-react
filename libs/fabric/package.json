@@ -1,6 +1,6 @@
 {
   "name": "@angular-react/fabric",
-  "version": "4.3.1",
+  "version": "5.0.0",
   "description": "Use Fabric React components inside Angular",
   "author": {
     "name": "Ben Feely",
@@ -34,11 +34,11 @@
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular-react/core": "^4.1.0",
-    "@angular/common": "^13.3.0",
-    "@angular/core": "^13.3.0",
-    "@angular/platform-browser-dynamic": "^13.3.0",
-    "@angular/platform-browser": "^13.3.0",
+    "@angular-react/core": "^5.0.0",
+    "@angular/common": "^16.2.8",
+    "@angular/core": "^16.2.8",
+    "@angular/platform-browser-dynamic": "^16.2.8",
+    "@angular/platform-browser": "^16.2.8",
     "@fluentui/react": "^8.47.3",
     "react-dom": "~16.8.6",
     "react": "^16.8.6"

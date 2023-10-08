@@ -1,6 +1,6 @@
 {
   "name": "@angular-react/core",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "description": "Use React components inside Angular",
   "author": {
     "name": "Ben Feely",
@@ -28,10 +28,10 @@
   "private": false,
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/compiler": "^13.3.0",
-    "@angular/core": "^13.3.0",
-    "@angular/platform-browser-dynamic": "^13.3.0",
-    "@angular/platform-browser": "^13.3.0",
+    "@angular/compiler": "^16.2.8",
+    "@angular/core": "^16.2.8",
+    "@angular/platform-browser-dynamic": "^16.2.8",
+    "@angular/platform-browser": "^16.2.8",
     "rxjs": "^6.5.2",
     "react-dom": "~16.8.6",
     "react": "~16.8.6"
