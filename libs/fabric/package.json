@@ -40,7 +40,7 @@
     "@angular/platform-browser-dynamic": "^16.2.8",
     "@angular/platform-browser": "^16.2.8",
     "@fluentui/react": "^8.47.3",
-    "react-dom": "~16.8.6",
-    "react": "^16.8.6"
+    "react-dom": "^18.3.1",
+    "react": "~18.3.1"
   }
 }
